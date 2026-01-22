@@ -1,0 +1,19 @@
+# node_modules
+node_modules/
+
+# build output
+dist/
+
+# local env files
+.env*.local
+
+# vite
+*.local
+
+# data fetch scripts (avoid pushing locally cached data if desired, but we want it for the app)
+# src/data/vocab.json 
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
