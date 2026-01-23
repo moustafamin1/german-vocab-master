@@ -9,7 +9,9 @@
     "plural": "-",
     "sentence": "Ich studiere Jura.",
     "level": "A1.1",
-    "trivia": "Use this only for university. For school or general skills, use lernen."
+    "trivia": "Use this only for university. For school or general skills, use lernen.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "arbeiten",
@@ -21,7 +23,9 @@
     "plural": "-",
     "sentence": "Er arbeitet als Kellner.",
     "level": "A1.1",
-    "trivia": "Sounds like \"Labor\"—where people work."
+    "trivia": "Sounds like \"Labor\"—where people work.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "lernen",
@@ -33,7 +37,9 @@
     "plural": "-",
     "sentence": "Sie lernt Deutsch.",
     "level": "A1.1",
-    "trivia": "Think of the English \"Learn.\""
+    "trivia": "Think of the English \"Learn.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "ergänzen",
@@ -45,7 +51,9 @@
     "plural": "-",
     "sentence": "Ergänzen Sie die Sätze.",
     "level": "A1.1",
-    "trivia": "Common in textbooks. \"Ganz\" means \"whole/complete.\""
+    "trivia": "Common in textbooks. \"Ganz\" means \"whole/complete.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "nennen",
@@ -57,7 +65,9 @@
     "plural": "-",
     "sentence": "Nennen Sie die Berufe.",
     "level": "A1.2",
-    "trivia": "Related to the English word \"Name.\""
+    "trivia": "Related to the English word \"Name.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Künstler",
@@ -69,7 +79,9 @@
     "plural": "die Künstler / -innen",
     "sentence": "Er ist Künstler.",
     "level": "A1.1",
-    "trivia": "From Kunst (Art)."
+    "trivia": "From Kunst (Art).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Kellner",
@@ -81,7 +93,9 @@
     "plural": "die Kellner / -innen",
     "sentence": "Der Kellner ist nett.",
     "level": "A1.1",
-    "trivia": "Often found in a Keller (cellar/bar)."
+    "trivia": "Often found in a Keller (cellar/bar).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Arzt",
@@ -93,7 +107,9 @@
     "plural": "die Ärzte / -innen",
     "sentence": "Der Arzt kommt bald.",
     "level": "A1.1",
-    "trivia": "Short and sharp, like a needle prick!"
+    "trivia": "Short and sharp, like a needle prick!",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Informatiker",
@@ -105,7 +121,9 @@
     "plural": "die Informatiker / -innen",
     "sentence": "Ich bin Informatiker.",
     "level": "A1.1",
-    "trivia": "\"Information\" + \"Technik.\""
+    "trivia": "\"Information\" + \"Technik.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Lehrer",
@@ -117,7 +135,9 @@
     "plural": "die Lehrer / -innen",
     "sentence": "Die Lehrerin erklärt viel.",
     "level": "A1.1",
-    "trivia": "Related to lehren (to teach)."
+    "trivia": "Related to lehren (to teach).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Assistent",
@@ -129,7 +149,9 @@
     "plural": "die Assistenten / -innen",
     "sentence": "Er ist der Assistent.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Student",
@@ -141,7 +163,9 @@
     "plural": "die Studenten / -innen",
     "sentence": "Ich bin Student.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Architekt",
@@ -153,7 +177,9 @@
     "plural": "die Architekten / -innen",
     "sentence": "Sie ist Architektin.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Ingenieur",
@@ -165,7 +191,9 @@
     "plural": "die Ingenieure / -innen",
     "sentence": "Er ist Ingenieur.",
     "level": "A1.1",
-    "trivia": "From French \"Ingénieur.\""
+    "trivia": "From French \"Ingénieur.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Jurist",
@@ -177,7 +205,9 @@
     "plural": "die Juristen / -innen",
     "sentence": "Sie studiert Jura.",
     "level": "A1.2",
-    "trivia": "Jura = Law."
+    "trivia": "Jura = Law.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Musiker",
@@ -189,7 +219,9 @@
     "plural": "die Musiker / -innen",
     "sentence": "Johann ist Musiker.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Physiker",
@@ -201,7 +233,9 @@
     "plural": "die Physiker / -innen",
     "sentence": "Luca ist Physiker.",
     "level": "A1.2",
-    "trivia": "Science-based cognate."
+    "trivia": "Science-based cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Koch",
@@ -213,7 +247,9 @@
     "plural": "die Köche / -innen",
     "sentence": "Der Koch kocht Suppe.",
     "level": "A1.1",
-    "trivia": "The word looks like \"Cook.\""
+    "trivia": "The word looks like \"Cook.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Mathematiker",
@@ -225,7 +261,9 @@
     "plural": "die Mathematiker / -innen",
     "sentence": "Martina ist Mathematikerin.",
     "level": "A1.2",
-    "trivia": "A very long A1 word!"
+    "trivia": "A very long A1 word!",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Journalist",
@@ -237,7 +275,9 @@
     "plural": "die Journalisten / -innen",
     "sentence": "Georg ist Journalist.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Designer",
@@ -249,7 +289,9 @@
     "plural": "die Designer / -innen",
     "sentence": "Yvonne ist Designerin.",
     "level": "A1.1",
-    "trivia": "English loanword."
+    "trivia": "English loanword.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "malen",
@@ -261,7 +303,9 @@
     "plural": "-",
     "sentence": "Er malt Bilder.",
     "level": "A1.1",
-    "trivia": "Think of \"Mural.\""
+    "trivia": "Think of \"Mural.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "bedienen",
@@ -273,7 +317,9 @@
     "plural": "-",
     "sentence": "Er bedient Gäste.",
     "level": "A1.2",
-    "trivia": "Related to \"Service\" in a restaurant context."
+    "trivia": "Related to \"Service\" in a restaurant context.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "untersuchen",
@@ -285,7 +331,9 @@
     "plural": "-",
     "sentence": "Er untersucht Patienten.",
     "level": "A1.2",
-    "trivia": "\"Unter\" (under) + \"suchen\" (to search/look). Searching under the surface!"
+    "trivia": "\"Unter\" (under) + \"suchen\" (to search/look). Searching under the surface!",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "entwickeln",
@@ -297,7 +345,9 @@
     "plural": "-",
     "sentence": "Er entwickelt Computerspiele.",
     "level": "B1.1",
-    "trivia": "A bit advanced, but common in tech jobs."
+    "trivia": "A bit advanced, but common in tech jobs.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "unterrichten",
@@ -309,7 +359,9 @@
     "plural": "-",
     "sentence": "Sie unterrichtet Kinder.",
     "level": "A1.2",
-    "trivia": "Specific to the act of teaching a class."
+    "trivia": "Specific to the act of teaching a class.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "schreiben",
@@ -321,7 +373,9 @@
     "plural": "-",
     "sentence": "Sie schreibt E-Mails.",
     "level": "A1.1",
-    "trivia": "Think of a \"Scribe.\""
+    "trivia": "Think of a \"Scribe.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "lesen",
@@ -333,7 +387,9 @@
     "plural": "-",
     "sentence": "Er liest viele Bücher.",
     "level": "A1.1",
-    "trivia": "Sounds a bit like \"Lesson\" (what you read)."
+    "trivia": "Sounds a bit like \"Lesson\" (what you read).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "präsentieren",
@@ -345,7 +401,9 @@
     "plural": "-",
     "sentence": "Er präsentiert oft Projekte.",
     "level": "A1.2",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "konstruieren",
@@ -357,7 +415,9 @@
     "plural": "-",
     "sentence": "Sie konstruiert Solarautos.",
     "level": "A2.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "haben",
@@ -369,7 +429,9 @@
     "plural": "-",
     "sentence": "Sie hat viele Besprechungen.",
     "level": "A1.1",
-    "trivia": "One of the most important verbs in German!"
+    "trivia": "One of the most important verbs in German!",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Bild",
@@ -381,7 +443,9 @@
     "plural": "die Bilder",
     "sentence": "Er malt Bilder.",
     "level": "A1.1",
-    "trivia": "Think of a \"Billboard.\""
+    "trivia": "Think of a \"Billboard.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Gast",
@@ -393,7 +457,9 @@
     "plural": "die Gäste",
     "sentence": "Er bedient Gäste.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Patient",
@@ -405,7 +471,9 @@
     "plural": "die Patienten",
     "sentence": "Er untersucht Patienten.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Spiel",
@@ -417,7 +485,9 @@
     "plural": "die Spiele",
     "sentence": "Er entwickelt Computerspiele.",
     "level": "A1.1",
-    "trivia": "Like the word \"Spiel\" (a sales pitch or performance)."
+    "trivia": "Like the word \"Spiel\" (a sales pitch or performance).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Kind",
@@ -429,7 +499,9 @@
     "plural": "die Kinder",
     "sentence": "Sie unterrichtet Kinder.",
     "level": "A1.1",
-    "trivia": "Like \"Kindergarten.\""
+    "trivia": "Like \"Kindergarten.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "E-Mail",
@@ -441,7 +513,9 @@
     "plural": "die E-Mails",
     "sentence": "Sie schreibt E-Mails.",
     "level": "A1.1",
-    "trivia": "English loanword."
+    "trivia": "English loanword.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Buch",
@@ -453,7 +527,9 @@
     "plural": "die Bücher",
     "sentence": "Er liest viele Bücher.",
     "level": "A1.1",
-    "trivia": "\"Buch\" sounds like \"Book.\""
+    "trivia": "\"Buch\" sounds like \"Book.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Projekt",
@@ -465,7 +541,9 @@
     "plural": "die Projekte",
     "sentence": "Er präsentiert Projekte.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Auto",
@@ -477,7 +555,9 @@
     "plural": "die Autos",
     "sentence": "Sie konstruiert Solarautos.",
     "level": "A1.1",
-    "trivia": "Short for \"Automobile.\""
+    "trivia": "Short for \"Automobile.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Besprechung",
@@ -489,7 +569,9 @@
     "plural": "die Besprechungen",
     "sentence": "Sie hat viele Besprechungen.",
     "level": "A2.1",
-    "trivia": "From \"sprechen\" (to speak). A meeting is where you speak together."
+    "trivia": "From \"sprechen\" (to speak). A meeting is where you speak together.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "",
@@ -501,7 +583,9 @@
     "plural": "",
     "sentence": "",
     "level": "",
-    "trivia": ""
+    "trivia": "",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "",
@@ -513,7 +597,9 @@
     "plural": "",
     "sentence": "",
     "level": "",
-    "trivia": ""
+    "trivia": "",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Solarauto",
@@ -525,7 +611,9 @@
     "plural": "die Solarautos",
     "sentence": "Sie konstruiert Solarautos.",
     "level": "A2.1",
-    "trivia": "Solar + Auto. Compound words take the gender of the last word (das Auto)."
+    "trivia": "Solar + Auto. Compound words take the gender of the last word (das Auto).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Handy",
@@ -537,7 +625,9 @@
     "plural": "die Handys",
     "sentence": "Das Handy ist neu.",
     "level": "A1.1",
-    "trivia": "Germans use \"Handy\" instead of \"Mobile\"—because it's \"handy\"!"
+    "trivia": "Germans use \"Handy\" instead of \"Mobile\"—because it's \"handy\"!",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Brille",
@@ -549,7 +639,9 @@
     "plural": "die Brillen",
     "sentence": "Das ist meine Brille.",
     "level": "A1.1",
-    "trivia": "Related to the mineral \"beryl,\" once used for lenses."
+    "trivia": "Related to the mineral \"beryl,\" once used for lenses.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Tisch",
@@ -561,7 +653,9 @@
     "plural": "die Tische",
     "sentence": "Der Tisch ist aus Holz.",
     "level": "A1.1",
-    "trivia": "Sounds like \"Dish\"—which you put on a table."
+    "trivia": "Sounds like \"Dish\"—which you put on a table.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Stuhl",
@@ -573,7 +667,9 @@
     "plural": "die Stühle",
     "sentence": "Ich brauche einen Stuhl.",
     "level": "A1.1",
-    "trivia": "Think of a \"Stool.\""
+    "trivia": "Think of a \"Stool.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Zeitung",
@@ -585,7 +681,9 @@
     "plural": "die Zeitungen",
     "sentence": "Ich lese die Zeitung.",
     "level": "A1.1",
-    "trivia": "Zeit means time. A newspaper tells you what's happening at this time."
+    "trivia": "Zeit means time. A newspaper tells you what's happening at this time.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Uhr",
@@ -597,7 +695,9 @@
     "plural": "die Uhren",
     "sentence": "Wie viel Uhr ist es?",
     "level": "A1.1",
-    "trivia": "Sounds like \"Hour.\""
+    "trivia": "Sounds like \"Hour.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Tasche",
@@ -609,7 +709,9 @@
     "plural": "die Taschen",
     "sentence": "Die Tasche ist schwer.",
     "level": "A1.1",
-    "trivia": "Think of a \"Stash\" you keep in your bag."
+    "trivia": "Think of a \"Stash\" you keep in your bag.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Medikament",
@@ -621,7 +723,9 @@
     "plural": "die Medikamente",
     "sentence": "Er nimmt ein Medikament.",
     "level": "A1.2",
-    "trivia": "Cognate with \"Medication.\""
+    "trivia": "Cognate with \"Medication.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Lampe",
@@ -633,7 +737,9 @@
     "plural": "die Lampen",
     "sentence": "Die Lampe ist hell.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Regenschirm",
@@ -645,7 +751,9 @@
     "plural": "die Regenschirme",
     "sentence": "Ich habe einen Regenschirm.",
     "level": "A1.2",
-    "trivia": "Regen (rain) + Schirm (shield/screen). A rain-shield!"
+    "trivia": "Regen (rain) + Schirm (shield/screen). A rain-shield!",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Seite",
@@ -657,7 +765,9 @@
     "plural": "die Seiten",
     "sentence": "Das Buch hat 200 Seiten.",
     "level": "A1.1",
-    "trivia": "Think of the \"Side\" of a leaf of paper."
+    "trivia": "Think of the \"Side\" of a leaf of paper.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Tasse",
@@ -669,7 +779,9 @@
     "plural": "die Tassen",
     "sentence": "Eine Tasse Kaffee, bitte.",
     "level": "A1.1",
-    "trivia": "Sounds like the French \"tasse.\""
+    "trivia": "Sounds like the French \"tasse.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Tür",
@@ -681,7 +793,9 @@
     "plural": "die Türen",
     "sentence": "Die Tür ist offen.",
     "level": "A1.1",
-    "trivia": "Sounds like \"Door.\""
+    "trivia": "Sounds like \"Door.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Computer",
@@ -693,7 +807,9 @@
     "plural": "die Computer",
     "sentence": "Der Computer ist schnell.",
     "level": "A1.1",
-    "trivia": "English loanword."
+    "trivia": "English loanword.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Lehrbuch",
@@ -705,7 +821,9 @@
     "plural": "die Lehrbücher",
     "sentence": "Das Lehrbuch ist teuer.",
     "level": "A1.1",
-    "trivia": "Lehren (teach) + Buch (book)."
+    "trivia": "Lehren (teach) + Buch (book).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Zeitschrift",
@@ -717,7 +835,9 @@
     "plural": "die Zeitschriften",
     "sentence": "Das ist eine Zeitschrift.",
     "level": "A1.2",
-    "trivia": "Zeit (time) + Schrift (writing)."
+    "trivia": "Zeit (time) + Schrift (writing).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Schlüssel",
@@ -729,7 +849,9 @@
     "plural": "die Schlüssel",
     "sentence": "Wo ist mein Schlüssel?",
     "level": "A1.1",
-    "trivia": "Related to \"close\" (schließen). A key closes things."
+    "trivia": "Related to \"close\" (schließen). A key closes things.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Flasche",
@@ -741,7 +863,9 @@
     "plural": "die Flaschen",
     "sentence": "Eine Flasche Wasser, bitte.",
     "level": "A1.1",
-    "trivia": "Sounds like \"Flask.\""
+    "trivia": "Sounds like \"Flask.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Stift",
@@ -753,7 +877,9 @@
     "plural": "die Stifte",
     "sentence": "Der Stift schreibt gut.",
     "level": "A1.1",
-    "trivia": "Think of \"Stiff\"—a pen is a stiff writing tool."
+    "trivia": "Think of \"Stiff\"—a pen is a stiff writing tool.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Kaffeemaschine",
@@ -765,7 +891,9 @@
     "plural": "die Kaffeemaschinen",
     "sentence": "Die Kaffeemaschine ist kaputt.",
     "level": "A1.1",
-    "trivia": "Compound: Kaffee + Maschine."
+    "trivia": "Compound: Kaffee + Maschine.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Fußball",
@@ -777,7 +905,9 @@
     "plural": "die Fußbälle",
     "sentence": "Wir spielen Fußball.",
     "level": "A1.1",
-    "trivia": "Fuß (foot) + Ball (ball)."
+    "trivia": "Fuß (foot) + Ball (ball).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "",
@@ -789,7 +919,9 @@
     "plural": "",
     "sentence": "",
     "level": "",
-    "trivia": ""
+    "trivia": "",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Bildschirm",
@@ -801,7 +933,9 @@
     "plural": "die Bildschirme",
     "sentence": "Der Bildschirm ist groß.",
     "level": "A1.2",
-    "trivia": "Bild (picture) + Schirm (shield). A shield for pictures!"
+    "trivia": "Bild (picture) + Schirm (shield). A shield for pictures!",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Schreibtisch",
@@ -813,7 +947,9 @@
     "plural": "die Schreibtische",
     "sentence": "Das ist mein Schreibtisch.",
     "level": "A1.1",
-    "trivia": "Schreiben (write) + Tisch (table). A writing table."
+    "trivia": "Schreiben (write) + Tisch (table). A writing table.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Präsentation",
@@ -825,7 +961,9 @@
     "plural": "die Präsentationen",
     "sentence": "Die Präsentation ist gut.",
     "level": "A1.2",
-    "trivia": "Ends in -ion, which is almost always feminine in German."
+    "trivia": "Ends in -ion, which is almost always feminine in German.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Büro",
@@ -837,7 +975,9 @@
     "plural": "die Büros",
     "sentence": "Ich bin im Büro.",
     "level": "A1.1",
-    "trivia": "Borrowed from the French \"Bureau.\""
+    "trivia": "Borrowed from the French \"Bureau.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Wörterbuch",
@@ -849,7 +989,9 @@
     "plural": "die Wörterbücher",
     "sentence": "Das ist ein Wörterbuch.",
     "level": "A1.1",
-    "trivia": "Wörter (words) + Buch (book). A book of words."
+    "trivia": "Wörter (words) + Buch (book). A book of words.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Lippenstift",
@@ -861,7 +1003,9 @@
     "plural": "die Lippenstifte",
     "sentence": "Das ist ein Lippenstift.",
     "level": "A2.1",
-    "trivia": "Lippen (lips) + Stift (pen). A pen for your lips!"
+    "trivia": "Lippen (lips) + Stift (pen). A pen for your lips!",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Zimmerschlüssel",
@@ -873,7 +1017,9 @@
     "plural": "die Zimmerschlüssel",
     "sentence": "Ist das ein Zimmerschlüssel?",
     "level": "A1.1",
-    "trivia": "Zimmer (room) + Schlüssel (key)."
+    "trivia": "Zimmer (room) + Schlüssel (key).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Sonnenschirm",
@@ -885,7 +1031,9 @@
     "plural": "die Sonnenschirme",
     "sentence": "Das ist kein Sonnenschirm.",
     "level": "A1.2",
-    "trivia": "Sonne (sun) + Schirm (shield). Like a rain-shield, but for sun."
+    "trivia": "Sonne (sun) + Schirm (shield). Like a rain-shield, but for sun.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Volleyball",
@@ -897,7 +1045,9 @@
     "plural": "die Volleybälle",
     "sentence": "Das ist kein Volleyball.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Gitarre",
@@ -909,7 +1059,9 @@
     "plural": "die Gitarren",
     "sentence": "Das ist keine Gitarre.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Cello",
@@ -921,7 +1073,9 @@
     "plural": "die Cellos",
     "sentence": "Das ist ein Cello.",
     "level": "A1.2",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Modezeitschrift",
@@ -933,7 +1087,9 @@
     "plural": "die Modezeitschriften",
     "sentence": "Das ist eine Modezeitschrift.",
     "level": "A2.1",
-    "trivia": "Mode (fashion) + Zeitschrift (magazine)."
+    "trivia": "Mode (fashion) + Zeitschrift (magazine).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "suchen",
@@ -945,7 +1101,9 @@
     "plural": "-",
     "sentence": "Suchen Sie im Wörterbuch.",
     "level": "A1.1",
-    "trivia": "Sounds like \"Seek.\""
+    "trivia": "Sounds like \"Seek.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "sammeln",
@@ -957,7 +1115,9 @@
     "plural": "-",
     "sentence": "Sammeln Sie Gegenstände.",
     "level": "A1.2",
-    "trivia": "Think of \"Assembling\" a collection."
+    "trivia": "Think of \"Assembling\" a collection.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "",
@@ -969,7 +1129,9 @@
     "plural": "",
     "sentence": "",
     "level": "",
-    "trivia": ""
+    "trivia": "",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "",
@@ -981,7 +1143,9 @@
     "plural": "",
     "sentence": "",
     "level": "",
-    "trivia": ""
+    "trivia": "",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Kalender",
@@ -993,7 +1157,9 @@
     "plural": "die Kalender",
     "sentence": "Das ist ein Kalender.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Drucker",
@@ -1005,7 +1171,9 @@
     "plural": "die Drucker",
     "sentence": "Der Drucker ist neu.",
     "level": "A1.1",
-    "trivia": "Related to drucken (to print)."
+    "trivia": "Related to drucken (to print).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Telefon",
@@ -1017,7 +1185,9 @@
     "plural": "die Telefone",
     "sentence": "Das ist ein Telefon.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Laptop",
@@ -1029,7 +1199,9 @@
     "plural": "die Laptops",
     "sentence": "Das ist mein Laptop.",
     "level": "A1.1",
-    "trivia": "English loanword."
+    "trivia": "English loanword.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Bleistift",
@@ -1041,7 +1213,9 @@
     "plural": "die Bleistifte",
     "sentence": "Ist das ein Bleistift?",
     "level": "A1.1",
-    "trivia": "Blei (lead) + Stift (pen)."
+    "trivia": "Blei (lead) + Stift (pen).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Autoschlüssel",
@@ -1053,7 +1227,9 @@
     "plural": "die Autoschlüssel",
     "sentence": "Das ist ein Autoschlüssel.",
     "level": "A1.1",
-    "trivia": "Auto (car) + Schlüssel (key)."
+    "trivia": "Auto (car) + Schlüssel (key).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Tageszeitung",
@@ -1065,7 +1241,9 @@
     "plural": "die Tageszeitungen",
     "sentence": "Ist das eine Tageszeitung?",
     "level": "A1.1",
-    "trivia": "Tag (day) + Zeitung (newspaper)."
+    "trivia": "Tag (day) + Zeitung (newspaper).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Kursraum",
@@ -1077,7 +1255,9 @@
     "plural": "die Kursräume",
     "sentence": "Wir sind im Kursraum.",
     "level": "A1.1",
-    "trivia": "Kurs (course) + Raum (room)."
+    "trivia": "Kurs (course) + Raum (room).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Gegenstand",
@@ -1089,7 +1269,9 @@
     "plural": "die Gegenstände",
     "sentence": "Das ist ein Gegenstand.",
     "level": "A2.1",
-    "trivia": "Literally \"stands against\" (you)."
+    "trivia": "Literally \"stands against\" (you).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Begriff",
@@ -1101,7 +1283,9 @@
     "plural": "die Begriffe",
     "sentence": "Wie heißt der Begriff?",
     "level": "A2.1",
-    "trivia": "Related to greifen (to grasp/understand)."
+    "trivia": "Related to greifen (to grasp/understand).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Wort",
@@ -1113,7 +1297,9 @@
     "plural": "die Wörter",
     "sentence": "Das Wort ist lang.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Silbe",
@@ -1125,7 +1311,9 @@
     "plural": "die Silben",
     "sentence": "Das Wort hat zwei Silben.",
     "level": "A1.2",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Akzent",
@@ -1137,7 +1325,9 @@
     "plural": "die Akzente",
     "sentence": "Der Akzent ist hier.",
     "level": "A1.2",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Komposita",
@@ -1149,7 +1339,9 @@
     "plural": "die Komposita",
     "sentence": "Das sind Komposita.",
     "level": "B1.1",
-    "trivia": "Grammar term for combined words."
+    "trivia": "Grammar term for combined words.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Fremdwort",
@@ -1161,7 +1353,9 @@
     "plural": "die Fremdwörter",
     "sentence": "Das ist ein Fremdwort.",
     "level": "A2.1",
-    "trivia": "Fremd (foreign) + Wort (word)."
+    "trivia": "Fremd (foreign) + Wort (word).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "hören",
@@ -1173,7 +1367,9 @@
     "plural": "-",
     "sentence": "Hören Sie das?",
     "level": "A1.1",
-    "trivia": "Think of \"Hearing.\""
+    "trivia": "Think of \"Hearing.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "orientieren",
@@ -1185,7 +1381,9 @@
     "plural": "-",
     "sentence": "Orientieren Sie sich.",
     "level": "A2.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "",
@@ -1197,7 +1395,9 @@
     "plural": "",
     "sentence": "",
     "level": "",
-    "trivia": ""
+    "trivia": "",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "",
@@ -1209,7 +1409,9 @@
     "plural": "",
     "sentence": "",
     "level": "",
-    "trivia": ""
+    "trivia": "",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "",
@@ -1221,7 +1423,9 @@
     "plural": "",
     "sentence": "",
     "level": "",
-    "trivia": ""
+    "trivia": "",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Eltern",
@@ -1233,7 +1437,9 @@
     "plural": "die Eltern",
     "sentence": "Peter und Lucie sind die Eltern.",
     "level": "A1.1",
-    "trivia": "Only exists in the plural form in German."
+    "trivia": "Only exists in the plural form in German.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Mann",
@@ -1245,7 +1451,9 @@
     "plural": "die Männer",
     "sentence": "Das ist der Mann von Lucie.",
     "level": "A1.1",
-    "trivia": "Similar to the English \"Man.\""
+    "trivia": "Similar to the English \"Man.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Frau",
@@ -1257,7 +1465,9 @@
     "plural": "die Frauen",
     "sentence": "Das ist Lucie, die Frau von Peter.",
     "level": "A1.1",
-    "trivia": "Can mean both \"Woman\" and \"Wife.\""
+    "trivia": "Can mean both \"Woman\" and \"Wife.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Sohn",
@@ -1269,7 +1479,9 @@
     "plural": "die Söhne",
     "sentence": "Felix ist der Sohn von Peter.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Tochter",
@@ -1281,7 +1493,9 @@
     "plural": "die Töchter",
     "sentence": "Sarah ist die Tochter von Lucie.",
     "level": "A1.1",
-    "trivia": "Sounds like \"Daughter.\""
+    "trivia": "Sounds like \"Daughter.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Bruder",
@@ -1293,7 +1507,9 @@
     "plural": "die Brüder",
     "sentence": "Felix ist der Bruder von Sarah.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Schwester",
@@ -1305,7 +1521,9 @@
     "plural": "die Schwestern",
     "sentence": "Sarah ist die Schwester von Felix.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Geschwister",
@@ -1317,7 +1535,9 @@
     "plural": "die Geschwister",
     "sentence": "Susanne und Ben sind die Geschwister.",
     "level": "A1.1",
-    "trivia": "German has a single word for brothers and sisters combined."
+    "trivia": "German has a single word for brothers and sisters combined.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Onkel",
@@ -1329,7 +1549,9 @@
     "plural": "die Onkel",
     "sentence": "Ben ist der Onkel von Sarah.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Tante",
@@ -1341,7 +1563,9 @@
     "plural": "die Tanten",
     "sentence": "Susanne ist die Tante von Felix.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Muttersprache",
@@ -1353,7 +1577,9 @@
     "plural": "die Muttersprachen",
     "sentence": "Seine Muttersprache ist Deutsch.",
     "level": "A1.2",
-    "trivia": "Mutter (mother) + Sprache (language)."
+    "trivia": "Mutter (mother) + Sprache (language).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Liebesroman",
@@ -1365,7 +1591,9 @@
     "plural": "die Liebesromane",
     "sentence": "Lucie liest gern Liebesromane.",
     "level": "A2.1",
-    "trivia": "Liebe (love) + Roman (novel)."
+    "trivia": "Liebe (love) + Roman (novel).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Popmusik",
@@ -1377,7 +1605,9 @@
     "plural": "-",
     "sentence": "Sarah hört gern Popmusik.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Artikel",
@@ -1389,7 +1619,9 @@
     "plural": "die Artikel",
     "sentence": "Susanne schreibt viele Artikel.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Kommissar",
@@ -1401,7 +1633,9 @@
     "plural": "die Kommissare",
     "sentence": "Ben arbeitet als Kommissar.",
     "level": "A2.1",
-    "trivia": "Think of a police \"Commissar.\""
+    "trivia": "Think of a police \"Commissar.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Polizei",
@@ -1413,7 +1647,9 @@
     "plural": "-",
     "sentence": "Er arbeitet bei der Polizei.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "verheiratet",
@@ -1425,7 +1661,9 @@
     "plural": "-",
     "sentence": "Peter ist verheiratet.",
     "level": "A1.1",
-    "trivia": "Related to \"heiraten\" (to marry)."
+    "trivia": "Related to \"heiraten\" (to marry).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "ledig",
@@ -1437,7 +1675,9 @@
     "plural": "-",
     "sentence": "Susanne ist ledig.",
     "level": "A1.2",
-    "trivia": "Used for legal marital status."
+    "trivia": "Used for legal marital status.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "geschieden",
@@ -1449,7 +1689,9 @@
     "plural": "-",
     "sentence": "Ben ist geschieden.",
     "level": "A1.2",
-    "trivia": "Related to \"scheiden\" (to separate)."
+    "trivia": "Related to \"scheiden\" (to separate).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "allein",
@@ -1461,7 +1703,9 @@
     "plural": "-",
     "sentence": "Er lebt jetzt allein in Köln.",
     "level": "A1.1",
-    "trivia": "Sounds like \"Alone.\""
+    "trivia": "Sounds like \"Alone.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "zusammen",
@@ -1473,7 +1717,9 @@
     "plural": "-",
     "sentence": "Sie lebt mit Edwin zusammen.",
     "level": "A1.1",
-    "trivia": "The opposite of allein."
+    "trivia": "The opposite of allein.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "kommen",
@@ -1485,7 +1731,9 @@
     "plural": "-",
     "sentence": "Sie kommt aus Frankreich.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "sprechen",
@@ -1497,7 +1745,9 @@
     "plural": "-",
     "sentence": "Er spricht perfekt Französisch.",
     "level": "A1.1",
-    "trivia": "Related to the English \"Speech.\""
+    "trivia": "Related to the English \"Speech.\"",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "leben",
@@ -1509,7 +1759,9 @@
     "plural": "-",
     "sentence": "Ben lebt in Köln.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "lieben",
@@ -1521,7 +1773,9 @@
     "plural": "-",
     "sentence": "Er liebt seine Frau.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "kochen",
@@ -1533,7 +1787,9 @@
     "plural": "-",
     "sentence": "Peter kocht gern.",
     "level": "A1.1",
-    "trivia": "English cognate."
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "spielen",
@@ -1545,6 +1801,8 @@
     "plural": "-",
     "sentence": "Felix spielt gern Computerspiele.",
     "level": "A1.1",
-    "trivia": "Used for games and instruments."
+    "trivia": "Used for games and instruments.",
+    "successCount": 0,
+    "failCount": 0
   }
 ]

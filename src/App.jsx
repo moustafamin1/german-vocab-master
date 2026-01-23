@@ -5,12 +5,20 @@ import QuizCard from './components/QuizCard';
 import ResultCard from './components/ResultCard';
 import ConfigScreen from './components/ConfigScreen';
 
+const SRS_STORAGE_KEY = 'vocab-srs-data';
+
 export default function App() {
     const [view, setView] = useState('loading'); // loading, config, playing, feedback
+
+    // App Config State
     const [selectedLevels, setSelectedLevels] = useState([]);
     const [selectedModes, setSelectedModes] = useState(['multipleChoice', 'written', 'article']);
     const [selectedTypes, setSelectedTypes] = useState(['Noun', 'Verb']);
 
+    // Data State
+    const [vocabPool, setVocabPool] = useState([]);
+
+    // Quiz State
     const [currentWord, setCurrentWord] = useState(null);
     const [quizMode, setQuizMode] = useState('');
     const [options, setOptions] = useState([]);
@@ -20,15 +28,52 @@ export default function App() {
     const levels = Array.from(new Set(vocabData.map(v => v.level))).filter(Boolean).sort();
 
     useEffect(() => {
-        // Initial load: Set all levels as default and go to config
+        // 1. Load SRS Data from LocalStorage
+        const storedSRS = JSON.parse(localStorage.getItem(SRS_STORAGE_KEY) || '{}');
+
+        // 2. Merge with base vocab data
+        const mergedVocab = vocabData.map(word => {
+            // Use English translation + Word as a unique composite key for tracking
+            const key = `${word.english}-${word.word}`;
+            const stats = storedSRS[key] || { successCount: 0, failCount: 0 };
+            return { ...word, ...stats, uniqueId: key };
+        });
+
+        setVocabPool(mergedVocab);
         setSelectedLevels(levels);
+
         setTimeout(() => {
             setView('config');
         }, 800);
     }, []);
 
+    const getWeightedRandomWord = (pool) => {
+        // 1. Calculate weights: max(1, (fail - success) + 5)
+        // High fail count = High weight. High success count = Low weight.
+        const weightedList = pool.map(word => ({
+            ...word,
+            weight: Math.max(1, (word.failCount - word.successCount) + 5)
+        }));
+
+        // 2. Sum weights
+        const totalWeight = weightedList.reduce((sum, item) => sum + item.weight, 0);
+
+        // 3. Weighted Random Draw
+        let random = Math.random() * totalWeight;
+        for (const item of weightedList) {
+            if (random < item.weight) return item;
+            random -= item.weight;
+        }
+
+        // Fallback
+        return weightedList[0];
+    };
+
     const pickNewWord = useCallback(() => {
-        const filtered = vocabData.filter(v =>
+        if (vocabPool.length === 0) return;
+
+        // Filter based on user configuration
+        const filtered = vocabPool.filter(v =>
             selectedLevels.includes(v.level) &&
             selectedTypes.includes(v.type)
         );
@@ -38,12 +83,12 @@ export default function App() {
             return;
         }
 
-        const randomWord = filtered[Math.floor(Math.random() * filtered.length)];
+        // Use SRS Weighted Selection
+        const randomWord = getWeightedRandomWord(filtered);
 
         // Determine available quiz modes based on user selection and word data
         const availableModes = selectedModes.filter(mode => {
             if (mode === 'article') {
-                // Article mode only if exactly one article exists
                 const articles = [randomWord.der, randomWord.die, randomWord.das].filter(a => a && a !== '-' && a !== '');
                 return articles.length === 1;
             }
@@ -57,8 +102,8 @@ export default function App() {
 
         // Generate options for Multiple Choice
         if (finalMode === 'multipleChoice') {
-            const distractors = vocabData
-                .filter(v => v.word !== randomWord.word)
+            const distractors = vocabPool
+                .filter(v => v.word !== randomWord.word) // pick from full pool to be harder
                 .sort(() => 0.5 - Math.random())
                 .slice(0, 3)
                 .map(v => v.word);
@@ -70,7 +115,31 @@ export default function App() {
         setQuizMode(finalMode);
         setFeedback(null);
         setView('playing');
-    }, [selectedLevels, selectedModes, selectedTypes]);
+    }, [selectedLevels, selectedModes, selectedTypes, vocabPool]);
+
+    const updateSRSStats = (word, isCorrect) => {
+        const newPool = vocabPool.map(w => {
+            if (w.uniqueId === word.uniqueId) {
+                return {
+                    ...w,
+                    successCount: isCorrect ? w.successCount + 1 : w.successCount,
+                    failCount: !isCorrect ? w.failCount + 1 : w.failCount
+                };
+            }
+            return w;
+        });
+
+        setVocabPool(newPool);
+
+        // Persist to LocalStorage
+        const srsData = {};
+        newPool.forEach(w => {
+            if (w.successCount > 0 || w.failCount > 0) {
+                srsData[w.uniqueId] = { successCount: w.successCount, failCount: w.failCount };
+            }
+        });
+        localStorage.setItem(SRS_STORAGE_KEY, JSON.stringify(srsData));
+    };
 
     const handleAnswer = (answer) => {
         let correct = false;
@@ -81,6 +150,9 @@ export default function App() {
             const correctArticle = [currentWord.der, currentWord.die, currentWord.das].find(a => a && a !== '' && a !== '-');
             correct = answer.toLowerCase() === (correctArticle || '').toLowerCase();
         }
+
+        // Update SRS Logic
+        updateSRSStats(currentWord, correct);
 
         setFeedback({ correct, chosen: answer });
         setView('feedback');
@@ -140,7 +212,7 @@ export default function App() {
 
             {view !== 'config' && !feedback && (
                 <footer className="mt-16 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-700">
-                    Viel Erfolg beim Lernen
+                    SRS Active • Viel Erfolg beim Lernen
                 </footer>
             )}
         </div>
