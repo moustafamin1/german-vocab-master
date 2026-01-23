@@ -1,8 +1,11 @@
 import React from 'react';
-import { CheckCircle2, XCircle, ArrowRight, Lightbulb, Quote } from 'lucide-react';
+import { CheckCircle2, XCircle, ArrowRight, Lightbulb, Quote, BarChart2 } from 'lucide-react';
 
-export default function ResultCard({ word, feedback, onNext }) {
+export default function ResultCard({ word, feedback, onNext, devMode }) {
     const isCorrect = feedback.correct;
+
+    // Calculate selection probability (weight)
+    const weight = Math.max(1, (word.failCount - word.successCount) + 5);
 
     return (
         <div className="card max-w-lg mx-auto space-y-8 animate-in zoom-in-95 duration-300">
@@ -36,6 +39,35 @@ export default function ResultCard({ word, feedback, onNext }) {
                     </p>
                     <p className="text-zinc-500 italic">{word.english}</p>
                 </div>
+
+                {/* Word Statistics */}
+                <div className="flex gap-3">
+                    <div className="flex-1 bg-zinc-800/30 border border-zinc-800/50 rounded-xl p-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-zinc-500">
+                            <CheckCircle2 className="w-3 h-3 text-green-500/50" />
+                            <span className="text-[10px] font-bold uppercase tracking-widest">Successes</span>
+                        </div>
+                        <span className="text-sm font-mono font-bold text-zinc-300">{word.successCount}</span>
+                    </div>
+                    <div className="flex-1 bg-zinc-800/30 border border-zinc-800/50 rounded-xl p-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-zinc-500">
+                            <XCircle className="w-3 h-3 text-red-500/50" />
+                            <span className="text-[10px] font-bold uppercase tracking-widest">Failures</span>
+                        </div>
+                        <span className="text-sm font-mono font-bold text-zinc-300">{word.failCount}</span>
+                    </div>
+                </div>
+
+                {/* SRS Weight (Dev Mode Only) */}
+                {devMode && (
+                    <div className="bg-amber-500/5 border border-amber-500/20 rounded-xl p-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-amber-500/80">
+                            <BarChart2 className="w-4 h-4" />
+                            <span className="text-[10px] font-bold uppercase tracking-widest">SRS Debug (Weight)</span>
+                        </div>
+                        <p className="text-sm font-mono font-bold text-amber-400">{weight}</p>
+                    </div>
+                )}
 
                 {word.sentence && (
                     <div className="bg-zinc-800/30 p-4 rounded-xl space-y-2">
