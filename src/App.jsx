@@ -147,7 +147,7 @@ export default function App() {
     }
 
     return (
-        <div className="max-w-2xl mx-auto px-6 pb-20">
+        <div className="max-w-2xl mx-auto px-6 pb-10">
             <SettingsHeader
                 onBack={handleBackToConfig}
                 showBack={view !== 'config'}
@@ -185,7 +185,7 @@ export default function App() {
             </main>
 
             {view !== 'config' && !feedback && (
-                <footer className="mt-16 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-700">
+                <footer className="mt-8 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-700">
                     SRS Active • Viel Erfolg beim Lernen
                 </footer>
             )}

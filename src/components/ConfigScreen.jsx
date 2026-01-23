@@ -71,8 +71,8 @@ export default function ConfigScreen({
                                     key={type}
                                     onClick={() => toggleType(type)}
                                     className={`btn text-center py-4 px-5 border flex justify-center items-center gap-2 transition-all ${isActive
-                                            ? 'bg-zinc-100 text-zinc-950 border-zinc-100'
-                                            : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
+                                        ? 'bg-zinc-100 text-zinc-950 border-zinc-100'
+                                        : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
                                         }`}
                                 >
                                     <span className="font-semibold">{type}s</span>
@@ -94,8 +94,8 @@ export default function ConfigScreen({
                                     key={mode.id}
                                     onClick={() => toggleMode(mode.id)}
                                     className={`btn text-left py-4 px-5 border flex justify-between items-center transition-all ${isActive
-                                            ? 'bg-zinc-100 text-zinc-950 border-zinc-100'
-                                            : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
+                                        ? 'bg-zinc-100 text-zinc-950 border-zinc-100'
+                                        : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
                                         }`}
                                 >
                                     <span className="font-semibold">{mode.name}</span>
@@ -134,8 +134,8 @@ export default function ConfigScreen({
                                     key={level}
                                     onClick={() => toggleLevel(level)}
                                     className={`px-4 py-2 rounded-full text-sm font-medium border transition-all ${isActive
-                                            ? 'bg-zinc-100 text-zinc-950 border-zinc-100'
-                                            : 'bg-zinc-900 text-zinc-500 border-zinc-800 hover:border-zinc-600'
+                                        ? 'bg-zinc-100 text-zinc-950 border-zinc-100'
+                                        : 'bg-zinc-900 text-zinc-500 border-zinc-800 hover:border-zinc-600'
                                         }`}
                                 >
                                     {level}
@@ -146,14 +146,16 @@ export default function ConfigScreen({
                 </section>
             </div>
 
-            <button
-                disabled={!isReady}
-                onClick={onStart}
-                className="btn btn-primary w-full py-5 text-lg flex items-center justify-center gap-3 shadow-xl disabled:shadow-none"
-            >
-                <Play className="w-5 h-5 fill-current" />
-                Start Practice
-            </button>
+            <div className="pt-10">
+                <button
+                    disabled={!isReady}
+                    onClick={onStart}
+                    className="btn btn-primary w-full py-5 text-lg flex items-center justify-center gap-3 shadow-xl disabled:shadow-none"
+                >
+                    <Play className="w-5 h-5 fill-current" />
+                    Start Practice
+                </button>
+            </div>
         </div>
     );
 }

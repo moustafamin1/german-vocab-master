@@ -11,23 +11,29 @@ export default function QuizCard({ word, mode, options, onAnswer }) {
     };
 
     return (
-        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="text-center space-y-2">
-                <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">
-                    {mode === 'multipleChoice' ? 'Multiple Choice' :
-                        mode === 'written' ? 'Written Challenge' : 'Article Master'}
-                </span>
-                <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-                    {mode === 'article' ? word.word : word.english}
-                </h2>
-                {mode === 'written' && word.type && (
-                    <span className="inline-block text-xs bg-zinc-800 px-2 py-1 rounded-md text-zinc-400 mt-2">
-                        {word.type}
+        <div className="flex flex-col min-h-[80vh] justify-between py-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            {/* Question Section - Centered Vertically */}
+            <div className="flex-1 flex flex-col items-center justify-center text-center space-y-4">
+                <div className="space-y-2">
+                    <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">
+                        {mode === 'multipleChoice' ? 'Multiple Choice' :
+                            mode === 'written' ? 'Written Challenge' : 'Article Master'}
                     </span>
-                )}
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+                        {mode === 'article' ? word.word : word.english}
+                    </h2>
+                    {mode === 'written' && word.type && (
+                        <div className="flex justify-center">
+                            <span className="inline-block text-xs bg-zinc-800 px-2 py-1 rounded-md text-zinc-400">
+                                {word.type}
+                            </span>
+                        </div>
+                    )}
+                </div>
             </div>
 
-            <div className="max-w-md mx-auto">
+            {/* Answer Partition - Towards the bottom */}
+            <div className="max-w-md mx-auto w-full pt-8">
                 {mode === 'multipleChoice' && (
                     <div className="grid grid-cols-1 gap-3">
                         {options.map((opt, i) => (
