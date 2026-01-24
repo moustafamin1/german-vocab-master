@@ -42,7 +42,7 @@ const getNextWord = (activePool) => {
   // 1. Calculate weights
   const weightedList = activePool.map(word => ({
     ...word,
-    w: Math.max(1, (word.failCount - word.successCount) + 5)
+    w: Math.max(1, (word.failCount - word.successCount) + 3)
   }));
 
   // 2. Sum weights

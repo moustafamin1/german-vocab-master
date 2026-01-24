@@ -33,9 +33,8 @@ export default function SettingsHeader({ onBack, showBack, devMode, setDevMode, 
         <header className="flex items-center justify-between py-6 mb-8 border-b border-zinc-800">
             <div className="flex items-center gap-3">
                 <div className="text-2xl flex items-center justify-center">
-                    🇩🇪🧯
                 </div>
-                <h1 className="text-xl font-bold tracking-tight">German Hellper</h1>
+                <h1 className="text-xl font-bold tracking-tight">Vocaccia</h1>
             </div>
 
             <div className="flex items-center gap-3">
