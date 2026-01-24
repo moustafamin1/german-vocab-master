@@ -1,0 +1,15 @@
+
+> german-vocab-master@0.0.0 dev
+> vite
+
+✨ VITE CONFIG LOADED
+🚀 Vite Plugin: Sync Middleware Registered
+Re-optimizing dependencies because vite config has changed
+
+  VITE v5.4.21  ready in 376 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+✘ [ERROR] The build was canceled
+

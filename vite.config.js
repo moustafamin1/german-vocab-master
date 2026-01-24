@@ -1,7 +1,46 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+console.log('✨ VITE CONFIG LOADED');
+
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react()],
+    plugins: [
+        react(),
+        {
+            name: 'sync-endpoint',
+            configureServer(server) {
+                console.log('🚀 Vite Plugin: Sync Middleware Registered');
+                server.middlewares.use(async (req, res, next) => {
+                    if (req.url === '/api/sync') {
+                        try {
+                            const { exec } = await import('child_process');
+                            console.log('🔄 API CALL: Sync requested');
+
+                            exec('node scripts/fetch-vocab.js', (error, stdout, stderr) => {
+                                if (error) {
+                                    console.error(`❌ Sync execution error: ${error}`);
+                                    res.statusCode = 500;
+                                    res.setHeader('Content-Type', 'application/json');
+                                    res.end(JSON.stringify({ error: error.message, details: stderr }));
+                                    return;
+                                }
+                                console.log(`✅ Sync complete: ${stdout}`);
+                                res.statusCode = 200;
+                                res.setHeader('Content-Type', 'application/json');
+                                res.end(JSON.stringify({ success: true, message: 'Sync complete', output: stdout }));
+                            });
+                        } catch (err) {
+                            console.error('Server error:', err);
+                            res.statusCode = 500;
+                            res.setHeader('Content-Type', 'application/json');
+                            res.end(JSON.stringify({ error: 'Internal Server Error' }));
+                        }
+                        return;
+                    }
+                    next();
+                });
+            }
+        }
+    ],
 })

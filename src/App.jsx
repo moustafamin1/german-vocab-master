@@ -37,8 +37,10 @@ export default function App() {
         const storedSRS = JSON.parse(localStorage.getItem(SRS_STORAGE_KEY) || '{}');
 
         // 2. Merge with base vocab data
+        // 2. Merge with base vocab data
         const mergedVocab = vocabData.map(word => {
-            const key = `${word.english}-${word.word}`;
+            // Use the stable UUID from the sheet if available, otherwise fallback (shouldn't happen after sync)
+            const key = word.id || `${word.english}-${word.word}`;
             const stats = storedSRS[key] || { successCount: 0, failCount: 0 };
             return { ...word, ...stats, uniqueId: key };
         });
@@ -180,6 +182,7 @@ export default function App() {
                     showBack={view !== 'config'}
                     devMode={devMode}
                     setDevMode={setDevMode}
+                    wordCount={vocabData.length}
                 />
 
                 <main className="mt-8">

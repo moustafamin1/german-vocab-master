@@ -1,5 +1,6 @@
 [
   {
+    "id": "6ae67b6e-999d-437c-b693-2725ccbe3de3",
     "word": "studieren",
     "type": "Verb",
     "english": "to study (at Uni)",
@@ -14,6 +15,7 @@
     "failCount": 0
   },
   {
+    "id": "ce3fe13f-9ce6-428b-a93e-bafa4a581758",
     "word": "arbeiten",
     "type": "Verb",
     "english": "to work",
@@ -28,6 +30,7 @@
     "failCount": 0
   },
   {
+    "id": "12ac0dc9-a82c-45e9-8d58-258fe16608d5",
     "word": "lernen",
     "type": "Verb",
     "english": "to learn / study",
@@ -42,6 +45,7 @@
     "failCount": 0
   },
   {
+    "id": "ee1942f8-1be6-46ac-b769-5929cac0a97a",
     "word": "ergänzen",
     "type": "Verb",
     "english": "to complete / fill in",
@@ -56,6 +60,7 @@
     "failCount": 0
   },
   {
+    "id": "6db3652c-5dca-4406-9e39-e7aa97d628b2",
     "word": "nennen",
     "type": "Verb",
     "english": "to name / call",
@@ -70,6 +75,7 @@
     "failCount": 0
   },
   {
+    "id": "e2808113-4042-4671-97a7-b9828b583a1c",
     "word": "Künstler",
     "type": "Noun",
     "english": "Artist",
@@ -84,6 +90,7 @@
     "failCount": 0
   },
   {
+    "id": "88adcbe6-0c3f-46fd-84f7-3c2b31936730",
     "word": "Kellner",
     "type": "Noun",
     "english": "Waiter",
@@ -98,6 +105,7 @@
     "failCount": 0
   },
   {
+    "id": "8319184c-8c24-41e7-9e45-4411dd3231f8",
     "word": "Arzt",
     "type": "Noun",
     "english": "Doctor",
@@ -112,6 +120,7 @@
     "failCount": 0
   },
   {
+    "id": "216dfbe2-3074-4c24-9f1b-edc76e2441aa",
     "word": "Informatiker",
     "type": "Noun",
     "english": "IT Specialist",
@@ -126,6 +135,7 @@
     "failCount": 0
   },
   {
+    "id": "95378f0b-2e00-4cb0-934e-faf2971b582d",
     "word": "Lehrer",
     "type": "Noun",
     "english": "Teacher",
@@ -140,6 +150,7 @@
     "failCount": 0
   },
   {
+    "id": "b5173639-1bd6-4e3c-90b6-0c947c98f10b",
     "word": "Assistent",
     "type": "Noun",
     "english": "Assistant",
@@ -154,6 +165,7 @@
     "failCount": 0
   },
   {
+    "id": "968f41f6-a223-414e-b5ba-9ee9dbcab9f8",
     "word": "Student",
     "type": "Noun",
     "english": "Student (Uni)",
@@ -168,6 +180,7 @@
     "failCount": 0
   },
   {
+    "id": "997f6c9d-9927-4cd3-bd71-c39deb3baf07",
     "word": "Architekt",
     "type": "Noun",
     "english": "Architect",
@@ -182,6 +195,7 @@
     "failCount": 0
   },
   {
+    "id": "ab8f6e97-0fb1-44c2-a795-20863b4e2279",
     "word": "Ingenieur",
     "type": "Noun",
     "english": "Engineer",
@@ -196,6 +210,7 @@
     "failCount": 0
   },
   {
+    "id": "bdf8178f-b9bf-4510-8f84-387997cc0e32",
     "word": "Jurist",
     "type": "Noun",
     "english": "Lawyer/Jurist",
@@ -210,6 +225,7 @@
     "failCount": 0
   },
   {
+    "id": "a89678c7-980f-4449-86a8-f2e19c6e5355",
     "word": "Musiker",
     "type": "Noun",
     "english": "Musician",
@@ -224,6 +240,7 @@
     "failCount": 0
   },
   {
+    "id": "c75be544-8c60-4150-9db7-8ba44ad91bec",
     "word": "Physiker",
     "type": "Noun",
     "english": "Physicist",
@@ -238,6 +255,7 @@
     "failCount": 0
   },
   {
+    "id": "8eb267aa-45b1-4b4f-b131-0e7d4b5d72f8",
     "word": "Koch",
     "type": "Noun",
     "english": "Cook / Chef",
@@ -252,6 +270,7 @@
     "failCount": 0
   },
   {
+    "id": "e13422d3-f740-4ee7-b8e5-1769bbbe7085",
     "word": "Mathematiker",
     "type": "Noun",
     "english": "Mathematician",
@@ -266,6 +285,7 @@
     "failCount": 0
   },
   {
+    "id": "0e334bb2-8ffa-4aa6-a3d6-63db57536688",
     "word": "Journalist",
     "type": "Noun",
     "english": "Journalist",
@@ -280,6 +300,7 @@
     "failCount": 0
   },
   {
+    "id": "5475361a-d0fc-4397-9724-dd8732e2f7f1",
     "word": "Designer",
     "type": "Noun",
     "english": "Designer",
@@ -294,6 +315,7 @@
     "failCount": 0
   },
   {
+    "id": "bcaa1f35-91f0-4455-ac53-32d2c92f6f84",
     "word": "malen",
     "type": "Verb",
     "english": "to paint / draw",
@@ -308,6 +330,7 @@
     "failCount": 0
   },
   {
+    "id": "cee566f0-4bbb-4ba0-803d-b376f9277f43",
     "word": "bedienen",
     "type": "Verb",
     "english": "to serve / attend",
@@ -322,6 +345,7 @@
     "failCount": 0
   },
   {
+    "id": "739d7a33-48ba-4067-a209-f10cea96f0a1",
     "word": "untersuchen",
     "type": "Verb",
     "english": "to examine",
@@ -336,6 +360,7 @@
     "failCount": 0
   },
   {
+    "id": "b2785d64-0e0c-4ed3-95d0-dff1a1b990c7",
     "word": "entwickeln",
     "type": "Verb",
     "english": "to develop",
@@ -350,6 +375,7 @@
     "failCount": 0
   },
   {
+    "id": "eb490d3b-6f73-423c-bbfd-a495d5721ef9",
     "word": "unterrichten",
     "type": "Verb",
     "english": "to teach / instruct",
@@ -364,6 +390,7 @@
     "failCount": 0
   },
   {
+    "id": "058cf20b-6e18-4ead-8457-91bf1a71b75c",
     "word": "schreiben",
     "type": "Verb",
     "english": "to write",
@@ -378,6 +405,7 @@
     "failCount": 0
   },
   {
+    "id": "135ba4a1-b066-4f13-9245-98cdb034f5a4",
     "word": "lesen",
     "type": "Verb",
     "english": "to read",
@@ -392,6 +420,7 @@
     "failCount": 0
   },
   {
+    "id": "1614c6be-02a4-4980-9534-a9c55c4bcf47",
     "word": "präsentieren",
     "type": "Verb",
     "english": "to present",
@@ -406,6 +435,7 @@
     "failCount": 0
   },
   {
+    "id": "98530c82-3857-4e31-8961-0285f9e5b1d1",
     "word": "konstruieren",
     "type": "Verb",
     "english": "to construct / design",
@@ -420,6 +450,7 @@
     "failCount": 0
   },
   {
+    "id": "5a5a539b-2e94-4808-ba01-18252c845d77",
     "word": "haben",
     "type": "Verb",
     "english": "to have",
@@ -434,12 +465,13 @@
     "failCount": 0
   },
   {
+    "id": "ba72f8d1-cd9d-4e8e-94bb-6677dcb4d5c7",
     "word": "Bild",
     "type": "Noun",
     "english": "Picture / Image",
-    "der": "",
-    "die": "",
-    "das": "das",
+    "der": "der",
+    "die": "die",
+    "das": "",
     "plural": "die Bilder",
     "sentence": "Er malt Bilder.",
     "level": "A1.1",
@@ -448,6 +480,7 @@
     "failCount": 0
   },
   {
+    "id": "2b88fd71-b41a-42e1-a663-23f97d1e3b35",
     "word": "Gast",
     "type": "Noun",
     "english": "Guest",
@@ -462,6 +495,7 @@
     "failCount": 0
   },
   {
+    "id": "2ee4cf60-093c-430c-bcd8-3244a8ef141a",
     "word": "Patient",
     "type": "Noun",
     "english": "Patient",
@@ -476,12 +510,13 @@
     "failCount": 0
   },
   {
+    "id": "f4e833d8-13b4-4f47-8220-b19c6a05b6b4",
     "word": "Spiel",
     "type": "Noun",
     "english": "Game",
-    "der": "",
-    "die": "",
-    "das": "das",
+    "der": "der",
+    "die": "die",
+    "das": "",
     "plural": "die Spiele",
     "sentence": "Er entwickelt Computerspiele.",
     "level": "A1.1",
@@ -490,12 +525,13 @@
     "failCount": 0
   },
   {
+    "id": "2cb6584d-05bc-47f2-973e-199163994754",
     "word": "Kind",
     "type": "Noun",
     "english": "Child",
-    "der": "",
-    "die": "",
-    "das": "das",
+    "der": "der",
+    "die": "die",
+    "das": "",
     "plural": "die Kinder",
     "sentence": "Sie unterrichtet Kinder.",
     "level": "A1.1",
@@ -504,6 +540,7 @@
     "failCount": 0
   },
   {
+    "id": "cc086c65-31af-4221-9d12-3414f4361239",
     "word": "E-Mail",
     "type": "Noun",
     "english": "E-mail",
@@ -518,12 +555,13 @@
     "failCount": 0
   },
   {
+    "id": "9c7b06fd-9de2-4e58-ae30-b5d819329f17",
     "word": "Buch",
     "type": "Noun",
     "english": "Book",
-    "der": "",
-    "die": "",
-    "das": "das",
+    "der": "der",
+    "die": "die",
+    "das": "",
     "plural": "die Bücher",
     "sentence": "Er liest viele Bücher.",
     "level": "A1.1",
@@ -532,12 +570,13 @@
     "failCount": 0
   },
   {
+    "id": "96946da3-0c46-4772-b7f6-50567fcfc247",
     "word": "Projekt",
     "type": "Noun",
     "english": "Project",
-    "der": "",
-    "die": "",
-    "das": "das",
+    "der": "der",
+    "die": "die",
+    "das": "",
     "plural": "die Projekte",
     "sentence": "Er präsentiert Projekte.",
     "level": "A1.1",
@@ -546,12 +585,13 @@
     "failCount": 0
   },
   {
+    "id": "e648b302-d321-4213-9f63-3698cdc6bc7c",
     "word": "Auto",
     "type": "Noun",
     "english": "Car",
-    "der": "",
-    "die": "",
-    "das": "das",
+    "der": "der",
+    "die": "die",
+    "das": "",
     "plural": "die Autos",
     "sentence": "Sie konstruiert Solarautos.",
     "level": "A1.1",
@@ -560,6 +600,7 @@
     "failCount": 0
   },
   {
+    "id": "654a8471-0d9d-41a0-9889-73b98d1f8751",
     "word": "Besprechung",
     "type": "Noun",
     "english": "Meeting",
@@ -574,34 +615,7 @@
     "failCount": 0
   },
   {
-    "word": "",
-    "type": "",
-    "english": "",
-    "der": "",
-    "die": "",
-    "das": "",
-    "plural": "",
-    "sentence": "",
-    "level": "",
-    "trivia": "",
-    "successCount": 0,
-    "failCount": 0
-  },
-  {
-    "word": "",
-    "type": "",
-    "english": "",
-    "der": "",
-    "die": "",
-    "das": "",
-    "plural": "",
-    "sentence": "",
-    "level": "",
-    "trivia": "",
-    "successCount": 0,
-    "failCount": 0
-  },
-  {
+    "id": "0a314b9b-5ee8-4622-9f2d-aca11f994d7f",
     "word": "Solarauto",
     "type": "Noun",
     "english": "Solar car",
@@ -616,6 +630,7 @@
     "failCount": 0
   },
   {
+    "id": "80e196ed-5aed-41ea-9d77-c63eea1cb12b",
     "word": "Handy",
     "type": "Noun",
     "english": "Cell phone",
@@ -630,6 +645,7 @@
     "failCount": 0
   },
   {
+    "id": "f65c888b-6ce4-4919-bd49-da83979c9d59",
     "word": "Brille",
     "type": "Noun",
     "english": "Glasses",
@@ -644,6 +660,7 @@
     "failCount": 0
   },
   {
+    "id": "fce83b42-5195-49d7-a5d5-638a7254c33c",
     "word": "Tisch",
     "type": "Noun",
     "english": "Table",
@@ -658,6 +675,7 @@
     "failCount": 0
   },
   {
+    "id": "a62911af-1780-476a-9547-c48af0269f6c",
     "word": "Stuhl",
     "type": "Noun",
     "english": "Chair",
@@ -672,6 +690,7 @@
     "failCount": 0
   },
   {
+    "id": "acbf0bc8-2659-42a5-9cc5-6129cffb5dad",
     "word": "Zeitung",
     "type": "Noun",
     "english": "Newspaper",
@@ -686,6 +705,7 @@
     "failCount": 0
   },
   {
+    "id": "ed88039a-5c6d-44bb-bf2d-e78d217ca734",
     "word": "Uhr",
     "type": "Noun",
     "english": "Clock/Watch",
@@ -700,6 +720,7 @@
     "failCount": 0
   },
   {
+    "id": "a7775d59-9b33-4591-aeff-5650a64c3bfe",
     "word": "Tasche",
     "type": "Noun",
     "english": "Bag/Pocket",
@@ -714,6 +735,7 @@
     "failCount": 0
   },
   {
+    "id": "f72f2db7-d86c-4543-9f87-25de4ba44752",
     "word": "Medikament",
     "type": "Noun",
     "english": "Medicine",
@@ -728,6 +750,7 @@
     "failCount": 0
   },
   {
+    "id": "5dd98483-29f4-4c02-930f-eef81f2438e9",
     "word": "Lampe",
     "type": "Noun",
     "english": "Lamp",
@@ -742,6 +765,7 @@
     "failCount": 0
   },
   {
+    "id": "90f1f4e3-bf3b-4d07-a1b6-cbf3b343e7a8",
     "word": "Regenschirm",
     "type": "Noun",
     "english": "Umbrella",
@@ -756,6 +780,7 @@
     "failCount": 0
   },
   {
+    "id": "cca31dcc-931f-40a6-aad5-71508ec99990",
     "word": "Seite",
     "type": "Noun",
     "english": "Page",
@@ -770,6 +795,7 @@
     "failCount": 0
   },
   {
+    "id": "134c7588-830f-451b-a846-2cb036d0d7a9",
     "word": "Tasse",
     "type": "Noun",
     "english": "Cup",
@@ -784,6 +810,7 @@
     "failCount": 0
   },
   {
+    "id": "ad331573-6050-42ee-a2a6-d20be9403d5e",
     "word": "Tür",
     "type": "Noun",
     "english": "Door",
@@ -798,6 +825,7 @@
     "failCount": 0
   },
   {
+    "id": "b90fa7e6-5ccd-4c94-be65-a609e165f54f",
     "word": "Computer",
     "type": "Noun",
     "english": "Computer",
@@ -812,6 +840,7 @@
     "failCount": 0
   },
   {
+    "id": "fcf080e6-ab9e-4367-a9af-727d038f02b0",
     "word": "Lehrbuch",
     "type": "Noun",
     "english": "Textbook",
@@ -826,6 +855,7 @@
     "failCount": 0
   },
   {
+    "id": "75e5335a-6c06-4f63-8cd0-0f339d4f2b32",
     "word": "Zeitschrift",
     "type": "Noun",
     "english": "Magazine",
@@ -840,6 +870,7 @@
     "failCount": 0
   },
   {
+    "id": "0c9050ff-8da1-4b33-9be9-c2e6eb4232fa",
     "word": "Schlüssel",
     "type": "Noun",
     "english": "Key",
@@ -854,6 +885,7 @@
     "failCount": 0
   },
   {
+    "id": "11aa2238-4838-47d7-9ead-6d935d2a83fd",
     "word": "Flasche",
     "type": "Noun",
     "english": "Bottle",
@@ -868,6 +900,7 @@
     "failCount": 0
   },
   {
+    "id": "e87c63c3-e874-44ba-bdd9-3c01452c5b59",
     "word": "Stift",
     "type": "Noun",
     "english": "Pen/Marker",
@@ -882,6 +915,7 @@
     "failCount": 0
   },
   {
+    "id": "f9159d5c-edbe-4a4c-9d2e-281922ac3473",
     "word": "Kaffeemaschine",
     "type": "Noun",
     "english": "Coffee machine",
@@ -896,6 +930,7 @@
     "failCount": 0
   },
   {
+    "id": "691156d3-d014-441d-89f7-81c4a6841029",
     "word": "Fußball",
     "type": "Noun",
     "english": "Football",
@@ -910,20 +945,7 @@
     "failCount": 0
   },
   {
-    "word": "",
-    "type": "",
-    "english": "",
-    "der": "",
-    "die": "",
-    "das": "",
-    "plural": "",
-    "sentence": "",
-    "level": "",
-    "trivia": "",
-    "successCount": 0,
-    "failCount": 0
-  },
-  {
+    "id": "90ee5881-25b5-47fe-b365-06c0d5abba35",
     "word": "Bildschirm",
     "type": "Noun",
     "english": "Monitor / Screen",
@@ -938,6 +960,7 @@
     "failCount": 0
   },
   {
+    "id": "cc09c4af-08be-45b3-8de7-b41c13e3d837",
     "word": "Schreibtisch",
     "type": "Noun",
     "english": "Desk",
@@ -952,6 +975,7 @@
     "failCount": 0
   },
   {
+    "id": "790936d9-95f4-4687-b39f-ca792668e5cf",
     "word": "Präsentation",
     "type": "Noun",
     "english": "Presentation",
@@ -966,6 +990,7 @@
     "failCount": 0
   },
   {
+    "id": "bc3801d5-802a-4a4a-b5d0-18e3138ca95a",
     "word": "Büro",
     "type": "Noun",
     "english": "Office",
@@ -980,6 +1005,7 @@
     "failCount": 0
   },
   {
+    "id": "5e2a5836-c2e1-4481-b104-1b4221b819eb",
     "word": "Wörterbuch",
     "type": "Noun",
     "english": "Dictionary",
@@ -994,6 +1020,7 @@
     "failCount": 0
   },
   {
+    "id": "79d1a8d8-49c8-4e31-9e2a-24857d83bdbf",
     "word": "Lippenstift",
     "type": "Noun",
     "english": "Lipstick",
@@ -1008,6 +1035,7 @@
     "failCount": 0
   },
   {
+    "id": "939c61b0-0163-4b40-a459-9f80afcc78e9",
     "word": "Zimmerschlüssel",
     "type": "Noun",
     "english": "Room key",
@@ -1022,6 +1050,7 @@
     "failCount": 0
   },
   {
+    "id": "a0c51da0-b043-43cf-be81-9efddda9f45a",
     "word": "Sonnenschirm",
     "type": "Noun",
     "english": "Parasol / Sunshade",
@@ -1036,6 +1065,7 @@
     "failCount": 0
   },
   {
+    "id": "949c67aa-06a3-4dc9-9f4c-f96daa3c9033",
     "word": "Volleyball",
     "type": "Noun",
     "english": "Volleyball",
@@ -1050,6 +1080,7 @@
     "failCount": 0
   },
   {
+    "id": "9642b5d1-9c3d-4ec8-a156-740030c1316d",
     "word": "Gitarre",
     "type": "Noun",
     "english": "Guitar",
@@ -1064,6 +1095,7 @@
     "failCount": 0
   },
   {
+    "id": "3c3b6b40-9881-40fc-8cfc-0f0f18008e28",
     "word": "Cello",
     "type": "Noun",
     "english": "Cello",
@@ -1078,6 +1110,7 @@
     "failCount": 0
   },
   {
+    "id": "ce6e9889-633f-4852-8af7-ba0882e8b84b",
     "word": "Modezeitschrift",
     "type": "Noun",
     "english": "Fashion magazine",
@@ -1092,6 +1125,7 @@
     "failCount": 0
   },
   {
+    "id": "4fc4f6d3-f6e7-466d-8978-4adfac48b9b0",
     "word": "suchen",
     "type": "Verb",
     "english": "to search / look for",
@@ -1106,6 +1140,7 @@
     "failCount": 0
   },
   {
+    "id": "55c22604-3213-42ea-a03b-5a48d3dc23a1",
     "word": "sammeln",
     "type": "Verb",
     "english": "to collect / gather",
@@ -1120,34 +1155,7 @@
     "failCount": 0
   },
   {
-    "word": "",
-    "type": "",
-    "english": "",
-    "der": "",
-    "die": "",
-    "das": "",
-    "plural": "",
-    "sentence": "",
-    "level": "",
-    "trivia": "",
-    "successCount": 0,
-    "failCount": 0
-  },
-  {
-    "word": "",
-    "type": "",
-    "english": "",
-    "der": "",
-    "die": "",
-    "das": "",
-    "plural": "",
-    "sentence": "",
-    "level": "",
-    "trivia": "",
-    "successCount": 0,
-    "failCount": 0
-  },
-  {
+    "id": "c9b12964-594b-435b-959b-9f314bcae3e8",
     "word": "Kalender",
     "type": "Noun",
     "english": "Calendar",
@@ -1162,6 +1170,7 @@
     "failCount": 0
   },
   {
+    "id": "5034466d-c111-43b7-8c5a-631a577243b1",
     "word": "Drucker",
     "type": "Noun",
     "english": "Printer",
@@ -1176,6 +1185,7 @@
     "failCount": 0
   },
   {
+    "id": "0a613baf-9e53-422f-94df-08bd9c6d4b83",
     "word": "Telefon",
     "type": "Noun",
     "english": "Telephone",
@@ -1190,6 +1200,7 @@
     "failCount": 0
   },
   {
+    "id": "2612999f-7ce2-493a-b866-00bdc010111c",
     "word": "Laptop",
     "type": "Noun",
     "english": "Laptop",
@@ -1204,6 +1215,7 @@
     "failCount": 0
   },
   {
+    "id": "78ca206e-2a3a-4314-a57c-bd9cfb9fb708",
     "word": "Bleistift",
     "type": "Noun",
     "english": "Pencil",
@@ -1218,6 +1230,7 @@
     "failCount": 0
   },
   {
+    "id": "578886b9-8555-4f86-81a2-5ea6aa2499c2",
     "word": "Autoschlüssel",
     "type": "Noun",
     "english": "Car key",
@@ -1232,6 +1245,7 @@
     "failCount": 0
   },
   {
+    "id": "ce5f94b8-aafc-4d9a-adaa-875b1e0e1cd1",
     "word": "Tageszeitung",
     "type": "Noun",
     "english": "Daily newspaper",
@@ -1246,6 +1260,7 @@
     "failCount": 0
   },
   {
+    "id": "fff6a907-58b7-4ec3-b043-dcaa0f8f7bca",
     "word": "Kursraum",
     "type": "Noun",
     "english": "Classroom",
@@ -1260,6 +1275,7 @@
     "failCount": 0
   },
   {
+    "id": "22d514ad-8339-472e-b84d-d75537c9e4e0",
     "word": "Gegenstand",
     "type": "Noun",
     "english": "Object / Item",
@@ -1274,6 +1290,7 @@
     "failCount": 0
   },
   {
+    "id": "644a8404-d926-451d-96e3-652a87ae0c89",
     "word": "Begriff",
     "type": "Noun",
     "english": "Term / Concept",
@@ -1288,6 +1305,7 @@
     "failCount": 0
   },
   {
+    "id": "03e50403-36c5-4dd0-814b-590f0cabbcdc",
     "word": "Wort",
     "type": "Noun",
     "english": "Word",
@@ -1302,6 +1320,7 @@
     "failCount": 0
   },
   {
+    "id": "5a5e56ae-a965-4a92-ab80-af3cc07d728f",
     "word": "Silbe",
     "type": "Noun",
     "english": "Syllable",
@@ -1316,6 +1335,7 @@
     "failCount": 0
   },
   {
+    "id": "d281cccf-bab2-494f-a291-819e602eb446",
     "word": "Akzent",
     "type": "Noun",
     "english": "Accent / Stress",
@@ -1330,6 +1350,7 @@
     "failCount": 0
   },
   {
+    "id": "9a4d01ca-1bdd-4f97-bc37-6ce355422d75",
     "word": "Komposita",
     "type": "Noun",
     "english": "Compound words",
@@ -1344,6 +1365,7 @@
     "failCount": 0
   },
   {
+    "id": "4ac256f1-e15c-48c9-bf55-b81828d24473",
     "word": "Fremdwort",
     "type": "Noun",
     "english": "Foreign word",
@@ -1358,6 +1380,7 @@
     "failCount": 0
   },
   {
+    "id": "ee1d3885-2b18-4ace-96a0-0e55da658dbc",
     "word": "hören",
     "type": "Verb",
     "english": "to hear / listen",
@@ -1372,6 +1395,7 @@
     "failCount": 0
   },
   {
+    "id": "8d2d7220-ef19-4c20-8487-23c1f1f16871",
     "word": "orientieren",
     "type": "Verb",
     "english": "to orient",
@@ -1386,48 +1410,7 @@
     "failCount": 0
   },
   {
-    "word": "",
-    "type": "",
-    "english": "",
-    "der": "",
-    "die": "",
-    "das": "",
-    "plural": "",
-    "sentence": "",
-    "level": "",
-    "trivia": "",
-    "successCount": 0,
-    "failCount": 0
-  },
-  {
-    "word": "",
-    "type": "",
-    "english": "",
-    "der": "",
-    "die": "",
-    "das": "",
-    "plural": "",
-    "sentence": "",
-    "level": "",
-    "trivia": "",
-    "successCount": 0,
-    "failCount": 0
-  },
-  {
-    "word": "",
-    "type": "",
-    "english": "",
-    "der": "",
-    "die": "",
-    "das": "",
-    "plural": "",
-    "sentence": "",
-    "level": "",
-    "trivia": "",
-    "successCount": 0,
-    "failCount": 0
-  },
-  {
+    "id": "8f054426-8470-4255-a676-8506a3ec616f",
     "word": "Eltern",
     "type": "Noun",
     "english": "Parents",
@@ -1442,6 +1425,7 @@
     "failCount": 0
   },
   {
+    "id": "d96355cd-9472-4bef-8a59-1b620a63db5c",
     "word": "Mann",
     "type": "Noun",
     "english": "Husband / Man",
@@ -1456,6 +1440,7 @@
     "failCount": 0
   },
   {
+    "id": "ce9fd3f0-10a6-4a12-a9ca-c23ca4e0f721",
     "word": "Frau",
     "type": "Noun",
     "english": "Wife / Woman",
@@ -1470,6 +1455,7 @@
     "failCount": 0
   },
   {
+    "id": "e3805859-a417-4000-be01-f2fc8fff7aec",
     "word": "Sohn",
     "type": "Noun",
     "english": "Son",
@@ -1484,6 +1470,7 @@
     "failCount": 0
   },
   {
+    "id": "bda8e2b9-2ae9-43f3-8b46-58afd0953477",
     "word": "Tochter",
     "type": "Noun",
     "english": "Daughter",
@@ -1498,6 +1485,7 @@
     "failCount": 0
   },
   {
+    "id": "e0a664d7-9bb2-411f-93d9-2a6a2623f943",
     "word": "Bruder",
     "type": "Noun",
     "english": "Brother",
@@ -1512,6 +1500,7 @@
     "failCount": 0
   },
   {
+    "id": "38ffabfa-9e69-46fd-941c-b26fd015cef7",
     "word": "Schwester",
     "type": "Noun",
     "english": "Sister",
@@ -1526,6 +1515,7 @@
     "failCount": 0
   },
   {
+    "id": "fcc556ed-3887-4728-b891-3675e881d954",
     "word": "Geschwister",
     "type": "Noun",
     "english": "Siblings",
@@ -1540,6 +1530,7 @@
     "failCount": 0
   },
   {
+    "id": "e3bc91da-e339-452c-9948-f6502f23bef0",
     "word": "Onkel",
     "type": "Noun",
     "english": "Uncle",
@@ -1554,6 +1545,7 @@
     "failCount": 0
   },
   {
+    "id": "726494f1-4564-4dca-acda-a44758ea9749",
     "word": "Tante",
     "type": "Noun",
     "english": "Aunt",
@@ -1568,6 +1560,7 @@
     "failCount": 0
   },
   {
+    "id": "08f621a1-e640-4759-8bcd-dc67daec1e8c",
     "word": "Muttersprache",
     "type": "Noun",
     "english": "Mother tongue",
@@ -1582,6 +1575,7 @@
     "failCount": 0
   },
   {
+    "id": "d923bbe5-aaac-4628-9417-340339d97b51",
     "word": "Liebesroman",
     "type": "Noun",
     "english": "Romance novel",
@@ -1596,6 +1590,7 @@
     "failCount": 0
   },
   {
+    "id": "1d3d7e28-fa73-4e5c-b8f5-64364e080791",
     "word": "Popmusik",
     "type": "Noun",
     "english": "Pop music",
@@ -1610,6 +1605,7 @@
     "failCount": 0
   },
   {
+    "id": "53ca45c0-26af-4d1f-a7ce-0a9e37449afb",
     "word": "Artikel",
     "type": "Noun",
     "english": "Article",
@@ -1624,6 +1620,7 @@
     "failCount": 0
   },
   {
+    "id": "f790cab8-e711-4726-a85a-1bf960562060",
     "word": "Kommissar",
     "type": "Noun",
     "english": "Commissioner / Inspector",
@@ -1638,6 +1635,7 @@
     "failCount": 0
   },
   {
+    "id": "22f6cfa0-01fa-460a-951d-ae3a2279b0d6",
     "word": "Polizei",
     "type": "Noun",
     "english": "Police",
@@ -1652,6 +1650,7 @@
     "failCount": 0
   },
   {
+    "id": "df7a5df4-d52f-4fea-91a5-29f70202170d",
     "word": "verheiratet",
     "type": "Adj/Adv",
     "english": "Married",
@@ -1666,6 +1665,7 @@
     "failCount": 0
   },
   {
+    "id": "3dda97e9-a507-485c-9d0f-f2b82149c781",
     "word": "ledig",
     "type": "Adj/Adv",
     "english": "Single / Unmarried",
@@ -1680,6 +1680,7 @@
     "failCount": 0
   },
   {
+    "id": "6d0f0b6e-9f6c-493b-bcb2-a44fdf8fe7eb",
     "word": "geschieden",
     "type": "Adj/Adv",
     "english": "Divorced",
@@ -1694,6 +1695,7 @@
     "failCount": 0
   },
   {
+    "id": "e06b6191-eecf-4973-b932-5c6bcda5038a",
     "word": "allein",
     "type": "Adj/Adv",
     "english": "Alone",
@@ -1708,6 +1710,7 @@
     "failCount": 0
   },
   {
+    "id": "d47081c8-5ea4-4783-a939-aaed076bfaa2",
     "word": "zusammen",
     "type": "Adj/Adv",
     "english": "Together",
@@ -1722,6 +1725,7 @@
     "failCount": 0
   },
   {
+    "id": "a6397b3c-636f-4a0c-8509-5bf6c527019a",
     "word": "kommen",
     "type": "Verb",
     "english": "to come",
@@ -1736,6 +1740,7 @@
     "failCount": 0
   },
   {
+    "id": "fdeb0c5c-fe84-4707-8fc5-a2ad9b439602",
     "word": "sprechen",
     "type": "Verb",
     "english": "to speak",
@@ -1750,6 +1755,7 @@
     "failCount": 0
   },
   {
+    "id": "eb33cd91-afd8-4d2f-be13-547281187854",
     "word": "leben",
     "type": "Verb",
     "english": "to live",
@@ -1764,6 +1770,7 @@
     "failCount": 0
   },
   {
+    "id": "4ddd5928-dc83-4ccb-9ec2-1f54bfdcdfa6",
     "word": "lieben",
     "type": "Verb",
     "english": "to love",
@@ -1778,6 +1785,7 @@
     "failCount": 0
   },
   {
+    "id": "cc3ead98-5aca-486b-9b87-da29e55c3472",
     "word": "kochen",
     "type": "Verb",
     "english": "to cook",
@@ -1792,6 +1800,7 @@
     "failCount": 0
   },
   {
+    "id": "d7654457-7d0f-4032-b396-03a3222bea1e",
     "word": "spielen",
     "type": "Verb",
     "english": "to play",
@@ -1802,6 +1811,1476 @@
     "sentence": "Felix spielt gern Computerspiele.",
     "level": "A1.1",
     "trivia": "Used for games and instruments.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "2a17a290-faaf-4254-86d3-6316e6584fea",
+    "word": "Schokoladenkuchen",
+    "type": "Noun",
+    "english": "Chocolate cake",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "die Schokoladenkuchen",
+    "sentence": "Ich esse ein Stück Schokoladenkuchen.",
+    "level": "A1.1",
+    "trivia": "Schokolade + Kuchen. Compound nouns take the gender of the last word (der Kuchen).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "59e7ffde-9def-4fd6-b597-8d8c08867597",
+    "word": "Konferenz",
+    "type": "Noun",
+    "english": "Conference",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Konferenzen",
+    "sentence": "Wir haben eine Konferenz.",
+    "level": "A1.2",
+    "trivia": "Similar to the English \"Conference.\"",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "0d1f7bbe-f666-4a80-a7f4-31284a640243",
+    "word": "Museum",
+    "type": "Noun",
+    "english": "Museum",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Museen",
+    "sentence": "Wir gehen ins Museum.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "ada60531-ec2b-4d09-9ab7-e773a4088a01",
+    "word": "Hotelzimmer",
+    "type": "Noun",
+    "english": "Hotel room",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Hotelzimmer",
+    "sentence": "Ich buche ein Hotelzimmer.",
+    "level": "A1.1",
+    "trivia": "Hotel + Zimmer (room).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "d4bfd19d-8c48-4d1f-8e02-efa0189e0281",
+    "word": "Hotel",
+    "type": "Noun",
+    "english": "Hotel",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Hotels",
+    "sentence": "Wir sind im Hotel.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "8efcb6ba-57e2-410c-9bc0-815691ef7c3e",
+    "word": "Information",
+    "type": "Noun",
+    "english": "Information",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Informationen",
+    "sentence": "Hier sind Informationen über Frankfurt.",
+    "level": "A1.1",
+    "trivia": "English cognate. Words ending in -ion are feminine.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "bd8d6551-cc51-4fcb-904f-c5ff72c7218a",
+    "word": "Tee",
+    "type": "Noun",
+    "english": "Tea",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "die Tees",
+    "sentence": "Ich trinke einen Tee.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "43768f36-82a4-411e-a3ab-1f4557bc42b5",
+    "word": "Orangensaft",
+    "type": "Noun",
+    "english": "Orange juice",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "die Orangensäfte",
+    "sentence": "Er möchte einen Orangensaft.",
+    "level": "A1.1",
+    "trivia": "Orangen + Saft (juice).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "b324d31c-99c6-4354-9caa-61ded103e7e1",
+    "word": "Mineralwasser",
+    "type": "Noun",
+    "english": "Mineral water",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Mineralwasser",
+    "sentence": "Ich trinke ein Mineralwasser.",
+    "level": "A1.1",
+    "trivia": "Mineral + Wasser.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "5fe95e8b-0107-4595-963f-01ea55f4582f",
+    "word": "Milch",
+    "type": "Noun",
+    "english": "Milk",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "-",
+    "sentence": "Kaffee mit Milch, bitte.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "34fffc6f-b664-4da7-8668-8d9b5cd84483",
+    "word": "Zucker",
+    "type": "Noun",
+    "english": "Sugar",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "-",
+    "sentence": "Nehmen Sie Zucker?",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "207ac103-72bf-47a3-9c32-f29855b8cd68",
+    "word": "Kennzeichen",
+    "type": "Noun",
+    "english": "License plate",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Kennzeichen",
+    "sentence": "Mein Auto hat das Kennzeichen L-ZB 6168.",
+    "level": "A2.1",
+    "trivia": "Literally a \"knowing sign\" (kennen + Zeichen).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "16410b14-7e1f-4ebc-9687-01933328f96c",
+    "word": "Hauptstadt",
+    "type": "Noun",
+    "english": "Capital city",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Hauptstädte",
+    "sentence": "Wien ist die Hauptstadt von Österreich.",
+    "level": "A1.2",
+    "trivia": "Haupt (head/main) + Stadt (city).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "b6f3eb64-53fb-4394-8605-84e0658b6f50",
+    "word": "Einwohner",
+    "type": "Noun",
+    "english": "Inhabitant",
+    "der": "der",
+    "die": "die",
+    "das": "",
+    "plural": "die Einwohner",
+    "sentence": "Österreich hat 8,7 Millionen Einwohner.",
+    "level": "A2.1",
+    "trivia": "Someone who \"dwells in\" (ein + wohnen).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "31b8703d-e593-4d3e-8936-1e012cdd49b4",
+    "word": "trinken",
+    "type": "Verb",
+    "english": "to drink",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Was möchtest du trinken?",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "ac83bf80-2ec9-4c49-bed5-b638f2a1dc35",
+    "word": "essen",
+    "type": "Verb",
+    "english": "to eat",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Wir essen Schokoladenkuchen.",
+    "level": "A1.1",
+    "trivia": "Sounds like the \"S\" in \"Feast.\"",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "1b1d7e7c-5ede-4938-a2ba-ee93940eac31",
+    "word": "bezahlen",
+    "type": "Verb",
+    "english": "to pay",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Ich möchte bezahlen.",
+    "level": "A1.1",
+    "trivia": "Zahlen means numbers; to pay is to give the numbers!",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "22196bde-45bc-4b35-b3f0-443bf3e1bb3e",
+    "word": "übernachten",
+    "type": "Verb",
+    "english": "to stay overnight",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Wir übernachten im Hotel.",
+    "level": "A2.1",
+    "trivia": "Über (over) + Nacht (night).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "8a7bc5e6-1272-464a-a67b-731d2bb813b1",
+    "word": "reden",
+    "type": "Verb",
+    "english": "to talk/speak",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Wir reden über die Arbeit.",
+    "level": "A2.1",
+    "trivia": "Similar to \"Read\"—imagine reading out loud to talk.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "490b6fc1-722e-4568-9ba3-1e60a2d35bdf",
+    "word": "besuchen",
+    "type": "Verb",
+    "english": "to visit",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Wir besuchen ein Museum.",
+    "level": "A1.2",
+    "trivia": "Be- + suchen (to search). You seek someone out to visit them.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "9c8df4b3-17e2-42f0-8073-5fcb9b3c8f22",
+    "word": "gehen",
+    "type": "Verb",
+    "english": "to go",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Wir gehen ins Museum.",
+    "level": "A1.1",
+    "trivia": "Think of \"Go.\"",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "58336e78-4deb-4929-9646-f950de51f27c",
+    "word": "brauchen",
+    "type": "Verb",
+    "english": "to need",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Ich brauche einen Kaffee.",
+    "level": "A1.1",
+    "trivia": "Use this when you \"require\" something.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "5447851d-ff93-4c32-b3f9-7cd5400222b2",
+    "word": "zahlen",
+    "type": "Verb",
+    "english": "to pay",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Wir möchten gern zahlen.",
+    "level": "A1.1",
+    "trivia": "Related to bezahlen.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "959b1e84-1d6d-48a1-8cb4-403d9c63d665",
+    "word": "Suppe",
+    "type": "Noun",
+    "english": "Soup",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Suppen",
+    "sentence": "Ich esse eine Suppe.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "d65515d1-4e31-4d19-911a-8488ad9bd3a0",
+    "word": "Brötchen",
+    "type": "Noun",
+    "english": "Bread roll",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Brötchen",
+    "sentence": "Ich esse ein Brötchen.",
+    "level": "A1.1",
+    "trivia": "Anything ending in -chen is neuter and means \"little.\" It's a \"little bread.\"",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "3acaeac9-f170-4914-bd34-26239de927ac",
+    "word": "Bier",
+    "type": "Noun",
+    "english": "Beer",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Biere",
+    "sentence": "Ich nehme ein Bier.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "dc24021c-f40a-4a7e-8857-53ccc24c9f4c",
+    "word": "Cola",
+    "type": "Noun",
+    "english": "Cola",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Colas",
+    "sentence": "Ich trinke eine Cola.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "5df47c83-14db-4870-9eb9-24a8992f77ba",
+    "word": "Currywurst",
+    "type": "Noun",
+    "english": "Currywurst",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Currywürste",
+    "sentence": "Ich esse eine Currywurst.",
+    "level": "A1.1",
+    "trivia": "A classic German street food: sausage with curry sauce.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "83ed3b61-71d6-4c74-8a58-cd9e74ee0004",
+    "word": "Limonade",
+    "type": "Noun",
+    "english": "Lemonade / Soda",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Limonaden",
+    "sentence": "Paul trinkt eine Limonade.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "af08de06-f2ee-46d6-bab1-ad3677ff2373",
+    "word": "Stück",
+    "type": "Noun",
+    "english": "Piece / Slice",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Stücke",
+    "sentence": "Ein Stück Kuchen, bitte.",
+    "level": "A1.1",
+    "trivia": "Think of a \"Stick\" or a \"Stack\"—a portion of something.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "38ff352a-ed9d-4107-90ac-7d1aa57d57be",
+    "word": "Euro",
+    "type": "Noun",
+    "english": "Euro",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "die Euro",
+    "sentence": "Das macht 8,60 Euro.",
+    "level": "A1.1",
+    "trivia": "Currency used in Germany.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "b4c2c3e9-50a2-453b-84fc-4425bcb6e60f",
+    "word": "Arbeit",
+    "type": "Noun",
+    "english": "Work / Job",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Arbeiten",
+    "sentence": "Wir reden über die Arbeit.",
+    "level": "A1.1",
+    "trivia": "Related to the verb arbeiten.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "066afbd0-8d14-4485-a050-4e433e449fd6",
+    "word": "Familie",
+    "type": "Noun",
+    "english": "Family",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Familien",
+    "sentence": "Wir reden über die Familie.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "ecc3c89b-f9e5-432d-aca4-2b8206f87c04",
+    "word": "nehmen",
+    "type": "Verb",
+    "english": "to take",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Ich nehme einen Tee.",
+    "level": "A1.1",
+    "trivia": "Irregular verb: ich nehme, du nimmst, er nimmt.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "fd883ff7-a6bd-4d5e-9cb5-6d0bfb213b13",
+    "word": "möchten",
+    "type": "Verb",
+    "english": "would like",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Was möchten Sie trinken?",
+    "level": "A1.1",
+    "trivia": "A polite way to express a wish.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "d404f6da-f066-48a4-9a97-1a89de01eba7",
+    "word": "Schnitzel",
+    "type": "Noun",
+    "english": "Schnitzel",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Schnitzel",
+    "sentence": "Ich esse ein Schnitzel.",
+    "level": "A1.1",
+    "trivia": "A famous Austrian/German dish. The word is the same in English.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "0b3dc5a3-5b7e-402e-8ce5-b77fbee9274f",
+    "word": "Zentrum",
+    "type": "Noun",
+    "english": "Center",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Zentren",
+    "sentence": "Ich wohne im Zentrum.",
+    "level": "A1.2",
+    "trivia": "Cognate with \"Center.\" Words ending in -um are usually neuter.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "de656083-f9b1-41d5-b105-6fabcef63975",
+    "word": "Überraschung",
+    "type": "Noun",
+    "english": "Surprise",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Überraschungen",
+    "sentence": "So eine Überraschung!",
+    "level": "A1.2",
+    "trivia": "Ends in -ung, which is always feminine in German.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "04451a0e-9f0f-4baf-baa5-e8b286b2f912",
+    "word": "Malerei",
+    "type": "Noun",
+    "english": "Painting (art)",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Malereien",
+    "sentence": "Das Museum hat 700 Jahre Malerei.",
+    "level": "A2.1",
+    "trivia": "Related to malen (to paint).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "63992cf6-166d-4733-9c06-2a6fc30447b4",
+    "word": "Maler",
+    "type": "Noun",
+    "english": "Painter",
+    "der": "der",
+    "die": "die",
+    "das": "",
+    "plural": "die Maler",
+    "sentence": "Claude Monet ist mein Lieblingsmaler.",
+    "level": "A1.1",
+    "trivia": "The person who does the malen.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "951d2c98-9c14-4fe7-8086-4db1cade83ee",
+    "word": "Konferenzzentrum",
+    "type": "Noun",
+    "english": "Conference center",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Konferenzzentren",
+    "sentence": "Wo ist das Konferenzzentrum?",
+    "level": "A2.1",
+    "trivia": "Compound: Konferenz + Zentrum.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "95f7425a-a1e6-458e-b7aa-861762dbc5ba",
+    "word": "Datenanalystin",
+    "type": "Noun",
+    "english": "Data analyst (f)",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Datenanalystinnen",
+    "sentence": "Petra arbeitet als Datenanalystin.",
+    "level": "B1.1",
+    "trivia": "A modern career term: Daten + Analystin.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "542912d0-523e-4d54-9b0e-0363cac8bf9c",
+    "word": "Schweiz",
+    "type": "Noun",
+    "english": "Switzerland",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "-",
+    "sentence": "Wohnst du in der Schweiz?",
+    "level": "A1.1",
+    "trivia": "One of the few countries that always uses a feminine article.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "1e3b9c20-7df7-49da-9f1f-58760c2ddb79",
+    "word": "Österreich",
+    "type": "Noun",
+    "english": "Austria",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "-",
+    "sentence": "Wien ist in Österreich.",
+    "level": "A1.1",
+    "trivia": "Most countries are neuter and usually don't use the article.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "10a2c314-83d1-4f47-a71c-5535e6ea0e0e",
+    "word": "Deutschland",
+    "type": "Noun",
+    "english": "Germany",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "-",
+    "sentence": "Deutschland ist groß.",
+    "level": "A1.1",
+    "trivia": "Neuter country name.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "bbc8c943-ddbe-48f9-ba4d-9f5f9961bd80",
+    "word": "Million",
+    "type": "Noun",
+    "english": "Million",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Millionen",
+    "sentence": "Wien hat 1,8 Millionen Einwohner.",
+    "level": "A1.2",
+    "trivia": "Cognate with \"Million\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "16372633-d708-43b0-9b79-8a998e20e64a",
+    "word": "Platz",
+    "type": "Noun",
+    "english": "Place / Rank",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "die Plätze",
+    "sentence": "Deutsch liegt auf Platz 10.",
+    "level": "A1.2",
+    "trivia": "Think of a \"Place\" on a leaderboard.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "bc3d45f9-e7f4-4a19-871b-773693102686",
+    "word": "Quadratkilometer",
+    "type": "Noun",
+    "english": "Square kilometer",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Quadratkilometer",
+    "sentence": "Deutschland ist 357 375 km² groß.",
+    "level": "B1.1",
+    "trivia": "Quadrat + Kilometer.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "eab0d4ef-fc8a-4d3a-9d1c-8dcbed958265",
+    "word": "Telefonnummer",
+    "type": "Noun",
+    "english": "Phone number",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Telefonnummern",
+    "sentence": "Wie ist deine Telefonnummer?",
+    "level": "A1.1",
+    "trivia": "Telefon + Nummer.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "cae13f5c-3580-4f31-87cd-b30434e2b651",
+    "word": "wohnen",
+    "type": "Verb",
+    "english": "to reside / live",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Wo wohnst du?",
+    "level": "A1.1",
+    "trivia": "Used for a specific address or city.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "669dd103-54f8-4924-8ead-f371dc91ab1c",
+    "word": "stimmen",
+    "type": "Verb",
+    "english": "to be correct",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Ja, das stimmt!",
+    "level": "A1.2",
+    "trivia": "Think of \"tuning\" an instrument to make it \"right\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "1bce2ba0-6c6d-4245-a436-385f40076e8d",
+    "word": "machen",
+    "type": "Verb",
+    "english": "to do / make",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Was machst du hier?",
+    "level": "A1.1",
+    "trivia": "A very versatile verb, like \"Make\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "0954b09e-9df1-4ef8-b46c-a3d953aacb5c",
+    "word": "Bahnhof",
+    "type": "Noun",
+    "english": "Train station",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "die Bahnhöfe",
+    "sentence": "Wo ist der Bahnhof?",
+    "level": "A1.1",
+    "trivia": "Bahn (train) + Hof (yard/court).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "ca334c3e-3e72-4ebf-b8ff-3d27628d8ae2",
+    "word": "Bank",
+    "type": "Noun",
+    "english": "Bank",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Banken",
+    "sentence": "Er sucht eine Bank.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "c933c277-be7d-4a54-abbe-2fc5c854ac89",
+    "word": "Apotheke",
+    "type": "Noun",
+    "english": "Pharmacy",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Apotheken",
+    "sentence": "Ich suche eine Apotheke.",
+    "level": "A1.1",
+    "trivia": "Look for the big red \"A\" symbol in Germany.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "0aa1cce1-2e71-40f2-8682-eb9774497326",
+    "word": "Restaurant",
+    "type": "Noun",
+    "english": "Restaurant",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Restaurants",
+    "sentence": "Das Restaurant ist gut.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "7e9a1c16-b483-48f0-a56c-e350fbd61182",
+    "word": "Parkplatz",
+    "type": "Noun",
+    "english": "Parking lot",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "die Parkplätze",
+    "sentence": "Er sucht einen Parkplatz.",
+    "level": "A1.2",
+    "trivia": "Parken + Platz (place).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "91e56326-b321-4b9c-8927-6ea51c94d374",
+    "word": "Kino",
+    "type": "Noun",
+    "english": "Cinema",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Kinos",
+    "sentence": "Wir gehen ins Kino.",
+    "level": "A1.1",
+    "trivia": "Short for Kinematograph.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "bf98ffa7-4c6b-44f7-b714-6a3ab84f22dc",
+    "word": "Café",
+    "type": "Noun",
+    "english": "Café",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Cafés",
+    "sentence": "Das Café ist schön.",
+    "level": "A1.1",
+    "trivia": "French loanword.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "5aa1b474-323e-45b8-94a0-647c286fc966",
+    "word": "Bibliothek",
+    "type": "Noun",
+    "english": "Library",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Bibliotheken",
+    "sentence": "Sie ist in der Bibliothek.",
+    "level": "A1.2",
+    "trivia": "From the Greek biblio (book).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "a9c8c99d-fac3-43a2-a6e8-dddc3fbddd46",
+    "word": "Supermarkt",
+    "type": "Noun",
+    "english": "Supermarket",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "die Supermärkte",
+    "sentence": "Ich gehe in den Supermarkt.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "91e35d42-1e26-4c69-94af-5b490e53d131",
+    "word": "Kunstmuseum",
+    "type": "Noun",
+    "english": "Art museum",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Kunstmuseen",
+    "sentence": "Das ist ein Kunstmuseum.",
+    "level": "A1.2",
+    "trivia": "Kunst (art) + Museum.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "f285adcd-56bc-455d-b022-62d5342bbb73",
+    "word": "Touristeninformation",
+    "type": "Noun",
+    "english": "Tourist info",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Touristeninformationen",
+    "sentence": "Wo ist die Touristeninformation?",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "513f0e48-5165-4bbb-95df-fb2a873804cf",
+    "word": "Fahrkarte",
+    "type": "Noun",
+    "english": "Ticket (travel)",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Fahrkarten",
+    "sentence": "Er kauft eine Fahrkarte.",
+    "level": "A1.1",
+    "trivia": "Fahren (to drive/travel) + Karte (card).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "7f0f0074-4992-40d0-a670-39e1d5b832e9",
+    "word": "Film",
+    "type": "Noun",
+    "english": "Movie / Film",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "die Filme",
+    "sentence": "Er möchte einen Film sehen.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "d6a39803-15f1-4c1e-a493-82c79408da6a",
+    "word": "Geld",
+    "type": "Noun",
+    "english": "Money",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "-",
+    "sentence": "Er möchte Geld abheben.",
+    "level": "A1.1",
+    "trivia": "Think of \"Gold.\"",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "2d8b502c-284a-4027-8c23-f11a6a62c337",
+    "word": "abheben",
+    "type": "Verb",
+    "english": "to withdraw",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Er möchte Geld abheben.",
+    "level": "A2.1",
+    "trivia": "Literally \"to lift off.\"",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "78a72ad1-c36d-4045-897b-a9cae9c918d8",
+    "word": "kaufen",
+    "type": "Verb",
+    "english": "to buy",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Sie kauft Medikamente.",
+    "level": "A1.1",
+    "trivia": "Think of a \"Coffer\" where you keep money to buy things.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "969aa2ac-deaa-4edd-b4c7-751b619b6a80",
+    "word": "parken",
+    "type": "Verb",
+    "english": "to park",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Er möchte sein Auto parken.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "affd9129-23bb-4138-a094-9e53c0ee143f",
+    "word": "sehen",
+    "type": "Verb",
+    "english": "to see",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Er möchte Bilder sehen.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "a2729c87-5d29-4e76-9b66-46d4e2beb494",
+    "word": "buche",
+    "type": "Verb",
+    "english": "to book",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Ich buche ein Hotelzimmer.",
+    "level": "A1.2",
+    "trivia": "Related to Buch (book). You record the stay in a book.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "90778ff3-3f63-446f-bd27-924e1183ebfc",
+    "word": "Einzelzimmer",
+    "type": "Noun",
+    "english": "Single room",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Einzelzimmer",
+    "sentence": "Ich möchte ein Einzelzimmer.",
+    "level": "A1.1",
+    "trivia": "Einzel (single) + Zimmer (room).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "53c6a736-a634-449e-b589-dcadc13f059e",
+    "word": "Reservierung",
+    "type": "Noun",
+    "english": "Reservation",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Reservierungen",
+    "sentence": "Haben Sie eine Reservierung?",
+    "level": "A1.1",
+    "trivia": "Ends in -ung, so it is always feminine.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "742cacff-5150-43da-b8ab-2ce795c88abe",
+    "word": "Nacht",
+    "type": "Noun",
+    "english": "Night",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Nächte",
+    "sentence": "Das Zimmer ist für eine Nacht.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "5a9316f4-e862-417d-8d6b-65e6b3bfde1b",
+    "word": "Preis",
+    "type": "Noun",
+    "english": "Price",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "die Preise",
+    "sentence": "Der Preis ist ohne Frühstück.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "88d53195-110a-4ae3-be29-ff0f6a8ab8d3",
+    "word": "Frühstück",
+    "type": "Noun",
+    "english": "Breakfast",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Frühstücke",
+    "sentence": "Das Frühstück kostet extra.",
+    "level": "A1.1",
+    "trivia": "Früh (early) + Stück (piece).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "d5ba26c2-5538-4358-9743-f31a37dfb74c",
+    "word": "WLAN",
+    "type": "Noun",
+    "english": "Wi-Fi",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "-",
+    "sentence": "Gibt es WLAN?",
+    "level": "A1.1",
+    "trivia": "Pronounced \"Vay-Lan\" in German.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "3c086d0f-5807-48c3-a3aa-236a46752cf3",
+    "word": "Code",
+    "type": "Noun",
+    "english": "Code",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "die Codes",
+    "sentence": "Der Code steht auf der Karte.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "f55f108d-c661-474f-8d46-c92203f322c9",
+    "word": "Zimmerkarte",
+    "type": "Noun",
+    "english": "Room card",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Zimmerkarten",
+    "sentence": "Hier ist Ihre Zimmerkarte.",
+    "level": "A1.1",
+    "trivia": "Zimmer (room) + Karte (card).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "51f405a3-0d45-425b-99ff-56cd2812d849",
+    "word": "Formular",
+    "type": "Noun",
+    "english": "Form",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Formulare",
+    "sentence": "Füllen Sie das Formular aus.",
+    "level": "A1.2",
+    "trivia": "Cognate with \"Formula.\"",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "c1363d58-43da-4665-9e6a-3dd7caf04436",
+    "word": "Kreditkarte",
+    "type": "Noun",
+    "english": "Credit card",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Kreditkarten",
+    "sentence": "Zahlen Sie mit Kreditkarte?",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "71999ebe-64dc-4b44-abb8-da45c4343909",
+    "word": "Zimmernummer",
+    "type": "Noun",
+    "english": "Room number",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Zimmernummern",
+    "sentence": "Die Nummer ist die 302.",
+    "level": "A1.1",
+    "trivia": "Zimmer + Nummer.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "a7ebd629-73c4-41cc-9652-b979d975632d",
+    "word": "Aufenthalt",
+    "type": "Noun",
+    "english": "Stay",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "die Aufenthalte",
+    "sentence": "Schönen Aufenthalt!",
+    "level": "A2.1",
+    "trivia": "Related to aufhalten (to stay/stop).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "06aa70b9-be49-4b1c-aa97-32e8d1b618eb",
+    "word": "kosten",
+    "type": "Verb",
+    "english": "to cost",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Was kostet das Zimmer?",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "f1711d1e-b981-4cf5-a6ad-daf75d17c303",
+    "word": "Flughafen",
+    "type": "Noun",
+    "english": "Airport",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "die Flughäfen",
+    "sentence": "Frankfurt hat einen großen Flughafen.",
+    "level": "A1.2",
+    "trivia": "Flug (flight) + Hafen (port/harbor).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "0b4bb76d-fa15-4125-939e-2e513e224b92",
+    "word": "Passagier",
+    "type": "Noun",
+    "english": "Passenger",
+    "der": "der",
+    "die": "die",
+    "das": "",
+    "plural": "die Passagiere",
+    "sentence": "60 Millionen Passagiere fliegen jedes Jahr.",
+    "level": "A2.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "a4d4c17e-155c-4fe0-bb56-e9c0a103330b",
+    "word": "Skyline",
+    "type": "Noun",
+    "english": "Skyline",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Skylines",
+    "sentence": "Eine Besonderheit ist die Skyline.",
+    "level": "A1.1",
+    "trivia": "English loanword.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "da15e3a3-c049-426c-9616-f6ff2e62cb6e",
+    "word": "Hochhaus",
+    "type": "Noun",
+    "english": "Skyscraper",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Hochhäuser",
+    "sentence": "Es gibt viele Hochhäuser.",
+    "level": "A2.1",
+    "trivia": "Hoch (high) + Haus (house).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "81643871-3b9d-4d2f-9aac-b6978d69e74a",
+    "word": "Börse",
+    "type": "Noun",
+    "english": "Stock exchange",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Börsen",
+    "sentence": "In Frankfurt ist die Börse.",
+    "level": "B1.1",
+    "trivia": "Think of a \"purse\" (Börse) where money is handled.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "126f93ef-6ca3-4da7-a552-571b91a827e4",
+    "word": "Oper",
+    "type": "Noun",
+    "english": "Opera",
+    "der": "",
+    "die": "die",
+    "das": "",
+    "plural": "die Opern",
+    "sentence": "Frankfurt hat eine Oper.",
+    "level": "A1.2",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "edbeb3f4-adeb-463a-b8d3-5469e1ef6f6f",
+    "word": "Theater",
+    "type": "Noun",
+    "english": "Theater",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Theater",
+    "sentence": "Wir gehen heute ins Theater.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "40e8d5f5-4390-41b5-9648-7ebbd4070e26",
+    "word": "Jahr",
+    "type": "Noun",
+    "english": "Year",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Jahre",
+    "sentence": "Frankfurt ist 1200 Jahre alt.",
+    "level": "A1.1",
+    "trivia": "Similar to \"Year\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "d5e29d16-265d-4952-8dc1-7b65b6cc428b",
+    "word": "Fluss",
+    "type": "Noun",
+    "english": "River",
+    "der": "der",
+    "die": "",
+    "das": "",
+    "plural": "die Flüsse",
+    "sentence": "Frankfurt liegt am Fluss Main.",
+    "level": "A1.2",
+    "trivia": "Related to \"Flow\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "4b42897d-5dea-43f1-9c40-197cc96201a6",
+    "word": "Bundesland",
+    "type": "Noun",
+    "english": "Federal state",
+    "der": "",
+    "die": "",
+    "das": "das",
+    "plural": "die Bundesländer",
+    "sentence": "Hessen ist ein Bundesland.",
+    "level": "A2.1",
+    "trivia": "Bund (federation) + Land (country/state).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "eb5d833b-ec4e-4ad2-bb63-e8b148f2297f",
+    "word": "fahren",
+    "type": "Verb",
+    "english": "to drive / travel",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Ich fahre zurück nach Basel.",
+    "level": "A1.1",
+    "trivia": "Irregular verb: du fährst, er/sie fährt.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "c870a52e-ac6a-479c-86d0-99beb44456a2",
+    "word": "starten",
+    "type": "Verb",
+    "english": "to take off / start",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Flugzeuge starten hier.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "99dff8ba-275f-4228-a05d-99381bc5e8c3",
+    "word": "landen",
+    "type": "Verb",
+    "english": "to land",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Flugzeuge landen hier.",
+    "level": "A1.1",
+    "trivia": "English cognate.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "id": "df09f1c8-c8ee-4b84-a1cf-7c498859e43d",
+    "word": "liegen",
+    "type": "Verb",
+    "english": "to be located",
+    "der": "-",
+    "die": "-",
+    "das": "-",
+    "plural": "-",
+    "sentence": "Frankfurt liegt am Main.",
+    "level": "A1.1",
+    "trivia": "Similar to \"to lie\" (located horizontally).",
     "successCount": 0,
     "failCount": 0
   }
