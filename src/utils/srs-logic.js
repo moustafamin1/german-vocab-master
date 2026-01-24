@@ -1,10 +1,10 @@
 /**
  * SRS Mathematical Model
- * Weight = max(1, (failCount - successCount) + 5)
+ * Weight = max(1, (failCount - successCount) + 3)
  */
 
 export const calculateWeight = (word) => {
-    return Math.max(1, (word.failCount - word.successCount) + 5);
+    return Math.max(1, (word.failCount - word.successCount) + 3);
 };
 
 export const getWeightedRandomWord = (pool) => {

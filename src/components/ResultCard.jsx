@@ -5,7 +5,7 @@ export default function ResultCard({ word, feedback, onNext, devMode }) {
     const isCorrect = feedback.correct;
 
     // Calculate selection probability (weight)
-    const weight = Math.max(1, (word.failCount - word.successCount) + 5);
+    const weight = Math.max(1, (word.failCount - word.successCount) + 3);
 
     return (
         <div className="card max-w-lg mx-auto space-y-8 animate-in zoom-in-95 duration-300">
