@@ -31,18 +31,18 @@ export default function SettingsHeader({ onBack, showBack, devMode, setDevMode, 
 
     return (
         <header className="flex items-center justify-between py-6 mb-8 border-b border-zinc-800">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
                 <div className="text-2xl flex items-center justify-center">
                 </div>
                 <h1 className="text-xl font-bold tracking-tight">Vocaccia</h1>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
                 {/* Sync Button */}
                 <button
                     onClick={handleSync}
                     disabled={isSyncing || syncSuccess}
-                    className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all text-xs font-medium uppercase tracking-wider
+                    className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all text-xs font-semibold
                         ${syncSuccess
                             ? 'bg-green-500/10 border-green-500/50 text-green-500'
                             : isSyncing
@@ -52,21 +52,16 @@ export default function SettingsHeader({ onBack, showBack, devMode, setDevMode, 
                     title="Sync with Google Sheet"
                 >
                     {syncSuccess ? (
-                        <>
-                            <Check className="w-3.5 h-3.5" />
-                            <span>Done</span>
-                        </>
+                        <Check className="w-3.5 h-3.5" />
                     ) : (
                         <>
                             <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin' : ''}`} />
-                            <span>
-                                {isSyncing ? 'Syncing...' : `Sync (${wordCount || 0})`}
+                            <span className="opacity-70">
+                                {isSyncing ? '...' : (wordCount || 0)}
                             </span>
                         </>
                     )}
                 </button>
-
-                <div className="w-px h-4 bg-zinc-800 mx-1"></div>
 
                 {/* Dev Mode Toggle */}
                 <button

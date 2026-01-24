@@ -60,11 +60,22 @@ export default function App() {
     const pickNewWord = useCallback(() => {
         if (vocabPool.length === 0) return;
 
-        // Filter based on user configuration
-        const filtered = vocabPool.filter(v =>
-            selectedLevels.includes(v.level) &&
-            selectedTypes.includes(v.type)
-        );
+        // Filter based on user configuration and mode compatibility
+        const filtered = vocabPool.filter(v => {
+            const matchesLevel = selectedLevels.includes(v.level);
+            const matchesType = selectedTypes.includes(v.type);
+
+            if (!matchesLevel || !matchesType) return false;
+
+            // Ensure the word is compatible with at least ONE selected mode
+            return selectedModes.some(mode => {
+                if (mode === 'article') {
+                    const articles = [v.der, v.die, v.das].filter(a => a && a !== '' && a !== '-');
+                    return articles.length === 1;
+                }
+                return true; // multipleChoice and written are always compatible if level/type match
+            });
+        });
 
         if (filtered.length === 0) {
             setView('config');
@@ -74,8 +85,8 @@ export default function App() {
         // Use SRS Weighted Selection Utility
         const randomWord = getWeightedRandomWord(filtered);
 
-        // Determine available quiz modes
-        const availableModes = selectedModes.filter(mode => {
+        // Determine available quiz modes for THIS specific word
+        const validModesForWord = selectedModes.filter(mode => {
             if (mode === 'article') {
                 const articles = [randomWord.der, randomWord.die, randomWord.das].filter(a => a && a !== '' && a !== '-');
                 return articles.length === 1;
@@ -83,9 +94,7 @@ export default function App() {
             return true;
         });
 
-        const finalMode = availableModes.length > 0
-            ? availableModes[Math.floor(Math.random() * availableModes.length)]
-            : 'multipleChoice';
+        const finalMode = validModesForWord[Math.floor(Math.random() * validModesForWord.length)];
 
         // Generate options for Multiple Choice
         if (finalMode === 'multipleChoice') {
