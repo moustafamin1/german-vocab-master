@@ -10,39 +10,60 @@ export default function QuizCard({ word, mode, options, onAnswer }) {
         setWrittenInput('');
     };
 
+    const getArticle = (w) => {
+        if (!w) return null;
+        const art = [w.der, w.die, w.das].find(a => typeof a === 'string' && a.length > 0 && a !== '-' && a !== '');
+        return art || null;
+    };
+
+    const formatWordWithArticle = (w) => {
+        if (!w) return '';
+        if (typeof w === 'string') return w;
+        const art = getArticle(w);
+        return art ? `${art} ${w.word}` : (w.word || w);
+    };
+
     return (
-        <div className="flex flex-col min-h-[80vh] justify-between py-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            {/* Question Section - Centered Vertically */}
-            <div className="flex-1 flex flex-col items-center justify-center text-center space-y-4">
-                <div className="space-y-2">
-                    <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">
-                        {mode === 'multipleChoice' ? 'Multiple Choice' :
-                            mode === 'written' ? 'Written Challenge' : 'Article Master'}
-                    </span>
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-                        {mode === 'article' ? word.word : word.english}
-                    </h2>
-                    {mode === 'written' && word.type && (
-                        <div className="flex justify-center">
-                            <span className="inline-block text-xs bg-zinc-800 px-2 py-1 rounded-md text-zinc-400">
-                                {word.type}
-                            </span>
-                        </div>
-                    )}
-                </div>
+        <div className="flex flex-col min-h-[75vh] animate-in fade-in slide-in-from-bottom-4 duration-500">
+            {/* Header Mode Title */}
+            <div className="text-center py-2">
+                <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">
+                    {mode === 'multipleChoice' ? 'Multiple Choice' :
+                        mode === 'written' ? 'Written Challenge' : 'Article Master'}
+                </span>
             </div>
 
-            {/* Answer Partition - Towards the bottom */}
-            <div className="max-w-md mx-auto w-full pt-8">
+            {/* Middle Section (Question or Spacer) */}
+            <div className={`flex-1 flex flex-col items-center justify-center text-center ${mode === 'written' ? 'invisible' : ''}`}>
+                {mode !== 'written' && (
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+                        {mode === 'article' ? word.word : word.english}
+                        {mode !== 'article' && getArticle(word) && (
+                            <span className="text-zinc-500 text-2xl ml-3">({getArticle(word)})</span>
+                        )}
+                    </h2>
+                )}
+            </div>
+
+            {/* Bottom Section (Written Question + Interaction) */}
+            <div className="max-w-md mx-auto w-full pb-6">
+                {mode === 'written' && (
+                    <div className="text-center mb-10 space-y-2">
+                        <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+                            {word.english}
+                        </h2>
+                    </div>
+                )}
+
                 {mode === 'multipleChoice' && (
                     <div className="grid grid-cols-1 gap-3">
                         {options.map((opt, i) => (
                             <button
                                 key={i}
-                                onClick={() => onAnswer(opt)}
+                                onClick={() => onAnswer(typeof opt === 'string' ? opt : opt.word)}
                                 className="btn btn-secondary text-left py-4 px-6 hover:bg-zinc-800 hover:border-zinc-700 flex justify-between group"
                             >
-                                <span>{opt}</span>
+                                <span>{formatWordWithArticle(opt)}</span>
                                 <span className="opacity-0 group-hover:opacity-100 text-zinc-500 text-sm">Select</span>
                             </button>
                         ))}

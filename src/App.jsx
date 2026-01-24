@@ -83,10 +83,9 @@ export default function App() {
             const distractors = vocabPool
                 .filter(v => v.word !== randomWord.word)
                 .sort(() => 0.5 - Math.random())
-                .slice(0, 3)
-                .map(v => v.word);
+                .slice(0, 3);
 
-            setOptions([randomWord.word, ...distractors].sort(() => 0.5 - Math.random()));
+            setOptions([randomWord, ...distractors].sort(() => 0.5 - Math.random()));
         }
 
         setCurrentWord(randomWord);
