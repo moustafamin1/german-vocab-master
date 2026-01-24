@@ -4,13 +4,16 @@ import SettingsHeader from './components/SettingsHeader';
 import QuizCard from './components/QuizCard';
 import ResultCard from './components/ResultCard';
 import ConfigScreen from './components/ConfigScreen';
+import StatsBar from './components/StatsBar';
 import { getWeightedRandomWord } from './utils/srs-logic';
 
 const SRS_STORAGE_KEY = 'vocab-srs-data';
+const GLOBAL_STATS_KEY = 'vocab-global-stats';
 
 export default function App() {
     const [view, setView] = useState('loading'); // loading, config, playing, feedback
     const [devMode, setDevMode] = useState(false);
+    const [globalStats, setGlobalStats] = useState({ total: 0, correct: 0, incorrect: 0 });
 
     // App Config State
     const [selectedLevels, setSelectedLevels] = useState([]);
@@ -42,6 +45,10 @@ export default function App() {
 
         setVocabPool(mergedVocab);
         setSelectedLevels(levels);
+
+        // 3. Load Global Stats
+        const storedGlobalStats = JSON.parse(localStorage.getItem(GLOBAL_STATS_KEY) || '{"total":0,"correct":0,"incorrect":0}');
+        setGlobalStats(storedGlobalStats);
 
         setTimeout(() => {
             setView('config');
@@ -120,15 +127,34 @@ export default function App() {
 
     const handleAnswer = (answer) => {
         let correct = false;
+        const cleanAnswer = answer.toLowerCase().trim();
+        const cleanWord = currentWord.word.toLowerCase().trim();
 
         if (quizMode === 'multipleChoice' || quizMode === 'written') {
-            correct = answer.toLowerCase() === currentWord.word.toLowerCase();
+            if (currentWord.type === 'Noun') {
+                const correctArticle = [currentWord.der, currentWord.die, currentWord.das].find(a => a && a !== '' && a !== '-');
+                const formattedWithArticle = correctArticle ? `${correctArticle.toLowerCase()} ${cleanWord}` : cleanWord;
+                // Accept either just the word or the article + word
+                correct = cleanAnswer === cleanWord || (correctArticle && cleanAnswer === formattedWithArticle);
+            } else {
+                correct = cleanAnswer === cleanWord;
+            }
         } else if (quizMode === 'article') {
             const correctArticle = [currentWord.der, currentWord.die, currentWord.das].find(a => a && a !== '' && a !== '-');
             correct = answer.toLowerCase() === (correctArticle || '').toLowerCase();
         }
 
         updateSRSStats(currentWord, correct);
+
+        // Update Global Stats
+        const newGlobalStats = {
+            total: globalStats.total + 1,
+            correct: correct ? globalStats.correct + 1 : globalStats.correct,
+            incorrect: !correct ? globalStats.incorrect + 1 : globalStats.incorrect
+        };
+        setGlobalStats(newGlobalStats);
+        localStorage.setItem(GLOBAL_STATS_KEY, JSON.stringify(newGlobalStats));
+
         setFeedback({ correct, chosen: answer });
         setView('feedback');
     };
@@ -144,50 +170,53 @@ export default function App() {
             </div>
         );
     }
-
     return (
-        <div className="max-w-2xl mx-auto px-6 pb-10">
-            <SettingsHeader
-                onBack={handleBackToConfig}
-                showBack={view !== 'config'}
-                devMode={devMode}
-                setDevMode={setDevMode}
-            />
+        <div className="min-h-screen bg-[#09090b] text-zinc-100">
+            <StatsBar stats={globalStats} />
 
-            <main className="mt-8">
-                {view === 'config' ? (
-                    <ConfigScreen
-                        levels={levels}
-                        selectedLevels={selectedLevels}
-                        setSelectedLevels={setSelectedLevels}
-                        selectedModes={selectedModes}
-                        setSelectedModes={setSelectedModes}
-                        selectedTypes={selectedTypes}
-                        setSelectedTypes={setSelectedTypes}
-                        onStart={handleStart}
-                    />
-                ) : view === 'feedback' ? (
-                    <ResultCard
-                        word={currentWord}
-                        feedback={feedback}
-                        onNext={pickNewWord}
-                        devMode={devMode}
-                    />
-                ) : (
-                    <QuizCard
-                        word={currentWord}
-                        mode={quizMode}
-                        options={options}
-                        onAnswer={handleAnswer}
-                    />
+            <div className="max-w-2xl mx-auto px-6 pb-10">
+                <SettingsHeader
+                    onBack={handleBackToConfig}
+                    showBack={view !== 'config'}
+                    devMode={devMode}
+                    setDevMode={setDevMode}
+                />
+
+                <main className="mt-8">
+                    {view === 'config' ? (
+                        <ConfigScreen
+                            levels={levels}
+                            selectedLevels={selectedLevels}
+                            setSelectedLevels={setSelectedLevels}
+                            selectedModes={selectedModes}
+                            setSelectedModes={setSelectedModes}
+                            selectedTypes={selectedTypes}
+                            setSelectedTypes={setSelectedTypes}
+                            onStart={handleStart}
+                        />
+                    ) : view === 'feedback' ? (
+                        <ResultCard
+                            word={currentWord}
+                            feedback={feedback}
+                            onNext={pickNewWord}
+                            devMode={devMode}
+                        />
+                    ) : (
+                        <QuizCard
+                            word={currentWord}
+                            mode={quizMode}
+                            options={options}
+                            onAnswer={handleAnswer}
+                        />
+                    )}
+                </main>
+
+                {view !== 'config' && !feedback && (
+                    <footer className="mt-8 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-700">
+                        SRS Active • Viel Erfolg beim Lernen
+                    </footer>
                 )}
-            </main>
-
-            {view !== 'config' && !feedback && (
-                <footer className="mt-8 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-700">
-                    SRS Active • Viel Erfolg beim Lernen
-                </footer>
-            )}
+            </div>
         </div>
     );
 }
