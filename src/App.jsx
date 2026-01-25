@@ -5,6 +5,7 @@ import QuizCard from './components/QuizCard';
 import ResultCard from './components/ResultCard';
 import ConfigScreen from './components/ConfigScreen';
 import StatsBar from './components/StatsBar';
+import { getWeightedRandomWord } from './utils/srs-logic';
 import { getCachedVocab } from './services/vocabService';
 
 const SRS_STORAGE_KEY = 'vocab-srs-data';
@@ -193,7 +194,7 @@ export default function App() {
                     showBack={view !== 'config'}
                     devMode={devMode}
                     setDevMode={setDevMode}
-                    wordCount={vocabData.length}
+                    wordCount={baseVocab.length}
                 />
 
                 <main className="mt-8">
