@@ -7,7 +7,7 @@ const MODES = [
     { id: 'article', name: 'Article Master' }
 ];
 
-const TYPES = ['Noun', 'Verb'];
+const TYPES = ['Noun', 'Verb', 'Phrase'];
 
 export default function ConfigScreen({
     levels,

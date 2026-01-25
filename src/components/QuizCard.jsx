@@ -24,37 +24,30 @@ export default function QuizCard({ word, mode, options, onAnswer }) {
     };
 
     return (
-        <div className="flex flex-col min-h-[75vh] animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="flex flex-col min-h-[60vh] md:min-h-[70vh] animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Header Mode Title */}
-            <div className="text-center py-2">
+            <div className="text-center py-4">
                 <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">
                     {mode === 'multipleChoice' ? 'Multiple Choice' :
                         mode === 'written' ? 'Written Challenge' : 'Article Master'}
                 </span>
             </div>
 
-            {/* Middle Section (Question or Spacer) */}
-            <div className={`flex-1 flex flex-col items-center justify-center text-center ${mode === 'written' ? 'invisible' : ''}`}>
-                {mode !== 'written' && (
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-                        {mode === 'article' ? word.word : word.english}
-                        {mode !== 'article' && getArticle(word) && (
-                            <span className="text-zinc-500 text-2xl ml-3">({getArticle(word)})</span>
-                        )}
-                    </h2>
+            {/* Middle Section (Main Question) */}
+            <div className="flex-1 flex flex-col items-center justify-center text-center px-4 py-8">
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+                    {mode === 'article' ? word.word : word.english}
+                    {mode !== 'article' && mode !== 'written' && getArticle(word) && (
+                        <span className="text-zinc-500 text-2xl ml-3">({getArticle(word)})</span>
+                    )}
+                </h2>
+                {mode === 'written' && (
+                    <p className="text-zinc-500 mt-4 text-sm font-medium uppercase tracking-widest">Translate to German</p>
                 )}
             </div>
 
-            {/* Bottom Section (Written Question + Interaction) */}
-            <div className="max-w-md mx-auto w-full pb-6">
-                {mode === 'written' && (
-                    <div className="text-center mb-10 space-y-2">
-                        <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-                            {word.english}
-                        </h2>
-                    </div>
-                )}
-
+            {/* Bottom Section (Interaction) */}
+            <div className="max-w-md mx-auto w-full pb-12 px-4 space-y-6">
                 {mode === 'multipleChoice' && (
                     <div className="grid grid-cols-1 gap-3">
                         {options.map((opt, i) => (
@@ -78,9 +71,9 @@ export default function QuizCard({ word, mode, options, onAnswer }) {
                             value={writtenInput}
                             onChange={(e) => setWrittenInput(e.target.value)}
                             placeholder="Type the German word..."
-                            className="input w-full text-lg text-center"
+                            className="input w-full text-lg text-center bg-zinc-900/50 border-zinc-800 focus:border-zinc-500 transition-all py-4"
                         />
-                        <button type="submit" className="btn btn-primary w-full flex items-center justify-center gap-2">
+                        <button type="submit" className="btn btn-primary w-full py-4 flex items-center justify-center gap-2 shadow-lg">
                             <Send className="w-4 h-4" />
                             Check Answer
                         </button>

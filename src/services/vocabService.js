@@ -67,12 +67,18 @@ const cleanVocabData = (rawRows) => {
         const id = getVal('ID') || uuidv4();
 
         let word = getVal('Word');
-        const type = getVal('Type');
+        let type = getVal('Type');
+
+        // Normalize Type (Capitalize first letter, e.g., 'phrase' -> 'Phrase')
+        if (type) {
+            type = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
+        }
+
         let der = getVal('Masculine (der)');
         let die = getVal('Feminine (die)');
         let das = getVal('Neuter (Das)');
 
-        // Data Cleaning for Nouns
+        // Data Cleaning (Articles only apply to Nouns)
         if (type === 'Noun') {
             // Strip article from word if present
             word = word.replace(/^(der|die|das)\s+/i, '');

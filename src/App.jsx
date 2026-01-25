@@ -13,13 +13,13 @@ const GLOBAL_STATS_KEY = 'vocab-global-stats';
 
 export default function App() {
     const [view, setView] = useState('loading'); // loading, config, playing, feedback
-    const [devMode, setDevMode] = useState(false);
+    const [devMode, setDevMode] = useState(true);
     const [globalStats, setGlobalStats] = useState({ total: 0, correct: 0, incorrect: 0 });
 
     // App Config State
     const [selectedLevels, setSelectedLevels] = useState([]);
     const [selectedModes, setSelectedModes] = useState(['multipleChoice', 'written', 'article']);
-    const [selectedTypes, setSelectedTypes] = useState(['Noun', 'Verb']);
+    const [selectedTypes, setSelectedTypes] = useState(['Noun', 'Verb', 'Phrase']);
 
     // Data State
     const [vocabPool, setVocabPool] = useState([]);
@@ -151,6 +151,7 @@ export default function App() {
                 // Accept either just the word or the article + word
                 correct = cleanAnswer === cleanWord || (correctArticle && cleanAnswer === formattedWithArticle);
             } else {
+                // For Verbs and Phrases, exact match
                 correct = cleanAnswer === cleanWord;
             }
         } else if (quizMode === 'article') {
@@ -228,7 +229,7 @@ export default function App() {
 
                 {view !== 'config' && !feedback && (
                     <footer className="mt-8 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-700">
-                        SRS Active • Viel Erfolg beim Lernen
+                        SRS Active • Viel Erfolg beim Lernen • v1.0.3
                     </footer>
                 )}
             </div>

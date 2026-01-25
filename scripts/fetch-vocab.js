@@ -82,7 +82,7 @@ function fetchAndSyncVocab() {
             const fullData = headersChanged ? [headers, ...rows.slice(1)] : rows;
 
             // USE TEMP FILE to avoid shell argument length limits
-            tempFilePath = path.join(os.tmpdir(), `gsync-${Date.now()}.json`);
+            tempFilePath = path.join(process.cwd(), `gsync-${Date.now()}.json`);
             fs.writeFileSync(tempFilePath, JSON.stringify(fullData));
 
             console.log(`📝 Prepared sync data in ${tempFilePath}`);
@@ -127,7 +127,12 @@ function fetchAndSyncVocab() {
             let der = getVal('Masculine (der)');
             let die = getVal('Feminine (die)');
             let das = getVal('Neuter (Das)');
-            const type = getVal('Type');
+            let type = getVal('Type');
+
+            // Normalize Type
+            if (type) {
+                type = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
+            }
 
             // Data Cleaning
             if (type === 'Noun') {

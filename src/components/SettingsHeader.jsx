@@ -26,10 +26,12 @@ export default function SettingsHeader({ onBack, showBack, devMode, setDevMode, 
     return (
         <header className="flex items-center justify-between py-6 mb-8 border-b border-zinc-800">
             <div className="flex items-center gap-4">
-                <div className="text-2xl flex items-center justify-center">
-                </div>
-                <h1 className="text-xl font-bold tracking-tight">Vocaccia</h1>
-                <span className="text-[8px] text-zinc-800 ml-1 font-mono uppercase">v1.0.3</span>
+                <button
+                    onClick={onBack}
+                    className="text-xl font-bold tracking-tight hover:text-zinc-400 transition-colors"
+                >
+                    Vocaccia
+                </button>
             </div>
 
             <div className="flex items-center gap-4">
