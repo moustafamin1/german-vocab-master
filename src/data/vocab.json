@@ -2580,21 +2580,6 @@
     "failCount": 0
   },
   {
-    "id": "1bce2ba0-6c6d-4245-a436-385f40076e8d",
-    "word": "machen",
-    "type": "Verb",
-    "english": "to do / make",
-    "der": "-",
-    "die": "-",
-    "das": "-",
-    "plural": "-",
-    "sentence": "Was machst du hier?",
-    "level": "A1.1",
-    "trivia": "A very versatile verb, like \"Make\".",
-    "successCount": 0,
-    "failCount": 0
-  },
-  {
     "id": "0954b09e-9df1-4ef8-b46c-a3d953aacb5c",
     "word": "Bahnhof",
     "type": "Noun",

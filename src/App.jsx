@@ -5,7 +5,7 @@ import QuizCard from './components/QuizCard';
 import ResultCard from './components/ResultCard';
 import ConfigScreen from './components/ConfigScreen';
 import StatsBar from './components/StatsBar';
-import { getWeightedRandomWord } from './utils/srs-logic';
+import { getCachedVocab } from './services/vocabService';
 
 const SRS_STORAGE_KEY = 'vocab-srs-data';
 const GLOBAL_STATS_KEY = 'vocab-global-stats';
@@ -29,16 +29,18 @@ export default function App() {
     const [options, setOptions] = useState([]);
     const [feedback, setFeedback] = useState(null);
 
+    // Load data (cached or built-in)
+    const baseVocab = getCachedVocab() || vocabData;
+
     // Extract all unique levels
-    const levels = Array.from(new Set(vocabData.map(v => v.level))).filter(Boolean).sort();
+    const levels = Array.from(new Set(baseVocab.map(v => v.level))).filter(Boolean).sort();
 
     useEffect(() => {
         // 1. Load SRS Data from LocalStorage
         const storedSRS = JSON.parse(localStorage.getItem(SRS_STORAGE_KEY) || '{}');
 
         // 2. Merge with base vocab data
-        // 2. Merge with base vocab data
-        const mergedVocab = vocabData.map(word => {
+        const mergedVocab = baseVocab.map(word => {
             // Use the stable UUID from the sheet if available, otherwise fallback (shouldn't happen after sync)
             const key = word.id || `${word.english}-${word.word}`;
             const stats = storedSRS[key] || { successCount: 0, failCount: 0 };

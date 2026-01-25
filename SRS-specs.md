@@ -19,18 +19,18 @@ Replace the simple random picker with a **Weighted Probability** algorithm. This
 
 ### The Math Logic
 For every word in the active filtered list, calculate a `weight`:
-$$Weight = \max(1, (failCount - successCount) + 5)$$
+$$Weight = \max(1, (failCount - successCount) + 3)$$
 
 ### Numerical Example for Implementation
 If the pool contains these 3 words, the selection probabilities should be:
 1. **Word A (Easy):** 10 Successes, 0 Fails -> **Weight: 1**
-2. **Word B (New):** 0 Successes, 0 Fails -> **Weight: 5**
-3. **Word C (Hard):** 1 Success, 6 Fails -> **Weight: 10**
+2. **Word B (New):** 0 Successes, 0 Fails -> **Weight: 3**
+3. **Word C (Hard):** 1 Success, 6 Fails -> **Weight: 8**
 
-**Total Pool Weight:** 16.
-* **Word C** must have a **62.5%** (10/16) chance of being picked.
-* **Word B** must have a **31.25%** (5/16) chance of being picked.
-* **Word A** must have a **6.25%** (1/16) chance of being picked.
+**Total Pool Weight: 12.**
+* **Word C** must have a **66.67%** (8/12) chance of being picked.
+* **Word B** must have a **25%** (3/12) chance of being picked.
+* **Word A** must have a **8.33%** (1/12) chance of being picked.
 
 ---
 

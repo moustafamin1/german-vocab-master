@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Layers, Menu, Bug, RefreshCw, Check } from 'lucide-react';
+import { fetchAndCacheVocab } from '../services/vocabService';
 
 export default function SettingsHeader({ onBack, showBack, devMode, setDevMode, wordCount }) {
     const [isSyncing, setIsSyncing] = useState(false);
@@ -8,24 +9,17 @@ export default function SettingsHeader({ onBack, showBack, devMode, setDevMode, 
     const handleSync = async () => {
         setIsSyncing(true);
         try {
-            const res = await fetch('/api/sync');
-            const data = await res.json();
+            await fetchAndCacheVocab();
+            setSyncSuccess(true);
 
-            if (data.success) {
-                setSyncSuccess(true);
-                // Give user a moment to see the success checkmark before reloading
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
-            } else {
-                console.error('Sync failed', data);
-                setIsSyncing(false);
-                alert(`Sync failed: ${data.error}`);
-            }
+            // Give user a moment to see the success checkmark before reloading to apply changes
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
         } catch (err) {
             console.error('Sync error', err);
             setIsSyncing(false);
-            alert('Failed to contact sync server');
+            alert(`Sync failed: ${err.message}. Check console/URL.`);
         }
     };
 
@@ -35,6 +29,7 @@ export default function SettingsHeader({ onBack, showBack, devMode, setDevMode, 
                 <div className="text-2xl flex items-center justify-center">
                 </div>
                 <h1 className="text-xl font-bold tracking-tight">Vocaccia</h1>
+                <span className="text-[8px] text-zinc-800 ml-1 font-mono uppercase">v1.0.3</span>
             </div>
 
             <div className="flex items-center gap-4">
