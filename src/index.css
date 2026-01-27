@@ -36,41 +36,74 @@
   }
 }
 
-@keyframes flash-yellow {
-
-  0%,
-  100% {
+@keyframes flash-yellow-milestone {
+  0% {
     color: #52525b;
     transform: scale(1);
   }
 
-  25%,
-  75% {
+  15% {
     color: #fbbf24;
     transform: scale(1.4);
     text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
   }
+
+  30% {
+    color: #52525b;
+    transform: scale(1);
+  }
+
+  45% {
+    color: #fbbf24;
+    transform: scale(1.4);
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+  }
+
+  60%,
+  100% {
+    color: #fbbf24;
+    transform: scale(1);
+  }
 }
 
-@keyframes star-float {
+@keyframes star-float-twice {
   0% {
     transform: translate(0, -50%) scale(0);
     opacity: 0;
   }
 
-  50% {
+  15% {
     transform: translate(-15px, -50%) scale(1.5);
     opacity: 1;
   }
 
-  100% {
+  30% {
     transform: translate(-25px, -50%) scale(0);
+    opacity: 0;
+  }
+
+  31% {
+    transform: translate(0, -50%) scale(0);
+    opacity: 0;
+  }
+
+  45% {
+    transform: translate(-15px, -50%) scale(1.5);
+    opacity: 1;
+  }
+
+  60% {
+    transform: translate(-25px, -50%) scale(0);
+    opacity: 0;
+  }
+
+  100% {
     opacity: 0;
   }
 }
 
 .stat-milestone {
-  animation: flash-yellow 1s ease-in-out;
+  animation: flash-yellow-milestone 2s ease-in-out forwards;
 }
 
 .stat-milestone::after {
@@ -80,5 +113,5 @@
   top: 50%;
   margin-right: 5px;
   font-size: 10px;
-  animation: star-float 1s ease-in-out forwards;
+  animation: star-float-twice 2s ease-in-out forwards;
 }

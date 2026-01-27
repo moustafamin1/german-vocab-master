@@ -83,35 +83,46 @@ export default function SettingsScreen({
                             </button>
                         </div>
 
-                        {/* Sync Button */}
+                        {/* Reset / Sync Buttons */}
                         <div className="flex items-center justify-between pt-4 border-t border-zinc-800">
                             <div>
-                                <p className="text-sm font-medium">Data Synchronization</p>
-                                <p className="text-xs text-zinc-500">Last cached: {wordCount} words</p>
+                                <p className="text-sm font-medium">Data Management</p>
+                                <p className="text-xs text-zinc-500">Currently {wordCount} words. Reset if data is missing.</p>
                             </div>
-                            <button
-                                onClick={handleSync}
-                                disabled={isSyncing || syncSuccess}
-                                className={`flex items-center gap-2 px-4 py-2 rounded-xl border transition-all text-xs font-bold
-                                    ${syncSuccess
-                                        ? 'bg-green-500/10 border-green-500/50 text-green-500'
-                                        : isSyncing
-                                            ? 'bg-zinc-800 border-zinc-700 text-zinc-400 cursor-wait'
-                                            : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600'
-                                    }`}
-                            >
-                                {syncSuccess ? (
-                                    <>
-                                        <Check className="w-3.5 h-3.5" />
-                                        <span>Synced</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin' : ''}`} />
-                                        <span>{isSyncing ? 'Syncing...' : 'Sync Now'}</span>
-                                    </>
-                                )}
-                            </button>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => {
+                                        localStorage.removeItem('cached-vocab');
+                                        window.location.reload();
+                                    }}
+                                    className="px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-rose-400 hover:border-rose-400/50 transition-all text-xs font-bold bg-zinc-950"
+                                >
+                                    Reset Cache
+                                </button>
+                                <button
+                                    onClick={handleSync}
+                                    disabled={isSyncing || syncSuccess}
+                                    className={`flex items-center gap-2 px-4 py-2 rounded-xl border transition-all text-xs font-bold
+                                        ${syncSuccess
+                                            ? 'bg-green-500/10 border-green-500/50 text-green-500'
+                                            : isSyncing
+                                                ? 'bg-zinc-800 border-zinc-700 text-zinc-400 cursor-wait'
+                                                : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600'
+                                        }`}
+                                >
+                                    {syncSuccess ? (
+                                        <>
+                                            <Check className="w-3.5 h-3.5" />
+                                            <span>Synced</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin' : ''}`} />
+                                            <span>{isSyncing ? 'Syncing...' : 'Sync Now'}</span>
+                                        </>
+                                    )}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </section>

@@ -4,7 +4,8 @@ import { Play, Check, X } from 'lucide-react';
 const MODES = [
     { id: 'multipleChoice', name: 'Multiple Choice' },
     { id: 'written', name: 'Written Challenge' },
-    { id: 'article', name: 'Article Master' }
+    { id: 'article', name: 'Article Master' },
+    { id: 'wordOrder', name: 'Word Order' }
 ];
 
 const TYPES = ['Noun', 'Verb', 'Phrase'];

@@ -21,7 +21,7 @@ export default function App() {
 
     // App Config State
     const [selectedLevels, setSelectedLevels] = useState([]);
-    const [selectedModes, setSelectedModes] = useState(['multipleChoice', 'written', 'article']);
+    const [selectedModes, setSelectedModes] = useState(['multipleChoice', 'written', 'article', 'wordOrder']);
     const [selectedTypes, setSelectedTypes] = useState(['Noun', 'Verb', 'Phrase']);
 
     // Data State
@@ -90,6 +90,9 @@ export default function App() {
                     const articles = [v.der, v.die, v.das].filter(a => a && a !== '' && a !== '-');
                     return articles.length === 1;
                 }
+                if (mode === 'wordOrder') {
+                    return v.type === 'Phrase';
+                }
                 return true; // multipleChoice and written are always compatible if level/type match
             });
         });
@@ -108,10 +111,18 @@ export default function App() {
                 const articles = [randomWord.der, randomWord.die, randomWord.das].filter(a => a && a !== '' && a !== '-');
                 return articles.length === 1;
             }
+            if (mode === 'wordOrder') {
+                return randomWord.type === 'Phrase';
+            }
             return true;
         });
 
-        const finalMode = validModesForWord[Math.floor(Math.random() * validModesForWord.length)];
+        let finalMode = validModesForWord[Math.floor(Math.random() * validModesForWord.length)];
+
+        // Force wordOrder for phrases if it's selected
+        if (randomWord.type === 'Phrase' && selectedModes.includes('wordOrder')) {
+            finalMode = 'wordOrder';
+        }
 
         // Generate options for Multiple Choice
         if (finalMode === 'multipleChoice') {
@@ -155,22 +166,32 @@ export default function App() {
 
     const handleAnswer = (answer) => {
         let correct = false;
-        const cleanAnswer = answer.toLowerCase().trim();
-        const cleanWord = currentWord.word.toLowerCase().trim();
 
-        if (quizMode === 'multipleChoice' || quizMode === 'written') {
+        // Simplify string for comparison (ignore spaces, punctuation, and umlauts)
+        const simplify = (str) => {
+            if (!str) return '';
+            return str.toLowerCase()
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove accents/umlauts
+                .replace(/ß/g, 'ss')                             // Replace eszett with ss
+                .replace(/[\s\p{P}\p{S}]/gu, '');                // Remove spaces and punctuation
+        };
+
+        const sAnswer = simplify(answer);
+        const sWord = simplify(currentWord.word);
+
+        if (quizMode === 'multipleChoice' || quizMode === 'written' || quizMode === 'wordOrder') {
             if (currentWord.type === 'Noun') {
                 const correctArticle = [currentWord.der, currentWord.die, currentWord.das].find(a => a && a !== '' && a !== '-');
-                const formattedWithArticle = correctArticle ? `${correctArticle.toLowerCase()} ${cleanWord}` : cleanWord;
+                const sWithArticle = correctArticle ? simplify(correctArticle + currentWord.word) : sWord;
                 // Accept either just the word or the article + word
-                correct = cleanAnswer === cleanWord || (correctArticle && cleanAnswer === formattedWithArticle);
+                correct = sAnswer === sWord || (correctArticle && sAnswer === sWithArticle);
             } else {
-                // For Verbs and Phrases, exact match
-                correct = cleanAnswer === cleanWord;
+                // For Verbs and Phrases, matched simplified versions
+                correct = sAnswer === sWord;
             }
         } else if (quizMode === 'article') {
             const correctArticle = [currentWord.der, currentWord.die, currentWord.das].find(a => a && a !== '' && a !== '-');
-            correct = answer.toLowerCase() === (correctArticle || '').toLowerCase();
+            correct = sAnswer === simplify(correctArticle || '');
         }
 
         updateSRSStats(currentWord, correct);
