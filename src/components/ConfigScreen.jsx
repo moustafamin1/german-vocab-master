@@ -53,16 +53,15 @@ export default function ConfigScreen({
     const isReady = selectedLevels.length > 0 && selectedModes.length > 0 && selectedTypes.length > 0;
 
     return (
-        <div className="max-w-xl mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10">
-            <div className="text-center space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight">Configuration</h2>
-                <p className="text-zinc-500">Customize your practice session</p>
+        <div className="max-w-xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10">
+            <div className="text-center">
+                <p className="text-xs text-zinc-500">Customize your practice session</p>
             </div>
 
-            <div className="space-y-8">
+            <div className="space-y-6">
                 {/* Word Types Section */}
-                <section className="space-y-4">
-                    <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500">Word Types</h3>
+                <section className="space-y-3">
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Word Types</h3>
                     <div className="grid grid-cols-2 gap-3">
                         {TYPES.map(type => {
                             const isActive = selectedTypes.includes(type);
@@ -70,7 +69,7 @@ export default function ConfigScreen({
                                 <button
                                     key={type}
                                     onClick={() => toggleType(type)}
-                                    className={`btn text-center py-4 px-5 border flex justify-center items-center gap-2 transition-all ${isActive
+                                    className={`btn text-center py-3 px-4 border flex justify-center items-center gap-2 transition-all text-sm ${isActive
                                         ? 'bg-zinc-100 text-zinc-950 border-zinc-100'
                                         : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
                                         }`}
@@ -84,8 +83,8 @@ export default function ConfigScreen({
                 </section>
 
                 {/* Modes Section */}
-                <section className="space-y-4">
-                    <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500">Quiz Modes</h3>
+                <section className="space-y-3">
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Quiz Modes</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {MODES.map(mode => {
                             const isActive = selectedModes.includes(mode.id);
@@ -93,7 +92,7 @@ export default function ConfigScreen({
                                 <button
                                     key={mode.id}
                                     onClick={() => toggleMode(mode.id)}
-                                    className={`btn text-left py-4 px-5 border flex justify-between items-center transition-all ${isActive
+                                    className={`btn py-3 px-4 border flex justify-between items-center transition-all text-sm ${isActive
                                         ? 'bg-zinc-100 text-zinc-950 border-zinc-100'
                                         : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
                                         }`}
@@ -107,9 +106,9 @@ export default function ConfigScreen({
                 </section>
 
                 {/* Levels Section */}
-                <section className="space-y-4">
+                <section className="space-y-3">
                     <div className="flex items-center justify-between">
-                        <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500">Levels</h3>
+                        <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Levels</h3>
                         <div className="flex gap-4">
                             <button
                                 onClick={selectAllLevels}
@@ -146,13 +145,13 @@ export default function ConfigScreen({
                 </section>
             </div>
 
-            <div className="pt-10">
+            <div className="pt-4">
                 <button
                     disabled={!isReady}
                     onClick={onStart}
-                    className="btn btn-primary w-full py-5 text-lg flex items-center justify-center gap-3 shadow-xl disabled:shadow-none"
+                    className="btn btn-primary w-full py-4 text-base flex items-center justify-center gap-3 shadow-xl disabled:shadow-none"
                 >
-                    <Play className="w-5 h-5 fill-current" />
+                    <Play className="w-4 h-4 fill-current" />
                     Start Practice
                 </button>
             </div>

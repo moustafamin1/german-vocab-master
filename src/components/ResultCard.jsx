@@ -1,11 +1,12 @@
 import React from 'react';
 import { CheckCircle2, XCircle, ArrowRight, Lightbulb, Quote, BarChart2 } from 'lucide-react';
+import { calculateWeight } from '../utils/srs-logic';
 
-export default function ResultCard({ word, feedback, onNext, devMode }) {
+export default function ResultCard({ word, feedback, onNext, devMode, srsOffset }) {
     const isCorrect = feedback.correct;
 
     // Calculate selection probability (weight)
-    const weight = Math.max(1, (word.failCount - word.successCount) + 3);
+    const weight = calculateWeight(word, srsOffset);
 
     return (
         <div className="card max-w-lg mx-auto space-y-8 animate-in zoom-in-95 duration-300">
@@ -73,7 +74,7 @@ export default function ResultCard({ word, feedback, onNext, devMode }) {
                     <div className="bg-zinc-800/30 p-4 rounded-xl space-y-2">
                         <div className="flex items-center gap-2 text-zinc-500">
                             <Quote className="w-3 h-3" />
-                            <span className="text-[10px] font-bold uppercase tracking-widest">A1 Example</span>
+                            <span className="text-[10px] font-bold uppercase tracking-widest">Example</span>
                         </div>
                         <p className="text-sm font-medium leading-relaxed">{word.sentence}</p>
                     </div>

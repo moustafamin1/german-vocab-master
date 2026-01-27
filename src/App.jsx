@@ -4,16 +4,19 @@ import SettingsHeader from './components/SettingsHeader';
 import QuizCard from './components/QuizCard';
 import ResultCard from './components/ResultCard';
 import ConfigScreen from './components/ConfigScreen';
+import SettingsScreen from './components/SettingsScreen';
 import StatsBar from './components/StatsBar';
 import { getWeightedRandomWord } from './utils/srs-logic';
 import { getCachedVocab } from './services/vocabService';
 
 const SRS_STORAGE_KEY = 'vocab-srs-data';
 const GLOBAL_STATS_KEY = 'vocab-global-stats';
+const APP_SETTINGS_KEY = 'vocab-app-settings';
 
 export default function App() {
-    const [view, setView] = useState('loading'); // loading, config, playing, feedback
+    const [view, setView] = useState('loading'); // loading, config, playing, feedback, settings
     const [devMode, setDevMode] = useState(true);
+    const [srsOffset, setSrsOffset] = useState(3);
     const [globalStats, setGlobalStats] = useState({ total: 0, correct: 0, incorrect: 0 });
 
     // App Config State
@@ -55,10 +58,21 @@ export default function App() {
         const storedGlobalStats = JSON.parse(localStorage.getItem(GLOBAL_STATS_KEY) || '{"total":0,"correct":0,"incorrect":0}');
         setGlobalStats(storedGlobalStats);
 
+        // 4. Load App Settings
+        const storedSettings = JSON.parse(localStorage.getItem(APP_SETTINGS_KEY) || '{"srsOffset":3,"devMode":true}');
+        setSrsOffset(storedSettings.srsOffset);
+        setDevMode(storedSettings.devMode);
+
         setTimeout(() => {
             setView('config');
         }, 800);
     }, []);
+
+    // Persist settings whenever they change
+    useEffect(() => {
+        if (view === 'loading') return;
+        localStorage.setItem(APP_SETTINGS_KEY, JSON.stringify({ srsOffset, devMode }));
+    }, [srsOffset, devMode, view]);
 
     const pickNewWord = useCallback(() => {
         if (vocabPool.length === 0) return;
@@ -86,7 +100,7 @@ export default function App() {
         }
 
         // Use SRS Weighted Selection Utility
-        const randomWord = getWeightedRandomWord(filtered);
+        const randomWord = getWeightedRandomWord(filtered, srsOffset);
 
         // Determine available quiz modes for THIS specific word
         const validModesForWord = selectedModes.filter(mode => {
@@ -176,6 +190,7 @@ export default function App() {
 
     const handleStart = () => pickNewWord();
     const handleBackToConfig = () => setView('config');
+    const handleOpenSettings = () => setView('settings');
 
     if (view === 'loading') {
         return (
@@ -191,10 +206,8 @@ export default function App() {
 
             <div className="max-w-2xl mx-auto px-6 pb-10">
                 <SettingsHeader
-                    onBack={handleBackToConfig}
-                    showBack={view !== 'config'}
-                    devMode={devMode}
-                    setDevMode={setDevMode}
+                    onLogoClick={handleBackToConfig}
+                    onSettingsClick={handleOpenSettings}
                     wordCount={baseVocab.length}
                 />
 
@@ -216,6 +229,16 @@ export default function App() {
                             feedback={feedback}
                             onNext={pickNewWord}
                             devMode={devMode}
+                            srsOffset={srsOffset}
+                        />
+                    ) : view === 'settings' ? (
+                        <SettingsScreen
+                            srsOffset={srsOffset}
+                            setSrsOffset={setSrsOffset}
+                            devMode={devMode}
+                            setDevMode={setDevMode}
+                            wordCount={baseVocab.length}
+                            onBack={handleBackToConfig}
                         />
                     ) : (
                         <QuizCard

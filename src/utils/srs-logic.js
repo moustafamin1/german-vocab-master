@@ -3,17 +3,17 @@
  * Weight = max(1, (failCount - successCount) + 3)
  */
 
-export const calculateWeight = (word) => {
-    return Math.max(1, (word.failCount - word.successCount) + 3);
+export const calculateWeight = (word, offset = 3) => {
+    return Math.max(1, (word.failCount - word.successCount) + offset);
 };
 
-export const getWeightedRandomWord = (pool) => {
+export const getWeightedRandomWord = (pool, offset = 3) => {
     if (!pool || pool.length === 0) return null;
 
     // 1. Calculate weights for all items
     const weightedList = pool.map(word => ({
         ...word,
-        weight: calculateWeight(word)
+        weight: calculateWeight(word, offset)
     }));
 
     // 2. Sum weights
