@@ -107,7 +107,8 @@ function fetchAndSyncVocab() {
             if (item.id) {
                 statsMap.set(item.id, {
                     successCount: item.successCount || 0,
-                    failCount: item.failCount || 0
+                    failCount: item.failCount || 0,
+                    status: item.status || 'study'
                 });
             }
         });
@@ -158,7 +159,8 @@ function fetchAndSyncVocab() {
                 level: getVal('Level'),
                 trivia: getVal('Trivia / Memory Tip'),
                 successCount: stats.successCount,
-                failCount: stats.failCount
+                failCount: stats.failCount,
+                status: stats.status
             };
         }).filter(item => item !== null);
 

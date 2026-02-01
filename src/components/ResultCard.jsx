@@ -1,8 +1,7 @@
-import React from 'react';
-import { CheckCircle2, XCircle, ArrowRight, Lightbulb, Quote, BarChart2 } from 'lucide-react';
+import { CheckCircle2, XCircle, ArrowRight, Lightbulb, Quote, BarChart2, Eye, EyeOff } from 'lucide-react';
 import { calculateWeight } from '../utils/srs-logic';
 
-export default function ResultCard({ word, feedback, onNext, devMode, srsOffset }) {
+export default function ResultCard({ word, feedback, onNext, onToggleStatus, devMode, srsOffset }) {
     const isCorrect = feedback.correct;
 
     // Calculate selection probability (weight)
@@ -101,14 +100,36 @@ export default function ResultCard({ word, feedback, onNext, devMode, srsOffset 
                 )}
             </div>
 
-            <button
-                onClick={onNext}
-                autoFocus
-                className="btn btn-primary w-full py-4 flex items-center justify-center gap-2 group"
-            >
-                <span>Next Word</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            <div className="flex gap-3">
+                <button
+                    onClick={() => onToggleStatus(word)}
+                    className={`flex-1 py-4 flex flex-col items-center justify-center gap-1 rounded-2xl border transition-all duration-300 ${word.status === 'skip'
+                            ? 'bg-red-500/5 border-red-500/20 text-red-500/60 hover:bg-red-500/10'
+                            : 'bg-green-500/5 border-green-500/20 text-green-500/60 hover:bg-green-500/10'
+                        }`}
+                >
+                    {word.status === 'skip' ? (
+                        <>
+                            <EyeOff className="w-4 h-4" />
+                            <span className="text-[10px] font-bold uppercase tracking-widest">Skip</span>
+                        </>
+                    ) : (
+                        <>
+                            <Eye className="w-4 h-4" />
+                            <span className="text-[10px] font-bold uppercase tracking-widest">Study</span>
+                        </>
+                    )}
+                </button>
+
+                <button
+                    onClick={onNext}
+                    autoFocus
+                    className="flex-[2] btn btn-primary py-4 flex items-center justify-center gap-2 group"
+                >
+                    <span>Next Word</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+            </div>
         </div>
     );
 }

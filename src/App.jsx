@@ -5,6 +5,7 @@ import QuizCard from './components/QuizCard';
 import ResultCard from './components/ResultCard';
 import ConfigScreen from './components/ConfigScreen';
 import SettingsScreen from './components/SettingsScreen';
+import AllWordsScreen from './components/AllWordsScreen';
 import StatsBar from './components/StatsBar';
 import { getWeightedRandomWord } from './utils/srs-logic';
 import { getCachedVocab } from './services/vocabService';
@@ -14,7 +15,7 @@ const GLOBAL_STATS_KEY = 'vocab-global-stats';
 const APP_SETTINGS_KEY = 'vocab-app-settings';
 
 export default function App() {
-    const [view, setView] = useState('loading'); // loading, config, playing, feedback, settings
+    const [view, setView] = useState('loading'); // loading, config, playing, feedback, settings, allWords
     const [devMode, setDevMode] = useState(true);
     const [srsOffset, setSrsOffset] = useState(3);
     const [globalStats, setGlobalStats] = useState({ total: 0, correct: 0, incorrect: 0 });
@@ -22,7 +23,7 @@ export default function App() {
     // App Config State
     const [selectedLevels, setSelectedLevels] = useState([]);
     const [selectedModes, setSelectedModes] = useState(['multipleChoice', 'written', 'article', 'wordOrder']);
-    const [selectedTypes, setSelectedTypes] = useState(['Noun', 'Verb', 'Phrase']);
+    const [selectedTypes, setSelectedTypes] = useState(['Noun', 'Phrase']);
 
     // Data State
     const [vocabPool, setVocabPool] = useState([]);
@@ -47,8 +48,14 @@ export default function App() {
         const mergedVocab = baseVocab.map(word => {
             // Use the stable UUID from the sheet if available, otherwise fallback (shouldn't happen after sync)
             const key = word.id || `${word.english}-${word.word}`;
-            const stats = storedSRS[key] || { successCount: 0, failCount: 0 };
-            return { ...word, ...stats, uniqueId: key };
+            const stats = storedSRS[key] || {};
+            return {
+                ...word,
+                successCount: stats.successCount || 0,
+                failCount: stats.failCount || 0,
+                status: stats.status || word.status || 'study',
+                uniqueId: key
+            };
         });
 
         setVocabPool(mergedVocab);
@@ -81,8 +88,9 @@ export default function App() {
         const filtered = vocabPool.filter(v => {
             const matchesLevel = selectedLevels.includes(v.level);
             const matchesType = selectedTypes.includes(v.type);
+            const isStudy = v.status !== 'skip';
 
-            if (!matchesLevel || !matchesType) return false;
+            if (!matchesLevel || !matchesType || !isStudy) return false;
 
             // Ensure the word is compatible with at least ONE selected mode
             return selectedModes.some(mode => {
@@ -157,11 +165,38 @@ export default function App() {
         // Persist to LocalStorage
         const srsData = {};
         newPool.forEach(w => {
-            if (w.successCount > 0 || w.failCount > 0) {
-                srsData[w.uniqueId] = { successCount: w.successCount, failCount: w.failCount };
+            if (w.successCount > 0 || w.failCount > 0 || w.status === 'skip') {
+                srsData[w.uniqueId] = {
+                    successCount: w.successCount,
+                    failCount: w.failCount,
+                    status: w.status
+                };
             }
         });
         localStorage.setItem(SRS_STORAGE_KEY, JSON.stringify(srsData));
+    };
+
+    const toggleWordStatus = (word) => {
+        const newStatus = word.status === 'skip' ? 'study' : 'skip';
+        const updatedWord = { ...word, status: newStatus };
+
+        const newPool = vocabPool.map(w =>
+            w.uniqueId === word.uniqueId ? updatedWord : w
+        );
+
+        setVocabPool(newPool);
+        if (currentWord?.uniqueId === word.uniqueId) {
+            setCurrentWord(updatedWord);
+        }
+
+        // Persist
+        const storedSRS = JSON.parse(localStorage.getItem(SRS_STORAGE_KEY) || '{}');
+        storedSRS[updatedWord.uniqueId] = {
+            successCount: updatedWord.successCount,
+            failCount: updatedWord.failCount,
+            status: newStatus
+        };
+        localStorage.setItem(SRS_STORAGE_KEY, JSON.stringify(storedSRS));
     };
 
     const handleAnswer = (answer) => {
@@ -212,6 +247,8 @@ export default function App() {
     const handleStart = () => pickNewWord();
     const handleBackToConfig = () => setView('config');
     const handleOpenSettings = () => setView('settings');
+    const handleOpenAllWords = () => setView('allWords');
+    const handleBackToSettings = () => setView('settings');
 
     if (view === 'loading') {
         return (
@@ -249,6 +286,7 @@ export default function App() {
                             word={currentWord}
                             feedback={feedback}
                             onNext={pickNewWord}
+                            onToggleStatus={toggleWordStatus}
                             devMode={devMode}
                             srsOffset={srsOffset}
                         />
@@ -260,6 +298,14 @@ export default function App() {
                             setDevMode={setDevMode}
                             wordCount={baseVocab.length}
                             onBack={handleBackToConfig}
+                            onOpenAllWords={handleOpenAllWords}
+                        />
+                    ) : view === 'allWords' ? (
+                        <AllWordsScreen
+                            vocabPool={vocabPool}
+                            onToggleStatus={toggleWordStatus}
+                            srsOffset={srsOffset}
+                            onBack={handleBackToSettings}
                         />
                     ) : (
                         <QuizCard

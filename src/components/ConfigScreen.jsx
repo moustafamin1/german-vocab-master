@@ -3,12 +3,12 @@ import { Play, Check, X } from 'lucide-react';
 
 const MODES = [
     { id: 'multipleChoice', name: 'Multiple Choice' },
-    { id: 'written', name: 'Written Challenge' },
+    { id: 'written', name: 'Write' },
     { id: 'article', name: 'Article Master' },
     { id: 'wordOrder', name: 'Word Order' }
 ];
 
-const TYPES = ['Noun', 'Verb', 'Phrase'];
+const TYPES = ['Noun', 'Phrase'];
 
 export default function ConfigScreen({
     levels,
@@ -56,7 +56,7 @@ export default function ConfigScreen({
     return (
         <div className="max-w-xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10">
             <div className="text-center">
-                <p className="text-xs text-zinc-500">Customize your practice session</p>
+                <h2 className="text-2xl font-bold tracking-tight">Practice Set Up</h2>
             </div>
 
             <div className="space-y-6">
@@ -71,7 +71,7 @@ export default function ConfigScreen({
                                     key={type}
                                     onClick={() => toggleType(type)}
                                     className={`btn text-center py-3 px-4 border flex justify-center items-center gap-2 transition-all text-sm ${isActive
-                                        ? 'bg-zinc-100 text-zinc-950 border-zinc-100'
+                                        ? 'bg-amber-500/10 text-amber-500 border-amber-500/40'
                                         : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
                                         }`}
                                 >
@@ -86,7 +86,7 @@ export default function ConfigScreen({
                 {/* Modes Section */}
                 <section className="space-y-3">
                     <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Quiz Modes</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-3">
                         {MODES.map(mode => {
                             const isActive = selectedModes.includes(mode.id);
                             return (
@@ -94,7 +94,7 @@ export default function ConfigScreen({
                                     key={mode.id}
                                     onClick={() => toggleMode(mode.id)}
                                     className={`btn py-3 px-4 border flex justify-between items-center transition-all text-sm ${isActive
-                                        ? 'bg-zinc-100 text-zinc-950 border-zinc-100'
+                                        ? 'bg-amber-500/10 text-amber-500 border-amber-500/40'
                                         : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
                                         }`}
                                 >
@@ -134,7 +134,7 @@ export default function ConfigScreen({
                                     key={level}
                                     onClick={() => toggleLevel(level)}
                                     className={`px-4 py-2 rounded-full text-sm font-medium border transition-all ${isActive
-                                        ? 'bg-zinc-100 text-zinc-950 border-zinc-100'
+                                        ? 'bg-amber-500/10 text-amber-500 border-amber-500/40'
                                         : 'bg-zinc-900 text-zinc-500 border-zinc-800 hover:border-zinc-600'
                                         }`}
                                 >
