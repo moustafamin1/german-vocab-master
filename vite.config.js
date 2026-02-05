@@ -5,6 +5,7 @@ console.log('✨ VITE CONFIG LOADED');
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    base: '/german-vocab-master/',
     plugins: [
         react(),
         {
