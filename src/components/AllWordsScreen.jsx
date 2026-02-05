@@ -100,7 +100,16 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                             >
                                 <div className="space-y-1 pr-4 min-w-0">
                                     <div className="flex items-center gap-2">
-                                        <p className="font-semibold text-sm truncate">{word.word}</p>
+                                        <p className="font-semibold text-sm truncate">
+                                            {word.type === 'Noun' ? (
+                                                <>
+                                                    <span className="text-zinc-500 font-bold mr-1.5 opacity-70 uppercase first-letter:uppercase lowercase">
+                                                        {word.article}
+                                                    </span>
+                                                    {word.word}
+                                                </>
+                                            ) : word.word}
+                                        </p>
                                         <span className="text-[9px] px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-500 font-bold border border-zinc-700/50">
                                             {word.level}
                                         </span>

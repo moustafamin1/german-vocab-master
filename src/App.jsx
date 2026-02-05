@@ -44,19 +44,40 @@ export default function App() {
         // 1. Load SRS Data from LocalStorage
         const storedSRS = JSON.parse(localStorage.getItem(SRS_STORAGE_KEY) || '{}');
 
-        // 2. Merge with base vocab data
+        // 2. Merge with base vocab data and Migration Engine
+        let dataMigrated = false;
         const mergedVocab = baseVocab.map(word => {
-            // Use the stable UUID from the sheet if available, otherwise fallback (shouldn't happen after sync)
-            const key = word.id || `${word.english}-${word.word}`;
-            const stats = storedSRS[key] || {};
+            // ALWAYS use the stable string key as the primary identifier
+            const stringKey = `${word.english}-${word.word}`;
+
+            // Look for progress under the new string key
+            let stats = storedSRS[stringKey];
+
+            // 🔍 RECOVERY logic: If nothing under string key, check for old word.id (random UUID)
+            if (!stats && word.id && storedSRS[word.id]) {
+                console.log(`✨ Recovered data for word: ${word.word} (from old ID: ${word.id})`);
+                stats = storedSRS[word.id];
+                // Move it to the new key for future lookups
+                storedSRS[stringKey] = stats;
+                dataMigrated = true;
+            }
+
+            stats = stats || {};
+
             return {
                 ...word,
                 successCount: stats.successCount || 0,
                 failCount: stats.failCount || 0,
                 status: stats.status || word.status || 'study',
-                uniqueId: key
+                uniqueId: stringKey // This is now guaranteed stable
             };
         });
+
+        // If we migrated any data, persist the cleaned state back to LocalStorage immediately
+        if (dataMigrated) {
+            localStorage.setItem(SRS_STORAGE_KEY, JSON.stringify(storedSRS));
+            console.log('✅ LocalStorage healed and migrated to string-based keys.');
+        }
 
         setVocabPool(mergedVocab);
         setSelectedLevels(levels);
@@ -95,8 +116,7 @@ export default function App() {
             // Ensure the word is compatible with at least ONE selected mode
             return selectedModes.some(mode => {
                 if (mode === 'article') {
-                    const articles = [v.der, v.die, v.das].filter(a => a && a !== '' && a !== '-');
-                    return articles.length === 1;
+                    return v.type === 'Noun' && v.article;
                 }
                 if (mode === 'wordOrder') {
                     return v.type === 'Phrase';
@@ -116,8 +136,7 @@ export default function App() {
         // Determine available quiz modes for THIS specific word
         const validModesForWord = selectedModes.filter(mode => {
             if (mode === 'article') {
-                const articles = [randomWord.der, randomWord.die, randomWord.das].filter(a => a && a !== '' && a !== '-');
-                return articles.length === 1;
+                return randomWord.type === 'Noun' && randomWord.article;
             }
             if (mode === 'wordOrder') {
                 return randomWord.type === 'Phrase';
@@ -146,7 +165,7 @@ export default function App() {
         setQuizMode(finalMode);
         setFeedback(null);
         setView('playing');
-    }, [selectedLevels, selectedModes, selectedTypes, vocabPool]);
+    }, [selectedLevels, selectedModes, selectedTypes, vocabPool, srsOffset]);
 
     const updateSRSStats = (word, isCorrect) => {
         const updatedWord = {
@@ -216,7 +235,7 @@ export default function App() {
 
         if (quizMode === 'multipleChoice' || quizMode === 'written' || quizMode === 'wordOrder') {
             if (currentWord.type === 'Noun') {
-                const correctArticle = [currentWord.der, currentWord.die, currentWord.das].find(a => a && a !== '' && a !== '-');
+                const correctArticle = currentWord.article;
                 const sWithArticle = correctArticle ? simplify(correctArticle + currentWord.word) : sWord;
                 // Accept either just the word or the article + word
                 correct = sAnswer === sWord || (correctArticle && sAnswer === sWithArticle);
@@ -225,7 +244,7 @@ export default function App() {
                 correct = sAnswer === sWord;
             }
         } else if (quizMode === 'article') {
-            const correctArticle = [currentWord.der, currentWord.die, currentWord.das].find(a => a && a !== '' && a !== '-');
+            const correctArticle = currentWord.article;
             correct = sAnswer === simplify(correctArticle || '');
         }
 

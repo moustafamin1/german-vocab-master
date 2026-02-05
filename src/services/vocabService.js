@@ -1,5 +1,4 @@
 import Papa from 'papaparse';
-import { v4 as uuidv4 } from 'uuid';
 
 const STORAGE_KEY = 'cached-vocab';
 
@@ -63,9 +62,6 @@ const cleanVocabData = (rawRows) => {
         // Helper to safely get trimmed string
         const getVal = (key) => (row[key] || '').trim();
 
-        // If ID is missing, generate one (Note: This will change on every sync if not in sheet!)
-        const id = getVal('ID') || uuidv4();
-
         let word = getVal('Word');
         let type = getVal('Type');
 
@@ -74,31 +70,32 @@ const cleanVocabData = (rawRows) => {
             type = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
         }
 
-        let der = getVal('Masculine (der)');
-        let die = getVal('Feminine (die)');
-        let das = getVal('Neuter (Das)');
+        let article = '';
 
-        // Data Cleaning (Articles only apply to Nouns)
-        if (type === 'Noun') {
-            // Strip article from word if present
-            word = word.replace(/^(der|die|das)\s+/i, '');
+        // Extract article from word if present
+        const articleMatch = word.match(/^(der|die|das)\s+/i);
+        if (articleMatch) {
+            article = articleMatch[1].toLowerCase();
+            word = word.replace(/^(der|die|das)\s+/i, '').trim();
+        }
 
-            // Normalize articles
-            der = (der && der !== '-' && der !== '') ? 'der' : '';
-            die = (die && die !== '-' && die !== '') ? 'die' : '';
-            das = (das && das !== '-' && das !== '') ? 'das' : '';
+        // Fallback: If no article in word, check if dedicated columns had it
+        if (!article) {
+            const derValue = getVal('Masculine (der)');
+            const dieValue = getVal('Feminine (die)');
+            const dasValue = getVal('Neuter (Das)');
+            if (derValue && derValue !== '-') article = 'der';
+            else if (dieValue && dieValue !== '-') article = 'die';
+            else if (dasValue && dasValue !== '-') article = 'das';
         }
 
         if (!word) return null;
 
         return {
-            id: id,
             word: word,
             type: type,
             english: getVal('English Translation'),
-            der: der,
-            die: die,
-            das: das,
+            article: article,
             plural: getVal('Plural'),
             sentence: getVal('A1 Sentence'),
             level: getVal('Level'),

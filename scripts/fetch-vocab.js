@@ -1,7 +1,6 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
-import { v4 as uuidv4 } from 'uuid';
 import os from 'os';
 
 const SPREADSHEET_ID = '1BkMnDlxI7jCvEnr5xJmn_YPnLLqbsZ6smjEn5-yd738';
@@ -35,65 +34,7 @@ function fetchAndSyncVocab() {
         // Normalize headers to trim spaces
         headers = headers.map(h => h.trim());
 
-        // 2. CHECK for ID Column
-        let idColumnIndex = headers.indexOf('ID');
-        let headersChanged = false;
-
-        if (idColumnIndex === -1) {
-            console.log('⚠️ "ID" column missing. Adding it...');
-            headers.push('ID');
-            idColumnIndex = headers.length - 1;
-            headersChanged = true;
-            // Add empty ID to all existing rows in memory
-            for (let i = 1; i < rows.length; i++) {
-                while (rows[i].length < headers.length) {
-                    rows[i].push('');
-                }
-            }
-        }
-
-        // 3. GENERATE UUIDs for missing IDs
-        let dataChanged = false;
-
-        // We process rows from index 1 (skipping header)
-        for (let i = 1; i < rows.length; i++) {
-            const row = rows[i];
-
-            // Ensure row has enough columns
-            while (row.length < headers.length) {
-                row.push('');
-            }
-
-            const currentId = row[idColumnIndex];
-
-            // If ID is missing, generate one
-            if (!currentId || currentId.trim() === '') {
-                const newId = uuidv4();
-                row[idColumnIndex] = newId;
-                dataChanged = true;
-                // console.log(`➕ Generated ID for word: ${row[0] || 'Unknown'}`);
-            }
-        }
-
-        // 4. WRITE-BACK to Sheet if needed
-        if (headersChanged || dataChanged) {
-            console.log('💾 Writing new IDs back to Google Sheet...');
-
-            const fullData = headersChanged ? [headers, ...rows.slice(1)] : rows;
-
-            // USE TEMP FILE to avoid shell argument length limits
-            tempFilePath = path.join(process.cwd(), `gsync-${Date.now()}.json`);
-            fs.writeFileSync(tempFilePath, JSON.stringify(fullData));
-
-            console.log(`📝 Prepared sync data in ${tempFilePath}`);
-            runGSheetsCmd('write', `@${tempFilePath}`);
-
-            console.log('✅ Sheet updated with stable IDs.');
-        } else {
-            console.log('👍 All rows already have IDs. No write-back needed.');
-        }
-
-        // 5. MERGE with Local Data
+        // 2. MERGE with Local Data
         console.log('🔗 Merging with local data...');
 
         let localData = [];
@@ -101,16 +42,15 @@ function fetchAndSyncVocab() {
             localData = JSON.parse(fs.readFileSync(OUTPUT_PATH, 'utf-8'));
         }
 
-        // Create a map of existing stats by ID
+        // Create a map of existing stats by slug (English-German)
         const statsMap = new Map();
         localData.forEach(item => {
-            if (item.id) {
-                statsMap.set(item.id, {
-                    successCount: item.successCount || 0,
-                    failCount: item.failCount || 0,
-                    status: item.status || 'study'
-                });
-            }
+            const slug = `${item.english}-${item.word}`;
+            statsMap.set(slug, {
+                successCount: item.successCount || 0,
+                failCount: item.failCount || 0,
+                status: item.status || 'study'
+            });
         });
 
         // Map fresh data to our JSON structure
@@ -119,41 +59,47 @@ function fetchAndSyncVocab() {
 
         const newVocabList = rows.slice(1).map(row => {
             const getVal = (colName) => (row[headerMap[colName]] || '').trim();
-            const id = getVal('ID');
-
-            // Get stats from map or default to 0
-            const stats = statsMap.get(id) || { successCount: 0, failCount: 0 };
 
             let word = getVal('Word');
-            let der = getVal('Masculine (der)');
-            let die = getVal('Feminine (die)');
-            let das = getVal('Neuter (Das)');
+            let english = getVal('English Translation');
+            const slug = `${english}-${word}`;
+
+            // Get stats from map or default to 0
+            const stats = statsMap.get(slug) || { successCount: 0, failCount: 0 };
+
+            let article = '';
             let type = getVal('Type');
+
+            // Extract article from word if present
+            const articleMatch = word.match(/^(der|die|das)\s+/i);
+            if (articleMatch) {
+                article = articleMatch[1].toLowerCase();
+                word = word.replace(/^(der|die|das)\s+/i, '').trim();
+            }
+
+            // Fallback: Check dedicated columns
+            if (!article) {
+                const derValue = getVal('Masculine (der)');
+                const dieValue = getVal('Feminine (die)');
+                const dasValue = getVal('Neuter (Das)');
+                if (derValue && derValue !== '-') article = 'der';
+                else if (dieValue && dieValue !== '-') article = 'die';
+                else if (dasValue && dasValue !== '-') article = 'das';
+            }
 
             // Normalize Type
             if (type) {
                 type = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
             }
 
-            // Data Cleaning
-            if (type === 'Noun') {
-                word = word.replace(/^(der|die|das)\s+/i, '');
-                der = (der && der !== '-' && der !== '') ? 'der' : '';
-                die = (die && die !== '-' && die !== '') ? 'die' : '';
-                das = (das && das !== '-' && das !== '') ? 'das' : '';
-            }
-
             // Skip empty rows
             if (!word) return null;
 
             return {
-                id: id,
                 word: word,
                 type: type,
-                english: getVal('English Translation'),
-                der: der,
-                die: die,
-                das: das,
+                english: english,
+                article: article,
                 plural: getVal('Plural'),
                 sentence: getVal('A1 Sentence'),
                 level: getVal('Level'),

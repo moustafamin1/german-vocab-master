@@ -33,8 +33,9 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                         <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Correct Answer</span>
                         <p className="text-sm font-medium">
                             {(() => {
-                                const art = [word.der, word.die, word.das].find(a => a && a !== '' && a !== '-');
-                                return art ? `${art} ` : '';
+                                const art = word.article;
+                                const capitalizedArt = art ? art.charAt(0).toUpperCase() + art.slice(1) : '';
+                                return capitalizedArt ? `${capitalizedArt} ` : '';
                             })()}
                             {word.word}
                         </p>
@@ -104,8 +105,8 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                 <button
                     onClick={() => onToggleStatus(word)}
                     className={`flex-1 py-4 flex flex-col items-center justify-center gap-1 rounded-2xl border transition-all duration-300 ${word.status === 'skip'
-                            ? 'bg-red-500/5 border-red-500/20 text-red-500/60 hover:bg-red-500/10'
-                            : 'bg-green-500/5 border-green-500/20 text-green-500/60 hover:bg-green-500/10'
+                        ? 'bg-red-500/5 border-red-500/20 text-red-500/60 hover:bg-red-500/10'
+                        : 'bg-green-500/5 border-green-500/20 text-green-500/60 hover:bg-green-500/10'
                         }`}
                 >
                     {word.status === 'skip' ? (
