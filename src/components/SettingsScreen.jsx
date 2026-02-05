@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy } from 'lucide-react';
 import { fetchAndCacheVocab } from '../services/vocabService';
 
