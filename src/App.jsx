@@ -35,49 +35,65 @@ export default function App() {
     const [feedback, setFeedback] = useState(null);
 
     // Load data (cached or built-in)
-    const baseVocab = getCachedVocab() || vocabData;
+    const rawCached = getCachedVocab();
+    const baseVocab = (Array.isArray(rawCached) ? rawCached : null) || vocabData;
 
     // Extract all unique levels
-    const levels = Array.from(new Set(baseVocab.map(v => v.level))).filter(Boolean).sort();
+    const levels = Array.from(new Set(baseVocab.map(v => v?.level))).filter(Boolean).sort();
 
     useEffect(() => {
-        // 1. Load SRS Data from LocalStorage
-        const storedSRS = JSON.parse(localStorage.getItem(SRS_STORAGE_KEY) || '{}');
+        let storedSRS = {};
+        let storedGlobalStats = { total: 0, correct: 0, incorrect: 0 };
+        let storedSettings = { srsOffset: 3, devMode: true };
+
+        try {
+            // 1. Load SRS Data from LocalStorage
+            storedSRS = JSON.parse(localStorage.getItem(SRS_STORAGE_KEY) || '{}');
+
+            // 3. Load Global Stats
+            storedGlobalStats = JSON.parse(localStorage.getItem(GLOBAL_STATS_KEY) || '{"total":0,"correct":0,"incorrect":0}');
+
+            // 4. Load App Settings
+            storedSettings = JSON.parse(localStorage.getItem(APP_SETTINGS_KEY) || '{"srsOffset":3,"devMode":true}');
+        } catch (err) {
+            console.error('⚠️ Failed to load stored data, using defaults:', err);
+            // If data is corrupted (like "[object Object]"), we continue with defaults
+        }
+
+        setGlobalStats(storedGlobalStats);
+        setSrsOffset(storedSettings.srsOffset);
+        setDevMode(storedSettings.devMode);
 
         // 2. Merge with base vocab data and Migration Engine
         let dataMigrated = false;
         const mergedVocab = baseVocab.map(word => {
-            // ALWAYS use the stable string key as the primary identifier
+            // ... (rest of the logic remains same, but using the safely loaded storedSRS)
             const stringKey = `${word.english}-${word.word}`;
-
-            // Look for progress under the new string key
             let stats = storedSRS[stringKey];
 
-            // 🔍 AGGRESSIVE RECOVERY logic: Search for legacy data variants
+            // 🔍 AGGRESSIVE RECOVERY logic
             if (!stats) {
                 const article = word.article || '';
                 const capitalizedArticle = article ? article.charAt(0).toUpperCase() + article.slice(1) : '';
 
                 const potentialLegacyKeys = [
                     word.id,
-                    `${word.english}-${capitalizedArticle} ${word.word}`, // "The car-Das Auto"
-                    `${word.english}-${article} ${word.word}`,           // "The car-das Auto"
-                    `${word.english}- ${word.word}`,                     // "The car- Auto"
-                    `${word.english}-${word.word} `                      // Trailing space variant
+                    `${word.english}-${capitalizedArticle} ${word.word}`,
+                    `${word.english}-${article} ${word.word}`,
+                    `${word.english}- ${word.word}`,
+                    `${word.english}-${word.word} `
                 ].filter(Boolean);
 
-                // Try each variant
                 for (const legacyKey of potentialLegacyKeys) {
                     if (storedSRS[legacyKey]) {
                         console.log(`✨ RECOVERED: "${word.word}" from legacy key: "${legacyKey}"`);
                         stats = storedSRS[legacyKey];
-                        storedSRS[stringKey] = stats; // Migrate to new stable key
+                        storedSRS[stringKey] = stats;
                         dataMigrated = true;
                         break;
                     }
                 }
 
-                // SECOND PASS: Case-insensitive search through all keys (last resort)
                 if (!stats) {
                     const lowercaseStringKey = stringKey.toLowerCase();
                     const fuzzyMatchKey = Object.keys(storedSRS).find(k => k.toLowerCase() === lowercaseStringKey);
@@ -97,11 +113,10 @@ export default function App() {
                 successCount: stats.successCount || 0,
                 failCount: stats.failCount || 0,
                 status: stats.status || word.status || 'study',
-                uniqueId: stringKey // This is now guaranteed stable
+                uniqueId: stringKey
             };
         });
 
-        // If we migrated any data, persist the cleaned state back to LocalStorage immediately
         if (dataMigrated) {
             localStorage.setItem(SRS_STORAGE_KEY, JSON.stringify(storedSRS));
             console.log('✅ LocalStorage healed and migrated to string-based keys.');
@@ -109,15 +124,6 @@ export default function App() {
 
         setVocabPool(mergedVocab);
         setSelectedLevels(levels);
-
-        // 3. Load Global Stats
-        const storedGlobalStats = JSON.parse(localStorage.getItem(GLOBAL_STATS_KEY) || '{"total":0,"correct":0,"incorrect":0}');
-        setGlobalStats(storedGlobalStats);
-
-        // 4. Load App Settings
-        const storedSettings = JSON.parse(localStorage.getItem(APP_SETTINGS_KEY) || '{"srsOffset":3,"devMode":true}');
-        setSrsOffset(storedSettings.srsOffset);
-        setDevMode(storedSettings.devMode);
 
         setTimeout(() => {
             setView('config');

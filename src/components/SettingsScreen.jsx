@@ -31,30 +31,40 @@ export default function SettingsScreen({
     };
 
     const handleExport = () => {
-        const data = {
-            'vocab-srs-data': localStorage.getItem('vocab-srs-data'),
-            'vocab-global-stats': localStorage.getItem('vocab-global-stats'),
-            'vocab-app-settings': localStorage.getItem('vocab-app-settings'),
-            'cached-vocab': localStorage.getItem('cached-vocab')
-        };
+        try {
+            const data = {
+                'vocab-srs-data': localStorage.getItem('vocab-srs-data'),
+                'vocab-global-stats': localStorage.getItem('vocab-global-stats'),
+                'vocab-app-settings': localStorage.getItem('vocab-app-settings'),
+                'cached-vocab': localStorage.getItem('cached-vocab')
+            };
 
-        const jsonStr = JSON.stringify(data);
-        // Robust base64 encoding for UTF-8 strings
-        const exportStr = btoa(encodeURIComponent(jsonStr).replace(/%([0-9A-F]{2})/g, (match, p1) => {
-            return String.fromCharCode('0x' + p1);
-        }));
+            const jsonStr = JSON.stringify(data);
+            // Robust base64 encoding for UTF-8 strings
+            const exportStr = btoa(encodeURIComponent(jsonStr).replace(/%([0-9A-F]{2})/g, (match, p1) => {
+                return String.fromCharCode('0x' + p1);
+            }));
 
-        navigator.clipboard.writeText(exportStr).then(() => {
-            setCopySuccess(true);
-            setTimeout(() => setCopySuccess(false), 2000);
-        });
+            navigator.clipboard.writeText(exportStr).then(() => {
+                setCopySuccess(true);
+                console.log(`✅ Exported ${exportStr.length} characters.`);
+                setTimeout(() => setCopySuccess(false), 2000);
+            });
+        } catch (err) {
+            console.error('Export failed', err);
+            alert('❌ Export failed. Check console for details.');
+        }
     };
 
     const handleImport = () => {
-        const input = prompt('Paste your Exported Data string here:');
-        if (!input) return;
+        const rawInput = prompt('Paste your Exported Data string here:');
+        if (!rawInput) return;
+
+        const input = rawInput.trim(); // 🛡️ CRITICAL: Remove accidental spaces/newlines
 
         try {
+            console.log(`📥 Attempting import of ${input.length} characters...`);
+
             // Robust base64 decoding for UTF-8 strings
             const decoded = decodeURIComponent(atob(input).split('').map(c => {
                 return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
@@ -62,17 +72,25 @@ export default function SettingsScreen({
 
             const data = JSON.parse(decoded);
 
+            // Validate that we have some expected keys (support both new and old formats if needed)
+            const hasData = data['vocab-srs-data'] || data['vocab-global-stats'] || data['vocab-app-settings'] || data['cached-vocab'];
+            if (!hasData) {
+                throw new Error('Data format invalid: no recognizeable progress found.');
+            }
+
             Object.entries(data).forEach(([key, value]) => {
-                if (value) {
-                    localStorage.setItem(key, value);
+                if (value !== null && value !== undefined) {
+                    const stringValue = typeof value === 'string' ? value : JSON.stringify(value);
+                    localStorage.setItem(key, stringValue);
+                    console.log(`✅ Restored key: ${key}`);
                 }
             });
 
-            alert('✅ Progress Imported Successfully!');
+            alert('🎉 Progress Imported Successfully! The app will now reload.');
             window.location.reload();
         } catch (err) {
-            console.error('Import failed', err);
-            alert('❌ Failed to import data. Please ensure you copied the correct string.');
+            console.error('❌ Import failed:', err);
+            alert(`❌ Failed to import data.\n\nReason: ${err.message}\n\nPlease ensure you copied the ENTIRE string without missing characters.`);
         }
     };
 
