@@ -53,23 +53,39 @@ export default function App() {
             // Look for progress under the new string key
             let stats = storedSRS[stringKey];
 
-            // 🔍 RECOVERY logic: If nothing under string key, check for legacy variants
+            // 🔍 AGGRESSIVE RECOVERY logic: Search for legacy data variants
             if (!stats) {
-                const legacyKeys = [
-                    word.id,                                     // 1. Old random UUID (if available)
-                    `${word.english}-${word.article} ${word.word}`, // 2. "The car-Das Auto" (old style)
-                    `${word.english}- ${word.word}`,              // 3. "The car- Auto" (extra space bug)
-                    `${word.english}-${word.article}${word.word}`  // 4. "The car-DasAuto" (no space bug)
+                const article = word.article || '';
+                const capitalizedArticle = article ? article.charAt(0).toUpperCase() + article.slice(1) : '';
+
+                const potentialLegacyKeys = [
+                    word.id,
+                    `${word.english}-${capitalizedArticle} ${word.word}`, // "The car-Das Auto"
+                    `${word.english}-${article} ${word.word}`,           // "The car-das Auto"
+                    `${word.english}- ${word.word}`,                     // "The car- Auto"
+                    `${word.english}-${word.word} `                      // Trailing space variant
                 ].filter(Boolean);
 
-                for (const legacyKey of legacyKeys) {
+                // Try each variant
+                for (const legacyKey of potentialLegacyKeys) {
                     if (storedSRS[legacyKey]) {
-                        console.log(`✨ Recovered data for "${word.word}" from legacy key: "${legacyKey}"`);
+                        console.log(`✨ RECOVERED: "${word.word}" from legacy key: "${legacyKey}"`);
                         stats = storedSRS[legacyKey];
-                        // Move it to the new key for future lookups
-                        storedSRS[stringKey] = stats;
+                        storedSRS[stringKey] = stats; // Migrate to new stable key
                         dataMigrated = true;
                         break;
+                    }
+                }
+
+                // SECOND PASS: Case-insensitive search through all keys (last resort)
+                if (!stats) {
+                    const lowercaseStringKey = stringKey.toLowerCase();
+                    const fuzzyMatchKey = Object.keys(storedSRS).find(k => k.toLowerCase() === lowercaseStringKey);
+                    if (fuzzyMatchKey) {
+                        console.log(`✨ FUZZY RECOVERED: "${word.word}" from "${fuzzyMatchKey}"`);
+                        stats = storedSRS[fuzzyMatchKey];
+                        storedSRS[stringKey] = stats;
+                        dataMigrated = true;
                     }
                 }
             }
@@ -179,6 +195,24 @@ export default function App() {
         setView('playing');
     }, [selectedLevels, selectedModes, selectedTypes, vocabPool, srsOffset]);
 
+    const saveSRSData = (updatedPool) => {
+        // 🛡️ SAFETY FIRST: Always merge with existing storage to prevent accidental data wipes
+        const existingData = JSON.parse(localStorage.getItem(SRS_STORAGE_KEY) || '{}');
+        const newData = { ...existingData };
+
+        updatedPool.forEach(w => {
+            if (w.successCount > 0 || w.failCount > 0 || w.status === 'skip') {
+                newData[w.uniqueId] = {
+                    successCount: w.successCount,
+                    failCount: w.failCount,
+                    status: w.status
+                };
+            }
+        });
+
+        localStorage.setItem(SRS_STORAGE_KEY, JSON.stringify(newData));
+    };
+
     const updateSRSStats = (word, isCorrect) => {
         const updatedWord = {
             ...word,
@@ -192,19 +226,7 @@ export default function App() {
 
         setVocabPool(newPool);
         setCurrentWord(updatedWord);
-
-        // Persist to LocalStorage
-        const srsData = {};
-        newPool.forEach(w => {
-            if (w.successCount > 0 || w.failCount > 0 || w.status === 'skip') {
-                srsData[w.uniqueId] = {
-                    successCount: w.successCount,
-                    failCount: w.failCount,
-                    status: w.status
-                };
-            }
-        });
-        localStorage.setItem(SRS_STORAGE_KEY, JSON.stringify(srsData));
+        saveSRSData(newPool); // Use safe save
     };
 
     const toggleWordStatus = (word) => {
@@ -219,15 +241,7 @@ export default function App() {
         if (currentWord?.uniqueId === word.uniqueId) {
             setCurrentWord(updatedWord);
         }
-
-        // Persist
-        const storedSRS = JSON.parse(localStorage.getItem(SRS_STORAGE_KEY) || '{}');
-        storedSRS[updatedWord.uniqueId] = {
-            successCount: updatedWord.successCount,
-            failCount: updatedWord.failCount,
-            status: newStatus
-        };
-        localStorage.setItem(SRS_STORAGE_KEY, JSON.stringify(storedSRS));
+        saveSRSData(newPool); // Use safe save
     };
 
     const handleAnswer = (answer) => {
