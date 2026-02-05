@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { RefreshCw, Bug, Check, ChevronRight, Settings2 } from 'lucide-react';
+import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy } from 'lucide-react';
 import { fetchAndCacheVocab } from '../services/vocabService';
 
 export default function SettingsScreen({
@@ -13,6 +12,7 @@ export default function SettingsScreen({
 }) {
     const [isSyncing, setIsSyncing] = useState(false);
     const [syncSuccess, setSyncSuccess] = useState(false);
+    const [copySuccess, setCopySuccess] = useState(false);
 
     const handleSync = async () => {
         setIsSyncing(true);
@@ -26,6 +26,52 @@ export default function SettingsScreen({
             console.error('Sync error', err);
             setIsSyncing(false);
             alert(`Sync failed: ${err.message}. Check console/URL.`);
+        }
+    };
+
+    const handleExport = () => {
+        const data = {
+            'vocab-srs-data': localStorage.getItem('vocab-srs-data'),
+            'vocab-global-stats': localStorage.getItem('vocab-global-stats'),
+            'vocab-app-settings': localStorage.getItem('vocab-app-settings'),
+            'cached-vocab': localStorage.getItem('cached-vocab')
+        };
+
+        const jsonStr = JSON.stringify(data);
+        // Robust base64 encoding for UTF-8 strings
+        const exportStr = btoa(encodeURIComponent(jsonStr).replace(/%([0-9A-F]{2})/g, (match, p1) => {
+            return String.fromCharCode('0x' + p1);
+        }));
+
+        navigator.clipboard.writeText(exportStr).then(() => {
+            setCopySuccess(true);
+            setTimeout(() => setCopySuccess(false), 2000);
+        });
+    };
+
+    const handleImport = () => {
+        const input = prompt('Paste your Exported Data string here:');
+        if (!input) return;
+
+        try {
+            // Robust base64 decoding for UTF-8 strings
+            const decoded = decodeURIComponent(atob(input).split('').map(c => {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+
+            const data = JSON.parse(decoded);
+
+            Object.entries(data).forEach(([key, value]) => {
+                if (value) {
+                    localStorage.setItem(key, value);
+                }
+            });
+
+            alert('✅ Progress Imported Successfully!');
+            window.location.reload();
+        } catch (err) {
+            console.error('Import failed', err);
+            alert('❌ Failed to import data. Please ensure you copied the correct string.');
         }
     };
 
@@ -76,6 +122,52 @@ export default function SettingsScreen({
                             <span>All Words</span>
                             <ChevronRight className="w-4 h-4" />
                         </button>
+                    </div>
+                </section>
+
+                {/* Progress Migration */}
+                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
+                    <div className="flex items-center gap-3 mb-2">
+                        <Download className="w-5 h-5 text-zinc-400" />
+                        <h3 className="text-lg font-semibold">Transfer Progress</h3>
+                    </div>
+
+                    <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium">Export & Import</p>
+                                <p className="text-xs text-zinc-500">Move your stats to a new domain (e.g., Netlify to GitHub).</p>
+                            </div>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={handleExport}
+                                    className={`flex items-center gap-2 px-4 py-2 rounded-xl border transition-all text-xs font-bold
+                                        ${copySuccess
+                                            ? 'bg-green-500/10 border-green-500/50 text-green-500'
+                                            : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600'
+                                        }`}
+                                >
+                                    {copySuccess ? (
+                                        <>
+                                            <Check className="w-3.5 h-3.5" />
+                                            <span>Copied</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Copy className="w-3.5 h-3.5" />
+                                            <span>Export</span>
+                                        </>
+                                    )}
+                                </button>
+                                <button
+                                    onClick={handleImport}
+                                    className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
+                                >
+                                    <Upload className="w-3.5 h-3.5" />
+                                    <span>Import</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
