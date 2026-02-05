@@ -53,13 +53,25 @@ export default function App() {
             // Look for progress under the new string key
             let stats = storedSRS[stringKey];
 
-            // 🔍 RECOVERY logic: If nothing under string key, check for old word.id (random UUID)
-            if (!stats && word.id && storedSRS[word.id]) {
-                console.log(`✨ Recovered data for word: ${word.word} (from old ID: ${word.id})`);
-                stats = storedSRS[word.id];
-                // Move it to the new key for future lookups
-                storedSRS[stringKey] = stats;
-                dataMigrated = true;
+            // 🔍 RECOVERY logic: If nothing under string key, check for legacy variants
+            if (!stats) {
+                const legacyKeys = [
+                    word.id,                                     // 1. Old random UUID (if available)
+                    `${word.english}-${word.article} ${word.word}`, // 2. "The car-Das Auto" (old style)
+                    `${word.english}- ${word.word}`,              // 3. "The car- Auto" (extra space bug)
+                    `${word.english}-${word.article}${word.word}`  // 4. "The car-DasAuto" (no space bug)
+                ].filter(Boolean);
+
+                for (const legacyKey of legacyKeys) {
+                    if (storedSRS[legacyKey]) {
+                        console.log(`✨ Recovered data for "${word.word}" from legacy key: "${legacyKey}"`);
+                        stats = storedSRS[legacyKey];
+                        // Move it to the new key for future lookups
+                        storedSRS[stringKey] = stats;
+                        dataMigrated = true;
+                        break;
+                    }
+                }
             }
 
             stats = stats || {};

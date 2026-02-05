@@ -62,13 +62,8 @@ function fetchAndSyncVocab() {
 
             let word = getVal('Word');
             let english = getVal('English Translation');
-            const slug = `${english}-${word}`;
-
-            // Get stats from map or default to 0
-            const stats = statsMap.get(slug) || { successCount: 0, failCount: 0 };
-
-            let article = '';
             let type = getVal('Type');
+            let article = '';
 
             // Extract article from word if present
             const articleMatch = word.match(/^(der|die|das)\s+/i);
@@ -86,6 +81,12 @@ function fetchAndSyncVocab() {
                 else if (dieValue && dieValue !== '-') article = 'die';
                 else if (dasValue && dasValue !== '-') article = 'das';
             }
+
+            // Calculate slug AFTER stripping article for consistent matching with localData
+            const slug = `${english}-${word}`;
+
+            // Get stats from map or default to 0
+            const stats = statsMap.get(slug) || { successCount: 0, failCount: 0 };
 
             // Normalize Type
             if (type) {
