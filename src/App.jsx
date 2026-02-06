@@ -257,6 +257,12 @@ export default function App() {
         const simplify = (str) => {
             if (!str) return '';
             return str.toLowerCase()
+                .replace(/ä/g, 'a')
+                .replace(/ö/g, 'o')
+                .replace(/ü/g, 'u')
+                .replace(/ae/g, 'a')
+                .replace(/oe/g, 'o')
+                .replace(/ue/g, 'u')
                 .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove accents/umlauts
                 .replace(/ß/g, 'ss')                             // Replace eszett with ss
                 .replace(/[\s\p{P}\p{S}]/gu, '');                // Remove spaces and punctuation
@@ -266,15 +272,17 @@ export default function App() {
         const sWord = simplify(currentWord.word);
 
         if (quizMode === 'multipleChoice' || quizMode === 'written' || quizMode === 'wordOrder') {
-            if (currentWord.type === 'Noun') {
-                const correctArticle = currentWord.article;
-                const sWithArticle = correctArticle ? simplify(correctArticle + currentWord.word) : sWord;
-                // Accept either just the word or the article + word
-                correct = sAnswer === sWord || (correctArticle && sAnswer === sWithArticle);
-            } else {
-                // For Verbs and Phrases, matched simplified versions
-                correct = sAnswer === sWord;
-            }
+            const correctArticle = currentWord.article;
+            // Always check if the answer matches "Article + Word" OR just "Word"
+            // regardless of whether the system thinks it's a Noun or Phrase.
+            // This fixes the issue where phrase-nouns (like "Das ist meine Tochter") were failing.
+
+            const sWithArticle = correctArticle ? simplify(correctArticle + currentWord.word) : sWord;
+
+            // For written/wordOrder, accept:
+            // 1. Exact match of word/phrase
+            // 2. Match of Article + Word (if article exists)
+            correct = sAnswer === sWord || (correctArticle && sAnswer === sWithArticle);
         } else if (quizMode === 'article') {
             const correctArticle = currentWord.article;
             correct = sAnswer === simplify(correctArticle || '');

@@ -286,10 +286,10 @@
     "status": "study"
   },
   {
-    "word": "Auto ist viel zu teuer.",
+    "word": "Das Auto ist viel zu teuer.",
     "type": "Phrase",
     "english": "The car is way too expensive",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Das Auto ist viel zu teuer.",
     "level": "A1.2",
@@ -493,10 +493,10 @@
     "status": "study"
   },
   {
-    "word": "Essen schmeckt ausgezeichnet.",
+    "word": "Das Essen schmeckt ausgezeichnet.",
     "type": "Phrase",
     "english": "The food tastes excellent.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Schmeckt dir das Essen?",
     "level": "A1.2",
@@ -545,10 +545,10 @@
     "status": "study"
   },
   {
-    "word": "geht mir auf die Nerven",
+    "word": "Das geht mir auf die Nerven",
     "type": "Phrase",
     "english": "That gets on my nerves",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Der Lärm geht mir auf die Nerven!",
     "level": "A2.2",
@@ -558,10 +558,10 @@
     "status": "study"
   },
   {
-    "word": "geht nicht.",
+    "word": "Das geht nicht.",
     "type": "Phrase",
     "english": "That doesn't work.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Heute um drei? Das geht nicht.",
     "level": "A1.2",
@@ -623,10 +623,10 @@
     "status": "study"
   },
   {
-    "word": "glaube ich nicht",
+    "word": "Das glaube ich nicht",
     "type": "Phrase",
     "english": "I don’t believe that",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Das glaube ich nicht.",
     "level": "A2.1",
@@ -662,10 +662,10 @@
     "status": "study"
   },
   {
-    "word": "hängt davon ab",
+    "word": "Das hängt davon ab",
     "type": "Phrase",
     "english": "That depends on it",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Das hängt vom Wetter ab.",
     "level": "A2.1",
@@ -740,10 +740,10 @@
     "status": "study"
   },
   {
-    "word": "ist die Tasche von Gabi.",
+    "word": "Das ist die Tasche von Gabi.",
     "type": "Phrase",
     "english": "That is Gabi's bag.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Ist das die Tasche von dir?",
     "level": "A1.2",
@@ -753,10 +753,10 @@
     "status": "study"
   },
   {
-    "word": "ist einfach",
+    "word": "Das ist einfach",
     "type": "Phrase",
     "english": "That’s easy",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Das ist ganz einfach.",
     "level": "A1.1",
@@ -766,10 +766,10 @@
     "status": "study"
   },
   {
-    "word": "ist mein Bruder.",
+    "word": "Das ist mein Bruder.",
     "type": "Phrase",
     "english": "This is my brother.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Hast du einen Bruder?",
     "level": "A1.1",
@@ -779,10 +779,10 @@
     "status": "study"
   },
   {
-    "word": "ist mein Mann.",
+    "word": "Das ist mein Mann.",
     "type": "Phrase",
     "english": "This is my husband.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Ist das dein Mann?",
     "level": "A1.1",
@@ -792,10 +792,10 @@
     "status": "study"
   },
   {
-    "word": "ist mein Onkel.",
+    "word": "Das ist mein Onkel.",
     "type": "Phrase",
     "english": "This is my uncle.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Kennst du meinen Onkel?",
     "level": "A1.1",
@@ -805,10 +805,10 @@
     "status": "study"
   },
   {
-    "word": "ist mein Sohn.",
+    "word": "Das ist mein Sohn.",
     "type": "Phrase",
     "english": "This is my son.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Wie alt ist dein Sohn?",
     "level": "A1.1",
@@ -818,10 +818,10 @@
     "status": "study"
   },
   {
-    "word": "ist meine Frau.",
+    "word": "Das ist meine Frau.",
     "type": "Phrase",
     "english": "This is my wife.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Ist das deine Frau?",
     "level": "A1.1",
@@ -831,10 +831,10 @@
     "status": "study"
   },
   {
-    "word": "ist meine Schwester.",
+    "word": "Das ist meine Schwester.",
     "type": "Phrase",
     "english": "This is my sister.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Hast du eine Schwester?",
     "level": "A1.1",
@@ -844,10 +844,10 @@
     "status": "study"
   },
   {
-    "word": "ist meine Tante.",
+    "word": "Das ist meine Tante.",
     "type": "Phrase",
     "english": "This is my aunt.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Wie geht es deiner Tante?",
     "level": "A1.1",
@@ -857,10 +857,10 @@
     "status": "study"
   },
   {
-    "word": "ist meine Tochter.",
+    "word": "Das ist meine Tochter.",
     "type": "Phrase",
     "english": "This is my daughter.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Wie heißt deine Tochter?",
     "level": "A1.1",
@@ -870,10 +870,10 @@
     "status": "study"
   },
   {
-    "word": "ist mir peinlich.",
+    "word": "Das ist mir peinlich.",
     "type": "Phrase",
     "english": "That is embarrassing to me.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Ich habe deinen Namen vergessen, das ist mir peinlich.",
     "level": "A2.2",
@@ -883,10 +883,10 @@
     "status": "study"
   },
   {
-    "word": "ist mir wurst",
+    "word": "Das ist mir wurst",
     "type": "Phrase",
     "english": "I don't care (slang)",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "\"Pizza oder Pasta?\" - \"Das ist mir wurst.\"",
     "level": "A2.1",
@@ -896,10 +896,10 @@
     "status": "study"
   },
   {
-    "word": "ist mir zu viel",
+    "word": "Das ist mir zu viel",
     "type": "Phrase",
     "english": "That’s too much for me",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Das ist mir zu teuer.",
     "level": "A2.1",
@@ -909,10 +909,10 @@
     "status": "study"
   },
   {
-    "word": "ist möglich",
+    "word": "Das ist möglich",
     "type": "Phrase",
     "english": "That’s possible",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Ja, das ist möglich.",
     "level": "A1.2",
@@ -922,10 +922,10 @@
     "status": "study"
   },
   {
-    "word": "ist schwer",
+    "word": "Das ist schwer",
     "type": "Phrase",
     "english": "That’s difficult",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Deutsch ist schwer.",
     "level": "A1.1",
@@ -935,10 +935,10 @@
     "status": "study"
   },
   {
-    "word": "ist unmöglich",
+    "word": "Das ist unmöglich",
     "type": "Phrase",
     "english": "That’s impossible",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Das ist unmöglich!",
     "level": "A1.2",
@@ -999,10 +999,10 @@
     "status": "study"
   },
   {
-    "word": "kommt darauf an",
+    "word": "Das kommt darauf an",
     "type": "Phrase",
     "english": "It depends",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Das kommt darauf an, wann.",
     "level": "A2.1",
@@ -1090,10 +1090,10 @@
     "status": "study"
   },
   {
-    "word": "lohnt sich",
+    "word": "Das lohnt sich",
     "type": "Phrase",
     "english": "It's worth it",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Der Film ist super, das lohnt sich!",
     "level": "A2.2",
@@ -1103,10 +1103,10 @@
     "status": "study"
   },
   {
-    "word": "machen wir!",
+    "word": "Das machen wir!",
     "type": "Phrase",
     "english": "We'll do that!",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Machst du das auch?",
     "level": "A1.1",
@@ -1116,10 +1116,10 @@
     "status": "study"
   },
   {
-    "word": "macht nichts",
+    "word": "Das macht nichts",
     "type": "Phrase",
     "english": "It doesn't matter",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Oh sorry! - Das macht nichts.",
     "level": "A1.2",
@@ -1129,10 +1129,10 @@
     "status": "study"
   },
   {
-    "word": "macht Sinn",
+    "word": "Das macht Sinn",
     "type": "Phrase",
     "english": "That makes sense",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Ja, das macht Sinn.",
     "level": "A2.1",
@@ -1142,10 +1142,10 @@
     "status": "study"
   },
   {
-    "word": "macht zusammen 8,60 Euro.",
+    "word": "Das macht zusammen 8,60 Euro.",
     "type": "Phrase",
     "english": "That makes 8.60 Euro total.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Sagst du mir, was das zusammen macht?",
     "level": "A1.1",
@@ -1285,10 +1285,10 @@
     "status": "study"
   },
   {
-    "word": "reicht",
+    "word": "Das reicht",
     "type": "Phrase",
     "english": "That’s enough",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Danke, das reicht.",
     "level": "A1.2",
@@ -1311,10 +1311,10 @@
     "status": "study"
   },
   {
-    "word": "Restaurant heißt Schnitzelparadies.",
+    "word": "Das Restaurant heißt Schnitzelparadies.",
     "type": "Phrase",
     "english": "The restaurant is called Schnitzel Paradise.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Wie heißt das Restaurant?",
     "level": "A1.1",
@@ -1362,10 +1362,10 @@
     "status": "study"
   },
   {
-    "word": "sehe ich anders!",
+    "word": "Das sehe ich anders!",
     "type": "Phrase",
     "english": "I see it differently!",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Ich finde das teuer, aber das sehe ich anders!",
     "level": "A2.2",
@@ -1375,10 +1375,10 @@
     "status": "study"
   },
   {
-    "word": "sehe ich anders.",
+    "word": "Das sehe ich anders.",
     "type": "Phrase",
     "english": "I see it differently",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Das sehe ich anders als du.",
     "level": "A2.1",
@@ -1440,10 +1440,10 @@
     "status": "study"
   },
   {
-    "word": "stimmt",
+    "word": "Das stimmt",
     "type": "Phrase",
     "english": "That's true / I agree",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "\"Deutsch ist schwer.\" - \"Das stimmt.\"",
     "level": "A1.2",
@@ -1505,10 +1505,10 @@
     "status": "study"
   },
   {
-    "word": "war früher dein Lieblingsmaler.",
+    "word": "Das war früher dein Lieblingsmaler.",
     "type": "Phrase",
     "english": "That used to be your favorite painter.",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "War das dein Lieblingsmaler?",
     "level": "A2.1",
@@ -1518,10 +1518,10 @@
     "status": "study"
   },
   {
-    "word": "war keine gute Idee",
+    "word": "Das war keine gute Idee",
     "type": "Phrase",
     "english": "That wasn’t a good idea",
-    "article": "das",
+    "article": "",
     "plural": "",
     "sentence": "Ehrlich, das war keine gute Idee.",
     "level": "A2.2",
@@ -1700,10 +1700,10 @@
     "status": "study"
   },
   {
-    "word": "Arzt untersucht Patienten.",
+    "word": "Der Arzt untersucht Patienten.",
     "type": "Phrase",
     "english": "The doctor examines patients.",
-    "article": "der",
+    "article": "",
     "plural": "",
     "sentence": "Untersuchst du den Patienten?",
     "level": "A2.1",
@@ -1843,10 +1843,10 @@
     "status": "study"
   },
   {
-    "word": "Code steht auf der Karte.",
+    "word": "Der Code steht auf der Karte.",
     "type": "Phrase",
     "english": "The code is (written) on the card.",
-    "article": "der",
+    "article": "",
     "plural": "",
     "sentence": "Wo steht der Code?",
     "level": "A1.2",
@@ -1960,10 +1960,10 @@
     "status": "study"
   },
   {
-    "word": "Erfinder war Paul Fürst.",
+    "word": "Der Erfinder war Paul Fürst.",
     "type": "Phrase",
     "english": "The inventor was Paul Fürst.",
-    "article": "der",
+    "article": "",
     "plural": "",
     "sentence": "Kennst du den Erfinder?",
     "level": "A2.1",
@@ -2116,10 +2116,10 @@
     "status": "study"
   },
   {
-    "word": "Informatiker entwickelt Computerspiele.",
+    "word": "Der Informatiker entwickelt Computerspiele.",
     "type": "Phrase",
     "english": "The IT specialist develops computer games.",
-    "article": "der",
+    "article": "",
     "plural": "",
     "sentence": "Entwickelst du Computerspiele?",
     "level": "A2.1",
@@ -2296,10 +2296,10 @@
     "status": "study"
   },
   {
-    "word": "Künstler malt Bilder.",
+    "word": "Der Künstler malt Bilder.",
     "type": "Phrase",
     "english": "The artist paints pictures.",
-    "article": "der",
+    "article": "",
     "plural": "",
     "sentence": "Malst du gerne Bilder?",
     "level": "A2.1",
@@ -3167,10 +3167,10 @@
     "status": "study"
   },
   {
-    "word": "Assistentin schreibt E-Mails.",
+    "word": "Die Assistentin schreibt E-Mails.",
     "type": "Phrase",
     "english": "The assistant writes emails.",
-    "article": "die",
+    "article": "",
     "plural": "",
     "sentence": "Bist du eine Assistentin?",
     "level": "A1.1",
@@ -3438,10 +3438,10 @@
     "status": "study"
   },
   {
-    "word": "Firma produziert die Mozartkugeln.",
+    "word": "Die Firma produziert die Mozartkugeln.",
     "type": "Phrase",
     "english": "The company produces the Mozartkugeln.",
-    "article": "die",
+    "article": "",
     "plural": "",
     "sentence": "Kennst du die Firma?",
     "level": "A1.2",
@@ -3594,10 +3594,10 @@
     "status": "study"
   },
   {
-    "word": "Ingenieurin konstruiert Solarautos.",
+    "word": "Die Ingenieurin konstruiert Solarautos.",
     "type": "Phrase",
     "english": "The engineer constructs solar cars.",
-    "article": "die",
+    "article": "",
     "plural": "",
     "sentence": "Konstruierst du Solarautos?",
     "level": "A2.1",
@@ -3659,10 +3659,10 @@
     "status": "study"
   },
   {
-    "word": "Kellnerin bedient Gäste.",
+    "word": "Die Kellnerin bedient Gäste.",
     "type": "Phrase",
     "english": "The waitress serves guests.",
-    "article": "die",
+    "article": "",
     "plural": "",
     "sentence": "Bedienst du heute die Gäste?",
     "level": "A1.2",
@@ -3932,10 +3932,10 @@
     "status": "study"
   },
   {
-    "word": "Österreicher treiben Sport.",
+    "word": "Die Österreicher treiben Sport.",
     "type": "Phrase",
     "english": "The Austrians do sports.",
-    "article": "die",
+    "article": "",
     "plural": "",
     "sentence": "Bist du ein Österreicher?",
     "level": "A1.2",
@@ -4074,10 +4074,10 @@
     "status": "study"
   },
   {
-    "word": "Rechnung, bitte.",
+    "word": "Die Rechnung, bitte.",
     "type": "Phrase",
     "english": "The bill, please.",
-    "article": "die",
+    "article": "",
     "plural": "",
     "sentence": "Zahlst du die Rechnung?",
     "level": "A1.1",
@@ -4138,10 +4138,10 @@
     "status": "study"
   },
   {
-    "word": "Schweiz hat 8,4 Millionen Einwohner.",
+    "word": "Die Schweiz hat 8,4 Millionen Einwohner.",
     "type": "Phrase",
     "english": "Switzerland has 8.4 million inhabitants.",
-    "article": "die",
+    "article": "",
     "plural": "",
     "sentence": "Warst du schon in der Schweiz?",
     "level": "A1.2",
@@ -4151,10 +4151,10 @@
     "status": "study"
   },
   {
-    "word": "Schweiz ist so groß wie die Niederlande.",
+    "word": "Die Schweiz ist so groß wie die Niederlande.",
     "type": "Phrase",
     "english": "Switzerland is as large as the Netherlands.",
-    "article": "die",
+    "article": "",
     "plural": "",
     "sentence": "Bist du so groß wie ich?",
     "level": "A2.1",
@@ -4242,10 +4242,10 @@
     "status": "study"
   },
   {
-    "word": "Stadt hat einen großen Flughafen.",
+    "word": "Die Stadt hat einen großen Flughafen.",
     "type": "Phrase",
     "english": "The city has a large airport.",
-    "article": "die",
+    "article": "",
     "plural": "",
     "sentence": "Hat deine Stadt einen Flughafen?",
     "level": "A1.2",
@@ -4255,10 +4255,10 @@
     "status": "study"
   },
   {
-    "word": "Stadt liegt in der Mitte von Deutschland.",
+    "word": "Die Stadt liegt in der Mitte von Deutschland.",
     "type": "Phrase",
     "english": "The city lies in the middle of Germany.",
-    "article": "die",
+    "article": "",
     "plural": "",
     "sentence": "Liegt deine Stadt in der Mitte?",
     "level": "A1.2",
@@ -4527,10 +4527,10 @@
     "status": "study"
   },
   {
-    "word": "Vorwahl für Deutschland ist 0049.",
+    "word": "Die Vorwahl für Deutschland ist 0049.",
     "type": "Phrase",
     "english": "The area code for Germany is 0049.",
-    "article": "die",
+    "article": "",
     "plural": "",
     "sentence": "Kennst du die Vorwahl?",
     "level": "A2.1",

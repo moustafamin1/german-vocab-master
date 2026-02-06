@@ -92,9 +92,14 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
 
                 {word.trivia && (
                     <div className="bg-amber-500/5 border border-amber-500/10 p-4 rounded-xl space-y-2">
-                        <div className="flex items-center gap-2 text-amber-500/60">
-                            <Lightbulb className="w-3 h-3" />
-                            <span className="text-[10px] font-bold uppercase tracking-widest">Memory Tip</span>
+                        <div className="flex items-center justify-between text-amber-500/60">
+                            <div className="flex items-center gap-2">
+                                <Lightbulb className="w-3 h-3" />
+                                <span className="text-[10px] font-bold uppercase tracking-widest">Memory Tip</span>
+                            </div>
+                            {word.level && (
+                                <span className="text-[10px] font-bold uppercase tracking-widest opacity-50">{word.level}</span>
+                            )}
                         </div>
                         <p className="text-sm text-amber-200/80 leading-relaxed font-normal">{word.trivia}</p>
                     </div>

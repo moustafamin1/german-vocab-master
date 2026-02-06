@@ -49,6 +49,10 @@ export default function QuizCard({ word, mode, options, onAnswer }) {
 
     const getArticle = (w) => {
         if (!w) return null;
+        // Check standard 'article' property first, then fallback to boolean flags if they exist
+        if (w.article && typeof w.article === 'string' && w.article.length > 0) return w.article;
+
+        // Legacy/Fallback check
         const art = [w.der, w.die, w.das].find(a => typeof a === 'string' && a.length > 0 && a !== '-' && a !== '');
         return art || null;
     };
