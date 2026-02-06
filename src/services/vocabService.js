@@ -72,9 +72,9 @@ const cleanVocabData = (rawRows) => {
 
         let article = '';
 
-        // Extract article from word if present
+        // Extract article from word if present (ONLY for non-Phrases)
         const articleMatch = word.match(/^(der|die|das)\s+/i);
-        if (articleMatch) {
+        if (articleMatch && type !== 'Phrase') {
             article = articleMatch[1].toLowerCase();
             word = word.replace(/^(der|die|das)\s+/i, '').trim();
         }

@@ -338,6 +338,18 @@
     "status": "study"
   },
   {
+    "word": "Bild",
+    "type": "Noun",
+    "english": "The picture / image",
+    "article": "das",
+    "plural": "",
+    "sentence": "Hängt das Bild an der Wand?",
+    "level": "A1.1",
+    "trivia": "Plural is \"Bilder\" (adds -er).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Brot",
     "type": "Noun",
     "english": "The bread",
@@ -377,6 +389,19 @@
     "status": "study"
   },
   {
+    "word": "Buch",
+    "type": "Noun",
+    "english": "The book",
+    "article": "das",
+    "plural": "",
+    "sentence": "Liest du das Buch?",
+    "level": "A1.1",
+    "trivia": "Plural: die Bücher.",
+    "successCount": 0,
+    "failCount": 0,
+    "status": "study"
+  },
+  {
     "word": "Bundesland",
     "type": "Noun",
     "english": "Federal state",
@@ -398,6 +423,19 @@
     "sentence": "Ist dein Büro groß?",
     "level": "A1.2",
     "trivia": "Words ending in -o are usually neuter.",
+    "successCount": 0,
+    "failCount": 0,
+    "status": "study"
+  },
+  {
+    "word": "Büro",
+    "type": "Noun",
+    "english": "The office",
+    "article": "das",
+    "plural": "",
+    "sentence": "Ist dein Büro groß?",
+    "level": "A1.1",
+    "trivia": "From French \"bureau\". Same root as \"bureaucracy\".",
     "successCount": 0,
     "failCount": 0,
     "status": "study"
@@ -455,6 +493,18 @@
     "status": "study"
   },
   {
+    "word": "Dokument",
+    "type": "Noun",
+    "english": "The document",
+    "article": "das",
+    "plural": "",
+    "sentence": "Ist das Dokument wichtig?",
+    "level": "A2.1",
+    "trivia": "Neuter.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Doppelzimmer",
     "type": "Noun",
     "english": "The double room",
@@ -477,7 +527,8 @@
     "level": "A1.1",
     "trivia": "Shortest noun in German. Always neuter.",
     "successCount": 0,
-    "failCount": 0
+    "failCount": 0,
+    "status": "study"
   },
   {
     "word": "Einzelzimmer",
@@ -957,7 +1008,8 @@
     "level": "A1.1",
     "trivia": "Similar to \"Year\".",
     "successCount": 0,
-    "failCount": 0
+    "failCount": 0,
+    "status": "study"
   },
   {
     "word": "Kennzeichen",
@@ -1075,6 +1127,18 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Lehrjahr",
+    "type": "Noun",
+    "english": "The apprenticeship year",
+    "article": "das",
+    "plural": "",
+    "sentence": "In welchem Lehrjahr bist du?",
+    "level": "B1.1",
+    "trivia": "\"Lehre\" is another word for apprenticeship.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Lied",
@@ -1238,9 +1302,9 @@
     "english": "The internship",
     "article": "das",
     "plural": "",
-    "sentence": "Gefällt dir dein Praktikum?",
+    "sentence": "War das Praktikum bezahlt?",
     "level": "A2.1",
-    "trivia": "Latin origin -um makes it neuter.",
+    "trivia": "Neuter (-um usually indicates Latin origin, neuter).",
     "successCount": 0,
     "failCount": 0,
     "status": "study"
@@ -1251,9 +1315,9 @@
     "english": "The project",
     "article": "das",
     "plural": "",
-    "sentence": "Wie läuft dein Projekt?",
-    "level": "A1.2",
-    "trivia": "International loanwords are often neuter.",
+    "sentence": "Ist das Projekt wichtig?",
+    "level": "A2.1",
+    "trivia": "Neuter noun.",
     "successCount": 0,
     "failCount": 0,
     "status": "study"
@@ -1346,7 +1410,8 @@
     "level": "A1.1",
     "trivia": "Literally \"sour herb/cabbage.\"",
     "successCount": 0,
-    "failCount": 0
+    "failCount": 0,
+    "status": "study"
   },
   {
     "word": "Schnitzel",
@@ -1388,6 +1453,18 @@
     "status": "study"
   },
   {
+    "word": "Sekretariat",
+    "type": "Noun",
+    "english": "The secretary's office",
+    "article": "das",
+    "plural": "",
+    "sentence": "Ist das Sekretariat besetzt?",
+    "level": "B1.1",
+    "trivia": "Neuter noun.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Seminar",
     "type": "Noun",
     "english": "The seminar",
@@ -1427,6 +1504,18 @@
     "status": "study"
   },
   {
+    "word": "Sprachenzentrum",
+    "type": "Noun",
+    "english": "The language center",
+    "article": "das",
+    "plural": "",
+    "sentence": "Wo ist das Sprachenzentrum?",
+    "level": "A2.1",
+    "trivia": "Compound: Sprachen + Zentrum.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Steak",
     "type": "Noun",
     "english": "The steak",
@@ -1464,6 +1553,54 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Studentenwohnheim",
+    "type": "Noun",
+    "english": "The student dormitory",
+    "article": "das",
+    "plural": "",
+    "sentence": "Ist das Studentenwohnheim laut?",
+    "level": "B1.1",
+    "trivia": "Compound: Studenten + Wohn + Heim (home).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Studienfach",
+    "type": "Noun",
+    "english": "The subject of study",
+    "article": "das",
+    "plural": "",
+    "sentence": "Ist dein Studienfach schwer?",
+    "level": "B1.1",
+    "trivia": "\"Fach\" implies a compartment or subject.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Studienjahr",
+    "type": "Noun",
+    "english": "The academic year",
+    "article": "das",
+    "plural": "",
+    "sentence": "Wann beginnt das Studienjahr?",
+    "level": "B1.1",
+    "trivia": "Neuter.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Studium",
+    "type": "Noun",
+    "english": "The university studies",
+    "article": "das",
+    "plural": "",
+    "sentence": "Macht das Studium Spaß?",
+    "level": "A2.1",
+    "trivia": "Plural is rare but Latin: Studien.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Telefon",
@@ -1635,6 +1772,18 @@
     "status": "study"
   },
   {
+    "word": "Abschluss",
+    "type": "Noun",
+    "english": "The degree / graduation / conclusion",
+    "article": "der",
+    "plural": "",
+    "sentence": "Welchen Abschluss hast du?",
+    "level": "B1.1",
+    "trivia": "Literally \"closure\" or \"lock-up\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Akzent",
     "type": "Noun",
     "english": "Accent / Stress",
@@ -1646,6 +1795,30 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Anfang",
+    "type": "Noun",
+    "english": "The beginning",
+    "article": "der",
+    "plural": "",
+    "sentence": "Ist aller Anfang schwer?",
+    "level": "A2.1",
+    "trivia": "Proverb: \"Aller Anfang ist schwer\" (All beginnings are hard).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Der Anfang war nicht so schwer.",
+    "type": "Phrase",
+    "english": "The beginning was not so hard.",
+    "article": "",
+    "plural": "",
+    "sentence": "War der Anfang schwer?",
+    "level": "A2.1",
+    "trivia": "Opposite: Das Ende.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Apfel",
@@ -1692,9 +1865,9 @@
     "english": "The doctor",
     "article": "der",
     "plural": "",
-    "sentence": "Bist du ein Arzt?",
+    "sentence": "Hilft dir der Arzt?",
     "level": "A1.1",
-    "trivia": "The female version is die Ärztin.",
+    "trivia": "Female: Die Ärztin.",
     "successCount": 0,
     "failCount": 0,
     "status": "study"
@@ -1724,6 +1897,42 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Astronaut",
+    "type": "Noun",
+    "english": "The astronaut",
+    "article": "der",
+    "plural": "",
+    "sentence": "Ist der Astronaut mutig?",
+    "level": "A2.1",
+    "trivia": "Masculine noun.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Der Astronaut fliegt zum Mond.",
+    "type": "Phrase",
+    "english": "The astronaut flies to the moon.",
+    "article": "",
+    "plural": "",
+    "sentence": "Fliegt der Astronaut zum Mond?",
+    "level": "A1.2",
+    "trivia": "\"Zu\" + \"dem\" = zum.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Der Astronaut ist zum Mond geflogen.",
+    "type": "Phrase",
+    "english": "The astronaut flew to the moon.",
+    "article": "",
+    "plural": "",
+    "sentence": "Ist der Astronaut zum Mond geflogen?",
+    "level": "A2.1",
+    "trivia": "Movement = \"sein\" auxiliary.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Aufenthalt",
@@ -1770,9 +1979,9 @@
     "english": "The report",
     "article": "der",
     "plural": "",
-    "sentence": "Schreibst du den Bericht?",
-    "level": "A2.1",
-    "trivia": "Words ending in -icht are often masculine.",
+    "sentence": "Ist der Bericht fertig?",
+    "level": "B1.1",
+    "trivia": "Masculine noun.",
     "successCount": 0,
     "failCount": 0,
     "status": "study"
@@ -1908,6 +2117,18 @@
     "status": "study"
   },
   {
+    "word": "Dozent",
+    "type": "Noun",
+    "english": "The lecturer / uni teacher",
+    "article": "der",
+    "plural": "",
+    "sentence": "Spricht der Dozent leise?",
+    "level": "B1.1",
+    "trivia": "Specific title for university instructors.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Drucker",
     "type": "Noun",
     "english": "The printer",
@@ -1988,15 +2209,14 @@
   {
     "word": "Film",
     "type": "Noun",
-    "english": "Movie / Film",
+    "english": "The movie / film",
     "article": "der",
-    "plural": "die Filme",
-    "sentence": "Er möchte einen Film sehen.",
+    "plural": "",
+    "sentence": "War der Film lustig?",
     "level": "A1.1",
-    "trivia": "English cognate.",
+    "trivia": "Masculine noun.",
     "successCount": 0,
-    "failCount": 0,
-    "status": "study"
+    "failCount": 0
   },
   {
     "word": "Flughafen",
@@ -2103,6 +2323,18 @@
     "status": "study"
   },
   {
+    "word": "Hunger",
+    "type": "Noun",
+    "english": "The hunger",
+    "article": "der",
+    "plural": "",
+    "sentence": "Hast du großen Hunger?",
+    "level": "A1.1",
+    "trivia": "Masculine.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Informatiker",
     "type": "Noun",
     "english": "IT Specialist",
@@ -2151,7 +2383,8 @@
     "level": "A1.1",
     "trivia": "Usually masculine in Germany (der).",
     "successCount": 0,
-    "failCount": 0
+    "failCount": 0,
+    "status": "study"
   },
   {
     "word": "Journalist",
@@ -2185,9 +2418,9 @@
     "english": "The coffee",
     "article": "der",
     "plural": "",
-    "sentence": "Trinkst du gerne Kaffee?",
+    "sentence": "Schmeckt dir der Kaffee?",
     "level": "A1.1",
-    "trivia": "Almost identical to English, just remember it's masculine (der).",
+    "trivia": "Stress is on the first syllable (KAF-fee) for the drink.",
     "successCount": 0,
     "failCount": 0,
     "status": "study"
@@ -2247,28 +2480,38 @@
   {
     "word": "Koch",
     "type": "Noun",
-    "english": "Cook / Chef",
+    "english": "The cook / chef",
     "article": "der",
-    "plural": "die Köche / -innen",
-    "sentence": "Der Koch kocht Suppe.",
+    "plural": "",
+    "sentence": "Kocht der Koch gut?",
     "level": "A1.1",
-    "trivia": "The word looks like \"Cook.\"",
+    "trivia": "Feminine: Die Köchin.",
     "successCount": 0,
-    "failCount": 0,
-    "status": "study"
+    "failCount": 0
   },
   {
     "word": "Kollege",
     "type": "Noun",
-    "english": "The (male) colleague",
+    "english": "The colleague (male)",
     "article": "der",
     "plural": "",
-    "sentence": "Ist das dein Kollege?",
+    "sentence": "Ist dein Kollege nett?",
     "level": "A1.2",
-    "trivia": "The feminine is die Kollegin.",
+    "trivia": "This is a \"weak noun\" (N-Declension), adds -n in accusative/dative (den Kollegen).",
     "successCount": 0,
-    "failCount": 0,
-    "status": "study"
+    "failCount": 0
+  },
+  {
+    "word": "Krimi",
+    "type": "Noun",
+    "english": "The crime thriller",
+    "article": "der",
+    "plural": "",
+    "sentence": "Wer ist der Mörder im Krimi?",
+    "level": "A2.1",
+    "trivia": "Very popular genre in Germany (e.g., \"Tatort\").",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Kuchen",
@@ -2280,7 +2523,8 @@
     "level": "A1.1",
     "trivia": "Think of a \"cook\" making a \"cake\"—both share the same linguistic root.",
     "successCount": 0,
-    "failCount": 0
+    "failCount": 0,
+    "status": "study"
   },
   {
     "word": "Künstler",
@@ -2350,15 +2594,26 @@
   {
     "word": "Lehrer",
     "type": "Noun",
-    "english": "Teacher",
+    "english": "The teacher",
     "article": "der",
-    "plural": "die Lehrer / -innen",
-    "sentence": "Die Lehrerin erklärt viel.",
+    "plural": "",
+    "sentence": "Ist der Lehrer streng?",
     "level": "A1.1",
-    "trivia": "Related to lehren (to teach).",
+    "trivia": "From \"lehren\" (to teach). Ends in -er (Masculine agent).",
     "successCount": 0,
-    "failCount": 0,
-    "status": "study"
+    "failCount": 0
+  },
+  {
+    "word": "Lehrling",
+    "type": "Noun",
+    "english": "The apprentice",
+    "article": "der",
+    "plural": "",
+    "sentence": "Arbeitet der Lehrling fleißig?",
+    "level": "B1.1",
+    "trivia": "Suffix -ling makes it masculine.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Lippenstift",
@@ -2502,6 +2757,18 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Mond",
+    "type": "Noun",
+    "english": "The moon",
+    "article": "der",
+    "plural": "",
+    "sentence": "Scheint der Mond hell?",
+    "level": "A1.1",
+    "trivia": "Masculine (Der Mond) vs Sun (Die Sonne).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Montag",
@@ -2684,6 +2951,18 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Professor",
+    "type": "Noun",
+    "english": "The professor",
+    "article": "der",
+    "plural": "",
+    "sentence": "Hat der Professor Zeit?",
+    "level": "A1.1",
+    "trivia": "Higher rank than Dozent.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Quark",
@@ -2883,15 +3162,26 @@
   {
     "word": "Student",
     "type": "Noun",
-    "english": "Student (Uni)",
+    "english": "The student (university)",
     "article": "der",
-    "plural": "die Studenten / -innen",
-    "sentence": "Ich bin Student.",
+    "plural": "",
+    "sentence": "Lernt der Student viel?",
     "level": "A1.1",
-    "trivia": "English cognate.",
+    "trivia": "Specifically for university, not school (Schüler).",
     "successCount": 0,
-    "failCount": 0,
-    "status": "study"
+    "failCount": 0
+  },
+  {
+    "word": "Studiengang",
+    "type": "Noun",
+    "english": "The course of study / major",
+    "article": "der",
+    "plural": "",
+    "sentence": "Ist der Studiengang neu?",
+    "level": "B1.1",
+    "trivia": "Compound: Studien + Gang (path/walk). Masculine.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Stuhl",
@@ -3022,6 +3312,18 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Vortrag",
+    "type": "Noun",
+    "english": "The lecture / speech",
+    "article": "der",
+    "plural": "",
+    "sentence": "War der Vortrag lang?",
+    "level": "B1.1",
+    "trivia": "Masculine.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Weißwein",
@@ -3180,6 +3482,18 @@
     "status": "study"
   },
   {
+    "word": "Ausbildung",
+    "type": "Noun",
+    "english": "The apprenticeship / training",
+    "article": "die",
+    "plural": "",
+    "sentence": "Dauert die Ausbildung lange?",
+    "level": "A2.1",
+    "trivia": "Ends in -ung (Feminine).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Banane",
     "type": "Noun",
     "english": "The banana",
@@ -3208,15 +3522,26 @@
   {
     "word": "Besprechung",
     "type": "Noun",
-    "english": "The meeting",
+    "english": "The meeting / discussion",
     "article": "die",
     "plural": "",
-    "sentence": "Kommst du zur Besprechung?",
-    "level": "A2.1",
-    "trivia": "Ends in -ung, so it is feminine (die).",
+    "sentence": "War die Besprechung langweilig?",
+    "level": "A2.2",
+    "trivia": "From \"besprechen\" (to discuss something specific). Ends in -ung -> Feminine.",
     "successCount": 0,
-    "failCount": 0,
-    "status": "study"
+    "failCount": 0
+  },
+  {
+    "word": "Die Besprechung hat eine Stunde gedauert.",
+    "type": "Phrase",
+    "english": "The meeting lasted one hour.",
+    "article": "",
+    "plural": "",
+    "sentence": "Wie lange hat der Film gedauert?",
+    "level": "A2.1",
+    "trivia": "\"Dauern\" means to last (duration).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Bibliothek",
@@ -3224,9 +3549,9 @@
     "english": "The library",
     "article": "die",
     "plural": "",
-    "sentence": "Wo ist die Bibliothek?",
+    "sentence": "Ist die Bibliothek heute offen?",
     "level": "A1.2",
-    "trivia": "From Greek biblion (book). Feminine.",
+    "trivia": "From Greek \"bibliotheke\". Short form: die Bib.",
     "successCount": 0,
     "failCount": 0,
     "status": "study"
@@ -3267,7 +3592,8 @@
     "level": "A1.1",
     "trivia": "Braten means to fry or roast.",
     "successCount": 0,
-    "failCount": 0
+    "failCount": 0,
+    "status": "study"
   },
   {
     "word": "Brille",
@@ -3314,9 +3640,9 @@
     "english": "The curry sausage",
     "article": "die",
     "plural": "",
-    "sentence": "Magst du Currywurst?",
-    "level": "A1.1",
-    "trivia": "Wurst (sausage) is always feminine.",
+    "sentence": "Ist die Currywurst scharf?",
+    "level": "A1.2",
+    "trivia": "Compound noun: Curry + Wurst. Gender takes the last word (die Wurst).",
     "successCount": 0,
     "failCount": 0,
     "status": "study"
@@ -3348,6 +3674,18 @@
     "status": "study"
   },
   {
+    "word": "Daten (Plural)",
+    "type": "Noun",
+    "english": "The data",
+    "article": "die",
+    "plural": "",
+    "sentence": "Sind die Daten sicher?",
+    "level": "B1.1",
+    "trivia": "Singular is \"das Datum\" (the date/datum), but rarely used for data.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Datenanalystin",
     "type": "Noun",
     "english": "Data analyst (f)",
@@ -3366,9 +3704,9 @@
     "english": "The email",
     "article": "die",
     "plural": "",
-    "sentence": "Hast du die E-Mail gelesen?",
+    "sentence": "Hast du meine E-Mail bekommen?",
     "level": "A1.1",
-    "trivia": "Usually feminine (die).",
+    "trivia": "Adopted from English; plural adds an -s.",
     "successCount": 0,
     "failCount": 0,
     "status": "study"
@@ -3396,7 +3734,8 @@
     "level": "A1.2",
     "trivia": "Erde (earth) + Beere (berry).",
     "successCount": 0,
-    "failCount": 0
+    "failCount": 0,
+    "status": "study"
   },
   {
     "word": "Fahrkarte",
@@ -3531,15 +3870,14 @@
   {
     "word": "Gymnastik",
     "type": "Noun",
-    "english": "The gymnastics/exercise",
+    "english": "The gymnastics / exercise",
     "article": "die",
     "plural": "",
-    "sentence": "Magst du Gymnastik?",
-    "level": "A1.2",
-    "trivia": "Feminine (die).",
+    "sentence": "Machst du gern Gymnastik?",
+    "level": "A2.1",
+    "trivia": "Ending in -ik usually makes it feminine (Die).",
     "successCount": 0,
-    "failCount": 0,
-    "status": "study"
+    "failCount": 0
   },
   {
     "word": "Hauptstadt",
@@ -3586,9 +3924,9 @@
     "english": "The information",
     "article": "die",
     "plural": "",
-    "sentence": "Hast du die Information?",
+    "sentence": "Ist die Information korrekt?",
     "level": "A1.1",
-    "trivia": "Words ending in -ion are always feminine (die).",
+    "trivia": "Usually used in plural \"Informationen\" (Infos).",
     "successCount": 0,
     "failCount": 0,
     "status": "study"
@@ -3763,6 +4101,30 @@
     "status": "study"
   },
   {
+    "word": "Medienwissenschaften",
+    "type": "Noun",
+    "english": "The media sciences",
+    "article": "die",
+    "plural": "",
+    "sentence": "Sind Medienwissenschaften beliebt?",
+    "level": "B1.1",
+    "trivia": "Plural noun usually.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Mensa",
+    "type": "Noun",
+    "english": "The cafeteria (university)",
+    "article": "die",
+    "plural": "",
+    "sentence": "Ist das Essen in der Mensa gut?",
+    "level": "A1.2",
+    "trivia": "Latin for \"table\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Milch",
     "type": "Noun",
     "english": "The milk",
@@ -3906,6 +4268,18 @@
     "status": "study"
   },
   {
+    "word": "Note",
+    "type": "Noun",
+    "english": "The grade / mark / musical note",
+    "article": "die",
+    "plural": "",
+    "sentence": "Welche Note hast du bekommen?",
+    "level": "A1.2",
+    "trivia": "In Germany, 1 is best, 6 is worst.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Nudeln",
     "type": "Noun",
     "english": "The noodles/pasta",
@@ -3954,7 +4328,8 @@
     "level": "A1.1",
     "trivia": "Refers to the whole vegetable, not just the spice.",
     "successCount": 0,
-    "failCount": 0
+    "failCount": 0,
+    "status": "study"
   },
   {
     "word": "Party",
@@ -4122,7 +4497,8 @@
     "level": "A1.1",
     "trivia": "Ends in -e, which is a classic indicator of a feminine noun.",
     "successCount": 0,
-    "failCount": 0
+    "failCount": 0,
+    "status": "study"
   },
   {
     "word": "Schweiz",
@@ -4268,6 +4644,30 @@
     "status": "study"
   },
   {
+    "word": "Die Studenten haben in der Bibliothek Bücher ausgeliehen.",
+    "type": "Phrase",
+    "english": "The students borrowed books in the library.",
+    "article": "",
+    "plural": "",
+    "sentence": "Haben die Studenten Bücher ausgeliehen?",
+    "level": "A2.1",
+    "trivia": "Perfect tense of \"ausleihen\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Die Studenten leihen in der Bibliothek Bücher aus.",
+    "type": "Phrase",
+    "english": "The students borrow books in the library.",
+    "article": "",
+    "plural": "",
+    "sentence": "Leihen die Studenten Bücher aus?",
+    "level": "A2.1",
+    "trivia": "Present tense of \"ausleihen\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Studie",
     "type": "Noun",
     "english": "The study",
@@ -4279,6 +4679,18 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Studiengebühr",
+    "type": "Noun",
+    "english": "The tuition fee",
+    "article": "die",
+    "plural": "",
+    "sentence": "Ist die Studiengebühr hoch?",
+    "level": "B1.1",
+    "trivia": "Only some private unis in Germany charge this.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Stunde",
@@ -4394,7 +4806,8 @@
     "level": "A1.1",
     "trivia": "Ends in -e, so it is feminine.",
     "successCount": 0,
-    "failCount": 0
+    "failCount": 0,
+    "status": "study"
   },
   {
     "word": "Torte",
@@ -4421,6 +4834,18 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Tradition",
+    "type": "Noun",
+    "english": "The tradition",
+    "article": "die",
+    "plural": "",
+    "sentence": "Ist die Tradition alt?",
+    "level": "B1.1",
+    "trivia": "Words ending in -ion are feminine.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Tür",
@@ -4486,6 +4911,30 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Die Universitäten bieten internationale Abschlüsse an.",
+    "type": "Phrase",
+    "english": "The universities offer international degrees.",
+    "article": "",
+    "plural": "",
+    "sentence": "Bietet die Uni einen Abschluss an?",
+    "level": "B1.1",
+    "trivia": "\"Anbieten\" (to offer) is separable.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Verwaltung",
+    "type": "Noun",
+    "english": "The administration",
+    "article": "die",
+    "plural": "",
+    "sentence": "Wo ist die Verwaltung?",
+    "level": "B1.1",
+    "trivia": "Ends in -ung (Feminine).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Vorlesung",
@@ -4722,6 +5171,18 @@
     "status": "study"
   },
   {
+    "word": "Einige Universitäten haben eine lange Tradition.",
+    "type": "Phrase",
+    "english": "Some universities have a long tradition.",
+    "article": "",
+    "plural": "",
+    "sentence": "Haben die Universitäten hier eine Tradition?",
+    "level": "B1.1",
+    "trivia": "\"Einige\" means some/a few.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Emma und Hilde trinken Kaffee.",
     "type": "Phrase",
     "english": "Emma and Hilde drink coffee.",
@@ -4876,6 +5337,30 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Es gibt insgesamt 18 000 Studiengänge.",
+    "type": "Phrase",
+    "english": "There are a total of 18,000 degree programs.",
+    "article": "",
+    "plural": "",
+    "sentence": "Welchen Studiengang wählst du?",
+    "level": "B1.1",
+    "trivia": "\"Insgesamt\" means in total / all together.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Es gibt staatliche und private Universitäten.",
+    "type": "Phrase",
+    "english": "There are public and private universities.",
+    "article": "",
+    "plural": "",
+    "sentence": "Gibt es in deiner Stadt eine Universität?",
+    "level": "B1.1",
+    "trivia": "\"Es gibt\" + Accusative (universities).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Es gibt WLAN.",
@@ -5463,6 +5948,54 @@
     "status": "study"
   },
   {
+    "word": "Ich beende die Schule.",
+    "type": "Phrase",
+    "english": "I finish school.",
+    "article": "",
+    "plural": "",
+    "sentence": "Beendest du die Schule bald?",
+    "level": "A2.1",
+    "trivia": "\"Beenden\" is not separable (be- prefix).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich beginne ein Studium.",
+    "type": "Phrase",
+    "english": "I am starting a degree program.",
+    "article": "",
+    "plural": "",
+    "sentence": "Wann beginnst du dein Studium?",
+    "level": "A2.1",
+    "trivia": "\"Studium\" refers to the act of studying at university, not homework.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich bekomme eine gute Note.",
+    "type": "Phrase",
+    "english": "I get a good grade.",
+    "article": "",
+    "plural": "",
+    "sentence": "Bekommst du eine gute Note?",
+    "level": "A1.2",
+    "trivia": "Present tense.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich bekomme Informationen im Sekretariat.",
+    "type": "Phrase",
+    "english": "I get information in the secretary's office.",
+    "article": "",
+    "plural": "",
+    "sentence": "Bekommst du Hilfe im Sekretariat?",
+    "level": "A2.1",
+    "trivia": "False friend alert: \"bekommen\" means \"to get/receive\", NOT \"to become\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich besuche eine Konferenz.",
     "type": "Phrase",
     "english": "I am attending a conference.",
@@ -5487,6 +6020,18 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Ich bezahle etwas in der Verwaltung.",
+    "type": "Phrase",
+    "english": "I pay something in the administration office.",
+    "article": "",
+    "plural": "",
+    "sentence": "Bezahlst du die Gebühr in der Verwaltung?",
+    "level": "B1.1",
+    "trivia": "\"Bezahlen\" (to pay).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Ich bin beruflich in Frankfurt.",
@@ -5567,6 +6112,18 @@
     "status": "study"
   },
   {
+    "word": "Ich bin danach ausgegangen.",
+    "type": "Phrase",
+    "english": "I went out after that.",
+    "article": "",
+    "plural": "",
+    "sentence": "Bist du gestern ausgegangen?",
+    "level": "A2.1",
+    "trivia": "Means going out socially (bars, clubs).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich bin der Meinung, dass...",
     "type": "Phrase",
     "english": "I am of the opinion that...",
@@ -5619,6 +6176,30 @@
     "status": "study"
   },
   {
+    "word": "Ich bin gegangen.",
+    "type": "Phrase",
+    "english": "I went / walked.",
+    "article": "",
+    "plural": "",
+    "sentence": "Wohin bist du gegangen?",
+    "level": "A1.2",
+    "trivia": "Go = Gehen. Past participle = Gegangen. Aux = Sein.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich bin gelandet.",
+    "type": "Phrase",
+    "english": "I landed.",
+    "article": "",
+    "plural": "",
+    "sentence": "Bist du gut gelandet?",
+    "level": "A2.1",
+    "trivia": "Movement/Change of state = sein.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich bin geschieden.",
     "type": "Phrase",
     "english": "I am divorced.",
@@ -5643,6 +6224,30 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Ich bin in die Universität gegangen.",
+    "type": "Phrase",
+    "english": "I went to the university.",
+    "article": "",
+    "plural": "",
+    "sentence": "Bist du heute in die Universität gegangen?",
+    "level": "A2.1",
+    "trivia": "\"Uni\" is the common short form.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich bin Koch.",
+    "type": "Phrase",
+    "english": "I am a chef/cook.",
+    "article": "",
+    "plural": "",
+    "sentence": "Bist du Koch von Beruf?",
+    "level": "A1.1",
+    "trivia": "No article used when stating professions (\"Ich bin Lehrer\", not \"ein Lehrer\").",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Ich bin krank",
@@ -5723,6 +6328,30 @@
     "status": "study"
   },
   {
+    "word": "Ich bin um 7.00 Uhr aufgestanden.",
+    "type": "Phrase",
+    "english": "I got up at 7:00 AM.",
+    "article": "",
+    "plural": "",
+    "sentence": "Wann bist du heute aufgestanden?",
+    "level": "A2.1",
+    "trivia": "\"Aufstehen\" is a separable verb (auf + stehen). Think \"stand up\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich bin um 8.00 Uhr ins Büro gefahren.",
+    "type": "Phrase",
+    "english": "I drove to the office at 8:00 AM.",
+    "article": "",
+    "plural": "",
+    "sentence": "Bist du mit dem Auto ins Büro gefahren?",
+    "level": "A2.1",
+    "trivia": "Uses \"sein\" (bin) because it involves movement from A to B.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich bin verheiratet.",
     "type": "Phrase",
     "english": "I am married.",
@@ -5734,6 +6363,18 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Ich bin zum Arzt gegangen.",
+    "type": "Phrase",
+    "english": "I went to the doctor.",
+    "article": "",
+    "plural": "",
+    "sentence": "Bist du zum Arzt gegangen?",
+    "level": "A2.1",
+    "trivia": "\"Arzt\" is masculine.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Ich bleibe für eine Nacht.",
@@ -5890,6 +6531,18 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Ich esse in der Mensa.",
+    "type": "Phrase",
+    "english": "I eat in the cafeteria.",
+    "article": "",
+    "plural": "",
+    "sentence": "Isst du heute in der Mensa?",
+    "level": "A2.1",
+    "trivia": "\"Mensa\" is the university canteen.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Ich esse mittags in der Kantine.",
@@ -6165,6 +6818,102 @@
     "status": "study"
   },
   {
+    "word": "Ich habe abends ferngesehen.",
+    "type": "Phrase",
+    "english": "I watched TV in the evening.",
+    "article": "",
+    "plural": "",
+    "sentence": "Siehst du abends fern?",
+    "level": "A2.1",
+    "trivia": "Separable verb: fernsehen (literally \"far seeing\").",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe an der Universität einen Vortrag gehalten.",
+    "type": "Phrase",
+    "english": "I gave a presentation at the university.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du einen Vortrag gehalten?",
+    "level": "B1.1",
+    "trivia": "Irregular: halten -> gehalten.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe angefangen.",
+    "type": "Phrase",
+    "english": "I started.",
+    "article": "",
+    "plural": "",
+    "sentence": "Wann hast du angefangen?",
+    "level": "A2.1",
+    "trivia": "Separable prefix (an + fangen) -> an-ge-fangen.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe auf Englisch telefoniert.",
+    "type": "Phrase",
+    "english": "I spoke on the phone in English.",
+    "article": "",
+    "plural": "",
+    "sentence": "Telefonierst du oft auf Deutsch?",
+    "level": "A2.1",
+    "trivia": "Note the preposition \"auf\" for languages.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe Berichte geschrieben.",
+    "type": "Phrase",
+    "english": "I wrote reports.",
+    "article": "",
+    "plural": "",
+    "sentence": "Musst du Berichte schreiben?",
+    "level": "B1.1",
+    "trivia": "\"Bericht\" comes from \"berichten\" (to report/tell).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe besucht.",
+    "type": "Phrase",
+    "english": "I visited.",
+    "article": "",
+    "plural": "",
+    "sentence": "Wen hast du besucht?",
+    "level": "A2.1",
+    "trivia": "Be- prefix is inseparable, no \"ge-\" added (besucht).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe danach eingekauft.",
+    "type": "Phrase",
+    "english": "I went shopping after that.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du fürs Wochenende eingekauft?",
+    "level": "A2.1",
+    "trivia": "Separable: ein + kaufen (to buy in).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe danach Gymnastik gemacht.",
+    "type": "Phrase",
+    "english": "I did gymnastics/exercise after that.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du heute Gymnastik gemacht?",
+    "level": "A2.1",
+    "trivia": "\"Gymnastik\" typically refers to light exercise or calisthenics, not just Olympic gymnastics.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich habe das Gefühl, dass…",
     "type": "Phrase",
     "english": "I have the feeling that…",
@@ -6176,6 +6925,42 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Ich habe Daten analysiert.",
+    "type": "Phrase",
+    "english": "I analyzed data.",
+    "article": "",
+    "plural": "",
+    "sentence": "Analysierst du oft Daten?",
+    "level": "B1.1",
+    "trivia": "Verbs ending in -ieren (analysieren) don't get a \"ge-\" prefix in Partizip II (analysiert).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe die Schule beendet.",
+    "type": "Phrase",
+    "english": "I finished school.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du die Schule beendet?",
+    "level": "A2.1",
+    "trivia": "Perfect tense of \"beenden\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe dort gearbeitet.",
+    "type": "Phrase",
+    "english": "I worked there.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du gestern lange gearbeitet?",
+    "level": "A1.2",
+    "trivia": "Regular verb: arbeiten -> gearbeitet.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Ich habe Durst",
@@ -6191,6 +6976,54 @@
     "status": "study"
   },
   {
+    "word": "Ich habe ein Bild gemalt.",
+    "type": "Phrase",
+    "english": "I painted a picture.",
+    "article": "",
+    "plural": "",
+    "sentence": "Malst du oft Bilder?",
+    "level": "A1.1",
+    "trivia": "\"Malen\" is to paint/draw artistically.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe ein Dokument kopiert.",
+    "type": "Phrase",
+    "english": "I copied a document.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du das Dokument kopiert?",
+    "level": "A2.1",
+    "trivia": "No \"ge-\" prefix.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe ein Praktikum bei BMW gemacht.",
+    "type": "Phrase",
+    "english": "I did an internship at BMW.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du ein Praktikum gemacht?",
+    "level": "A2.1",
+    "trivia": "\"Bei\" is used for companies (at).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe eine Currywurst gegessen.",
+    "type": "Phrase",
+    "english": "I ate a currywurst.",
+    "article": "",
+    "plural": "",
+    "sentence": "Isst du gern Currywurst?",
+    "level": "A2.1",
+    "trivia": "Iconic German fast food (sausage with ketchup/curry powder).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich habe eine Frage",
     "type": "Phrase",
     "english": "I have a question",
@@ -6202,6 +7035,18 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Ich habe eine gute Note bekommen.",
+    "type": "Phrase",
+    "english": "I got a good grade.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du eine gute Note bekommen?",
+    "level": "A2.1",
+    "trivia": "\"Bekommen\" is a strong verb, Partizip II is same as infinitive (bekommen).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Ich habe eine Reservierung.",
@@ -6217,6 +7062,30 @@
     "status": "study"
   },
   {
+    "word": "Ich habe einen Film gesehen.",
+    "type": "Phrase",
+    "english": "I saw a movie.",
+    "article": "",
+    "plural": "",
+    "sentence": "Welchen Film hast du gesehen?",
+    "level": "A2.1",
+    "trivia": "\"Film\" is masculine (der).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe einen Krimi gelesen.",
+    "type": "Phrase",
+    "english": "I read a crime novel/thriller.",
+    "article": "",
+    "plural": "",
+    "sentence": "Liest du gern Krimis?",
+    "level": "A2.1",
+    "trivia": "\"Krimi\" is short for \"Kriminalroman\" or \"Kriminalfilm\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich habe es eilig",
     "type": "Phrase",
     "english": "I'm in a hurry",
@@ -6228,6 +7097,42 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Ich habe etwas gehört.",
+    "type": "Phrase",
+    "english": "I heard something.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du das gehört?",
+    "level": "A1.2",
+    "trivia": "Regular verb.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe für die Prüfung gelernt.",
+    "type": "Phrase",
+    "english": "I studied for the exam.",
+    "article": "",
+    "plural": "",
+    "sentence": "Lernst du für die Prüfung?",
+    "level": "A1.2",
+    "trivia": "\"Lernen\" means both to learn and to study (reviewing).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe getrunken.",
+    "type": "Phrase",
+    "english": "I drank.",
+    "article": "",
+    "plural": "",
+    "sentence": "Was hast du getrunken?",
+    "level": "A1.2",
+    "trivia": "Strong verb (i -> a -> u).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Ich habe Hunger",
@@ -6243,6 +7148,18 @@
     "status": "study"
   },
   {
+    "word": "Ich habe in Jena Medienwissenschaften studiert.",
+    "type": "Phrase",
+    "english": "I studied media sciences in Jena.",
+    "article": "",
+    "plural": "",
+    "sentence": "Was hast du studiert?",
+    "level": "B1.1",
+    "trivia": "Using \"haben\" for past studies.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich habe jeden Tag eine Besprechung.",
     "type": "Phrase",
     "english": "I have a meeting every day.",
@@ -6254,6 +7171,18 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Ich habe Kaffee gekocht.",
+    "type": "Phrase",
+    "english": "I made (cooked) coffee.",
+    "article": "",
+    "plural": "",
+    "sentence": "Kochst du morgens Kaffee?",
+    "level": "A1.2",
+    "trivia": "Germans say \"cook\" (kochen) for making coffee or tea.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Ich habe keine Ahnung",
@@ -6282,6 +7211,18 @@
     "status": "study"
   },
   {
+    "word": "Ich habe keine Studiengebühren bezahlt.",
+    "type": "Phrase",
+    "english": "I paid no tuition fees.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du Studiengebühren bezahlt?",
+    "level": "B1.1",
+    "trivia": "\"Keine\" negates the noun.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich habe keine Zeit",
     "type": "Phrase",
     "english": "I have no time",
@@ -6289,7 +7230,7 @@
     "plural": "",
     "sentence": "Heute habe ich keine Zeit.",
     "level": "A1.2",
-    "trivia": "Very German reality 😅",
+    "trivia": "Very German reality",
     "successCount": 0,
     "failCount": 0,
     "status": "study"
@@ -6308,6 +7249,30 @@
     "status": "study"
   },
   {
+    "word": "Ich habe keinen Hunger gehabt.",
+    "type": "Phrase",
+    "english": "I had no hunger (usually: Ich hatte keinen Hunger).",
+    "article": "",
+    "plural": "",
+    "sentence": "Hattest du Hunger?",
+    "level": "A1.2",
+    "trivia": "\"Hunger haben\" is the standard phrase for \"to be hungry\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe Kollegen angerufen.",
+    "type": "Phrase",
+    "english": "I called colleagues.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du deine Kollegen angerufen?",
+    "level": "A2.1",
+    "trivia": "\"Anrufen\" is separable (ruf... an).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich habe Lust",
     "type": "Phrase",
     "english": "I feel like",
@@ -6321,6 +7286,102 @@
     "status": "study"
   },
   {
+    "word": "Ich habe meine Ausbildung in Berlin gemacht.",
+    "type": "Phrase",
+    "english": "I did my apprenticeship/training in Berlin.",
+    "article": "",
+    "plural": "",
+    "sentence": "Wo hast du deine Ausbildung gemacht?",
+    "level": "A2.1",
+    "trivia": "\"Ausbildung\" is vocational training.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe mit dem Studium aufgehört.",
+    "type": "Phrase",
+    "english": "I quit/stopped my studies.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du mit dem Studium aufgehört?",
+    "level": "B1.1",
+    "trivia": "Perfect form of \"aufhören\".",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe mit Kollegen gesprochen.",
+    "type": "Phrase",
+    "english": "I spoke with colleagues.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du mit dem Chef gesprochen?",
+    "level": "A2.1",
+    "trivia": "Irregular: sprechen -> gesprochen.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe Musik gehört.",
+    "type": "Phrase",
+    "english": "I listened to music.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hörst du Musik beim Lernen?",
+    "level": "A1.2",
+    "trivia": "\"Hören\" means both to hear and to listen.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe nicht viel geschlafen.",
+    "type": "Phrase",
+    "english": "I didn't sleep much.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du gut geschlafen?",
+    "level": "A2.1",
+    "trivia": "Irregular verb: schlafen -> geschlafen.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe oft mit Lehrern diskutiert.",
+    "type": "Phrase",
+    "english": "I often discussed/debated with teachers.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du mit Lehrern diskutiert?",
+    "level": "A2.1",
+    "trivia": "\"Diskutieren\" implies exchanging arguments.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe Seminare besucht.",
+    "type": "Phrase",
+    "english": "I attended seminars.",
+    "article": "",
+    "plural": "",
+    "sentence": "Magst du Seminare lieber als Vorlesungen?",
+    "level": "B1.1",
+    "trivia": "\"Besuchen\" is used for attending institutions or events.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe um 7.30 Uhr gefrühstückt.",
+    "type": "Phrase",
+    "english": "I ate breakfast at 7:30 AM.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du schon gefrühstückt?",
+    "level": "A1.2",
+    "trivia": "The noun is \"das Frühstück\" (early piece).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich habe vergessen",
     "type": "Phrase",
     "english": "I forgot",
@@ -6332,6 +7393,114 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Ich habe viel gelernt.",
+    "type": "Phrase",
+    "english": "I learned a lot.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du viel gelernt?",
+    "level": "A2.1",
+    "trivia": "\"Viel\" (uncountable amount).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe viel Kaffee getrunken.",
+    "type": "Phrase",
+    "english": "I drank a lot of coffee.",
+    "article": "",
+    "plural": "",
+    "sentence": "Trinkst du viel Kaffee?",
+    "level": "A2.1",
+    "trivia": "Irregular: trinken -> getrunken.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe viele Bücher gelesen.",
+    "type": "Phrase",
+    "english": "I read many books.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du viele Bücher gelesen?",
+    "level": "A2.1",
+    "trivia": "\"Viele\" (countable).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe viele E-Mails geschrieben.",
+    "type": "Phrase",
+    "english": "I wrote many emails.",
+    "article": "",
+    "plural": "",
+    "sentence": "Schreibst du viele E-Mails?",
+    "level": "A1.2",
+    "trivia": "\"E-Mail\" is feminine (die) in German.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe Vorlesungen besucht.",
+    "type": "Phrase",
+    "english": "I attended lectures.",
+    "article": "",
+    "plural": "",
+    "sentence": "Besuchst du alle Vorlesungen?",
+    "level": "B1.1",
+    "trivia": "\"Vorlesung\" literally means \"reading before\" (lecture).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe weitergemacht.",
+    "type": "Phrase",
+    "english": "I continued / carried on.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hast du weitergemacht?",
+    "level": "A2.1",
+    "trivia": "Perfect tense.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich habe zwei Projekte präsentiert.",
+    "type": "Phrase",
+    "english": "I presented two projects.",
+    "article": "",
+    "plural": "",
+    "sentence": "Präsentierst du heute das Projekt?",
+    "level": "B1.1",
+    "trivia": "-ieren verb, so no \"ge-\" prefix (präsentiert).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich halte an der Universität einen Vortrag.",
+    "type": "Phrase",
+    "english": "I give a presentation/lecture at the university.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hältst du einen Vortrag?",
+    "level": "B1.1",
+    "trivia": "\"Einen Vortrag halten\" is a fixed collocation.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich hatte eine Besprechung.",
+    "type": "Phrase",
+    "english": "I had a meeting.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hattest du eine Besprechung?",
+    "level": "A2.1",
+    "trivia": "Uses Präteritum (simple past) of haben instead of Perfekt usually.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Ich hätte gern ein Wiener Schnitzel.",
@@ -6358,6 +7527,18 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Ich hatte gute Noten.",
+    "type": "Phrase",
+    "english": "I had good grades.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hattest du gute Noten?",
+    "level": "A2.1",
+    "trivia": "Präteritum \"hatte\".",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Ich hebe Geld ab.",
@@ -6399,6 +7580,30 @@
     "status": "study"
   },
   {
+    "word": "Ich höre mit dem Studium auf.",
+    "type": "Phrase",
+    "english": "I am quitting/stopping my studies.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hörst du mit dem Studium auf?",
+    "level": "B1.1",
+    "trivia": "\"Aufhören\" (to stop/cease).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich höre vielleicht wieder auf.",
+    "type": "Phrase",
+    "english": "I might stop again.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hörst du wieder auf?",
+    "level": "A2.2",
+    "trivia": "\"Vielleicht\" = maybe.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich kann das machen",
     "type": "Phrase",
     "english": "I can do that",
@@ -6406,7 +7611,7 @@
     "plural": "",
     "sentence": "Ich kann das für dich machen.",
     "level": "A1.2",
-    "trivia": "Confidence phrase 💪",
+    "trivia": "Confidence phrase",
     "successCount": 0,
     "failCount": 0,
     "status": "study"
@@ -6529,6 +7734,18 @@
     "status": "study"
   },
   {
+    "word": "Ich kopiere ein Dokument.",
+    "type": "Phrase",
+    "english": "I copy a document.",
+    "article": "",
+    "plural": "",
+    "sentence": "Kopierst du das Dokument?",
+    "level": "A1.2",
+    "trivia": "-ieren verb.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich lebe jetzt in Köln.",
     "type": "Phrase",
     "english": "I live in Cologne now.",
@@ -6540,6 +7757,30 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Ich leihe in der Bibliothek Bücher aus.",
+    "type": "Phrase",
+    "english": "I borrow books in the library.",
+    "article": "",
+    "plural": "",
+    "sentence": "Leihst du oft Bücher aus?",
+    "level": "A2.2",
+    "trivia": "\"Ausleihen\" (to lend out/borrow).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich lerne Deutsch im Sprachenzentrum.",
+    "type": "Phrase",
+    "english": "I learn German in the language center.",
+    "article": "",
+    "plural": "",
+    "sentence": "Lernst du im Sprachenzentrum?",
+    "level": "A2.1",
+    "trivia": "\"Zentrum\" is always neuter.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Ich lerne Deutsch, um in Berlin zu arbeiten.",
@@ -6631,6 +7872,30 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Ich mache weiter.",
+    "type": "Phrase",
+    "english": "I continue / carry on.",
+    "article": "",
+    "plural": "",
+    "sentence": "Machst du weiter?",
+    "level": "A2.1",
+    "trivia": "\"Weitermachen\" (separable).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich mache zweimal Gymnastik.",
+    "type": "Phrase",
+    "english": "I do gymnastics twice.",
+    "article": "",
+    "plural": "",
+    "sentence": "Machst du zweimal Gymnastik?",
+    "level": "A2.1",
+    "trivia": "\"Zweimal\" = two times.",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Ich möchte bitte die Hühnersuppe.",
@@ -6880,6 +8145,18 @@
     "status": "study"
   },
   {
+    "word": "Ich schließe ein Studium ab.",
+    "type": "Phrase",
+    "english": "I am completing a degree program.",
+    "article": "",
+    "plural": "",
+    "sentence": "Wann schließt du dein Studium ab?",
+    "level": "B1.1",
+    "trivia": "\"Abschließen\" (to lock up/finish).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich schreibe Berichte.",
     "type": "Phrase",
     "english": "I am writing reports.",
@@ -7088,6 +8365,30 @@
     "status": "study"
   },
   {
+    "word": "Ich suche ein neues Studienfach und du studierst weiter in Dortmund.",
+    "type": "Phrase",
+    "english": "I look for a new major and you continue studying in Dortmund.",
+    "article": "",
+    "plural": "",
+    "sentence": "-",
+    "level": "A2.2",
+    "trivia": "Compound sentence using \"und\" with different subjects.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich suche ein neues Studienfach.",
+    "type": "Phrase",
+    "english": "I am looking for a new subject of study.",
+    "article": "",
+    "plural": "",
+    "sentence": "Suchst du ein Studienfach?",
+    "level": "A2.1",
+    "trivia": "\"Suchen\" takes the accusative.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich tanze gern.",
     "type": "Phrase",
     "english": "I like to dance.",
@@ -7218,6 +8519,30 @@
     "status": "study"
   },
   {
+    "word": "Ich war gestern nicht im Büro.",
+    "type": "Phrase",
+    "english": "I was not in the office yesterday.",
+    "article": "",
+    "plural": "",
+    "sentence": "Warst du gestern im Büro?",
+    "level": "A1.2",
+    "trivia": "Präteritum of sein (war).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Ich war oft in der Bibliothek.",
+    "type": "Phrase",
+    "english": "I was often in the library.",
+    "article": "",
+    "plural": "",
+    "sentence": "Warst du oft in der Bibliothek?",
+    "level": "A2.2",
+    "trivia": "\"War\" (was).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Ich weiß nicht.",
     "type": "Phrase",
     "english": "I don’t know.",
@@ -7268,6 +8593,18 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Ich wohne im Studentenwohnheim.",
+    "type": "Phrase",
+    "english": "I live in the student dormitory.",
+    "article": "",
+    "plural": "",
+    "sentence": "Wohnst du im Studentenwohnheim?",
+    "level": "A2.1",
+    "trivia": "\"Im\" = in dem (dative location).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Ich wohne in Madrid.",
@@ -7736,6 +9073,18 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Mein Studium war schwierig.",
+    "type": "Phrase",
+    "english": "My studies were difficult.",
+    "article": "",
+    "plural": "",
+    "sentence": "War dein Studium schwierig?",
+    "level": "A2.2",
+    "trivia": "Präteritum of sein (war).",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Meiner Meinung nach...",
@@ -8297,6 +9646,30 @@
     "status": "study"
   },
   {
+    "word": "Viele Studenten haben Zimmer gesucht.",
+    "type": "Phrase",
+    "english": "Many students looked for rooms.",
+    "article": "",
+    "plural": "",
+    "sentence": "Haben die Studenten Zimmer gesucht?",
+    "level": "A2.1",
+    "trivia": "Perfect tense.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Viele Studenten suchen Zimmer.",
+    "type": "Phrase",
+    "english": "Many students are looking for rooms.",
+    "article": "",
+    "plural": "",
+    "sentence": "Suchen die Studenten Zimmer?",
+    "level": "A1.2",
+    "trivia": "Present tense.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Vielen Dank",
     "type": "Phrase",
     "english": "Thank you very much",
@@ -8791,6 +10164,42 @@
     "status": "study"
   },
   {
+    "word": "Wir diskutieren oft mit Lehrern.",
+    "type": "Phrase",
+    "english": "We often discuss with teachers.",
+    "article": "",
+    "plural": "",
+    "sentence": "Diskutiert ihr oft mit Lehrern?",
+    "level": "A2.1",
+    "trivia": "Present tense.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Wir haben oft mit Lehrern diskutiert.",
+    "type": "Phrase",
+    "english": "We often discussed with teachers.",
+    "article": "",
+    "plural": "",
+    "sentence": "Habt ihr oft mit Lehrern diskutiert?",
+    "level": "A2.1",
+    "trivia": "Perfect tense.",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Wir hatten viele Vorlesungen.",
+    "type": "Phrase",
+    "english": "We had many lectures.",
+    "article": "",
+    "plural": "",
+    "sentence": "Hattet ihr viele Vorlesungen?",
+    "level": "A2.2",
+    "trivia": "Präteritum of haben (hatten).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
     "word": "Wir hören Radio.",
     "type": "Phrase",
     "english": "We listen to the radio.",
@@ -8854,6 +10263,30 @@
     "successCount": 0,
     "failCount": 0,
     "status": "study"
+  },
+  {
+    "word": "Wir waren 15 Lehrlinge im Lehrjahr.",
+    "type": "Phrase",
+    "english": "We were 15 apprentices in the apprenticeship year.",
+    "article": "",
+    "plural": "",
+    "sentence": "Gab es viele Lehrlinge?",
+    "level": "B1.1",
+    "trivia": "\"Lehrling\" is an older term for \"Auszubildender\" (Azubi).",
+    "successCount": 0,
+    "failCount": 0
+  },
+  {
+    "word": "Wir waren 60 Studenten im Studienjahr.",
+    "type": "Phrase",
+    "english": "We were 60 students in the academic year.",
+    "article": "",
+    "plural": "",
+    "sentence": "Wie viele Studenten wart ihr?",
+    "level": "A2.2",
+    "trivia": "\"Waren\" is past of \"sind\".",
+    "successCount": 0,
+    "failCount": 0
   },
   {
     "word": "Wo wohnst du?",

@@ -63,11 +63,16 @@ function fetchAndSyncVocab() {
             let word = getVal('Word');
             let english = getVal('English Translation');
             let type = getVal('Type');
+            // Normalize Type
+            if (type) {
+                type = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
+            }
+
             let article = '';
 
-            // Extract article from word if present
+            // Extract article from word if present (ONLY for non-Phrases)
             const articleMatch = word.match(/^(der|die|das)\s+/i);
-            if (articleMatch) {
+            if (articleMatch && type !== 'Phrase') {
                 article = articleMatch[1].toLowerCase();
                 word = word.replace(/^(der|die|das)\s+/i, '').trim();
             }
@@ -87,11 +92,6 @@ function fetchAndSyncVocab() {
 
             // Get stats from map or default to 0
             const stats = statsMap.get(slug) || { successCount: 0, failCount: 0 };
-
-            // Normalize Type
-            if (type) {
-                type = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
-            }
 
             // Skip empty rows
             if (!word) return null;
