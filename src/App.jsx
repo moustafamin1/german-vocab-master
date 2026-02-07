@@ -6,6 +6,7 @@ import ResultCard from './components/ResultCard';
 import ConfigScreen from './components/ConfigScreen';
 import SettingsScreen from './components/SettingsScreen';
 import AllWordsScreen from './components/AllWordsScreen';
+import MediaLibrary from './components/MediaLibrary';
 import StatsBar from './components/StatsBar';
 import { getWeightedRandomWord } from './utils/srs-logic';
 import { getCachedVocab } from './services/vocabService';
@@ -16,7 +17,7 @@ const APP_SETTINGS_KEY = 'vocab-app-settings';
 const DAILY_STATS_KEY = 'vocab-daily-stats';
 
 export default function App() {
-    const [view, setView] = useState('loading'); // loading, config, playing, feedback, settings, allWords
+    const [view, setView] = useState('loading'); // loading, config, playing, feedback, settings, allWords, mediaLibrary
     const [devMode, setDevMode] = useState(true);
     const [srsOffset, setSrsOffset] = useState(3);
     const [globalStats, setGlobalStats] = useState({ total: 0, correct: 0, incorrect: 0 });
@@ -341,6 +342,7 @@ export default function App() {
     const handleOpenSettings = () => setView('settings');
     const handleOpenAllWords = () => setView('allWords');
     const handleBackToSettings = () => setView('settings');
+    const handleOpenMediaLibrary = () => setView('mediaLibrary');
 
     if (view === 'loading') {
         return (
@@ -359,7 +361,7 @@ export default function App() {
                     onLogoClick={handleBackToConfig}
                     onSettingsClick={handleOpenSettings}
                     wordCount={baseVocab.length}
-                    isSettingsOpen={view === 'settings' || view === 'allWords'}
+                    isSettingsOpen={view === 'settings' || view === 'allWords' || view === 'mediaLibrary'}
                 />
 
                 <main className="mt-8">
@@ -392,6 +394,7 @@ export default function App() {
                             wordCount={baseVocab.length}
                             onBack={handleBackToConfig}
                             onOpenAllWords={handleOpenAllWords}
+                            onOpenMediaLibrary={handleOpenMediaLibrary}
                             dailyStats={dailyStats}
                         />
                     ) : view === 'allWords' ? (
@@ -399,6 +402,10 @@ export default function App() {
                             vocabPool={vocabPool}
                             onToggleStatus={toggleWordStatus}
                             srsOffset={srsOffset}
+                            onBack={handleBackToSettings}
+                        />
+                    ) : view === 'mediaLibrary' ? (
+                        <MediaLibrary
                             onBack={handleBackToSettings}
                         />
                     ) : (
