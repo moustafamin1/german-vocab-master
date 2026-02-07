@@ -4,7 +4,7 @@ export default function StatsBar({ stats }) {
     const isMilestone = stats.total > 0 && stats.total % 50 === 0;
 
     return (
-        <div className="flex justify-center gap-6 py-1.5 border-b border-zinc-900/50 bg-[#09090b]/50 backdrop-blur-md sticky top-0 z-50">
+        <div className={`flex justify-center gap-6 py-1.5 border-b border-zinc-900/50 bg-[#09090b]/50 backdrop-blur-md sticky top-0 z-50 transition-all ${isMilestone ? 'bar-milestone' : ''}`}>
             <div className="relative">
                 <span
                     key={stats.total}

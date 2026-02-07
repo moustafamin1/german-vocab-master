@@ -115,3 +115,39 @@
   font-size: 10px;
   animation: star-float-twice 2s ease-in-out forwards;
 }
+
+@keyframes flash-bg-yellow {
+  0% {
+    background-color: rgba(9, 9, 11, 0.5); /* bg-[#09090b]/50 */
+    border-color: rgba(24, 24, 27, 0.5); /* border-zinc-900/50 */
+  }
+
+  15% {
+    background-color: rgba(245, 158, 11, 0.2); /* amber-500/20 */
+    border-color: rgba(245, 158, 11, 0.5); /* amber-500/50 */
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
+  }
+
+  30% {
+    background-color: rgba(9, 9, 11, 0.5);
+    border-color: rgba(24, 24, 27, 0.5);
+    box-shadow: none;
+  }
+
+  45% {
+    background-color: rgba(245, 158, 11, 0.2);
+    border-color: rgba(245, 158, 11, 0.5);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
+  }
+
+  60%,
+  100% {
+    background-color: rgba(9, 9, 11, 0.5);
+    border-color: rgba(24, 24, 27, 0.5);
+    box-shadow: none;
+  }
+}
+
+.bar-milestone {
+  animation: flash-bg-yellow 2s ease-in-out forwards;
+}

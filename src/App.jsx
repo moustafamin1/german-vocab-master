@@ -13,12 +13,14 @@ import { getCachedVocab } from './services/vocabService';
 const SRS_STORAGE_KEY = 'vocab-srs-data';
 const GLOBAL_STATS_KEY = 'vocab-global-stats';
 const APP_SETTINGS_KEY = 'vocab-app-settings';
+const DAILY_STATS_KEY = 'vocab-daily-stats';
 
 export default function App() {
     const [view, setView] = useState('loading'); // loading, config, playing, feedback, settings, allWords
     const [devMode, setDevMode] = useState(true);
     const [srsOffset, setSrsOffset] = useState(3);
     const [globalStats, setGlobalStats] = useState({ total: 0, correct: 0, incorrect: 0 });
+    const [dailyStats, setDailyStats] = useState([]);
 
     // App Config State
     const [selectedLevels, setSelectedLevels] = useState([]);
@@ -45,6 +47,7 @@ export default function App() {
         let storedSRS = {};
         let storedGlobalStats = { total: 0, correct: 0, incorrect: 0 };
         let storedSettings = { srsOffset: 3, devMode: true };
+        let storedDailyStats = [];
 
         try {
             // 1. Load SRS Data from LocalStorage
@@ -55,6 +58,9 @@ export default function App() {
 
             // 4. Load App Settings
             storedSettings = JSON.parse(localStorage.getItem(APP_SETTINGS_KEY) || '{"srsOffset":3,"devMode":true}');
+
+            // 5. Load Daily Stats
+            storedDailyStats = JSON.parse(localStorage.getItem(DAILY_STATS_KEY) || '[]');
         } catch (err) {
             console.error('⚠️ Failed to load stored data, using defaults:', err);
             // If data is corrupted (like "[object Object]"), we continue with defaults
@@ -63,6 +69,7 @@ export default function App() {
         setGlobalStats(storedGlobalStats);
         setSrsOffset(storedSettings.srsOffset);
         setDevMode(storedSettings.devMode);
+        setDailyStats(storedDailyStats);
 
         // 2. Merge with base vocab data and Migration Engine
         let dataMigrated = false;
@@ -299,6 +306,32 @@ export default function App() {
         setGlobalStats(newGlobalStats);
         localStorage.setItem(GLOBAL_STATS_KEY, JSON.stringify(newGlobalStats));
 
+        // Update Daily Stats
+        const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+        const updatedDailyStats = [...dailyStats];
+        const todayIndex = updatedDailyStats.findIndex(d => d.date === today);
+
+        if (todayIndex >= 0) {
+            // Update existing entry for today
+            updatedDailyStats[todayIndex] = {
+                date: today,
+                total: updatedDailyStats[todayIndex].total + 1,
+                correct: updatedDailyStats[todayIndex].correct + (correct ? 1 : 0),
+                incorrect: updatedDailyStats[todayIndex].incorrect + (correct ? 0 : 1)
+            };
+        } else {
+            // Add new entry for today
+            updatedDailyStats.push({
+                date: today,
+                total: 1,
+                correct: correct ? 1 : 0,
+                incorrect: correct ? 0 : 1
+            });
+        }
+
+        setDailyStats(updatedDailyStats);
+        localStorage.setItem(DAILY_STATS_KEY, JSON.stringify(updatedDailyStats));
+
         setFeedback({ correct, chosen: answer });
         setView('feedback');
     };
@@ -326,6 +359,7 @@ export default function App() {
                     onLogoClick={handleBackToConfig}
                     onSettingsClick={handleOpenSettings}
                     wordCount={baseVocab.length}
+                    isSettingsOpen={view === 'settings' || view === 'allWords'}
                 />
 
                 <main className="mt-8">
@@ -358,6 +392,7 @@ export default function App() {
                             wordCount={baseVocab.length}
                             onBack={handleBackToConfig}
                             onOpenAllWords={handleOpenAllWords}
+                            dailyStats={dailyStats}
                         />
                     ) : view === 'allWords' ? (
                         <AllWordsScreen

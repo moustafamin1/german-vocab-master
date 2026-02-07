@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy } from 'lucide-react';
 import { fetchAndCacheVocab } from '../services/vocabService';
+import StatsCard from './StatsCard';
 
 export default function SettingsScreen({
     srsOffset,
@@ -9,11 +10,13 @@ export default function SettingsScreen({
     setDevMode,
     wordCount,
     onBack,
-    onOpenAllWords
+    onOpenAllWords,
+    dailyStats
 }) {
     const [isSyncing, setIsSyncing] = useState(false);
     const [syncSuccess, setSyncSuccess] = useState(false);
     const [copySuccess, setCopySuccess] = useState(false);
+    const [useDummyData, setUseDummyData] = useState(false);
 
     const handleSync = async () => {
         setIsSyncing(true);
@@ -96,38 +99,11 @@ export default function SettingsScreen({
 
     return (
         <div className="max-w-xl mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10">
-            <div className="text-center space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight">Settings</h2>
-                <p className="text-zinc-500">Fine-tune your learning experience</p>
-            </div>
-
             <div className="space-y-6">
-                {/* SRS Configuration */}
-                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
-                    <div className="flex items-center gap-3 mb-2">
-                        <Settings2 className="w-5 h-5 text-zinc-400" />
-                        <h3 className="text-lg font-semibold">SRS Algorithm</h3>
-                    </div>
+                {/* Stats Card */}
+                <StatsCard dailyStats={dailyStats} useDummyData={useDummyData} />
 
-                    <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-sm font-medium">SRS Offset Value</p>
-                                <p className="text-xs text-zinc-500">Lower values focus aggressively on mistakes. Higher values balance the session with more variety.</p>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <input
-                                    type="number"
-                                    value={srsOffset}
-                                    onChange={(e) => setSrsOffset(Number(e.target.value))}
-                                    className="w-16 bg-zinc-950 border border-zinc-800 rounded-lg py-1.5 px-3 text-center text-sm font-bold focus:outline-none focus:ring-1 focus:ring-zinc-700"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Navigation */}
+                {/* Vocabulary Manager */}
                 <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
                     <div className="flex items-center justify-between">
                         <div>
@@ -144,52 +120,6 @@ export default function SettingsScreen({
                     </div>
                 </section>
 
-                {/* Progress Migration */}
-                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
-                    <div className="flex items-center gap-3 mb-2">
-                        <Download className="w-5 h-5 text-zinc-400" />
-                        <h3 className="text-lg font-semibold">Transfer Progress</h3>
-                    </div>
-
-                    <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-sm font-medium">Export & Import</p>
-                                <p className="text-xs text-zinc-500">Move your stats to a new domain (e.g., Netlify to GitHub).</p>
-                            </div>
-                            <div className="flex gap-2">
-                                <button
-                                    onClick={handleExport}
-                                    className={`flex items-center gap-2 px-4 py-2 rounded-xl border transition-all text-xs font-bold
-                                        ${copySuccess
-                                            ? 'bg-green-500/10 border-green-500/50 text-green-500'
-                                            : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600'
-                                        }`}
-                                >
-                                    {copySuccess ? (
-                                        <>
-                                            <Check className="w-3.5 h-3.5" />
-                                            <span>Copied</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Copy className="w-3.5 h-3.5" />
-                                            <span>Export</span>
-                                        </>
-                                    )}
-                                </button>
-                                <button
-                                    onClick={handleImport}
-                                    className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
-                                >
-                                    <Upload className="w-3.5 h-3.5" />
-                                    <span>Import</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
                 {/* Developer Tools */}
                 <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
                     <div className="flex items-center gap-3 mb-2">
@@ -197,7 +127,7 @@ export default function SettingsScreen({
                         <h3 className="text-lg font-semibold">Developer Tools</h3>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-6">
                         {/* Dev Mode Toggle */}
                         <div className="flex items-center justify-between">
                             <div>
@@ -212,45 +142,130 @@ export default function SettingsScreen({
                             </button>
                         </div>
 
-                        {/* Reset / Sync Buttons */}
-                        <div className="flex items-center justify-between pt-4 border-t border-zinc-800">
+                        {/* Dummy Data Toggle */}
+                        <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm font-medium">Data Management</p>
-                                <p className="text-xs text-zinc-500">Currently {wordCount} words. Reset if data is missing.</p>
+                                <p className="text-sm font-medium">Demonstration Mode</p>
+                                <p className="text-xs text-zinc-500">Inject fake historical data into the graph for testing.</p>
                             </div>
-                            <div className="flex gap-2">
-                                <button
-                                    onClick={() => {
-                                        localStorage.removeItem('cached-vocab');
-                                        window.location.reload();
-                                    }}
-                                    className="px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-rose-400 hover:border-rose-400/50 transition-all text-xs font-bold bg-zinc-950"
-                                >
-                                    Reset Cache
-                                </button>
-                                <button
-                                    onClick={handleSync}
-                                    disabled={isSyncing || syncSuccess}
-                                    className={`flex items-center gap-2 px-4 py-2 rounded-xl border transition-all text-xs font-bold
-                                        ${syncSuccess
-                                            ? 'bg-green-500/10 border-green-500/50 text-green-500'
-                                            : isSyncing
-                                                ? 'bg-zinc-800 border-zinc-700 text-zinc-400 cursor-wait'
+                            <button
+                                onClick={() => setUseDummyData(!useDummyData)}
+                                className={`w-12 h-6 rounded-full transition-colors relative ${useDummyData ? 'bg-purple-500' : 'bg-zinc-800'}`}
+                            >
+                                <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${useDummyData ? 'translate-x-6' : 'translate-x-0'}`} />
+                            </button>
+                        </div>
+
+                        {/* SRS Configuration (Merged) */}
+                        <div className="pt-6 border-t border-zinc-800">
+                            <div className="flex items-center gap-2 mb-4">
+                                <Settings2 className="w-4 h-4 text-zinc-500" />
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500">SRS Algorithm</h4>
+                            </div>
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sm font-medium">SRS Offset Value</p>
+                                    <p className="text-xs text-zinc-500">Lower values focus on mistakes. Higher values add variety.</p>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <input
+                                        type="number"
+                                        value={srsOffset}
+                                        onChange={(e) => setSrsOffset(Number(e.target.value))}
+                                        className="w-16 bg-zinc-950 border border-zinc-800 rounded-lg py-1.5 px-3 text-center text-sm font-bold focus:outline-none focus:ring-1 focus:ring-zinc-700"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Progress Migration (Merged) */}
+                        <div className="pt-6 border-t border-zinc-800">
+                            <div className="flex items-center gap-2 mb-4">
+                                <Download className="w-4 h-4 text-zinc-500" />
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500">Transfer Progress</h4>
+                            </div>
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sm font-medium">Export & Import</p>
+                                    <p className="text-xs text-zinc-500">Move your stats to a new domain.</p>
+                                </div>
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={handleExport}
+                                        className={`flex items-center gap-2 px-4 py-2 rounded-xl border transition-all text-xs font-bold
+                                            ${copySuccess
+                                                ? 'bg-green-500/10 border-green-500/50 text-green-500'
                                                 : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600'
-                                        }`}
-                                >
-                                    {syncSuccess ? (
-                                        <>
-                                            <Check className="w-3.5 h-3.5" />
-                                            <span>Synced</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin' : ''}`} />
-                                            <span>{isSyncing ? 'Syncing...' : 'Sync Now'}</span>
-                                        </>
-                                    )}
-                                </button>
+                                            }`}
+                                    >
+                                        {copySuccess ? (
+                                            <>
+                                                <Check className="w-3.5 h-3.5" />
+                                                <span>Copied</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Copy className="w-3.5 h-3.5" />
+                                                <span>Export</span>
+                                            </>
+                                        )}
+                                    </button>
+                                    <button
+                                        onClick={handleImport}
+                                        className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
+                                    >
+                                        <Upload className="w-3.5 h-3.5" />
+                                        <span>Import</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Reset / Sync Buttons */}
+                        <div className="pt-6 border-t border-zinc-800">
+                            <div className="flex items-center gap-2 mb-4">
+                                <RefreshCw className="w-4 h-4 text-zinc-500" />
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500">Data Management</h4>
+                            </div>
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sm font-medium">Sync & Reset</p>
+                                    <p className="text-xs text-zinc-500">Currently {wordCount} words.</p>
+                                </div>
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={() => {
+                                            localStorage.removeItem('cached-vocab');
+                                            window.location.reload();
+                                        }}
+                                        className="px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-rose-400 hover:border-rose-400/50 transition-all text-xs font-bold bg-zinc-950"
+                                    >
+                                        Reset Cache
+                                    </button>
+                                    <button
+                                        onClick={handleSync}
+                                        disabled={isSyncing || syncSuccess}
+                                        className={`flex items-center gap-2 px-4 py-2 rounded-xl border transition-all text-xs font-bold
+                                            ${syncSuccess
+                                                ? 'bg-green-500/10 border-green-500/50 text-green-500'
+                                                : isSyncing
+                                                    ? 'bg-zinc-800 border-zinc-700 text-zinc-400 cursor-wait'
+                                                    : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600'
+                                            }`}
+                                    >
+                                        {syncSuccess ? (
+                                            <>
+                                                <Check className="w-3.5 h-3.5" />
+                                                <span>Synced</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin' : ''}`} />
+                                                <span>{isSyncing ? 'Syncing...' : 'Sync Now'}</span>
+                                            </>
+                                        )}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

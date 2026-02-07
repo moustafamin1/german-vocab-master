@@ -6,6 +6,8 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
     const [searchTerm, setSearchTerm] = useState('');
     const [filterStatus, setFilterStatus] = useState('all'); // all, study, skip
     const [selectedLevel, setSelectedLevel] = useState('All');
+    const [searchExpanded, setSearchExpanded] = useState(false);
+    const [typeFilter, setTypeFilter] = useState('all'); // all, nouns, phrases
 
     // Extract unique levels
     const levels = ['All', ...Array.from(new Set(vocabPool.map(v => v.level))).filter(Boolean).sort()];
@@ -17,8 +19,11 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
             (filterStatus === 'study' && word.status !== 'skip') ||
             (filterStatus === 'skip' && word.status === 'skip');
         const matchesLevel = selectedLevel === 'All' || word.level === selectedLevel;
+        const matchesType = typeFilter === 'all' ||
+            (typeFilter === 'nouns' && word.type === 'Noun') ||
+            (typeFilter === 'phrases' && word.type === 'Phrase');
 
-        return matchesSearch && matchesStatus && matchesLevel;
+        return matchesSearch && matchesStatus && matchesLevel && matchesType;
     });
 
     return (
@@ -33,46 +38,85 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                 </button>
                 <div className="text-center">
                     <h2 className="text-2xl font-bold tracking-tight">All Words</h2>
-                    <p className="text-xs text-zinc-500">{vocabPool.length} words total</p>
+                    <p className="text-xs text-zinc-500">
+                        {vocabPool.length} total
+                        {filteredWords.length !== vocabPool.length && (
+                            <span className="text-zinc-400"> · {filteredWords.length} filtered</span>
+                        )}
+                    </p>
                 </div>
                 <div className="w-10" /> {/* Spacer */}
             </div>
 
             {/* Compact Search and Filters */}
-            <div className="bg-zinc-900/30 border border-zinc-800/50 rounded-2xl p-3 space-y-3">
-                <div className="flex gap-3">
-                    <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-500" />
+            <div className="bg-zinc-900/30 border border-zinc-800/50 rounded-2xl p-2 space-y-2">
+                {/* Line 1: Search (expanded) OR Search Icon + Type + Status Filters */}
+                {searchExpanded ? (
+                    <div className="relative">
+                        <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3 h-3 text-zinc-500" />
                         <input
                             type="text"
                             placeholder="Search words..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full bg-zinc-950/50 border border-zinc-800/50 rounded-lg py-1.5 pl-9 pr-3 text-xs focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-all"
+                            onBlur={() => {
+                                if (!searchTerm) setSearchExpanded(false);
+                            }}
+                            autoFocus
+                            className="w-full bg-zinc-950/50 border border-zinc-800/50 rounded-lg py-1 pl-8 pr-2.5 text-xs focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-all"
                         />
                     </div>
-                    <div className="flex bg-zinc-950/50 border border-zinc-800/50 rounded-lg p-0.5">
-                        {['all', 'study', 'skip'].map((status) => (
-                            <button
-                                key={status}
-                                onClick={() => setFilterStatus(status)}
-                                className={`px-3 py-1 rounded-md text-[10px] font-bold capitalize transition-all ${filterStatus === status
-                                    ? 'bg-zinc-800 text-zinc-100'
-                                    : 'text-zinc-500 hover:text-zinc-400'
-                                    }`}
-                            >
-                                {status}
-                            </button>
-                        ))}
-                    </div>
-                </div>
+                ) : (
+                    <div className="flex gap-1.5">
+                        {/* Search Icon */}
+                        <button
+                            onClick={() => setSearchExpanded(true)}
+                            className="p-1 rounded-lg bg-zinc-950/50 border border-zinc-800/50 hover:border-zinc-700 transition-all flex-shrink-0"
+                        >
+                            <Search className="w-3.5 h-3.5 text-zinc-500" />
+                        </button>
 
-                <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-0.5">
+                        {/* Type Filter */}
+                        <div className="flex bg-zinc-950/50 border border-zinc-800/50 rounded-lg p-0.5 flex-shrink-0">
+                            {['all', 'nouns', 'phrases'].map((type) => (
+                                <button
+                                    key={type}
+                                    onClick={() => setTypeFilter(type)}
+                                    className={`px-2 py-0.5 rounded-md text-[9px] font-bold capitalize transition-all ${typeFilter === type
+                                        ? 'bg-zinc-800 text-zinc-100'
+                                        : 'text-zinc-500 hover:text-zinc-400'
+                                        }`}
+                                >
+                                    {type}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Status Filter */}
+                        <div className="flex bg-zinc-950/50 border border-zinc-800/50 rounded-lg p-0.5 flex-shrink-0">
+                            {['all', 'study', 'skip'].map((status) => (
+                                <button
+                                    key={status}
+                                    onClick={() => setFilterStatus(status)}
+                                    className={`px-2 py-0.5 rounded-md text-[9px] font-bold capitalize transition-all ${filterStatus === status
+                                        ? 'bg-zinc-800 text-zinc-100'
+                                        : 'text-zinc-500 hover:text-zinc-400'
+                                        }`}
+                                >
+                                    {status}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Line 2: Level Filters */}
+                <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
                     {levels.map(level => (
                         <button
                             key={level}
                             onClick={() => setSelectedLevel(level)}
-                            className={`flex-shrink-0 px-2.5 py-1 rounded-md text-[9px] font-bold transition-all border ${selectedLevel === level
+                            className={`flex-shrink-0 px-2 py-0.5 rounded-md text-[9px] font-bold transition-all border ${selectedLevel === level
                                 ? 'bg-zinc-100 border-zinc-100 text-zinc-950'
                                 : 'bg-transparent border-zinc-800/50 text-zinc-500 hover:border-zinc-700'
                                 }`}
@@ -84,7 +128,7 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
             </div>
 
             {/* Word List */}
-            <div className="space-y-2 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+            <div className="space-y-2 max-h-[60vh] overflow-y-scroll pr-2">
                 {filteredWords.length > 0 ? (
                     filteredWords.map((word) => {
                         const weight = calculateWeight(word, srsOffset);
