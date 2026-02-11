@@ -1,5 +1,6 @@
-import { CheckCircle2, XCircle, ArrowRight, Lightbulb, Quote, BarChart2, Eye, EyeOff } from 'lucide-react';
+import { CheckCircle2, XCircle, ArrowRight, Lightbulb, Quote, BarChart2, Eye, EyeOff, Volume2 } from 'lucide-react';
 import { calculateWeight } from '../utils/srs-logic';
+import { ttsService } from '../services/ttsService';
 
 export default function ResultCard({ word, feedback, onNext, onToggleStatus, devMode, srsOffset }) {
     const isCorrect = feedback.correct;
@@ -31,14 +32,23 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1">
                         <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Correct Answer</span>
-                        <p className="text-sm font-medium">
-                            {(() => {
-                                const art = word.article;
-                                const capitalizedArt = art ? art.charAt(0).toUpperCase() + art.slice(1) : '';
-                                return capitalizedArt ? `${capitalizedArt} ` : '';
-                            })()}
-                            {word.word}
-                        </p>
+                        <div className="flex items-center justify-between gap-2">
+                            <p className="text-sm font-medium">
+                                {(() => {
+                                    const art = word.article;
+                                    const capitalizedArt = art ? art.charAt(0).toUpperCase() + art.slice(1) : '';
+                                    return capitalizedArt ? `${capitalizedArt} ` : '';
+                                })()}
+                                {word.word}
+                            </p>
+                            <button
+                                onClick={() => ttsService.speak(word.article ? `${word.article} ${word.word}` : word.word)}
+                                className="p-1.5 bg-zinc-800 rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors"
+                                title="Play Audio"
+                            >
+                                <Volume2 className="w-3.5 h-3.5" />
+                            </button>
+                        </div>
                     </div>
 
                     <div className="space-y-1">
@@ -82,9 +92,18 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
 
                 {word.sentence && (
                     <div className="bg-zinc-800/30 p-4 rounded-xl space-y-2">
-                        <div className="flex items-center gap-2 text-zinc-500">
-                            <Quote className="w-3 h-3" />
-                            <span className="text-[10px] font-bold uppercase tracking-widest">Example</span>
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2 text-zinc-500">
+                                <Quote className="w-3 h-3" />
+                                <span className="text-[10px] font-bold uppercase tracking-widest">Example</span>
+                            </div>
+                            <button
+                                onClick={() => ttsService.speak(word.sentence)}
+                                className="p-1.5 bg-zinc-800/50 rounded-lg text-zinc-500 hover:text-zinc-200 transition-colors"
+                                title="Play Example"
+                            >
+                                <Volume2 className="w-3.5 h-3.5" />
+                            </button>
                         </div>
                         <p className="text-sm font-medium leading-relaxed">{word.sentence}</p>
                     </div>
