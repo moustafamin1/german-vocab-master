@@ -1,9 +1,18 @@
+import { useEffect } from 'react';
 import { CheckCircle2, XCircle, ArrowRight, Lightbulb, Quote, BarChart2, Eye, EyeOff, Volume2 } from 'lucide-react';
 import { calculateWeight } from '../utils/srs-logic';
 import { ttsService } from '../services/ttsService';
 
-export default function ResultCard({ word, feedback, onNext, onToggleStatus, devMode, srsOffset }) {
+export default function ResultCard({ word, feedback, onNext, onToggleStatus, devMode, srsOffset, autoPlayAudio }) {
     const isCorrect = feedback.correct;
+
+    // Automatically play audio if enabled
+    useEffect(() => {
+        if (autoPlayAudio) {
+            const textToSpeak = word.article ? `${word.article} ${word.word}` : word.word;
+            ttsService.speak(textToSpeak);
+        }
+    }, [word, autoPlayAudio]);
 
     // Calculate selection probability (weight)
     const weight = calculateWeight(word, srsOffset);
