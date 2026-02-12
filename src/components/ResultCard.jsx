@@ -32,8 +32,11 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1">
                         <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Correct Answer</span>
-                        <div className="flex items-center justify-between gap-2">
-                            <p className="text-sm font-medium">
+                        <div
+                            className="flex items-center justify-between gap-2 cursor-pointer group/audio"
+                            onClick={() => ttsService.speak(word.article ? `${word.article} ${word.word}` : word.word)}
+                        >
+                            <p className="text-sm font-medium group-hover/audio:text-zinc-100 transition-colors">
                                 {(() => {
                                     const art = word.article;
                                     const capitalizedArt = art ? art.charAt(0).toUpperCase() + art.slice(1) : '';
@@ -41,13 +44,7 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                                 })()}
                                 {word.word}
                             </p>
-                            <button
-                                onClick={() => ttsService.speak(word.article ? `${word.article} ${word.word}` : word.word)}
-                                className="p-1.5 bg-zinc-800 rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors"
-                                title="Play Audio"
-                            >
-                                <Volume2 className="w-3.5 h-3.5" />
-                            </button>
+                            <Volume2 className="w-3.5 h-3.5 text-zinc-600 group-hover/audio:text-zinc-400 transition-colors" />
                         </div>
                     </div>
 
@@ -91,21 +88,18 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                 </div>
 
                 {word.sentence && (
-                    <div className="bg-zinc-800/30 p-4 rounded-xl space-y-2">
+                    <div
+                        className="bg-zinc-800/30 p-4 rounded-xl space-y-2 cursor-pointer group/example active:bg-zinc-800/50 transition-colors"
+                        onClick={() => ttsService.speak(word.sentence)}
+                    >
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2 text-zinc-500">
                                 <Quote className="w-3 h-3" />
                                 <span className="text-[10px] font-bold uppercase tracking-widest">Example</span>
                             </div>
-                            <button
-                                onClick={() => ttsService.speak(word.sentence)}
-                                className="p-1.5 bg-zinc-800/50 rounded-lg text-zinc-500 hover:text-zinc-200 transition-colors"
-                                title="Play Example"
-                            >
-                                <Volume2 className="w-3.5 h-3.5" />
-                            </button>
+                            <Volume2 className="w-3.5 h-3.5 text-zinc-600 group-hover/example:text-zinc-400 transition-colors" />
                         </div>
-                        <p className="text-sm font-medium leading-relaxed">{word.sentence}</p>
+                        <p className="text-sm font-medium leading-relaxed group-hover/example:text-zinc-100 transition-colors">{word.sentence}</p>
                     </div>
                 )}
 
