@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ChevronLeft, Eye, EyeOff, Search, Filter, BarChart2, CheckCircle2, XCircle } from 'lucide-react';
+import { ChevronLeft, Eye, EyeOff, Search, Filter, BarChart2, CheckCircle2, XCircle, Volume2 } from 'lucide-react';
 import { calculateWeight } from '../utils/srs-logic';
+import { ttsService } from '../services/ttsService';
 
 export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, onBack }) {
     const [searchTerm, setSearchTerm] = useState('');
@@ -179,6 +180,15 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                                         <span className="text-[9px] uppercase tracking-widest text-zinc-600 font-bold">Weight</span>
                                         <span className="text-xs font-mono font-bold text-zinc-400">{weight}</span>
                                     </div>
+
+                                    {/* Audio Button */}
+                                    <button
+                                        onClick={() => ttsService.speak(word.article ? `${word.article} ${word.word}` : word.word)}
+                                        className="p-2 bg-zinc-800 rounded-xl text-zinc-400 hover:text-zinc-100 transition-colors"
+                                        title="Play Audio"
+                                    >
+                                        <Volume2 className="w-4 h-4" />
+                                    </button>
 
                                     {/* Toggle */}
                                     <button
