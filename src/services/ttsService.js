@@ -9,7 +9,7 @@ if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
 }
 
 export const ttsService = {
-    speak: (text) => {
+    speak: (text, onEnd) => {
         if (!('speechSynthesis' in window)) {
             console.error('Web Speech API not supported in this browser.');
             return;
@@ -21,6 +21,10 @@ export const ttsService = {
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'de-DE';
         utterance.rate = 0.9; // Slightly slower for better clarity in learning
+
+        if (onEnd) {
+            utterance.onend = onEnd;
+        }
 
         // If voices haven't loaded yet, try to get them now
         if (voices.length === 0) {
@@ -37,5 +41,10 @@ export const ttsService = {
         }
 
         window.speechSynthesis.speak(utterance);
+    },
+    stop: () => {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+        }
     }
 };
