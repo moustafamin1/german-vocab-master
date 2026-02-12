@@ -8,10 +8,31 @@ if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
     };
 }
 
+let silentAudio = null;
+
 export const ttsService = {
+    enableBackgroundMode: () => {
+        if (typeof window === 'undefined') return;
+
+        if (!silentAudio) {
+            // Minimal silent WAV: 1 second, 8000Hz, mono, 8-bit
+            const silentWav = "data:audio/wav;base64,UklGRjIAAABXQVZFYm10IBAAAAABAAEAgD4AAAB9AAACABAAZGF0YRAAAAAAAAAAAAAAAAAAAAAA";
+            silentAudio = new Audio(silentWav);
+            silentAudio.loop = true;
+        }
+
+        silentAudio.play().catch(e => console.warn('Silent audio play failed:', e));
+    },
+    disableBackgroundMode: () => {
+        if (silentAudio) {
+            silentAudio.pause();
+            silentAudio.currentTime = 0;
+        }
+    },
     speak: (text, onEnd) => {
         if (!('speechSynthesis' in window)) {
             console.error('Web Speech API not supported in this browser.');
+            if (onEnd) onEnd();
             return;
         }
 
@@ -24,6 +45,10 @@ export const ttsService = {
 
         if (onEnd) {
             utterance.onend = onEnd;
+            utterance.onerror = (event) => {
+                console.error('TTS Error:', event);
+                onEnd(); // Ensure loop continues
+            };
         }
 
         // If voices haven't loaded yet, try to get them now
