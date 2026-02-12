@@ -20,6 +20,7 @@ export default function App() {
     const [view, setView] = useState('loading'); // loading, config, playing, feedback, settings, allWords, mediaLibrary
     const [devMode, setDevMode] = useState(true);
     const [srsOffset, setSrsOffset] = useState(3);
+    const [autoPlayAudio, setAutoPlayAudio] = useState(true);
     const [globalStats, setGlobalStats] = useState({ total: 0, correct: 0, incorrect: 0 });
     const [dailyStats, setDailyStats] = useState([]);
 
@@ -47,7 +48,7 @@ export default function App() {
     useEffect(() => {
         let storedSRS = {};
         let storedGlobalStats = { total: 0, correct: 0, incorrect: 0 };
-        let storedSettings = { srsOffset: 3, devMode: true };
+        let storedSettings = { srsOffset: 3, devMode: true, autoPlayAudio: true };
         let storedDailyStats = [];
 
         try {
@@ -58,7 +59,7 @@ export default function App() {
             storedGlobalStats = JSON.parse(localStorage.getItem(GLOBAL_STATS_KEY) || '{"total":0,"correct":0,"incorrect":0}');
 
             // 4. Load App Settings
-            storedSettings = JSON.parse(localStorage.getItem(APP_SETTINGS_KEY) || '{"srsOffset":3,"devMode":true}');
+            storedSettings = JSON.parse(localStorage.getItem(APP_SETTINGS_KEY) || '{"srsOffset":3,"devMode":true,"autoPlayAudio":true}');
 
             // 5. Load Daily Stats
             storedDailyStats = JSON.parse(localStorage.getItem(DAILY_STATS_KEY) || '[]');
@@ -70,6 +71,7 @@ export default function App() {
         setGlobalStats(storedGlobalStats);
         setSrsOffset(storedSettings.srsOffset);
         setDevMode(storedSettings.devMode);
+        setAutoPlayAudio(storedSettings.autoPlayAudio ?? true);
         setDailyStats(storedDailyStats);
 
         // 2. Merge with base vocab data and Migration Engine
@@ -141,8 +143,8 @@ export default function App() {
     // Persist settings whenever they change
     useEffect(() => {
         if (view === 'loading') return;
-        localStorage.setItem(APP_SETTINGS_KEY, JSON.stringify({ srsOffset, devMode }));
-    }, [srsOffset, devMode, view]);
+        localStorage.setItem(APP_SETTINGS_KEY, JSON.stringify({ srsOffset, devMode, autoPlayAudio }));
+    }, [srsOffset, devMode, autoPlayAudio, view]);
 
     const pickNewWord = useCallback(() => {
         if (vocabPool.length === 0) return;
@@ -384,6 +386,7 @@ export default function App() {
                             onToggleStatus={toggleWordStatus}
                             devMode={devMode}
                             srsOffset={srsOffset}
+                            autoPlayAudio={autoPlayAudio}
                         />
                     ) : view === 'settings' ? (
                         <SettingsScreen
@@ -391,6 +394,8 @@ export default function App() {
                             setSrsOffset={setSrsOffset}
                             devMode={devMode}
                             setDevMode={setDevMode}
+                            autoPlayAudio={autoPlayAudio}
+                            setAutoPlayAudio={setAutoPlayAudio}
                             wordCount={baseVocab.length}
                             onBack={handleBackToConfig}
                             onOpenAllWords={handleOpenAllWords}
