@@ -44,3 +44,17 @@ This repository was audited for security risks following a period where it was u
     *   Add a simple API key or token check to the `/api/sync` endpoint in `vite.config.js`.
 4.  **Clean History**:
     *   If any of the above info is considered highly sensitive, use a tool like `git filter-repo` to remove them from the repository's history.
+
+## Retrospective Risks & Forks
+
+### 1. The Impact of a Fork
+Since a fork was created while the repository was public, the forker now has a complete copy of the code and Git history as it existed at that moment. Making the original repository private does **not** automatically delete or privatize existing forks.
+
+### 2. Severing the Link to Live Data
+The most effective way to protect yourself from a retrospective leak in a fork is to **deactivate the external data sources**:
+*   **Google Sheet**: Go to your Google Sheet settings and **"Stop publishing"** the tab that was shared. This immediately breaks the `GOOGLE_SHEET_CSV_URL` for anyone who has it.
+*   **Rotate the Sheet**: If you want to be 100% sure, create a *copy* of the spreadsheet, delete the original, and use the new ID in your private repository. This ensures the old ID in the fork points to a dead file.
+
+### 3. Cleaning Local History
+Even though the repository is now private, the "secrets" (Sheet ID, local paths) still exist in your Git history. If you ever invite a collaborator to this private repo, they will be able to see those old commits.
+*   **Recommendation**: Use `git filter-repo` or `bfg-repo-cleaner` to overwrite the history of those specific files if you plan on ever making the repo public again or sharing it.
