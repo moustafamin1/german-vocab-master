@@ -100,6 +100,16 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
         };
     }, [isPlayingAll, playingIndex, filteredWords]);
 
+    // Handle Background Audio Mode
+    useEffect(() => {
+        if (isPlayingAll) {
+            ttsService.enableBackgroundMode();
+        } else {
+            ttsService.disableBackgroundMode();
+        }
+        return () => ttsService.disableBackgroundMode();
+    }, [isPlayingAll]);
+
     // Reset playing index if it's out of bounds after filtering
     useEffect(() => {
         if (playingIndex >= filteredWords.length && filteredWords.length > 0) {
