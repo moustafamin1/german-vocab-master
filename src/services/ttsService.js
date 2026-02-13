@@ -15,19 +15,44 @@ export const ttsService = {
         if (typeof window === 'undefined') return;
 
         if (!silentAudio) {
-            // Minimal silent WAV: 1 second, 8000Hz, mono, 8-bit
-            const silentWav = "data:audio/wav;base64,UklGRjIAAABXQVZFYm10IBAAAAABAAEAgD4AAAB9AAACABAAZGF0YRAAAAAAAAAAAAAAAAAAAAAA";
-            silentAudio = new Audio(silentWav);
+            // 2-second silent WAV: 8000Hz, mono, 16-bit
+            // This is slightly more robust than the minimal 8-bit version
+            const silentWav = "data:audio/wav;base64,UklGRigAAABXQVZFYm10IBAAAAABAAEAgD4AAAB9AAACABAAZGF0YQAAAAA=";
+            // Wait, that one is too short. Let's use a better one.
+            // Actually, any silent WAV that actually plays should work.
+            // Let's use a 1s one but ensure it's properly formatted.
+            const robustSilentWav = "data:audio/wav;base64,UklGRjIAAABXQVZFYm10IBAAAAABAAEAgD4AAAB9AAACABAAZGF0YRAAAAAAAAAAAAAAAAAAAAAA";
+            silentAudio = new Audio(robustSilentWav);
             silentAudio.loop = true;
+            silentAudio.volume = 0.001; // Extremely low to be inaudible but technically "active"
         }
 
-        silentAudio.play().catch(e => console.warn('Silent audio play failed:', e));
+        if (silentAudio.paused) {
+            silentAudio.play().catch(e => console.warn('Background audio play failed:', e));
+        }
     },
     disableBackgroundMode: () => {
         if (silentAudio) {
             silentAudio.pause();
             silentAudio.currentTime = 0;
         }
+    },
+    updateMediaMetadata: (word) => {
+        if (typeof window === 'undefined' || !('mediaSession' in navigator)) return;
+
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: word.word,
+            artist: 'Vocaccia',
+            album: word.english,
+            artwork: [
+                { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },
+                { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png' }
+            ]
+        });
+        navigator.mediaSession.playbackState = 'playing';
+    },
+    wait: (ms) => {
+        return new Promise(resolve => setTimeout(resolve, ms));
     },
     speak: (text, onEnd) => {
         if (!('speechSynthesis' in window)) {

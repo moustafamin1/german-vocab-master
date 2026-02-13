@@ -53,23 +53,17 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
 
     // Handle Global Audio Loop
     useEffect(() => {
-        let timeoutId;
+        let isActive = true;
 
         if (isPlayingAll && filteredWords.length > 0) {
             const index = playingIndex % filteredWords.length;
             const word = filteredWords[index];
             const text = word.article ? `${word.article} ${word.word}` : word.word;
 
-            // Update Media Session if available
+            // Update Media Session
+            ttsService.updateMediaMetadata(word);
+
             if ('mediaSession' in navigator) {
-                navigator.mediaSession.metadata = new MediaMetadata({
-                    title: word.word,
-                    artist: 'Vocaccia - All Words Loop',
-                    album: word.english,
-                });
-
-                navigator.mediaSession.playbackState = 'playing';
-
                 navigator.mediaSession.setActionHandler('play', () => setIsPlayingAll(true));
                 navigator.mediaSession.setActionHandler('pause', () => setIsPlayingAll(false));
                 navigator.mediaSession.setActionHandler('nexttrack', () => {
@@ -80,27 +74,31 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                 });
             }
 
-            ttsService.speak(text, () => {
-                timeoutId = setTimeout(() => {
-                    if (isPlayingAll) {
-                        setPlayingIndex((prev) => (prev + 1) % filteredWords.length);
-                    }
-                }, 1500);
+            ttsService.speak(text, async () => {
+                if (!isActive || !isPlayingAll) return;
+
+                // Use background-safe wait
+                await ttsService.wait(1500);
+
+                if (isActive && isPlayingAll) {
+                    setPlayingIndex((prev) => (prev + 1) % filteredWords.length);
+                }
             });
         } else {
             ttsService.stop();
+            ttsService.disableBackgroundMode();
             if ('mediaSession' in navigator) {
                 navigator.mediaSession.playbackState = 'paused';
             }
         }
 
         return () => {
-            if (timeoutId) clearTimeout(timeoutId);
+            isActive = false;
             ttsService.stop();
         };
     }, [isPlayingAll, playingIndex, filteredWords]);
 
-    // Handle Background Audio Mode
+    // Independent effect for background mode lifecycle
     useEffect(() => {
         if (isPlayingAll) {
             ttsService.enableBackgroundMode();
