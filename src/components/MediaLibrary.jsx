@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, MoreVertical, Trash2, X, Plus, Clipboard, Link2 as LinkIcon, Instagram, Play, Image as ImageIcon } from 'lucide-react';
+import { ChevronLeft, MoreVertical, Trash2, X, Plus, Clipboard, Link as LinkIcon, Instagram, Play, Image as ImageIcon } from 'lucide-react';
 import { mediaService } from '../services/mediaService';
 
 export default function MediaLibrary({ onBack }) {
@@ -71,6 +71,30 @@ export default function MediaLibrary({ onBack }) {
         }
     };
 
+    const processUrl = async (url) => {
+        const regex = /instagram\.com\/(?:p|reel|reels)\/([A-Za-z0-9_-]+)/;
+        const match = url?.trim().match(regex);
+
+        if (!match) return false;
+
+        const shortcode = match[1];
+        const normalizedUrl = `https://www.instagram.com/reel/${shortcode}/`;
+        const thumbnail = `https://www.instagram.com/p/${shortcode}/media/?size=l`;
+
+        setIsPasting(true);
+        try {
+            await mediaService.addVideo(normalizedUrl, thumbnail);
+            await loadImages();
+            return true;
+        } catch (err) {
+            console.error('Failed to save video link', err);
+            alert('Failed to save video link');
+            return false;
+        } finally {
+            setIsPasting(false);
+        }
+    };
+
     const handleManualPaste = async () => {
         try {
             const clipboardItems = await navigator.clipboard.read();
@@ -81,41 +105,41 @@ export default function MediaLibrary({ onBack }) {
                         await saveImage(blob);
                         return;
                     }
+                    if (type === 'text/plain') {
+                        const blob = await clipboardItem.getType(type);
+                        const text = await blob.text();
+                        if (await processUrl(text)) return;
+                    }
                 }
             }
-            alert('No image found in clipboard. Please copy an image first.');
         } catch (err) {
-            console.error('Clipboard access denied or failed', err);
-            alert('To paste, please use Cmd+V / Ctrl+V or grant clipboard permissions.');
+            console.warn('Clipboard read failed, trying readText', err);
+            try {
+                const text = await navigator.clipboard.readText();
+                if (text && await processUrl(text)) return;
+            } catch (textErr) {
+                console.error('Clipboard fallback failed', textErr);
+            }
         }
+        alert('No image or valid Instagram link found in clipboard.');
     };
 
     const handleAddLink = async () => {
+        try {
+            const clipboardText = await navigator.clipboard.readText();
+            if (clipboardText && await processUrl(clipboardText)) {
+                return;
+            }
+        } catch (err) {
+            console.warn('Quick paste failed', err);
+        }
+
         const url = prompt('Enter Instagram Reel URL:');
         if (!url) return;
 
-        // Basic validation and shortcode extraction
-        const regex = /instagram\.com\/(?:p|reel|reels)\/([A-Za-z0-9_-]+)/;
-        const match = url.match(regex);
-        if (!match) {
+        const success = await processUrl(url);
+        if (!success) {
             alert('Invalid Instagram URL. Please use a link like https://www.instagram.com/reels/XXXXX/');
-            return;
-        }
-
-        const shortcode = match[1];
-        // Use /reel/ for the embed URL as it's more standard for reels
-        const normalizedUrl = `https://www.instagram.com/reel/${shortcode}/`;
-        const thumbnail = `https://www.instagram.com/p/${shortcode}/media/?size=l`;
-
-        setIsPasting(true);
-        try {
-            await mediaService.addVideo(normalizedUrl, thumbnail);
-            await loadImages();
-        } catch (err) {
-            console.error('Failed to save video link', err);
-            alert('Failed to save video link');
-        } finally {
-            setIsPasting(false);
         }
     };
 
@@ -182,7 +206,7 @@ export default function MediaLibrary({ onBack }) {
                         onClick={handleAddLink}
                         disabled={isPasting}
                         className="p-2.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all"
-                        title="Add Instagram Link"
+                        title="Paste or Add Instagram Link"
                     >
                         <LinkIcon className="w-5 h-5" />
                     </button>
