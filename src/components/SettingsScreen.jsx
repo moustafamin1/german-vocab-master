@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy } from 'lucide-react';
+import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy, Volume2 } from 'lucide-react';
 import { fetchAndCacheVocab } from '../services/vocabService';
 import StatsCard from './StatsCard';
 
@@ -8,6 +8,8 @@ export default function SettingsScreen({
     setSrsOffset,
     devMode,
     setDevMode,
+    autoPlayAudio,
+    setAutoPlayAudio,
     wordCount,
     onBack,
     onOpenAllWords,
@@ -134,6 +136,27 @@ export default function SettingsScreen({
                         >
                             <span>Open</span>
                             <ChevronRight className="w-4 h-4" />
+                        </button>
+                    </div>
+                </section>
+
+
+                {/* Audio */}
+                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
+                    <div className="flex items-center gap-3 mb-2">
+                        <Volume2 className="w-5 h-5 text-zinc-400" />
+                        <h3 className="text-lg font-semibold">Audio</h3>
+                    </div>
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="text-sm font-medium">Auto-play Answer</p>
+                            <p className="text-xs text-zinc-500">Automatically play the word's pronunciation on the result screen.</p>
+                        </div>
+                        <button
+                            onClick={() => setAutoPlayAudio(!autoPlayAudio)}
+                            className={`w-12 h-6 rounded-full transition-colors relative ${autoPlayAudio ? 'bg-blue-500' : 'bg-zinc-800'}`}
+                        >
+                            <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${autoPlayAudio ? 'translate-x-6' : 'translate-x-0'}`} />
                         </button>
                     </div>
                 </section>

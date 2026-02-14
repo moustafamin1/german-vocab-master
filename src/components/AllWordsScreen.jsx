@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { ChevronLeft, Eye, EyeOff, Search, Filter, BarChart2, CheckCircle2, XCircle } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { ChevronLeft, Eye, EyeOff, Search, Filter, BarChart2, CheckCircle2, XCircle, Volume2, ArrowUpDown, Play, Pause } from 'lucide-react';
 import { calculateWeight } from '../utils/srs-logic';
+import { ttsService } from '../services/ttsService';
 
 export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, onBack }) {
     const [searchTerm, setSearchTerm] = useState('');
@@ -8,23 +9,129 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
     const [selectedLevel, setSelectedLevel] = useState('All');
     const [searchExpanded, setSearchExpanded] = useState(false);
     const [typeFilter, setTypeFilter] = useState('all'); // all, nouns, phrases
+    const [sortBy, setSortBy] = useState('alphabetical'); // alphabetical, mistakes, weight, level
+    const [showSortMenu, setShowSortMenu] = useState(false);
+    const [isPlayingAll, setIsPlayingAll] = useState(false);
+    const [playingIndex, setPlayingIndex] = useState(0);
 
     // Extract unique levels
     const levels = ['All', ...Array.from(new Set(vocabPool.map(v => v.level))).filter(Boolean).sort()];
 
-    const filteredWords = vocabPool.filter(word => {
-        const matchesSearch = word.word.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            word.english.toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesStatus = filterStatus === 'all' ||
-            (filterStatus === 'study' && word.status !== 'skip') ||
-            (filterStatus === 'skip' && word.status === 'skip');
-        const matchesLevel = selectedLevel === 'All' || word.level === selectedLevel;
-        const matchesType = typeFilter === 'all' ||
-            (typeFilter === 'nouns' && word.type === 'Noun') ||
-            (typeFilter === 'phrases' && word.type === 'Phrase');
+    const sortOptions = [
+        { id: 'alphabetical', label: 'Alphabetical' },
+        { id: 'mistakes', label: 'Mistakes (High First)' },
+        { id: 'weight', label: 'Weight (High First)' },
+        { id: 'level', label: 'Level' },
+    ];
 
-        return matchesSearch && matchesStatus && matchesLevel && matchesType;
-    });
+    const filteredWords = useMemo(() => {
+        return vocabPool.filter(word => {
+            const matchesSearch = word.word.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                word.english.toLowerCase().includes(searchTerm.toLowerCase());
+            const matchesStatus = filterStatus === 'all' ||
+                (filterStatus === 'study' && word.status !== 'skip') ||
+                (filterStatus === 'skip' && word.status === 'skip');
+            const matchesLevel = selectedLevel === 'All' || word.level === selectedLevel;
+            const matchesType = typeFilter === 'all' ||
+                (typeFilter === 'nouns' && word.type === 'Noun') ||
+                (typeFilter === 'phrases' && word.type === 'Phrase');
+
+            return matchesSearch && matchesStatus && matchesLevel && matchesType;
+        }).sort((a, b) => {
+            if (sortBy === 'alphabetical') {
+                return (a.word || '').localeCompare(b.word || '');
+            } else if (sortBy === 'mistakes') {
+                return (b.failCount || 0) - (a.failCount || 0);
+            } else if (sortBy === 'weight') {
+                return calculateWeight(b, srsOffset) - calculateWeight(a, srsOffset);
+            } else if (sortBy === 'level') {
+                return (a.level || '').localeCompare(b.level || '');
+            }
+            return 0;
+        });
+    }, [vocabPool, searchTerm, filterStatus, selectedLevel, typeFilter, sortBy, srsOffset]);
+
+    // Media Session Handlers
+    const mediaHandlers = useMemo(() => ({
+        play: () => {
+            setIsPlayingAll(true);
+            if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+        },
+        pause: () => {
+            setIsPlayingAll(false);
+            if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+        },
+        nexttrack: () => setPlayingIndex((prev) => (prev + 1) % filteredWords.length),
+        previoustrack: () => setPlayingIndex((prev) => (prev - 1 + filteredWords.length) % filteredWords.length)
+    }), [filteredWords.length]);
+
+    // Handle Toggle Play All (Direct User Gesture)
+    const handleTogglePlayAll = () => {
+        const nextState = !isPlayingAll;
+        setIsPlayingAll(nextState);
+
+        if (nextState && filteredWords.length > 0) {
+            const word = filteredWords[playingIndex % filteredWords.length];
+            ttsService.enableBackgroundMode(
+                word.word,
+                'Vocaccia - All Words Loop',
+                word.english,
+                mediaHandlers
+            );
+        } else {
+            ttsService.disableBackgroundMode();
+            ttsService.stop();
+        }
+    };
+
+    // Handle Global Audio Loop
+    useEffect(() => {
+        let timeoutId;
+
+        if (isPlayingAll && filteredWords.length > 0) {
+            const index = playingIndex % filteredWords.length;
+            const word = filteredWords[index];
+            const text = word.article ? `${word.article} ${word.word}` : word.word;
+
+            // Update Media Session Metadata
+            ttsService.updateMetadata(
+                word.word,
+                'Vocaccia - All Words Loop',
+                word.english
+            );
+
+            ttsService.speak(text, () => {
+                // Use a slightly longer delay to ensure TTS has fully finished before next one
+                // and to avoid issues with background throttling
+                timeoutId = setTimeout(() => {
+                    if (isPlayingAll) {
+                        setPlayingIndex((prev) => (prev + 1) % filteredWords.length);
+                    }
+                }, 1800);
+            });
+        } else {
+            ttsService.stop();
+        }
+
+        return () => {
+            if (timeoutId) clearTimeout(timeoutId);
+        };
+    }, [isPlayingAll, playingIndex, filteredWords]);
+
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            ttsService.stop();
+            ttsService.disableBackgroundMode();
+        };
+    }, []);
+
+    // Reset playing index if it's out of bounds after filtering
+    useEffect(() => {
+        if (playingIndex >= filteredWords.length && filteredWords.length > 0) {
+            setPlayingIndex(0);
+        }
+    }, [filteredWords.length]);
 
     return (
         <div className="max-w-2xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10">
@@ -38,12 +145,25 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                 </button>
                 <div className="text-center">
                     <h2 className="text-2xl font-bold tracking-tight">All Words</h2>
-                    <p className="text-xs text-zinc-500">
-                        {vocabPool.length} total
-                        {filteredWords.length !== vocabPool.length && (
-                            <span className="text-zinc-400"> · {filteredWords.length} filtered</span>
-                        )}
-                    </p>
+                    <div className="flex items-center justify-center gap-2">
+                        <p className="text-xs text-zinc-500">
+                            {vocabPool.length} total
+                            {filteredWords.length !== vocabPool.length && (
+                                <span className="text-zinc-400"> · {filteredWords.length} filtered</span>
+                            )}
+                        </p>
+                        <button
+                            onClick={handleTogglePlayAll}
+                            className={`p-1 rounded-full transition-all ${
+                                isPlayingAll
+                                ? 'bg-zinc-100 text-zinc-950 scale-110 shadow-lg shadow-zinc-100/10'
+                                : 'bg-zinc-800 text-zinc-400 hover:text-zinc-100'
+                            }`}
+                            title={isPlayingAll ? "Pause Audio" : "Play All Audio"}
+                        >
+                            {isPlayingAll ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3 ml-0.5" />}
+                        </button>
+                    </div>
                 </div>
                 <div className="w-10" /> {/* Spacer */}
             </div>
@@ -106,6 +226,38 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                                     {status}
                                 </button>
                             ))}
+                        </div>
+
+                        {/* Sort Button */}
+                        <div className="relative">
+                            <button
+                                onClick={() => setShowSortMenu(!showSortMenu)}
+                                className={`p-1 rounded-lg border transition-all flex-shrink-0 ${showSortMenu ? 'bg-zinc-100 border-zinc-100 text-zinc-950' : 'bg-zinc-950/50 border-zinc-800/50 text-zinc-500'}`}
+                            >
+                                <ArrowUpDown className="w-3.5 h-3.5" />
+                            </button>
+                            {showSortMenu && (
+                                <>
+                                    <div
+                                        className="fixed inset-0 z-40"
+                                        onClick={() => setShowSortMenu(false)}
+                                    />
+                                    <div className="absolute top-full right-0 mt-2 w-40 bg-zinc-900 border border-zinc-800 rounded-xl shadow-xl z-50 py-1">
+                                        {sortOptions.map(option => (
+                                            <button
+                                                key={option.id}
+                                                onClick={() => {
+                                                    setSortBy(option.id);
+                                                    setShowSortMenu(false);
+                                                }}
+                                                className={`w-full text-left px-3 py-2 text-[10px] font-bold uppercase tracking-wider hover:bg-zinc-800 transition-colors ${sortBy === option.id ? 'text-zinc-100' : 'text-zinc-500'}`}
+                                            >
+                                                {option.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 )}
@@ -179,6 +331,15 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                                         <span className="text-[9px] uppercase tracking-widest text-zinc-600 font-bold">Weight</span>
                                         <span className="text-xs font-mono font-bold text-zinc-400">{weight}</span>
                                     </div>
+
+                                    {/* Audio Button */}
+                                    <button
+                                        onClick={() => ttsService.speak(word.article ? `${word.article} ${word.word}` : word.word)}
+                                        className="p-2 bg-zinc-800 rounded-xl text-zinc-400 hover:text-zinc-100 transition-colors"
+                                        title="Play Audio"
+                                    >
+                                        <Volume2 className="w-4 h-4" />
+                                    </button>
 
                                     {/* Toggle */}
                                     <button

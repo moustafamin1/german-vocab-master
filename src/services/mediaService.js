@@ -27,7 +27,25 @@ export const mediaService = {
             const item = {
                 blob,
                 timestamp: Date.now(),
-                type: blob.type
+                type: blob.type,
+                mediaType: 'image'
+            };
+            const request = store.add(item);
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+        });
+    },
+
+    async addVideo(url, thumbnail) {
+        const db = await openDB();
+        return new Promise((resolve, reject) => {
+            const transaction = db.transaction(STORE_NAME, 'readwrite');
+            const store = transaction.objectStore(STORE_NAME);
+            const item = {
+                url,
+                thumbnail,
+                timestamp: Date.now(),
+                mediaType: 'video'
             };
             const request = store.add(item);
             request.onsuccess = () => resolve(request.result);
@@ -42,12 +60,21 @@ export const mediaService = {
             const store = transaction.objectStore(STORE_NAME);
             const request = store.getAll();
             request.onsuccess = () => {
-                // Create URLs for the blobs
-                const images = request.result.map(item => ({
-                    ...item,
-                    url: URL.createObjectURL(item.blob)
-                })).sort((a, b) => b.timestamp - a.timestamp);
-                resolve(images);
+                // Create URLs for the blobs and handle video items
+                const media = request.result.map(item => {
+                    if (item.blob) {
+                        return {
+                            ...item,
+                            url: URL.createObjectURL(item.blob),
+                            mediaType: 'image'
+                        };
+                    }
+                    return {
+                        ...item,
+                        mediaType: 'video'
+                    };
+                }).sort((a, b) => b.timestamp - a.timestamp);
+                resolve(media);
             };
             request.onerror = () => reject(request.error);
         });

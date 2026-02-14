@@ -1,0 +1,16 @@
+
+> german-vocab-master@0.0.0 dev
+> vite
+
+✨ VITE CONFIG LOADED
+🚀 Vite Plugin: Sync Middleware Registered
+
+  VITE v5.4.21  ready in 313 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+12:45:24 AM [vite] hmr update /src/components/MediaLibrary.jsx, /src/index.css
+12:45:48 AM [vite] hmr update /src/index.css, /src/components/MediaLibrary.jsx
+12:46:21 AM [vite] hmr update /src/components/MediaLibrary.jsx, /src/index.css
+12:46:48 AM [vite] hmr update /src/components/MediaLibrary.jsx, /src/index.css
+12:46:53 AM [vite] hmr update /src/index.css, /src/components/MediaLibrary.jsx

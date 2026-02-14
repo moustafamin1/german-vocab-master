@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, MoreVertical, Trash2, X, Plus, Clipboard, Image as ImageIcon } from 'lucide-react';
+import { ChevronLeft, MoreVertical, Trash2, X, Plus, Clipboard, Link as LinkIcon, Instagram, Play, Image as ImageIcon } from 'lucide-react';
 import { mediaService } from '../services/mediaService';
 
 export default function MediaLibrary({ onBack }) {
@@ -71,6 +71,30 @@ export default function MediaLibrary({ onBack }) {
         }
     };
 
+    const processUrl = async (url) => {
+        const regex = /instagram\.com\/(?:p|reel|reels)\/([A-Za-z0-9_-]+)/;
+        const match = url?.trim().match(regex);
+
+        if (!match) return false;
+
+        const shortcode = match[1];
+        const normalizedUrl = `https://www.instagram.com/reel/${shortcode}/`;
+        const thumbnail = `https://www.instagram.com/p/${shortcode}/media/?size=l`;
+
+        setIsPasting(true);
+        try {
+            await mediaService.addVideo(normalizedUrl, thumbnail);
+            await loadImages();
+            return true;
+        } catch (err) {
+            console.error('Failed to save video link', err);
+            alert('Failed to save video link');
+            return false;
+        } finally {
+            setIsPasting(false);
+        }
+    };
+
     const handleManualPaste = async () => {
         try {
             const clipboardItems = await navigator.clipboard.read();
@@ -81,12 +105,41 @@ export default function MediaLibrary({ onBack }) {
                         await saveImage(blob);
                         return;
                     }
+                    if (type === 'text/plain') {
+                        const blob = await clipboardItem.getType(type);
+                        const text = await blob.text();
+                        if (await processUrl(text)) return;
+                    }
                 }
             }
-            alert('No image found in clipboard. Please copy an image first.');
         } catch (err) {
-            console.error('Clipboard access denied or failed', err);
-            alert('To paste, please use Cmd+V / Ctrl+V or grant clipboard permissions.');
+            console.warn('Clipboard read failed, trying readText', err);
+            try {
+                const text = await navigator.clipboard.readText();
+                if (text && await processUrl(text)) return;
+            } catch (textErr) {
+                console.error('Clipboard fallback failed', textErr);
+            }
+        }
+        alert('No image or valid Instagram link found in clipboard.');
+    };
+
+    const handleAddLink = async () => {
+        try {
+            const clipboardText = await navigator.clipboard.readText();
+            if (clipboardText && await processUrl(clipboardText)) {
+                return;
+            }
+        } catch (err) {
+            console.warn('Quick paste failed', err);
+        }
+
+        const url = prompt('Enter Instagram Reel URL:');
+        if (!url) return;
+
+        const success = await processUrl(url);
+        if (!success) {
+            alert('Invalid Instagram URL. Please use a link like https://www.instagram.com/reels/XXXXX/');
         }
     };
 
@@ -150,6 +203,14 @@ export default function MediaLibrary({ onBack }) {
 
                 <div className="flex items-center gap-2">
                     <button
+                        onClick={handleAddLink}
+                        disabled={isPasting}
+                        className="p-2.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all"
+                        title="Paste or Add Instagram Link"
+                    >
+                        <LinkIcon className="w-5 h-5" />
+                    </button>
+                    <button
                         onClick={handleManualPaste}
                         disabled={isPasting}
                         className="p-2.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all"
@@ -186,12 +247,39 @@ export default function MediaLibrary({ onBack }) {
                 <div className="columns-2 md:columns-3 gap-4 space-y-4">
                     {images.map((image) => (
                         <div key={image.id} className="relative break-inside-avoid rounded-2xl overflow-hidden bg-zinc-900 group">
-                            <img
-                                src={image.url}
-                                alt="Media"
-                                className="w-full h-auto cursor-pointer active:scale-[0.98] transition-all duration-300"
-                                onClick={() => setSelectedImage(image)}
-                            />
+                            {image.mediaType === 'video' ? (
+                                <div
+                                    className="relative cursor-pointer active:scale-[0.98] transition-all duration-300 aspect-[9/16] bg-zinc-900"
+                                    onClick={() => setSelectedImage(image)}
+                                >
+                                    <img
+                                        src={image.thumbnail}
+                                        alt="Instagram Reel"
+                                        className="w-full h-full object-cover block"
+                                        onError={(e) => {
+                                            e.target.style.display = 'none';
+                                        }}
+                                    />
+                                    <div className="absolute inset-0 flex items-center justify-center -z-0">
+                                        <Instagram className="w-12 h-12 text-zinc-800" />
+                                    </div>
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                                        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
+                                            <Play className="w-6 h-6 text-white fill-white" />
+                                        </div>
+                                    </div>
+                                    <div className="absolute bottom-2 left-2 p-1 rounded-md bg-black/50 backdrop-blur-md z-10">
+                                        <Instagram className="w-4 h-4 text-white" />
+                                    </div>
+                                </div>
+                            ) : (
+                                <img
+                                    src={image.url}
+                                    alt="Media"
+                                    className="w-full h-auto cursor-pointer active:scale-[0.98] transition-all duration-300"
+                                    onClick={() => setSelectedImage(image)}
+                                />
+                            )}
 
                             {/* 3 dots menu */}
                             <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 md:opacity-100 transition-opacity">
@@ -241,12 +329,24 @@ export default function MediaLibrary({ onBack }) {
                     </button>
 
                     <div className="relative w-full h-full flex items-center justify-center p-4">
-                        <img
-                            src={selectedImage.url}
-                            alt="Full Screen"
-                            className="max-w-full max-h-full object-contain animate-in zoom-in-95 duration-300 select-none"
-                            draggable="false"
-                        />
+                        {selectedImage.mediaType === 'video' ? (
+                            <div className="w-full max-w-[400px] aspect-[9/16] bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl relative">
+                                <iframe
+                                    src={`${selectedImage.url}embed/`}
+                                    className="w-full h-full border-0"
+                                    allowFullScreen
+                                    scrolling="no"
+                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                />
+                            </div>
+                        ) : (
+                            <img
+                                src={selectedImage.url}
+                                alt="Full Screen"
+                                className="max-w-full max-h-full object-contain animate-in zoom-in-95 duration-300 select-none"
+                                draggable="false"
+                            />
+                        )}
                     </div>
                 </div>
             )}
