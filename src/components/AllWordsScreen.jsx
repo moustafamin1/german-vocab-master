@@ -51,6 +51,39 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
         });
     }, [vocabPool, searchTerm, filterStatus, selectedLevel, typeFilter, sortBy, srsOffset]);
 
+    // Media Session Handlers
+    const mediaHandlers = useMemo(() => ({
+        play: () => {
+            setIsPlayingAll(true);
+            if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+        },
+        pause: () => {
+            setIsPlayingAll(false);
+            if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+        },
+        nexttrack: () => setPlayingIndex((prev) => (prev + 1) % filteredWords.length),
+        previoustrack: () => setPlayingIndex((prev) => (prev - 1 + filteredWords.length) % filteredWords.length)
+    }), [filteredWords.length]);
+
+    // Handle Toggle Play All (Direct User Gesture)
+    const handleTogglePlayAll = () => {
+        const nextState = !isPlayingAll;
+        setIsPlayingAll(nextState);
+
+        if (nextState && filteredWords.length > 0) {
+            const word = filteredWords[playingIndex % filteredWords.length];
+            ttsService.enableBackgroundMode(
+                word.word,
+                'Vocaccia - All Words Loop',
+                word.english,
+                mediaHandlers
+            );
+        } else {
+            ttsService.disableBackgroundMode();
+            ttsService.stop();
+        }
+    };
+
     // Handle Global Audio Loop
     useEffect(() => {
         let timeoutId;
@@ -60,55 +93,38 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
             const word = filteredWords[index];
             const text = word.article ? `${word.article} ${word.word}` : word.word;
 
-            // Update Media Session if available
-            if ('mediaSession' in navigator) {
-                navigator.mediaSession.metadata = new MediaMetadata({
-                    title: word.word,
-                    artist: 'Vocaccia - All Words Loop',
-                    album: word.english,
-                });
-
-                navigator.mediaSession.playbackState = 'playing';
-
-                navigator.mediaSession.setActionHandler('play', () => setIsPlayingAll(true));
-                navigator.mediaSession.setActionHandler('pause', () => setIsPlayingAll(false));
-                navigator.mediaSession.setActionHandler('nexttrack', () => {
-                    setPlayingIndex((prev) => (prev + 1) % filteredWords.length);
-                });
-                navigator.mediaSession.setActionHandler('previoustrack', () => {
-                    setPlayingIndex((prev) => (prev - 1 + filteredWords.length) % filteredWords.length);
-                });
-            }
+            // Update Media Session Metadata
+            ttsService.updateMetadata(
+                word.word,
+                'Vocaccia - All Words Loop',
+                word.english
+            );
 
             ttsService.speak(text, () => {
+                // Use a slightly longer delay to ensure TTS has fully finished before next one
+                // and to avoid issues with background throttling
                 timeoutId = setTimeout(() => {
                     if (isPlayingAll) {
                         setPlayingIndex((prev) => (prev + 1) % filteredWords.length);
                     }
-                }, 1500);
+                }, 1800);
             });
         } else {
             ttsService.stop();
-            if ('mediaSession' in navigator) {
-                navigator.mediaSession.playbackState = 'paused';
-            }
         }
 
         return () => {
             if (timeoutId) clearTimeout(timeoutId);
-            ttsService.stop();
         };
     }, [isPlayingAll, playingIndex, filteredWords]);
 
-    // Handle Background Audio Mode
+    // Cleanup on unmount
     useEffect(() => {
-        if (isPlayingAll) {
-            ttsService.enableBackgroundMode();
-        } else {
+        return () => {
+            ttsService.stop();
             ttsService.disableBackgroundMode();
-        }
-        return () => ttsService.disableBackgroundMode();
-    }, [isPlayingAll]);
+        };
+    }, []);
 
     // Reset playing index if it's out of bounds after filtering
     useEffect(() => {
@@ -137,7 +153,7 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                             )}
                         </p>
                         <button
-                            onClick={() => setIsPlayingAll(!isPlayingAll)}
+                            onClick={handleTogglePlayAll}
                             className={`p-1 rounded-full transition-all ${
                                 isPlayingAll
                                 ? 'bg-zinc-100 text-zinc-950 scale-110 shadow-lg shadow-zinc-100/10'

@@ -11,22 +11,53 @@ if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
 let silentAudio = null;
 
 export const ttsService = {
-    enableBackgroundMode: () => {
+    updateMetadata: (title, artist, album) => {
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: title || 'Vocaccia',
+                artist: artist || 'German Vocabulary',
+                album: album || 'Vocaccia Loop',
+            });
+        }
+    },
+
+    enableBackgroundMode: (title, artist, album, handlers = {}) => {
         if (typeof window === 'undefined') return;
 
         if (!silentAudio) {
-            // Minimal silent WAV: 1 second, 8000Hz, mono, 8-bit
+            // 1-second silent WAV (8000Hz, 16-bit, mono)
             const silentWav = "data:audio/wav;base64,UklGRjIAAABXQVZFYm10IBAAAAABAAEAgD4AAAB9AAACABAAZGF0YRAAAAAAAAAAAAAAAAAAAAAA";
             silentAudio = new Audio(silentWav);
             silentAudio.loop = true;
+            silentAudio.volume = 0.001; // Extremely low volume to avoid "complete silence" optimizations while remaining inaudible
         }
 
-        silentAudio.play().catch(e => console.warn('Silent audio play failed:', e));
+        // Set initial metadata
+        ttsService.updateMetadata(title, artist, album);
+
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.playbackState = 'playing';
+
+            // Set action handlers if provided
+            if (handlers.play) navigator.mediaSession.setActionHandler('play', handlers.play);
+            if (handlers.pause) navigator.mediaSession.setActionHandler('pause', handlers.pause);
+            if (handlers.nexttrack) navigator.mediaSession.setActionHandler('nexttrack', handlers.nexttrack);
+            if (handlers.previoustrack) navigator.mediaSession.setActionHandler('previoustrack', handlers.previoustrack);
+        }
+
+        return silentAudio.play().catch(e => {
+            console.warn('Silent audio play failed:', e);
+            // If play fails, we try again on a user gesture or let it be
+        });
     },
+
     disableBackgroundMode: () => {
         if (silentAudio) {
             silentAudio.pause();
             silentAudio.currentTime = 0;
+        }
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.playbackState = 'paused';
         }
     },
     speak: (text, onEnd) => {
@@ -36,8 +67,11 @@ export const ttsService = {
             return;
         }
 
-        // Cancel any ongoing speech
+        // Cancel any ongoing speech and resume if stuck
         window.speechSynthesis.cancel();
+        if (window.speechSynthesis.paused) {
+            window.speechSynthesis.resume();
+        }
 
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'de-DE';
