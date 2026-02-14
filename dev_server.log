@@ -5,9 +5,8 @@
 ✨ VITE CONFIG LOADED
 🚀 Vite Plugin: Sync Middleware Registered
 
-  VITE v5.4.21  ready in 921 ms
+  VITE v5.4.21  ready in 322 ms
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
-10:53:43 PM [vite] hmr update /src/index.css, /src/components/ResultCard.jsx, /src/components/AllWordsScreen.jsx
-10:53:47 PM [vite] hmr update /src/components/AllWordsScreen.jsx, /src/index.css
+8:13:10 PM [vite] hmr update /src/components/AllWordsScreen.jsx, /src/index.css
