@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy, Bell } from 'lucide-react';
-import { LocalNotifications } from '@capacitor/local-notifications';
+import React, { useState } from 'react';
+import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy } from 'lucide-react';
 import { fetchAndCacheVocab } from '../services/vocabService';
 import StatsCard from './StatsCard';
 
@@ -19,63 +18,6 @@ export default function SettingsScreen({
     const [syncSuccess, setSyncSuccess] = useState(false);
     const [copySuccess, setCopySuccess] = useState(false);
     const [useDummyData, setUseDummyData] = useState(false);
-    const [reminderEnabled, setReminderEnabled] = useState(() => {
-        return JSON.parse(localStorage.getItem('notification-reminder') || 'false');
-    });
-
-    const scheduleDailyReminder = async () => {
-        const scheduledTime = new Date();
-        scheduledTime.setHours(23, 0, 0, 0);
-
-        // If already past 11 PM, start from tomorrow
-        if (new Date() > scheduledTime) {
-            scheduledTime.setDate(scheduledTime.getDate() + 1);
-        }
-
-        try {
-            await LocalNotifications.schedule({
-                notifications: [
-                    {
-                        title: "Vocaccia Practice",
-                        body: "Hey, one hour left to improve your daily progress.",
-                        id: 1,
-                        schedule: { at: scheduledTime, repeats: true, every: 'day' },
-                    }
-                ]
-            });
-            console.log("✅ Notification scheduled for 11 PM daily.");
-        } catch (err) {
-            console.error("❌ Failed to schedule notification:", err);
-        }
-    };
-
-    const toggleNotifications = async () => {
-        if (!reminderEnabled) {
-            try {
-                const permission = await LocalNotifications.requestPermissions();
-                if (permission.display === 'granted') {
-                    await scheduleDailyReminder();
-                    setReminderEnabled(true);
-                    localStorage.setItem('notification-reminder', 'true');
-                } else {
-                    alert('Permission denied for notifications. Please enable them in system settings.');
-                }
-            } catch (err) {
-                console.error("Permission error", err);
-                // Fallback for non-native environments or debugging
-                setReminderEnabled(true);
-                localStorage.setItem('notification-reminder', 'true');
-            }
-        } else {
-            try {
-                await LocalNotifications.cancel({ notifications: [{ id: 1 }] });
-            } catch (err) {
-                console.error("Cancel error", err);
-            }
-            setReminderEnabled(false);
-            localStorage.setItem('notification-reminder', 'false');
-        }
-    };
 
     const handleSync = async () => {
         setIsSyncing(true);
@@ -192,26 +134,6 @@ export default function SettingsScreen({
                         >
                             <span>Open</span>
                             <ChevronRight className="w-4 h-4" />
-                        </button>
-                    </div>
-                </section>
-
-                {/* Notifications */}
-                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
-                    <div className="flex items-center gap-3 mb-2">
-                        <Bell className="w-5 h-5 text-zinc-400" />
-                        <h3 className="text-lg font-semibold">Reminders</h3>
-                    </div>
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm font-medium">Daily Goal Prompt</p>
-                            <p className="text-xs text-zinc-500">Send an 11:00 PM reminder if you haven't finished your progress.</p>
-                        </div>
-                        <button
-                            onClick={toggleNotifications}
-                            className={`w-12 h-6 rounded-full transition-colors relative ${reminderEnabled ? 'bg-blue-500' : 'bg-zinc-800'}`}
-                        >
-                            <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${reminderEnabled ? 'translate-x-6' : 'translate-x-0'}`} />
                         </button>
                     </div>
                 </section>
