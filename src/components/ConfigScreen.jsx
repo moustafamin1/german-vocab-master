@@ -8,7 +8,7 @@ const MODES = [
     { id: 'wordOrder', name: 'Word Order' }
 ];
 
-const TYPES = ['Noun', 'Phrase'];
+const TYPES = ['Noun', 'Phrase', 'Grammar'];
 
 export default function ConfigScreen({
     levels,

@@ -78,8 +78,8 @@ export default function QuizCard({ word, mode, options, onAnswer }) {
             {/* Middle Section (Main Question) */}
             <div className="flex-1 flex flex-col items-center justify-center text-center px-4 py-8">
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-                    {mode === 'article' ? word.word : word.english}
-                    {mode !== 'article' && mode !== 'written' && mode !== 'wordOrder' && getArticle(word) && (
+                    {word.type === 'Grammar' ? word.phrase : (mode === 'article' ? word.word : word.english)}
+                    {word.type !== 'Grammar' && mode !== 'article' && mode !== 'written' && mode !== 'wordOrder' && getArticle(word) && (
                         <span className="text-zinc-500 text-2xl ml-3">({getArticle(word)})</span>
                     )}
                 </h2>

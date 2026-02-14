@@ -27,7 +27,7 @@ export default function App() {
     // App Config State
     const [selectedLevels, setSelectedLevels] = useState([]);
     const [selectedModes, setSelectedModes] = useState(['multipleChoice', 'written', 'article', 'wordOrder']);
-    const [selectedTypes, setSelectedTypes] = useState(['Noun', 'Phrase']);
+    const [selectedTypes, setSelectedTypes] = useState(['Noun', 'Phrase', 'Grammar']);
 
     // Data State
     const [vocabPool, setVocabPool] = useState([]);
@@ -185,6 +185,9 @@ export default function App() {
             if (mode === 'wordOrder') {
                 return randomWord.type === 'Phrase';
             }
+            if (mode === 'written') {
+                return randomWord.type !== 'Grammar';
+            }
             return true;
         });
 
@@ -195,14 +198,24 @@ export default function App() {
             finalMode = 'wordOrder';
         }
 
+        // Force multipleChoice for Grammar words
+        if (randomWord.type === 'Grammar') {
+            finalMode = 'multipleChoice';
+        }
+
         // Generate options for Multiple Choice
         if (finalMode === 'multipleChoice') {
-            const distractors = vocabPool
-                .filter(v => v.word !== randomWord.word)
-                .sort(() => 0.5 - Math.random())
-                .slice(0, 3);
+            if (randomWord.type === 'Grammar' && randomWord.wrongChoices && randomWord.wrongChoices.length > 0) {
+                // Use hardcoded wrong choices from Sheet 5
+                setOptions([randomWord, ...randomWord.wrongChoices].sort(() => 0.5 - Math.random()));
+            } else {
+                const distractors = vocabPool
+                    .filter(v => v.word !== randomWord.word)
+                    .sort(() => 0.5 - Math.random())
+                    .slice(0, 3);
 
-            setOptions([randomWord, ...distractors].sort(() => 0.5 - Math.random()));
+                setOptions([randomWord, ...distractors].sort(() => 0.5 - Math.random()));
+            }
         }
 
         setCurrentWord(randomWord);

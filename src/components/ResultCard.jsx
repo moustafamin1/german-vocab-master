@@ -9,7 +9,12 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
     // Automatically play audio if enabled
     useEffect(() => {
         if (autoPlayAudio) {
-            const textToSpeak = word.article ? `${word.article} ${word.word}` : word.word;
+            let textToSpeak = '';
+            if (word.type === 'Grammar' && word.phrase) {
+                textToSpeak = word.phrase.replace(/______/g, word.word);
+            } else {
+                textToSpeak = word.article ? `${word.article} ${word.word}` : word.word;
+            }
             ttsService.speak(textToSpeak);
         }
     }, [word, autoPlayAudio]);
@@ -42,17 +47,31 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                     <div className="space-y-1">
                         <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Correct Answer</span>
                         <div className="flex items-center justify-between gap-2">
-                            <p className="text-sm font-medium">
-                                {(() => {
-                                    const art = word.article;
-                                    const capitalizedArt = art ? art.charAt(0).toUpperCase() + art.slice(1) : '';
-                                    return capitalizedArt ? `${capitalizedArt} ` : '';
-                                })()}
-                                {word.word}
-                            </p>
+                            <div className="text-sm font-medium">
+                                {word.type === 'Grammar' && word.phrase ? (
+                                    <p>{word.phrase.replace(/______/g, word.word)}</p>
+                                ) : (
+                                    <p>
+                                        {(() => {
+                                            const art = word.article;
+                                            const capitalizedArt = art ? art.charAt(0).toUpperCase() + art.slice(1) : '';
+                                            return capitalizedArt ? `${capitalizedArt} ` : '';
+                                        })()}
+                                        {word.word}
+                                    </p>
+                                )}
+                            </div>
                             <button
-                                onClick={() => ttsService.speak(word.article ? `${word.article} ${word.word}` : word.word)}
-                                className="p-1.5 bg-zinc-800 rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors"
+                                onClick={() => {
+                                    let textToSpeak = '';
+                                    if (word.type === 'Grammar' && word.phrase) {
+                                        textToSpeak = word.phrase.replace(/______/g, word.word);
+                                    } else {
+                                        textToSpeak = word.article ? `${word.article} ${word.word}` : word.word;
+                                    }
+                                    ttsService.speak(textToSpeak);
+                                }}
+                                className="p-1.5 bg-zinc-800 rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors shrink-0"
                                 title="Play Audio"
                             >
                                 <Volume2 className="w-3.5 h-3.5" />
@@ -69,7 +88,9 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                 </div>
 
                 <div className="text-center">
-                    <p className="text-xs text-zinc-500 italic">{word.english}</p>
+                    <p className={`text-zinc-500 italic ${word.type === 'Grammar' ? 'text-sm font-medium' : 'text-xs'}`}>
+                        {word.english}
+                    </p>
                 </div>
 
                 {/* Word Statistics & SRS Weight */}
