@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, MoreVertical, Trash2, X, Plus, Clipboard, Link, Instagram, Play, Image as ImageIcon } from 'lucide-react';
+import { ChevronLeft, MoreVertical, Trash2, X, Plus, Clipboard, Link2 as LinkIcon, Instagram, Play, Image as ImageIcon } from 'lucide-react';
 import { mediaService } from '../services/mediaService';
 
 export default function MediaLibrary({ onBack }) {
@@ -184,7 +184,7 @@ export default function MediaLibrary({ onBack }) {
                         className="p-2.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all"
                         title="Add Instagram Link"
                     >
-                        <Link className="w-5 h-5" />
+                        <LinkIcon className="w-5 h-5" />
                     </button>
                     <button
                         onClick={handleManualPaste}
