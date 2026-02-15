@@ -75,7 +75,9 @@ export default function ConfigScreen({
                                         : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
                                         }`}
                                 >
-                                    <span className="font-semibold">{type}s</span>
+                                    <span className="font-semibold">
+                                        {type === 'Noun' ? 'Nouns' : (type === 'Phrase' ? 'Phrases' : 'Grammar')}
+                                    </span>
                                     {isActive && <Check className="w-4 h-4" />}
                                 </button>
                             );
