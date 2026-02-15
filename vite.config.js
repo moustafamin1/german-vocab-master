@@ -9,6 +9,7 @@ export default defineConfig({
     base: process.env.GITHUB_ACTIONS ? '/german-vocab-master/' : './',
     plugins: [
         react(),
+        /*
         VitePWA({
             registerType: 'autoUpdate',
             includeAssets: ['favicon.png', 'apple-touch-icon.png'],
@@ -39,6 +40,7 @@ export default defineConfig({
                 ]
             }
         }),
+        */
         {
             name: 'sync-endpoint',
             configureServer(server) {
