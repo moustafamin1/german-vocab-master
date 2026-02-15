@@ -6,7 +6,7 @@ console.log('✨ VITE CONFIG LOADED');
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    base: process.env.GITHUB_ACTIONS ? '/german-vocab-master/' : '/',
+    base: process.env.GITHUB_ACTIONS ? '/german-vocab-master/' : './',
     plugins: [
         react(),
         VitePWA({
