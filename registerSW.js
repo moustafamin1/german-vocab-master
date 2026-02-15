@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/german-vocab-master/sw.js', { scope: '/german-vocab-master/' })})}
