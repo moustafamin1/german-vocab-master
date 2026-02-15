@@ -15,6 +15,7 @@ const SRS_STORAGE_KEY = 'vocab-srs-data';
 const GLOBAL_STATS_KEY = 'vocab-global-stats';
 const APP_SETTINGS_KEY = 'vocab-app-settings';
 const DAILY_STATS_KEY = 'vocab-daily-stats';
+const APP_VERSION = '1.1.0'; // Track updates
 
 export default function App() {
     const [view, setView] = useState('loading'); // loading, config, playing, feedback, settings, allWords, mediaLibrary
@@ -409,11 +410,12 @@ export default function App() {
                             setDevMode={setDevMode}
                             autoPlayAudio={autoPlayAudio}
                             setAutoPlayAudio={setAutoPlayAudio}
-                            wordCount={baseVocab.length}
+                            wordCount={vocabPool.length}
                             onBack={handleBackToConfig}
                             onOpenAllWords={handleOpenAllWords}
-                            onOpenMediaLibrary={handleOpenMediaLibrary}
+                            onOpenMediaLibrary={() => setView('mediaLibrary')}
                             dailyStats={dailyStats}
+                            version={APP_VERSION}
                         />
                     ) : view === 'allWords' ? (
                         <AllWordsScreen

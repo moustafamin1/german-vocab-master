@@ -14,7 +14,8 @@ export default function SettingsScreen({
     onBack,
     onOpenAllWords,
     onOpenMediaLibrary,
-    dailyStats
+    dailyStats,
+    version
 }) {
     const [isSyncing, setIsSyncing] = useState(false);
     const [syncSuccess, setSyncSuccess] = useState(false);
@@ -97,6 +98,34 @@ export default function SettingsScreen({
         } catch (err) {
             console.error('❌ Import failed:', err);
             alert(`❌ Failed to import data.\n\nReason: ${err.message}\n\nPlease ensure you copied the ENTIRE string without missing characters.`);
+        }
+    };
+
+    const handleHardRefresh = async () => {
+        if (!confirm('This will force the app to reload and update. Your progress is safe. Continue?')) return;
+
+        try {
+            // Unregister all service workers
+            if ('serviceWorker' in navigator) {
+                const registrations = await navigator.serviceWorker.getRegistrations();
+                for (let registration of registrations) {
+                    await registration.unregister();
+                }
+            }
+
+            // Clear all caches
+            if ('caches' in window) {
+                const cacheNames = await caches.keys();
+                for (let name of cacheNames) {
+                    await caches.delete(name);
+                }
+            }
+
+            // Reload bypassing cache
+            window.location.reload(true);
+        } catch (err) {
+            console.error('Hard refresh failed', err);
+            window.location.reload();
         }
     };
 
@@ -307,6 +336,22 @@ export default function SettingsScreen({
                                         )}
                                     </button>
                                 </div>
+                            </div>
+                        </div>
+
+                        {/* Force Update / Version */}
+                        <div className="pt-6 border-t border-zinc-800">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sm font-medium">Update App</p>
+                                    <p className="text-[10px] text-zinc-500 font-mono">Installed Version: {version || '1.0.0'}</p>
+                                </div>
+                                <button
+                                    onClick={handleHardRefresh}
+                                    className="px-4 py-2 rounded-xl border border-amber-500/20 text-amber-500 hover:bg-amber-500/10 transition-all text-xs font-bold bg-zinc-950"
+                                >
+                                    Force Update
+                                </button>
                             </div>
                         </div>
                     </div>
