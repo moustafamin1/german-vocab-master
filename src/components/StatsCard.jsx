@@ -3,7 +3,7 @@ import { TrendingUp, TestTube, Info } from 'lucide-react';
 
 export default function StatsCard({ dailyStats: realDailyStats, useDummyData = false }) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
-    const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+    const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0, p: 50 });
     const containerRef = useRef(null);
 
     // Generate dummy data for testing
@@ -143,7 +143,8 @@ export default function StatsCard({ dailyStats: realDailyStats, useDummyData = f
         if (!isNaN(index) && index >= 0 && index < recentData.length) {
             setHoveredIndex(index);
             const itemX = (index / (recentData.length - 1)) * (rect.width - yAxisWidth) + yAxisWidth;
-            setTooltipPos({ x: itemX, y: 0 });
+            const percentage = (itemX / rect.width) * 100;
+            setTooltipPos({ x: itemX, y: 0, p: percentage });
         }
     };
 
@@ -275,7 +276,7 @@ export default function StatsCard({ dailyStats: realDailyStats, useDummyData = f
                             style={{
                                 left: `${tooltipPos.x}px`,
                                 top: `-10px`,
-                                transform: `translateX(-50%) translateY(-100%)`,
+                                transform: `translateX(-${tooltipPos.p}%) translateY(-100%)`,
                             }}
                         >
                             <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-4 shadow-2xl min-w-[140px] animate-in slide-in-from-bottom-2">
@@ -302,7 +303,10 @@ export default function StatsCard({ dailyStats: realDailyStats, useDummyData = f
                                         </span>
                                     </div>
                                 </div>
-                                <div className="absolute -bottom-2 translate-y-[2px] left-1/2 -translate-x-1/2 w-4 h-4 bg-zinc-950 border-r border-b border-zinc-800 rotate-45" />
+                                <div
+                                    className="absolute -bottom-2 translate-y-[2px] -translate-x-1/2 w-4 h-4 bg-zinc-950 border-r border-b border-zinc-800 rotate-45"
+                                    style={{ left: `${tooltipPos.p}%` }}
+                                />
                             </div>
                         </div>
                     )}
