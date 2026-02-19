@@ -26,6 +26,10 @@ export const fetchAndCacheVocab = async (customUrl = null) => {
 
         const combinedData = [...sheet1Data, ...sheet5Data];
 
+        if (combinedData.length === 0) {
+            throw new Error('Sync returned zero items. Aborting cache update to prevent data loss.');
+        }
+
         // Save to local storage
         try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(combinedData));

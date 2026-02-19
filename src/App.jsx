@@ -10,6 +10,7 @@ import MediaLibrary from './components/MediaLibrary';
 import StatsBar from './components/StatsBar';
 import { getWeightedRandomWord } from './utils/srs-logic';
 import { getCachedVocab } from './services/vocabService';
+import { requestPersistence } from './utils/storageUtils';
 
 const SRS_STORAGE_KEY = 'vocab-srs-data';
 const GLOBAL_STATS_KEY = 'vocab-global-stats';
@@ -74,6 +75,9 @@ export default function App() {
         setDevMode(storedSettings.devMode);
         setAutoPlayAudio(storedSettings.autoPlayAudio ?? true);
         setDailyStats(storedDailyStats);
+
+        // Request persistence (silent)
+        requestPersistence();
 
         // 2. Merge with base vocab data and Migration Engine
         let dataMigrated = false;
