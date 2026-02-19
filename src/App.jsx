@@ -10,6 +10,7 @@ import MediaLibrary from './components/MediaLibrary';
 import StatsBar from './components/StatsBar';
 import { getWeightedRandomWord } from './utils/srs-logic';
 import { getCachedVocab } from './services/vocabService';
+import { requestPersistence, scanForOrphanData } from './utils/storageUtils';
 
 const SRS_STORAGE_KEY = 'vocab-srs-data';
 const GLOBAL_STATS_KEY = 'vocab-global-stats';
@@ -19,6 +20,7 @@ const APP_VERSION = '1.1.0'; // Track updates
 
 export default function App() {
     const [view, setView] = useState('loading'); // loading, config, playing, feedback, settings, allWords, mediaLibrary
+    const [recoveryFindings, setRecoveryFindings] = useState([]);
     const [devMode, setDevMode] = useState(true);
     const [srsOffset, setSrsOffset] = useState(3);
     const [autoPlayAudio, setAutoPlayAudio] = useState(true);
@@ -74,6 +76,9 @@ export default function App() {
         setDevMode(storedSettings.devMode);
         setAutoPlayAudio(storedSettings.autoPlayAudio ?? true);
         setDailyStats(storedDailyStats);
+
+        // Request persistence (silent)
+        requestPersistence();
 
         // 2. Merge with base vocab data and Migration Engine
         let dataMigrated = false;
@@ -135,6 +140,15 @@ export default function App() {
 
         setVocabPool(mergedVocab);
         setSelectedLevels(levels);
+
+        // 3. HOPE SCAN: If progress is 0, check for orphaned data automatically
+        if (storedGlobalStats.total === 0) {
+            const findings = scanForOrphanData();
+            if (findings.length > 0) {
+                console.log(`🔎 Hope Scan found ${findings.length} potential items to recover.`);
+                setRecoveryFindings(findings);
+            }
+        }
 
         setTimeout(() => {
             setView('config');
@@ -391,6 +405,8 @@ export default function App() {
                             selectedTypes={selectedTypes}
                             setSelectedTypes={setSelectedTypes}
                             onStart={handleStart}
+                            recoveryFindings={recoveryFindings}
+                            onOpenSettings={handleOpenSettings}
                         />
                     ) : view === 'feedback' ? (
                         <ResultCard
