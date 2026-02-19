@@ -28,6 +28,30 @@ export const isStoragePersisted = async () => {
 };
 
 /**
+ * Checks if the MediaLibraryDB (IndexedDB) exists.
+ */
+export const checkIndexedDBExists = () => {
+    return new Promise((resolve) => {
+        if (!window.indexedDB) return resolve(false);
+        const request = indexedDB.databases ? indexedDB.databases() : Promise.resolve([]);
+        request.then(databases => {
+            const exists = databases.some(db => db.name === 'MediaLibraryDB');
+            resolve(exists);
+        }).catch(() => {
+            // Fallback: try to open without creating
+            const req = indexedDB.open('MediaLibraryDB');
+            req.onsuccess = (e) => {
+                const db = e.target.result;
+                const hasStore = db.objectStoreNames.contains('images');
+                db.close();
+                resolve(hasStore);
+            };
+            req.onerror = () => resolve(false);
+        });
+    });
+};
+
+/**
  * Scans localStorage for any data that looks like it might be lost progress.
  * This checks for common patterns used in previous versions or similar apps
  * on the same domain.
@@ -61,6 +85,14 @@ export const scanForOrphanData = () => {
                         matches = true;
                         description = 'SRS Progress Data';
                     }
+                }
+            }
+
+            // Check for possible legacy naming
+            if (key.includes('german-vocab') || key.includes('srs') || (key.includes('stats') && !key.startsWith('vocab-'))) {
+                if (typeof parsed === 'object') {
+                    matches = true;
+                    description = description || 'Potential Legacy Data';
                 }
             }
 

@@ -367,7 +367,12 @@ export default function SettingsScreen({
                                     {scanFindings.map((finding, i) => (
                                         <div key={i} className="flex items-center justify-between p-3 bg-zinc-950 border border-zinc-800 rounded-lg">
                                             <div>
-                                                <p className="text-xs font-mono text-zinc-300">{finding.key}</p>
+                                                <div className="flex items-center gap-2">
+                                                    <p className="text-xs font-mono text-zinc-300">{finding.key}</p>
+                                                    {finding.description.includes('Legacy') && (
+                                                        <span className="text-[8px] bg-amber-500/20 text-amber-500 px-1 rounded font-bold uppercase">Old Version</span>
+                                                    )}
+                                                </div>
                                                 <p className="text-[10px] text-zinc-500">{finding.description}</p>
                                             </div>
                                             <button
