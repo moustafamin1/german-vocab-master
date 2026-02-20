@@ -15,6 +15,7 @@ export default function SettingsScreen({
     onBack,
     onOpenAllWords,
     onOpenMediaLibrary,
+    onOpenSkippingTool,
     dailyStats,
     version
 }) {
@@ -137,6 +138,23 @@ export default function SettingsScreen({
                             className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
                         >
                             <span>All Words</span>
+                            <ChevronRight className="w-4 h-4" />
+                        </button>
+                    </div>
+                </section>
+
+                {/* Skipping Tool */}
+                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="text-sm font-medium">Skipping Tool</p>
+                            <p className="text-xs text-zinc-500">Rapidly process your list (Tinder-style).</p>
+                        </div>
+                        <button
+                            onClick={onOpenSkippingTool}
+                            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
+                        >
+                            <span>Launch</span>
                             <ChevronRight className="w-4 h-4" />
                         </button>
                     </div>

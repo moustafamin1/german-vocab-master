@@ -7,6 +7,7 @@ import ConfigScreen from './components/ConfigScreen';
 import SettingsScreen from './components/SettingsScreen';
 import AllWordsScreen from './components/AllWordsScreen';
 import MediaLibrary from './components/MediaLibrary';
+import SkippingTool from './components/SkippingTool';
 import StatsBar from './components/StatsBar';
 import { getWeightedRandomWord } from './utils/srs-logic';
 import { getCachedVocab } from './services/vocabService';
@@ -358,6 +359,7 @@ export default function App() {
     const handleOpenAllWords = () => setView('allWords');
     const handleBackToSettings = () => setView('settings');
     const handleOpenMediaLibrary = () => setView('mediaLibrary');
+    const handleOpenSkippingTool = () => setView('skippingTool');
 
     if (view === 'loading') {
         return (
@@ -413,6 +415,7 @@ export default function App() {
                             onBack={handleBackToConfig}
                             onOpenAllWords={handleOpenAllWords}
                             onOpenMediaLibrary={() => setView('mediaLibrary')}
+                            onOpenSkippingTool={handleOpenSkippingTool}
                             dailyStats={dailyStats}
                             version={APP_VERSION}
                         />
@@ -425,6 +428,12 @@ export default function App() {
                         />
                     ) : view === 'mediaLibrary' ? (
                         <MediaLibrary
+                            onBack={handleBackToSettings}
+                        />
+                    ) : view === 'skippingTool' ? (
+                        <SkippingTool
+                            vocabPool={vocabPool}
+                            onToggleStatus={toggleWordStatus}
                             onBack={handleBackToSettings}
                         />
                     ) : (
