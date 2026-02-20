@@ -34,20 +34,16 @@ export default function App() {
 
     // Data State
     const [vocabPool, setVocabPool] = useState([]);
+    const [baseVocabCount, setBaseVocabCount] = useState(0);
 
     // Quiz State
     const [currentWord, setCurrentWord] = useState(null);
     const [quizMode, setQuizMode] = useState('');
     const [options, setOptions] = useState([]);
     const [feedback, setFeedback] = useState(null);
+    const [levels, setLevels] = useState([]);
 
-    // Load data (cached or built-in)
-    const rawCached = getCachedVocab();
-    const baseVocab = (Array.isArray(rawCached) ? rawCached : null) || vocabData;
-
-    // Extract all unique levels
-    const levels = Array.from(new Set(baseVocab.map(v => v?.level))).filter(Boolean).sort();
-
+    // Initial load happens in useEffect
     useEffect(() => {
         const loadInitialData = async () => {
             // 0. Initialize Storage (IndexedDB + Persistence Request)
@@ -64,9 +60,21 @@ export default function App() {
                 storedGlobalStats = await storage.getItem(GLOBAL_STATS_KEY, { total: 2051, correct: 1611, incorrect: 440 });
                 storedSettings = await storage.getItem(APP_SETTINGS_KEY, { srsOffset: 3, devMode: true, autoPlayAudio: true });
                 storedDailyStats = await storage.getItem(DAILY_STATS_KEY, []);
+
+                // 🔄 FORCE UPDATE: If stored stats are the old defaults or very low, 
+                // override with the new hardcoded values requested by the user.
+                if (storedGlobalStats.total < 2051) {
+                    storedGlobalStats = { total: 2051, correct: 1611, incorrect: 440 };
+                    await storage.setItem(GLOBAL_STATS_KEY, storedGlobalStats);
+                }
             } catch (err) {
                 console.error('⚠️ Failed to load stored data, using defaults:', err);
             }
+
+            // Load Vocab from Cache (Fix Promise bug)
+            const rawCached = await getCachedVocab();
+            const baseVocab = (Array.isArray(rawCached) ? rawCached : null) || vocabData;
+            setBaseVocabCount(baseVocab.length);
 
             setGlobalStats(storedGlobalStats);
             setSrsOffset(storedSettings.srsOffset);
@@ -131,7 +139,10 @@ export default function App() {
             }
 
             setVocabPool(mergedVocab);
-            setSelectedLevels(levels);
+            setBaseVocabCount(mergedVocab.length);
+            const allLevels = Array.from(new Set(mergedVocab.map(v => v?.level))).filter(Boolean).sort();
+            setLevels(allLevels);
+            setSelectedLevels(allLevels);
 
             setTimeout(() => {
                 setView('config');
@@ -386,7 +397,7 @@ export default function App() {
                 <SettingsHeader
                     onLogoClick={handleBackToConfig}
                     onSettingsClick={handleOpenSettings}
-                    wordCount={baseVocab.length}
+                    wordCount={baseVocabCount}
                     isSettingsOpen={view === 'settings' || view === 'allWords' || view === 'mediaLibrary'}
                 />
 
