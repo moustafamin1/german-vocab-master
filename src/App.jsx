@@ -140,7 +140,7 @@ export default function App() {
 
             setVocabPool(mergedVocab);
             setBaseVocabCount(mergedVocab.length);
-            const allLevels = Array.from(new Set(mergedVocab.map(v => v?.level))).filter(Boolean).sort();
+            const allLevels = Array.from(new Set(mergedVocab.map(v => v?.level))).filter(Boolean).filter(l => l !== 'Grammar').sort();
             setLevels(allLevels);
             setSelectedLevels(allLevels);
 

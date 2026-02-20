@@ -15,7 +15,7 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
     const [playingIndex, setPlayingIndex] = useState(0);
 
     // Extract unique levels
-    const levels = ['All', ...Array.from(new Set(vocabPool.map(v => v.level))).filter(Boolean).sort()];
+    const levels = ['All', ...Array.from(new Set(vocabPool.map(v => v.level))).filter(Boolean).filter(l => l !== 'Grammar').sort()];
 
     const sortOptions = [
         { id: 'alphabetical', label: 'Alphabetical' },
@@ -31,10 +31,11 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
             const matchesStatus = filterStatus === 'all' ||
                 (filterStatus === 'study' && word.status !== 'skip') ||
                 (filterStatus === 'skip' && word.status === 'skip');
-            const matchesLevel = selectedLevel === 'All' || word.level === selectedLevel;
+            const matchesLevel = selectedLevel === 'All' || word.level === selectedLevel || (word.type === 'Grammar' && typeFilter === 'grammar');
             const matchesType = typeFilter === 'all' ||
                 (typeFilter === 'nouns' && word.type === 'Noun') ||
-                (typeFilter === 'phrases' && word.type === 'Phrase');
+                (typeFilter === 'phrases' && word.type === 'Phrase') ||
+                (typeFilter === 'grammar' && word.type === 'Grammar');
 
             return matchesSearch && matchesStatus && matchesLevel && matchesType;
         }).sort((a, b) => {
@@ -198,7 +199,7 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
 
                         {/* Type Filter */}
                         <div className="flex bg-zinc-950/50 border border-zinc-800/50 rounded-lg p-0.5 flex-shrink-0">
-                            {['all', 'nouns', 'phrases'].map((type) => (
+                            {['all', 'nouns', 'phrases', 'grammar'].map((type) => (
                                 <button
                                     key={type}
                                     onClick={() => setTypeFilter(type)}
