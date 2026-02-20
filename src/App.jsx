@@ -16,7 +16,7 @@ const SRS_STORAGE_KEY = 'vocab-srs-data';
 const GLOBAL_STATS_KEY = 'vocab-global-stats';
 const APP_SETTINGS_KEY = 'vocab-app-settings';
 const DAILY_STATS_KEY = 'vocab-daily-stats';
-const APP_VERSION = '1.1.0'; // Track updates
+const APP_VERSION = '1.2.0'; // Track updates
 
 export default function App() {
     const [view, setView] = useState('loading'); // loading, config, playing, feedback, settings, allWords, mediaLibrary
@@ -439,7 +439,7 @@ export default function App() {
 
                 {view !== 'config' && !feedback && (
                     <footer className="mt-8 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-700">
-                        SRS Active • Viel Erfolg beim Lernen • v1.0.3
+                        SRS Active • Viel Erfolg beim Lernen • v1.2.0
                     </footer>
                 )}
             </div>
