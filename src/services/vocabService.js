@@ -1,4 +1,5 @@
 import Papa from 'papaparse';
+import * as storage from './storageService';
 
 const STORAGE_KEY = 'cached-vocab';
 
@@ -8,7 +9,7 @@ const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT
 const GOOGLE_SHEET_GRAMMAR_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTRyZJKM5z9VSCc8DTg95ajKO3LRuo-HsQaAcBX5XCi43w8Hz1MX4dXF1m0l3k7EnjwFbvY2ycZD4Vi/pub?gid=624571091&single=true&output=csv';
 
 /**
- * Fetches vocabulary from the Google Sheet CSV, parses it, cleans it, and saves it to localStorage.
+ * Fetches vocabulary from the Google Sheet CSV, parses it, cleans it, and saves it to storage.
  * Returns the cleaned vocabulary list.
  */
 export const fetchAndCacheVocab = async (customUrl = null) => {
@@ -26,12 +27,12 @@ export const fetchAndCacheVocab = async (customUrl = null) => {
 
         const combinedData = [...sheet1Data, ...sheet5Data];
 
-        // Save to local storage
+        // Save to storage
         try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(combinedData));
-            console.log(`✅ Cached ${combinedData.length} total items to localStorage`);
+            await storage.setItem(STORAGE_KEY, combinedData);
+            console.log(`✅ Cached ${combinedData.length} total items to storage`);
         } catch (err) {
-            console.error('Failed to save to localStorage', err);
+            console.error('Failed to save to storage', err);
         }
 
         return combinedData;
@@ -140,10 +141,9 @@ const cleanVocabData = (rawRows, hardcodedType = null) => {
     }).filter(item => item !== null);
 };
 
-export const getCachedVocab = () => {
+export const getCachedVocab = async () => {
     try {
-        const cached = localStorage.getItem(STORAGE_KEY);
-        return cached ? JSON.parse(cached) : null;
+        return await storage.getItem(STORAGE_KEY);
     } catch (err) {
         console.error('Error reading cached vocab:', err);
         return null;

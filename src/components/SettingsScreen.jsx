@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy, Volume2 } from 'lucide-react';
 import { fetchAndCacheVocab } from '../services/vocabService';
+import * as storage from '../services/storageService';
 import StatsCard from './StatsCard';
 
 export default function SettingsScreen({
@@ -37,16 +38,11 @@ export default function SettingsScreen({
         }
     };
 
-    const handleExport = () => {
+    const handleExport = async () => {
         try {
-            const data = {
-                'vocab-srs-data': localStorage.getItem('vocab-srs-data'),
-                'vocab-global-stats': localStorage.getItem('vocab-global-stats'),
-                'vocab-app-settings': localStorage.getItem('vocab-app-settings'),
-                'cached-vocab': localStorage.getItem('cached-vocab')
-            };
-
+            const data = await storage.getAllData();
             const jsonStr = JSON.stringify(data);
+
             // Robust base64 encoding for UTF-8 strings
             const exportStr = btoa(encodeURIComponent(jsonStr).replace(/%([0-9A-F]{2})/g, (match, p1) => {
                 return String.fromCharCode('0x' + p1);
@@ -63,7 +59,7 @@ export default function SettingsScreen({
         }
     };
 
-    const handleImport = () => {
+    const handleImport = async () => {
         const rawInput = prompt('Paste your Exported Data string here:');
         if (!rawInput) return;
 
@@ -79,19 +75,13 @@ export default function SettingsScreen({
 
             const data = JSON.parse(decoded);
 
-            // Validate that we have some expected keys (support both new and old formats if needed)
-            const hasData = data['vocab-srs-data'] || data['vocab-global-stats'] || data['vocab-app-settings'] || data['cached-vocab'];
+            // Validate that we have some expected keys
+            const hasData = Object.keys(data).length > 0;
             if (!hasData) {
                 throw new Error('Data format invalid: no recognizeable progress found.');
             }
 
-            Object.entries(data).forEach(([key, value]) => {
-                if (value !== null && value !== undefined) {
-                    const stringValue = typeof value === 'string' ? value : JSON.stringify(value);
-                    localStorage.setItem(key, stringValue);
-                    console.log(`✅ Restored key: ${key}`);
-                }
-            });
+            await storage.importAllData(data);
 
             alert('🎉 Progress Imported Successfully! The app will now reload.');
             window.location.reload();
@@ -304,8 +294,8 @@ export default function SettingsScreen({
                                 </div>
                                 <div className="flex gap-2">
                                     <button
-                                        onClick={() => {
-                                            localStorage.removeItem('cached-vocab');
+                                        onClick={async () => {
+                                            await storage.removeItem('cached-vocab');
                                             window.location.reload();
                                         }}
                                         className="px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-rose-400 hover:border-rose-400/50 transition-all text-xs font-bold bg-zinc-950"
