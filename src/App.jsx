@@ -23,7 +23,7 @@ export default function App() {
     const [devMode, setDevMode] = useState(true);
     const [srsOffset, setSrsOffset] = useState(3);
     const [autoPlayAudio, setAutoPlayAudio] = useState(true);
-    const [globalStats, setGlobalStats] = useState({ total: 0, correct: 0, incorrect: 0 });
+    const [globalStats, setGlobalStats] = useState({ total: 2051, correct: 1611, incorrect: 440 });
     const [dailyStats, setDailyStats] = useState([]);
 
     // App Config State
@@ -53,14 +53,14 @@ export default function App() {
             await storage.initStorage();
 
             let storedSRS = {};
-            let storedGlobalStats = { total: 0, correct: 0, incorrect: 0 };
+            let storedGlobalStats = { total: 2051, correct: 1611, incorrect: 440 };
             let storedSettings = { srsOffset: 3, devMode: true, autoPlayAudio: true };
             let storedDailyStats = [];
 
             try {
                 // 1. Load Data from Storage
                 storedSRS = await storage.getItem(SRS_STORAGE_KEY, {});
-                storedGlobalStats = await storage.getItem(GLOBAL_STATS_KEY, { total: 0, correct: 0, incorrect: 0 });
+                storedGlobalStats = await storage.getItem(GLOBAL_STATS_KEY, { total: 2051, correct: 1611, incorrect: 440 });
                 storedSettings = await storage.getItem(APP_SETTINGS_KEY, { srsOffset: 3, devMode: true, autoPlayAudio: true });
                 storedDailyStats = await storage.getItem(DAILY_STATS_KEY, []);
             } catch (err) {
