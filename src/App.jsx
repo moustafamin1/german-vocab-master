@@ -152,7 +152,8 @@ export default function App() {
 
         // Filter based on user configuration and mode compatibility
         const filtered = vocabPool.filter(v => {
-            const matchesLevel = selectedLevels.includes(v.level);
+            // Grammar items bypass the level filter (they use level: 'Grammar')
+            const matchesLevel = v.type === 'Grammar' || selectedLevels.includes(v.level);
             const matchesType = selectedTypes.includes(v.type);
             const isStudy = v.status !== 'skip';
 
@@ -166,7 +167,15 @@ export default function App() {
                 if (mode === 'wordOrder') {
                     return v.type === 'Phrase';
                 }
-                return true; // multipleChoice and written are always compatible if level/type match
+                // Grammar is always compatible with multipleChoice
+                if (mode === 'multipleChoice') {
+                    return true;
+                }
+                // written mode is not compatible with Grammar
+                if (mode === 'written') {
+                    return v.type !== 'Grammar';
+                }
+                return true;
             });
         });
 
