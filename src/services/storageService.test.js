@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { getAllData } from './storageService';
+import { getAllData, importAllData } from './storageService';
 
 // Mock localStorage
 const localStorageMock = (() => {
@@ -89,5 +89,27 @@ describe('storageService', () => {
 
         const data = await getAllData();
         expect(data['vocab-test-key']).toEqual({ val: 'local' });
+    });
+
+    it('should import all data correctly', async () => {
+        const importData = {
+            'vocab-srs-data': { 'word1': { success: 5 } },
+            'vocab-global-stats': { total: 100 }
+        };
+
+        // Ensure setItem mock is ready
+        localStorage.setItem = vi.fn();
+
+        // Mock the internal setItem to verify it's called
+        // Since we can't easily spy on the internal `setItem` export within the same module,
+        // we'll rely on the side effect: localStorage.setItem being called (as our mock implementation does)
+
+        await importAllData(importData);
+
+        // Verify localStorage.setItem was called for each key
+        // Note: The implementation writes to BOTH localStorage and IndexedDB.
+        // Our mock localStorage.setItem captures these calls.
+        expect(localStorage.setItem).toHaveBeenCalledWith('vocab-srs-data', JSON.stringify(importData['vocab-srs-data']));
+        expect(localStorage.setItem).toHaveBeenCalledWith('vocab-global-stats', JSON.stringify(importData['vocab-global-stats']));
     });
 });
