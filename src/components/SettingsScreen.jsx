@@ -17,6 +17,7 @@ export default function SettingsScreen({
     onOpenMediaLibrary,
     onOpenSkippingTool,
     dailyStats,
+    globalStats,
     version
 }) {
     const [isSyncing, setIsSyncing] = useState(false);
@@ -162,7 +163,7 @@ export default function SettingsScreen({
         <div className="max-w-xl mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10">
             <div className="space-y-6">
                 {/* Stats Card */}
-                <StatsCard dailyStats={dailyStats} useDummyData={useDummyData} />
+                <StatsCard dailyStats={dailyStats} globalStats={globalStats} useDummyData={useDummyData} />
 
                 {/* Vocabulary Manager */}
                 <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
