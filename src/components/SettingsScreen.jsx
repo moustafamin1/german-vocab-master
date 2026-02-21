@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy, Volume2 } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy, Volume2, Share2, FileUp } from 'lucide-react';
 import { fetchAndCacheVocab } from '../services/vocabService';
 import * as storage from '../services/storageService';
 import StatsCard from './StatsCard';
@@ -23,6 +23,7 @@ export default function SettingsScreen({
     const [syncSuccess, setSyncSuccess] = useState(false);
     const [copySuccess, setCopySuccess] = useState(false);
     const [useDummyData, setUseDummyData] = useState(false);
+    const fileInputRef = useRef(null);
 
     const handleSync = async () => {
         setIsSyncing(true);
@@ -90,6 +91,43 @@ export default function SettingsScreen({
             console.error('❌ Import failed:', err);
             alert(`❌ Failed to import data.\n\nReason: ${err.message}\n\nPlease ensure you copied the ENTIRE string without missing characters.`);
         }
+    };
+
+    const handleBackup = async () => {
+        try {
+            await storage.shareBackup();
+        } catch (err) {
+            alert('Backup failed. See console for details.');
+        }
+    };
+
+    const handleFileRestore = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (!confirm('This will OVERWRITE your current progress with the data from the backup file. Are you sure?')) {
+            event.target.value = ''; // Reset input
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+            try {
+                const json = JSON.parse(e.target.result);
+                // Basic validation
+                if (!json || Object.keys(json).length === 0) {
+                    throw new Error('Invalid or empty backup file.');
+                }
+
+                await storage.importAllData(json);
+                alert('✅ Backup restored successfully! Reloading...');
+                window.location.reload();
+            } catch (err) {
+                console.error('Restore failed', err);
+                alert(`Restore failed: ${err.message}`);
+            }
+        };
+        reader.readAsText(file);
     };
 
     const handleHardRefresh = async () => {
@@ -206,6 +244,37 @@ export default function SettingsScreen({
                     </div>
 
                     <div className="space-y-6">
+                        {/* Backup & Restore (New) */}
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium">Backup & Restore</p>
+                                <p className="text-xs text-zinc-500">Save progress to a file or restore from one.</p>
+                            </div>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={handleBackup}
+                                    className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
+                                >
+                                    <Share2 className="w-3.5 h-3.5" />
+                                    <span>Backup</span>
+                                </button>
+                                <input
+                                    type="file"
+                                    accept=".json"
+                                    ref={fileInputRef}
+                                    className="hidden"
+                                    onChange={handleFileRestore}
+                                />
+                                <button
+                                    onClick={() => fileInputRef.current?.click()}
+                                    className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
+                                >
+                                    <FileUp className="w-3.5 h-3.5" />
+                                    <span>Restore</span>
+                                </button>
+                            </div>
+                        </div>
+
                         {/* Dev Mode Toggle */}
                         <div className="flex items-center justify-between">
                             <div>

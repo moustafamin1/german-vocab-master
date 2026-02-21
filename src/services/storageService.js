@@ -133,27 +133,72 @@ export const removeItem = async (key) => {
 };
 
 /**
- * Get all data for export
+ * Get all data for export, combining IndexedDB and localStorage
  */
 export const getAllData = async () => {
-    if (!db) return {};
-    
-    return new Promise((resolve) => {
-        const transaction = db.transaction([STORE_NAME], 'readonly');
-        const store = transaction.objectStore(STORE_NAME);
-        const request = store.getAll();
-        const keysRequest = store.getAllKeys();
-        
-        request.onsuccess = () => {
-            keysRequest.onsuccess = () => {
-                const result = {};
-                keysRequest.result.forEach((key, i) => {
-                    result[key] = request.result[i];
-                });
-                resolve(result);
-            };
-        };
-    });
+    const data = {};
+    const criticalKeys = [
+        'vocab-srs-data',
+        'vocab-global-stats',
+        'vocab-app-settings',
+        'vocab-daily-stats',
+        'cached-vocab'
+    ];
+
+    // 1. Fetch from IndexedDB if available
+    if (db) {
+        try {
+            const dbData = await new Promise((resolve) => {
+                const transaction = db.transaction([STORE_NAME], 'readonly');
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.getAll();
+                const keysRequest = store.getAllKeys();
+
+                request.onsuccess = () => {
+                    keysRequest.onsuccess = () => {
+                        const result = {};
+                        keysRequest.result.forEach((key, i) => {
+                            result[key] = request.result[i];
+                        });
+                        resolve(result);
+                    };
+                };
+                request.onerror = () => resolve({});
+            });
+            Object.assign(data, dbData);
+        } catch (e) {
+            console.error('Error fetching from IndexedDB for export', e);
+        }
+    }
+
+    // 2. Fetch from localStorage (fallback/merge)
+    // We prioritize IndexedDB, but if a key is missing there, we check localStorage
+    for (const key of criticalKeys) {
+        if (!data[key]) {
+            const localVal = localStorage.getItem(key);
+            if (localVal) {
+                try {
+                    data[key] = JSON.parse(localVal);
+                } catch (e) {
+                    data[key] = localVal;
+                }
+            }
+        }
+    }
+
+    // 3. Also grab any other localStorage keys that might be relevant (optional, but good for completeness)
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (!data[key] && key.startsWith('vocab-')) {
+             try {
+                data[key] = JSON.parse(localStorage.getItem(key));
+            } catch (e) {
+                data[key] = localStorage.getItem(key);
+            }
+        }
+    }
+
+    return data;
 };
 
 /**
@@ -162,4 +207,62 @@ export const getAllData = async () => {
 export const importAllData = async (data) => {
     const promises = Object.entries(data).map(([key, value]) => setItem(key, value));
     await Promise.all(promises);
+};
+
+/**
+ * Generates a JSON backup file and triggers the native share sheet or download.
+ */
+export const shareBackup = async () => {
+    try {
+        const data = await getAllData();
+        const jsonStr = JSON.stringify(data, null, 2);
+        const blob = new Blob([jsonStr], { type: 'application/json' });
+
+        const date = new Date().toISOString().split('T')[0];
+        const filename = `vocaccia_backup_${date}.json`;
+        const file = new File([blob], filename, { type: 'application/json' });
+
+        // 1. Try Native Share API
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+            try {
+                await navigator.share({
+                    files: [file],
+                    title: 'Vocaccia Backup',
+                    text: `Backup of Vocaccia learning progress from ${date}.`
+                });
+                return true; // Shared successfully
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    console.error('Share failed', err);
+                }
+                // Fallback to download if share fails (but not if user cancelled)
+                if (err.name !== 'AbortError') {
+                    downloadFile(blob, filename);
+                    return true;
+                }
+                return false; // User cancelled
+            }
+        } else {
+            // 2. Fallback: Direct Download
+            downloadFile(blob, filename);
+            return true;
+        }
+    } catch (err) {
+        console.error('Backup generation failed', err);
+        throw err;
+    }
+};
+
+/**
+ * Helper to trigger file download
+ */
+const downloadFile = (blob, filename) => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
 };
