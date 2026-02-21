@@ -1,7 +1,7 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { TrendingUp, TestTube, Info } from 'lucide-react';
 
-export default function StatsCard({ dailyStats: realDailyStats, useDummyData = false }) {
+export default function StatsCard({ dailyStats: realDailyStats, globalStats, useDummyData = false }) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0, p: 50 });
     const containerRef = useRef(null);
@@ -154,8 +154,8 @@ export default function StatsCard({ dailyStats: realDailyStats, useDummyData = f
         return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
     };
 
-    const totalSum = dailyStats.reduce((sum, d) => sum + (d.total || 0), 0);
-    const correctSum = dailyStats.reduce((sum, d) => sum + (d.correct || 0), 0);
+    const totalSum = globalStats ? globalStats.total : dailyStats.reduce((sum, d) => sum + (d.total || 0), 0);
+    const correctSum = globalStats ? globalStats.correct : dailyStats.reduce((sum, d) => sum + (d.correct || 0), 0);
     const accuracy = totalSum > 0 ? Math.round((correctSum / totalSum) * 100) : 0;
 
     return (

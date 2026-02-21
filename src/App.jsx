@@ -24,7 +24,7 @@ export default function App() {
     const [devMode, setDevMode] = useState(true);
     const [srsOffset, setSrsOffset] = useState(3);
     const [autoPlayAudio, setAutoPlayAudio] = useState(true);
-    const [globalStats, setGlobalStats] = useState({ total: 2051, correct: 1611, incorrect: 440 });
+    const [globalStats, setGlobalStats] = useState({ total: 3000, correct: 2300, incorrect: 700 });
     const [dailyStats, setDailyStats] = useState([]);
 
     // App Config State
@@ -50,21 +50,46 @@ export default function App() {
             await storage.initStorage();
 
             let storedSRS = {};
-            let storedGlobalStats = { total: 2051, correct: 1611, incorrect: 440 };
+            let storedGlobalStats = { total: 3000, correct: 2300, incorrect: 700 };
             let storedSettings = { srsOffset: 3, devMode: true, autoPlayAudio: true };
             let storedDailyStats = [];
 
             try {
                 // 1. Load Data from Storage
                 storedSRS = await storage.getItem(SRS_STORAGE_KEY, {});
-                storedGlobalStats = await storage.getItem(GLOBAL_STATS_KEY, { total: 2051, correct: 1611, incorrect: 440 });
+                storedGlobalStats = await storage.getItem(GLOBAL_STATS_KEY, { total: 3000, correct: 2300, incorrect: 700 });
                 storedSettings = await storage.getItem(APP_SETTINGS_KEY, { srsOffset: 3, devMode: true, autoPlayAudio: true });
                 storedDailyStats = await storage.getItem(DAILY_STATS_KEY, []);
 
-                // 🔄 FORCE UPDATE: If stored stats are the old defaults or very low, 
-                // override with the new hardcoded values requested by the user.
-                if (storedGlobalStats.total < 2051) {
-                    storedGlobalStats = { total: 2051, correct: 1611, incorrect: 440 };
+                // Migration for stats base update (2051 -> 3000)
+                const OLD_DEFAULTS = { total: 2051, correct: 1611, incorrect: 440 };
+                const NEW_DEFAULTS = { total: 3000, correct: 2300, incorrect: 700 };
+
+                if (storedGlobalStats.total >= OLD_DEFAULTS.total && storedGlobalStats.total < NEW_DEFAULTS.total) {
+                    const userProgress = {
+                        total: storedGlobalStats.total - OLD_DEFAULTS.total,
+                        correct: storedGlobalStats.correct - OLD_DEFAULTS.correct,
+                        incorrect: storedGlobalStats.incorrect - OLD_DEFAULTS.incorrect
+                    };
+
+                    // Ensure no negative values if data was weird
+                    userProgress.total = Math.max(0, userProgress.total);
+                    userProgress.correct = Math.max(0, userProgress.correct);
+                    userProgress.incorrect = Math.max(0, userProgress.incorrect);
+
+                    storedGlobalStats = {
+                        total: NEW_DEFAULTS.total + userProgress.total,
+                        correct: NEW_DEFAULTS.correct + userProgress.correct,
+                        incorrect: NEW_DEFAULTS.incorrect + userProgress.incorrect
+                    };
+
+                    await storage.setItem(GLOBAL_STATS_KEY, storedGlobalStats);
+                    console.log('✅ Migrated global stats to new base:', storedGlobalStats);
+                }
+
+                // Fallback for new users or very old data
+                if (storedGlobalStats.total < NEW_DEFAULTS.total) {
+                    storedGlobalStats = NEW_DEFAULTS;
                     await storage.setItem(GLOBAL_STATS_KEY, storedGlobalStats);
                 }
             } catch (err) {
@@ -437,6 +462,7 @@ export default function App() {
                             onOpenMediaLibrary={() => setView('mediaLibrary')}
                             onOpenSkippingTool={handleOpenSkippingTool}
                             dailyStats={dailyStats}
+                            globalStats={globalStats}
                             version={APP_VERSION}
                         />
                     ) : view === 'allWords' ? (
