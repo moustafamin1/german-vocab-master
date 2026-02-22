@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy, Volume2, Share2, FileUp } from 'lucide-react';
+import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy, Volume2, Share2, FileUp, Sun, Moon } from 'lucide-react';
 import { fetchAndCacheVocab } from '../services/vocabService';
 import * as storage from '../services/storageService';
 import StatsCard from './StatsCard';
@@ -11,6 +11,8 @@ export default function SettingsScreen({
     setDevMode,
     autoPlayAudio,
     setAutoPlayAudio,
+    theme,
+    toggleTheme,
     wordCount,
     onBack,
     onOpenAllWords,
@@ -166,15 +168,15 @@ export default function SettingsScreen({
                 <StatsCard dailyStats={dailyStats} globalStats={globalStats} useDummyData={useDummyData} />
 
                 {/* Vocabulary Manager */}
-                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
+                <section className="space-y-4 bg-card/50 border border-border rounded-2xl p-6">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm font-medium">Vocabulary Manager</p>
-                            <p className="text-xs text-zinc-500">View and manage all {wordCount} words in your study list.</p>
+                            <p className="text-xs text-primary-muted">View and manage all {wordCount} words in your study list.</p>
                         </div>
                         <button
                             onClick={onOpenAllWords}
-                            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
+                            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border text-primary-muted hover:text-primary hover:border-zinc-600 transition-all text-xs font-bold bg-background"
                         >
                             <span>All Words</span>
                             <ChevronRight className="w-4 h-4" />
@@ -183,15 +185,15 @@ export default function SettingsScreen({
                 </section>
 
                 {/* Skipping Tool */}
-                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
+                <section className="space-y-4 bg-card/50 border border-border rounded-2xl p-6">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm font-medium">Skipping Tool</p>
-                            <p className="text-xs text-zinc-500">Rapidly process your list (Tinder-style).</p>
+                            <p className="text-xs text-primary-muted">Rapidly process your list (Tinder-style).</p>
                         </div>
                         <button
                             onClick={onOpenSkippingTool}
-                            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
+                            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border text-primary-muted hover:text-primary hover:border-zinc-600 transition-all text-xs font-bold bg-background"
                         >
                             <span>Launch</span>
                             <ChevronRight className="w-4 h-4" />
@@ -200,15 +202,15 @@ export default function SettingsScreen({
                 </section>
 
                 {/* Media Library */}
-                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
+                <section className="space-y-4 bg-card/50 border border-border rounded-2xl p-6">
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm font-medium">Media Library</p>
-                            <p className="text-xs text-zinc-500">Add and view images for your learning.</p>
+                            <p className="text-xs text-primary-muted">Add and view images for your learning.</p>
                         </div>
                         <button
                             onClick={onOpenMediaLibrary}
-                            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
+                            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border text-primary-muted hover:text-primary hover:border-zinc-600 transition-all text-xs font-bold bg-background"
                         >
                             <span>Open</span>
                             <ChevronRight className="w-4 h-4" />
@@ -216,17 +218,36 @@ export default function SettingsScreen({
                     </div>
                 </section>
 
+                {/* Appearance */}
+                <section className="space-y-4 bg-card/50 border border-border rounded-2xl p-6">
+                    <div className="flex items-center gap-3 mb-2">
+                        {theme === 'dark' ? <Moon className="w-5 h-5 text-primary-muted" /> : <Sun className="w-5 h-5 text-primary-muted" />}
+                        <h3 className="text-lg font-semibold">Appearance</h3>
+                    </div>
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <p className="text-sm font-medium">Dark Mode</p>
+                            <p className="text-xs text-primary-muted">Toggle between light and dark themes.</p>
+                        </div>
+                        <button
+                            onClick={toggleTheme}
+                            className={`w-12 h-6 rounded-full transition-colors relative ${theme === 'dark' ? 'bg-indigo-500' : 'bg-zinc-600'}`}
+                        >
+                            <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${theme === 'dark' ? 'translate-x-6' : 'translate-x-0'}`} />
+                        </button>
+                    </div>
+                </section>
 
                 {/* Audio */}
-                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
+                <section className="space-y-4 bg-card/50 border border-border rounded-2xl p-6">
                     <div className="flex items-center gap-3 mb-2">
-                        <Volume2 className="w-5 h-5 text-zinc-400" />
+                        <Volume2 className="w-5 h-5 text-primary-muted" />
                         <h3 className="text-lg font-semibold">Audio</h3>
                     </div>
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm font-medium">Auto-play Answer</p>
-                            <p className="text-xs text-zinc-500">Automatically play the word's pronunciation on the result screen.</p>
+                            <p className="text-xs text-primary-muted">Automatically play the word's pronunciation on the result screen.</p>
                         </div>
                         <button
                             onClick={() => setAutoPlayAudio(!autoPlayAudio)}
@@ -238,9 +259,9 @@ export default function SettingsScreen({
                 </section>
 
                 {/* Developer Tools */}
-                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
+                <section className="space-y-4 bg-card/50 border border-border rounded-2xl p-6">
                     <div className="flex items-center gap-3 mb-2">
-                        <Bug className="w-5 h-5 text-zinc-400" />
+                        <Bug className="w-5 h-5 text-primary-muted" />
                         <h3 className="text-lg font-semibold">Developer Tools</h3>
                     </div>
 
@@ -249,12 +270,12 @@ export default function SettingsScreen({
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm font-medium">Backup & Restore</p>
-                                <p className="text-xs text-zinc-500">Save progress to a file or restore from one.</p>
+                                <p className="text-xs text-primary-muted">Save progress to a file or restore from one.</p>
                             </div>
                             <div className="flex gap-2">
                                 <button
                                     onClick={handleBackup}
-                                    className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
+                                    className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border text-primary-muted hover:text-primary hover:border-zinc-600 transition-all text-xs font-bold bg-background"
                                 >
                                     <Share2 className="w-3.5 h-3.5" />
                                     <span>Backup</span>
@@ -268,7 +289,7 @@ export default function SettingsScreen({
                                 />
                                 <button
                                     onClick={() => fileInputRef.current?.click()}
-                                    className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
+                                    className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border text-primary-muted hover:text-primary hover:border-zinc-600 transition-all text-xs font-bold bg-background"
                                 >
                                     <FileUp className="w-3.5 h-3.5" />
                                     <span>Restore</span>
@@ -280,7 +301,7 @@ export default function SettingsScreen({
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm font-medium">Debug Mode</p>
-                                <p className="text-xs text-zinc-500">Show algorithm details and SRS weights during practice.</p>
+                                <p className="text-xs text-primary-muted">Show algorithm details and SRS weights during practice.</p>
                             </div>
                             <button
                                 onClick={() => setDevMode(!devMode)}
@@ -294,7 +315,7 @@ export default function SettingsScreen({
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm font-medium">Demonstration Mode</p>
-                                <p className="text-xs text-zinc-500">Inject fake historical data into the graph for testing.</p>
+                                <p className="text-xs text-primary-muted">Inject fake historical data into the graph for testing.</p>
                             </div>
                             <button
                                 onClick={() => setUseDummyData(!useDummyData)}
@@ -305,37 +326,37 @@ export default function SettingsScreen({
                         </div>
 
                         {/* SRS Configuration (Merged) */}
-                        <div className="pt-6 border-t border-zinc-800">
+                        <div className="pt-6 border-t border-border">
                             <div className="flex items-center gap-2 mb-4">
-                                <Settings2 className="w-4 h-4 text-zinc-500" />
-                                <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500">SRS Algorithm</h4>
+                                <Settings2 className="w-4 h-4 text-primary-muted" />
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-primary-muted">SRS Algorithm</h4>
                             </div>
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium">SRS Offset Value</p>
-                                    <p className="text-xs text-zinc-500">Lower values focus on mistakes. Higher values add variety.</p>
+                                    <p className="text-xs text-primary-muted">Lower values focus on mistakes. Higher values add variety.</p>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <input
                                         type="number"
                                         value={srsOffset}
                                         onChange={(e) => setSrsOffset(Number(e.target.value))}
-                                        className="w-16 bg-zinc-950 border border-zinc-800 rounded-lg py-1.5 px-3 text-center text-sm font-bold focus:outline-none focus:ring-1 focus:ring-zinc-700"
+                                        className="w-16 bg-background border border-border rounded-lg py-1.5 px-3 text-center text-sm font-bold focus:outline-none focus:ring-1 focus:ring-zinc-700"
                                     />
                                 </div>
                             </div>
                         </div>
 
                         {/* Progress Migration (Merged) */}
-                        <div className="pt-6 border-t border-zinc-800">
+                        <div className="pt-6 border-t border-border">
                             <div className="flex items-center gap-2 mb-4">
-                                <Download className="w-4 h-4 text-zinc-500" />
-                                <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500">Transfer Progress</h4>
+                                <Download className="w-4 h-4 text-primary-muted" />
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-primary-muted">Transfer Progress</h4>
                             </div>
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium">Export & Import</p>
-                                    <p className="text-xs text-zinc-500">Move your stats to a new domain.</p>
+                                    <p className="text-xs text-primary-muted">Move your stats to a new domain.</p>
                                 </div>
                                 <div className="flex gap-2">
                                     <button
@@ -343,7 +364,7 @@ export default function SettingsScreen({
                                         className={`flex items-center gap-2 px-4 py-2 rounded-xl border transition-all text-xs font-bold
                                             ${copySuccess
                                                 ? 'bg-green-500/10 border-green-500/50 text-green-500'
-                                                : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600'
+                                                : 'bg-background border-border text-primary-muted hover:text-primary hover:border-zinc-600'
                                             }`}
                                     >
                                         {copySuccess ? (
@@ -360,7 +381,7 @@ export default function SettingsScreen({
                                     </button>
                                     <button
                                         onClick={handleImport}
-                                        className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
+                                        className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border text-primary-muted hover:text-primary hover:border-zinc-600 transition-all text-xs font-bold bg-background"
                                     >
                                         <Upload className="w-3.5 h-3.5" />
                                         <span>Import</span>
@@ -370,15 +391,15 @@ export default function SettingsScreen({
                         </div>
 
                         {/* Reset / Sync Buttons */}
-                        <div className="pt-6 border-t border-zinc-800">
+                        <div className="pt-6 border-t border-border">
                             <div className="flex items-center gap-2 mb-4">
-                                <RefreshCw className="w-4 h-4 text-zinc-500" />
-                                <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500">Data Management</h4>
+                                <RefreshCw className="w-4 h-4 text-primary-muted" />
+                                <h4 className="text-xs font-bold uppercase tracking-wider text-primary-muted">Data Management</h4>
                             </div>
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium">Sync & Reset</p>
-                                    <p className="text-xs text-zinc-500">Currently {wordCount} words.</p>
+                                    <p className="text-xs text-primary-muted">Currently {wordCount} words.</p>
                                 </div>
                                 <div className="flex gap-2">
                                     <button
@@ -386,7 +407,7 @@ export default function SettingsScreen({
                                             await storage.removeItem('cached-vocab');
                                             window.location.reload();
                                         }}
-                                        className="px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-rose-400 hover:border-rose-400/50 transition-all text-xs font-bold bg-zinc-950"
+                                        className="px-4 py-2 rounded-xl border border-border text-primary-muted hover:text-rose-400 hover:border-rose-400/50 transition-all text-xs font-bold bg-background"
                                     >
                                         Reset Cache
                                     </button>
@@ -397,8 +418,8 @@ export default function SettingsScreen({
                                             ${syncSuccess
                                                 ? 'bg-green-500/10 border-green-500/50 text-green-500'
                                                 : isSyncing
-                                                    ? 'bg-zinc-800 border-zinc-700 text-zinc-400 cursor-wait'
-                                                    : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600'
+                                                    ? 'bg-zinc-800 border-zinc-700 text-primary-muted cursor-wait'
+                                                    : 'bg-background border-border text-primary-muted hover:text-primary hover:border-zinc-600'
                                             }`}
                                     >
                                         {syncSuccess ? (
@@ -418,15 +439,15 @@ export default function SettingsScreen({
                         </div>
 
                         {/* Force Update / Version */}
-                        <div className="pt-6 border-t border-zinc-800">
+                        <div className="pt-6 border-t border-border">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium">Update App</p>
-                                    <p className="text-[10px] text-zinc-500 font-mono">Installed Version: {version || '1.0.0'}</p>
+                                    <p className="text-[10px] text-primary-muted font-mono">Installed Version: {version || '1.0.0'}</p>
                                 </div>
                                 <button
                                     onClick={handleHardRefresh}
-                                    className="px-4 py-2 rounded-xl border border-amber-500/20 text-amber-500 hover:bg-amber-500/10 transition-all text-xs font-bold bg-zinc-950"
+                                    className="px-4 py-2 rounded-xl border border-amber-500/20 text-amber-500 hover:bg-amber-500/10 transition-all text-xs font-bold bg-background"
                                 >
                                     Force Update
                                 </button>

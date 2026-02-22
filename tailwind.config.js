@@ -4,17 +4,20 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         background: {
-          DEFAULT: "#09090b", // zinc-950
-          secondary: "#18181b", // zinc-900
+          DEFAULT: "hsl(var(--background) / <alpha-value>)",
+          secondary: "hsl(var(--card) / <alpha-value>)",
         },
         primary: {
-          DEFAULT: "#f4f4f5", // zinc-100
-          muted: "#a1a1aa", // zinc-400
-        }
+          DEFAULT: "hsl(var(--primary-text) / <alpha-value>)",
+          muted: "hsl(var(--muted-text) / <alpha-value>)",
+        },
+        card: "hsl(var(--card) / <alpha-value>)",
+        border: "hsl(var(--border) / <alpha-value>)",
       }
     },
   },

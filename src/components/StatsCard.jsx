@@ -39,23 +39,23 @@ export default function StatsCard({ dailyStats: realDailyStats, globalStats, use
 
     if (!dailyStats || dailyStats.length === 0) {
         return (
-            <div className="bg-zinc-900/40 backdrop-blur-md border border-zinc-800/50 rounded-3xl p-8 shadow-2xl overflow-hidden relative group">
+            <div className="bg-card/40 backdrop-blur-md border border-border/50 rounded-3xl p-8 shadow-2xl overflow-hidden relative group">
                 <div className="flex items-center justify-between mb-6 relative">
                     <div className="flex items-center gap-4">
-                        <div className="p-3 bg-zinc-950 rounded-2xl border border-zinc-800 shadow-inner">
-                            <TrendingUp className="w-6 h-6 text-zinc-500" />
+                        <div className="p-3 bg-background rounded-2xl border border-border shadow-inner">
+                            <TrendingUp className="w-6 h-6 text-primary-muted" />
                         </div>
                         <div>
-                            <h3 className="text-xl font-bold text-zinc-100 tracking-tight">Daily Progress</h3>
-                            <p className="text-sm text-zinc-500 font-medium">Your learning journey starts here</p>
+                            <h3 className="text-xl font-bold text-primary tracking-tight">Daily Progress</h3>
+                            <p className="text-sm text-primary-muted font-medium">Your learning journey starts here</p>
                         </div>
                     </div>
                 </div>
                 <div className="py-10 text-center space-y-4">
-                    <div className="w-16 h-16 bg-zinc-950 rounded-full border border-zinc-800 flex items-center justify-center mx-auto shadow-inner">
-                        <Info className="w-8 h-8 text-zinc-700" />
+                    <div className="w-16 h-16 bg-background rounded-full border border-border flex items-center justify-center mx-auto shadow-inner">
+                        <Info className="w-8 h-8 text-primary-muted" />
                     </div>
-                    <p className="text-zinc-500 font-medium">No practice data yet.</p>
+                    <p className="text-primary-muted font-medium">No practice data yet.</p>
                 </div>
             </div>
         );
@@ -159,15 +159,15 @@ export default function StatsCard({ dailyStats: realDailyStats, globalStats, use
     const accuracy = totalSum > 0 ? Math.round((correctSum / totalSum) * 100) : 0;
 
     return (
-        <div className="bg-zinc-900/40 backdrop-blur-md border border-zinc-800/50 rounded-3xl p-6 md:p-8 space-y-8 shadow-2xl relative overflow-hidden group">
+        <div className="bg-card/40 backdrop-blur-md border border-border/50 rounded-3xl p-6 md:p-8 space-y-8 shadow-2xl relative overflow-hidden group">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative">
                 <div className="flex items-center gap-4">
-                    <div className="p-3 bg-zinc-950 rounded-2xl border border-zinc-800 shadow-inner transition-colors">
-                        <TrendingUp className="w-6 h-6 text-zinc-500" />
+                    <div className="p-3 bg-background rounded-2xl border border-border shadow-inner transition-colors">
+                        <TrendingUp className="w-6 h-6 text-primary-muted" />
                     </div>
                     <div>
-                        <h3 className="text-xl font-bold text-zinc-100 tracking-tight">Daily Progress</h3>
-                        <p className="text-sm text-zinc-500 font-medium">Activity from last {recentData.length} days</p>
+                        <h3 className="text-xl font-bold text-primary tracking-tight">Daily Progress</h3>
+                        <p className="text-sm text-primary-muted font-medium">Activity from last {recentData.length} days</p>
                     </div>
                 </div>
             </div>
@@ -179,10 +179,10 @@ export default function StatsCard({ dailyStats: realDailyStats, globalStats, use
                     { label: 'Wrong', value: totalSum - correctSum, color: 'text-rose-500', bg: 'bg-rose-500/5' },
                     { label: 'Accuracy', value: `${accuracy}%`, color: 'text-blue-500', bg: 'bg-blue-500/5' },
                 ].map((stat, i) => (
-                    <div key={i} className={`${stat.bg} backdrop-blur-sm rounded-xl p-3 border border-zinc-800/40 relative group/stat overflow-hidden shadow-sm`}>
+                    <div key={i} className={`${stat.bg} backdrop-blur-sm rounded-xl p-3 border border-border/40 relative group/stat overflow-hidden shadow-sm`}>
                         <div className="absolute inset-0 bg-white/5 opacity-0 group-hover/stat:opacity-100 transition-opacity" />
                         <p className={`text-xl font-black ${stat.color} mb-0.5 transition-transform group-hover/stat:scale-110 duration-500`}>{stat.value}</p>
-                        <p className="text-[9px] text-zinc-500 uppercase font-black tracking-widest opacity-80">{stat.label}</p>
+                        <p className="text-[9px] text-primary-muted uppercase font-black tracking-widest opacity-80">{stat.label}</p>
                     </div>
                 ))}
             </div>
@@ -213,9 +213,9 @@ export default function StatsCard({ dailyStats: realDailyStats, globalStats, use
                             const y = baseChartHeight - (percent / 100) * (baseChartHeight - padding * 2) - padding;
                             const val = Math.round((percent / 100) * maxValue);
                             return (
-                                <g key={percent} className="opacity-10">
-                                    <line x1={yAxisWidth} y1={y} x2={totalWidth} y2={y} stroke="#52525b" strokeWidth="0.5" strokeDasharray="4,4" />
-                                    <text x={yAxisWidth - 10} y={y + 3} fill="#a1a1aa" fontSize="10" textAnchor="end" className="font-bold">{val}</text>
+                                <g key={percent} className="opacity-30">
+                                    <line x1={yAxisWidth} y1={y} x2={totalWidth} y2={y} strokeWidth="0.5" strokeDasharray="4,4" className="stroke-primary-muted" />
+                                    <text x={yAxisWidth - 10} y={y + 3} fontSize="10" textAnchor="end" className="font-bold fill-primary-muted">{val}</text>
                                 </g>
                             );
                         })}
@@ -236,10 +236,9 @@ export default function StatsCard({ dailyStats: realDailyStats, globalStats, use
                                 y1={0}
                                 x2={(hoveredIndex / (recentData.length - 1)) * baseChartWidth + yAxisWidth}
                                 y2={baseChartHeight}
-                                stroke="#71717a"
                                 strokeWidth="1"
                                 strokeDasharray="4,4"
-                                className="animate-in fade-in transition-all duration-300"
+                                className="animate-in fade-in transition-all duration-300 stroke-primary-muted"
                             />
                         )}
 
@@ -251,7 +250,7 @@ export default function StatsCard({ dailyStats: realDailyStats, globalStats, use
                             if (i % (recentData.length > 7 ? 3 : 1) !== 0 && i !== recentData.length - 1) return null;
                             const x = (i / (recentData.length - 1)) * baseChartWidth + yAxisWidth;
                             return (
-                                <text key={i} x={x} y={baseChartHeight + 20} fill="#71717a" fontSize="9" textAnchor="middle" className="font-bold uppercase tracking-tight">
+                                <text key={i} x={x} y={baseChartHeight + 20} fontSize="9" textAnchor="middle" className="font-bold uppercase tracking-tight fill-primary-muted">
                                     {formatDateShort(d.date)}
                                 </text>
                             );
@@ -279,32 +278,32 @@ export default function StatsCard({ dailyStats: realDailyStats, globalStats, use
                                 transform: `translateX(-${tooltipPos.p}%) translateY(-100%)`,
                             }}
                         >
-                            <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-4 shadow-2xl min-w-[140px] animate-in slide-in-from-bottom-2">
-                                <p className="text-[10px] text-zinc-500 font-black uppercase tracking-widest mb-2 border-b border-zinc-800 pb-1">
+                            <div className="bg-background border border-border rounded-2xl p-4 shadow-2xl min-w-[140px] animate-in slide-in-from-bottom-2">
+                                <p className="text-[10px] text-primary-muted font-black uppercase tracking-widest mb-2 border-b border-border pb-1">
                                     {new Date(recentData[hoveredIndex].date).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}
                                 </p>
                                 <div className="space-y-2">
                                     <div className="flex justify-between items-center gap-4">
-                                        <span className="text-xs text-zinc-400 font-medium">Total</span>
-                                        <span className={`text-sm font-black ${recentData[hoveredIndex].total > 50 ? 'text-amber-500' : 'text-zinc-400'}`}>{recentData[hoveredIndex].total}</span>
+                                        <span className="text-xs text-primary-muted font-medium">Total</span>
+                                        <span className={`text-sm font-black ${recentData[hoveredIndex].total > 50 ? 'text-amber-500' : 'text-primary-muted'}`}>{recentData[hoveredIndex].total}</span>
                                     </div>
                                     <div className="flex justify-between items-center gap-4">
-                                        <span className="text-xs text-zinc-400 font-medium">Right</span>
+                                        <span className="text-xs text-primary-muted font-medium">Right</span>
                                         <span className="text-sm font-black text-emerald-500">{recentData[hoveredIndex].correct}</span>
                                     </div>
                                     <div className="flex justify-between items-center gap-4">
-                                        <span className="text-xs text-zinc-400 font-medium">Wrong</span>
+                                        <span className="text-xs text-primary-muted font-medium">Wrong</span>
                                         <span className="text-sm font-black text-rose-500">{recentData[hoveredIndex].incorrect}</span>
                                     </div>
-                                    <div className="flex justify-between items-center gap-4 pt-1 border-t border-zinc-900">
-                                        <span className="text-xs text-zinc-500 font-medium">Accuracy</span>
+                                    <div className="flex justify-between items-center gap-4 pt-1 border-t border-border">
+                                        <span className="text-xs text-primary-muted font-medium">Accuracy</span>
                                         <span className="text-sm font-black text-blue-500">
                                             {recentData[hoveredIndex].total > 0 ? Math.round((recentData[hoveredIndex].correct / recentData[hoveredIndex].total) * 100) : 0}%
                                         </span>
                                     </div>
                                 </div>
                                 <div
-                                    className="absolute -bottom-2 translate-y-[2px] -translate-x-1/2 w-4 h-4 bg-zinc-950 border-r border-b border-zinc-800 rotate-45"
+                                    className="absolute -bottom-2 translate-y-[2px] -translate-x-1/2 w-4 h-4 bg-background border-r border-b border-border rotate-45"
                                     style={{ left: `${tooltipPos.p}%` }}
                                 />
                             </div>

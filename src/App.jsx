@@ -24,6 +24,7 @@ export default function App() {
     const [devMode, setDevMode] = useState(true);
     const [srsOffset, setSrsOffset] = useState(3);
     const [autoPlayAudio, setAutoPlayAudio] = useState(true);
+    const [theme, setTheme] = useState('dark');
     const [globalStats, setGlobalStats] = useState({ total: 3000, correct: 2300, incorrect: 700 });
     const [dailyStats, setDailyStats] = useState([]);
 
@@ -51,14 +52,14 @@ export default function App() {
 
             let storedSRS = {};
             let storedGlobalStats = { total: 3000, correct: 2300, incorrect: 700 };
-            let storedSettings = { srsOffset: 3, devMode: true, autoPlayAudio: true };
+            let storedSettings = { srsOffset: 3, devMode: true, autoPlayAudio: true, theme: 'dark' };
             let storedDailyStats = [];
 
             try {
                 // 1. Load Data from Storage
                 storedSRS = await storage.getItem(SRS_STORAGE_KEY, {});
                 storedGlobalStats = await storage.getItem(GLOBAL_STATS_KEY, { total: 3000, correct: 2300, incorrect: 700 });
-                storedSettings = await storage.getItem(APP_SETTINGS_KEY, { srsOffset: 3, devMode: true, autoPlayAudio: true });
+                storedSettings = await storage.getItem(APP_SETTINGS_KEY, { srsOffset: 3, devMode: true, autoPlayAudio: true, theme: 'dark' });
                 storedDailyStats = await storage.getItem(DAILY_STATS_KEY, []);
 
                 // Migration for stats base update (2051 -> 3000)
@@ -105,6 +106,7 @@ export default function App() {
             setSrsOffset(storedSettings.srsOffset);
             setDevMode(storedSettings.devMode);
             setAutoPlayAudio(storedSettings.autoPlayAudio ?? true);
+            setTheme(storedSettings.theme || 'dark');
             setDailyStats(storedDailyStats);
 
             // 2. Merge with base vocab data and Migration Engine
@@ -177,11 +179,22 @@ export default function App() {
         loadInitialData();
     }, []);
 
+    // Apply Theme
+    useEffect(() => {
+        const root = window.document.documentElement;
+        root.classList.remove('light', 'dark');
+        root.classList.add(theme);
+    }, [theme]);
+
     // Persist settings whenever they change
     useEffect(() => {
         if (view === 'loading') return;
-        storage.setItem(APP_SETTINGS_KEY, { srsOffset, devMode, autoPlayAudio });
-    }, [srsOffset, devMode, autoPlayAudio, view]);
+        storage.setItem(APP_SETTINGS_KEY, { srsOffset, devMode, autoPlayAudio, theme });
+    }, [srsOffset, devMode, autoPlayAudio, theme, view]);
+
+    const toggleTheme = () => {
+        setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    };
 
     const pickNewWord = useCallback(() => {
         if (vocabPool.length === 0) return;
@@ -408,14 +421,14 @@ export default function App() {
 
     if (view === 'loading') {
         return (
-            <div className="flex flex-col items-center justify-center min-h-screen p-6">
+            <div className="flex flex-col items-center justify-center min-h-screen p-6 bg-background text-primary">
                 <div className="w-12 h-12 border-4 border-zinc-800 border-t-zinc-100 rounded-full animate-spin mb-4" />
                 <p className="text-zinc-500 font-medium animate-pulse">Lade Vokabeln...</p>
             </div>
         );
     }
     return (
-        <div className="min-h-screen bg-[#09090b] text-zinc-100">
+        <div className="min-h-screen bg-background text-primary transition-colors duration-300">
             <StatsBar stats={globalStats} />
 
             <div className="max-w-2xl mx-auto px-6 pb-10">
@@ -456,6 +469,8 @@ export default function App() {
                             setDevMode={setDevMode}
                             autoPlayAudio={autoPlayAudio}
                             setAutoPlayAudio={setAutoPlayAudio}
+                            theme={theme}
+                            toggleTheme={toggleTheme}
                             wordCount={vocabPool.length}
                             onBack={handleBackToConfig}
                             onOpenAllWords={handleOpenAllWords}

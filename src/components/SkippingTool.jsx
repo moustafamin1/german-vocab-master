@@ -46,17 +46,17 @@ export default function SkippingTool({ vocabPool, onToggleStatus, onBack }) {
                     onClick={onBack}
                     className="p-2 -ml-2 rounded-full hover:bg-zinc-800 transition-colors"
                 >
-                    <ArrowLeft className="w-6 h-6 text-zinc-400" />
+                    <ArrowLeft className="w-6 h-6 text-primary-muted" />
                 </button>
                 <div className="text-center">
-                    <h2 className="text-sm font-bold uppercase tracking-widest text-zinc-500">Skipping Tool</h2>
+                    <h2 className="text-sm font-bold uppercase tracking-widest text-primary-muted">Skipping Tool</h2>
                     <p className="text-[10px] text-zinc-600 font-mono mt-1">{currentIndex + 1} / {vocabPool.length} ({progress}%)</p>
                 </div>
                 <div className="w-10" /> {/* Spacer */}
             </div>
 
             {/* Progress Bar */}
-            <div className="w-full h-1 bg-zinc-900 rounded-full mb-12 overflow-hidden">
+            <div className="w-full h-1 bg-card rounded-full mb-12 overflow-hidden">
                 <div
                     className="h-full bg-blue-500 transition-all duration-300"
                     style={{ width: `${progress}%` }}
@@ -66,7 +66,7 @@ export default function SkippingTool({ vocabPool, onToggleStatus, onBack }) {
             {/* Card Container */}
             <div className="flex-1 flex items-center justify-center relative perspective-1000">
                 <div
-                    className={`w-full max-w-sm aspect-[3/4] bg-zinc-900 border border-zinc-800 rounded-[32px] p-8 flex flex-col items-center justify-center text-center shadow-2xl transition-all duration-300 transform-gpu
+                    className={`w-full max-w-sm aspect-[3/4] bg-card border border-border rounded-[32px] p-8 flex flex-col items-center justify-center text-center shadow-2xl transition-all duration-300 transform-gpu
                         ${direction === 'left' ? '-translate-x-full -rotate-12 opacity-0' : ''}
                         ${direction === 'right' ? 'translate-x-full rotate-12 opacity-0' : ''}
                     `}
@@ -78,21 +78,21 @@ export default function SkippingTool({ vocabPool, onToggleStatus, onBack }) {
                             </span>
                             <h1 className="text-4xl font-bold tracking-tight text-white pt-4">
                                 {currentWord.article && (
-                                    <span className="text-zinc-500 mr-2 lowercase">{currentWord.article}</span>
+                                    <span className="text-primary-muted mr-2 lowercase">{currentWord.article}</span>
                                 )}
                                 {currentWord.word}
                             </h1>
                         </div>
 
                         <div className="space-y-1">
-                            <p className="text-xl text-zinc-400 font-medium italic">{currentWord.english}</p>
+                            <p className="text-xl text-primary-muted font-medium italic">{currentWord.english}</p>
                             {currentWord.plural && (
                                 <p className="text-sm text-zinc-600">Plural: {currentWord.plural}</p>
                             )}
                         </div>
 
                         {currentWord.trivia && (
-                            <div className="pt-6 border-t border-zinc-800/50 max-w-[240px] mx-auto text-zinc-500 text-sm leading-relaxed">
+                            <div className="pt-6 border-t border-border/50 max-w-[240px] mx-auto text-primary-muted text-sm leading-relaxed">
                                 <Info className="w-4 h-4 mx-auto mb-2 opacity-50" />
                                 {currentWord.trivia}
                             </div>
@@ -121,11 +121,11 @@ export default function SkippingTool({ vocabPool, onToggleStatus, onBack }) {
                     onClick={() => handleAction('skip')}
                     className="group flex flex-col items-center gap-3"
                 >
-                    <div className="w-20 h-20 rounded-full bg-zinc-900 border-2 border-zinc-800 flex items-center justify-center text-zinc-500 group-active:scale-95 group-active:bg-rose-500/10 group-active:border-rose-500 transition-all shadow-lg overflow-hidden relative">
+                    <div className="w-20 h-20 rounded-full bg-card border-2 border-border flex items-center justify-center text-primary-muted group-active:scale-95 group-active:bg-rose-500/10 group-active:border-rose-500 transition-all shadow-lg overflow-hidden relative">
                         <X className="w-8 h-8 group-active:text-rose-500" />
                         <div className="absolute inset-0 bg-rose-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 group-active:text-rose-500">Skip</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-primary-muted group-active:text-rose-500">Skip</span>
                 </button>
 
                 {/* Info Text */}
@@ -140,11 +140,11 @@ export default function SkippingTool({ vocabPool, onToggleStatus, onBack }) {
                     onClick={() => handleAction('study')}
                     className="group flex flex-col items-center gap-3"
                 >
-                    <div className="w-20 h-20 rounded-full bg-zinc-900 border-2 border-zinc-800 flex items-center justify-center text-zinc-500 group-active:scale-95 group-active:bg-emerald-500/10 group-active:border-emerald-500 transition-all shadow-lg overflow-hidden relative">
+                    <div className="w-20 h-20 rounded-full bg-card border-2 border-border flex items-center justify-center text-primary-muted group-active:scale-95 group-active:bg-emerald-500/10 group-active:border-emerald-500 transition-all shadow-lg overflow-hidden relative">
                         <Check className="w-8 h-8 group-active:text-emerald-500" />
                         <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500 group-active:text-emerald-500">Study</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-primary-muted group-active:text-emerald-500">Study</span>
                 </button>
             </div>
         </div>

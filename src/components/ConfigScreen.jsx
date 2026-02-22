@@ -62,7 +62,7 @@ export default function ConfigScreen({
             <div className="space-y-6">
                 {/* Word Types Section */}
                 <section className="space-y-3">
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Word Types</h3>
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-primary-muted">Word Types</h3>
                     <div className="grid grid-cols-2 gap-3">
                         {TYPES.map(type => {
                             const isActive = selectedTypes.includes(type);
@@ -72,7 +72,7 @@ export default function ConfigScreen({
                                     onClick={() => toggleType(type)}
                                     className={`btn text-center py-3 px-4 border flex justify-center items-center gap-2 transition-all text-sm ${isActive
                                         ? 'bg-amber-500/10 text-amber-500 border-amber-500/40'
-                                        : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
+                                        : 'bg-card text-primary-muted border-border hover:border-zinc-400 dark:hover:border-zinc-700'
                                         }`}
                                 >
                                     <span className="font-semibold">
@@ -87,7 +87,7 @@ export default function ConfigScreen({
 
                 {/* Modes Section */}
                 <section className="space-y-3">
-                    <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Quiz Modes</h3>
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-primary-muted">Quiz Modes</h3>
                     <div className="grid grid-cols-2 gap-3">
                         {MODES.map(mode => {
                             const isActive = selectedModes.includes(mode.id);
@@ -97,7 +97,7 @@ export default function ConfigScreen({
                                     onClick={() => toggleMode(mode.id)}
                                     className={`btn py-3 px-4 border flex justify-between items-center transition-all text-sm ${isActive
                                         ? 'bg-amber-500/10 text-amber-500 border-amber-500/40'
-                                        : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700'
+                                        : 'bg-card text-primary-muted border-border hover:border-zinc-400 dark:hover:border-zinc-700'
                                         }`}
                                 >
                                     <span className="font-semibold">{mode.name}</span>
@@ -111,17 +111,17 @@ export default function ConfigScreen({
                 {/* Levels Section */}
                 <section className="space-y-3">
                     <div className="flex items-center justify-between">
-                        <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500">Levels</h3>
+                        <h3 className="text-xs font-bold uppercase tracking-widest text-primary-muted">Levels</h3>
                         <div className="flex gap-4">
                             <button
                                 onClick={selectAllLevels}
-                                className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 hover:text-zinc-100 transition-colors"
+                                className="text-[10px] font-bold uppercase tracking-widest text-primary-muted hover:text-primary transition-colors"
                             >
                                 Select All
                             </button>
                             <button
                                 onClick={deselectAllLevels}
-                                className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 hover:text-zinc-100 transition-colors"
+                                className="text-[10px] font-bold uppercase tracking-widest text-primary-muted hover:text-primary transition-colors"
                             >
                                 Clear
                             </button>
@@ -137,7 +137,7 @@ export default function ConfigScreen({
                                     onClick={() => toggleLevel(level)}
                                     className={`px-4 py-2 rounded-full text-sm font-medium border transition-all ${isActive
                                         ? 'bg-amber-500/10 text-amber-500 border-amber-500/40'
-                                        : 'bg-zinc-900 text-zinc-500 border-zinc-800 hover:border-zinc-600'
+                                        : 'bg-card text-primary-muted border-border hover:border-zinc-400 dark:hover:border-zinc-600'
                                         }`}
                                 >
                                     {level}

@@ -68,7 +68,7 @@ export default function QuizCard({ word, mode, options, onAnswer }) {
         <div className="flex flex-col min-h-[60vh] md:min-h-[70vh] animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Header Mode Title */}
             <div className="text-center py-4">
-                <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">
+                <span className="text-xs font-bold uppercase tracking-widest text-primary-muted">
                     {mode === 'multipleChoice' ? 'Multiple Choice' :
                         mode === 'written' ? 'Written Challenge' :
                             mode === 'article' ? 'Article Master' : 'Word Order'}
@@ -80,7 +80,7 @@ export default function QuizCard({ word, mode, options, onAnswer }) {
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
                     {word.type === 'Grammar' ? word.phrase : (mode === 'article' ? word.word : word.english)}
                     {word.type !== 'Grammar' && mode !== 'article' && mode !== 'written' && mode !== 'wordOrder' && getArticle(word) && (
-                        <span className="text-zinc-500 text-2xl ml-3">({getArticle(word)})</span>
+                        <span className="text-primary-muted text-2xl ml-3">({getArticle(word)})</span>
                     )}
                 </h2>
 
@@ -90,13 +90,13 @@ export default function QuizCard({ word, mode, options, onAnswer }) {
                             {!showHint ? (
                                 <button
                                     onClick={() => setShowHint(true)}
-                                    className="p-2 text-zinc-600 hover:text-zinc-400 hover:scale-110 transition-all"
+                                    className="p-2 text-primary-muted hover:text-primary hover:scale-110 transition-all"
                                     title="Show hint"
                                 >
                                     <AlertCircle size={18} />
                                 </button>
                             ) : (
-                                <p className="text-sm italic text-zinc-400 animate-in fade-in slide-in-from-top-1 duration-300 max-w-md px-4">
+                                <p className="text-sm italic text-primary-muted animate-in fade-in slide-in-from-top-1 duration-300 max-w-md px-4">
                                     {word.trivia}
                                 </p>
                             )}
@@ -114,10 +114,10 @@ export default function QuizCard({ word, mode, options, onAnswer }) {
                             <button
                                 key={i}
                                 onClick={() => onAnswer(typeof opt === 'string' ? opt : opt.word)}
-                                className="btn btn-secondary text-left py-4 px-6 hover:bg-zinc-800 hover:border-zinc-700 flex justify-between group"
+                                className="btn btn-secondary text-left py-4 px-6 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700 flex justify-between group"
                             >
                                 <span>{formatWordWithArticle(opt)}</span>
-                                <span className="opacity-0 group-hover:opacity-100 text-zinc-500 text-sm">Select</span>
+                                <span className="opacity-0 group-hover:opacity-100 text-primary-muted text-sm">Select</span>
                             </button>
                         ))}
                     </div>
@@ -131,7 +131,7 @@ export default function QuizCard({ word, mode, options, onAnswer }) {
                             value={writtenInput}
                             onChange={(e) => setWrittenInput(e.target.value)}
                             placeholder="Type the German word..."
-                            className="input w-full text-lg text-center bg-zinc-900/50 border-zinc-800 focus:border-zinc-500 transition-all py-4"
+                            className="input w-full text-lg text-center bg-card/50 border-border focus:border-zinc-500 transition-all py-4"
                         />
                         <button type="submit" className="btn btn-primary w-full py-4 flex items-center justify-center gap-2 shadow-lg">
                             <Send className="w-4 h-4" />
@@ -146,7 +146,7 @@ export default function QuizCard({ word, mode, options, onAnswer }) {
                             <button
                                 key={art}
                                 onClick={() => onAnswer(art)}
-                                className="btn btn-secondary py-6 text-xl font-bold hover:bg-zinc-800 hover:border-zinc-700"
+                                className="btn btn-secondary py-6 text-xl font-bold hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-700"
                             >
                                 {art}
                             </button>
@@ -157,19 +157,19 @@ export default function QuizCard({ word, mode, options, onAnswer }) {
                 {mode === 'wordOrder' && (
                     <div className="space-y-10">
                         {/* Selected Words Area */}
-                        <div className={`min-h-[140px] p-4 flex flex-wrap gap-2 justify-center items-center rounded-2xl transition-all duration-300 ${selectedWords.length === 0 ? 'bg-zinc-900/30 border-2 border-dashed border-zinc-800' : 'bg-zinc-900/50 border-b-2 border-zinc-800'}`}>
+                        <div className={`min-h-[140px] p-4 flex flex-wrap gap-2 justify-center items-center rounded-2xl transition-all duration-300 ${selectedWords.length === 0 ? 'bg-card/30 border-2 border-dashed border-border' : 'bg-card/50 border-b-2 border-border'}`}>
                             {selectedWords.length > 0 ? (
                                 selectedWords.map((wordObj) => (
                                     <button
                                         key={wordObj.id}
                                         onClick={() => toggleSelected(wordObj)}
-                                        className="bg-zinc-800 text-zinc-100 px-5 py-3 rounded-xl border border-zinc-700 font-medium hover:bg-zinc-700 transition-all hover:-translate-y-0.5 active:translate-y-0 shadow-lg animate-in zoom-in-95 duration-200"
+                                        className="bg-zinc-200 dark:bg-zinc-800 text-primary px-5 py-3 rounded-xl border border-zinc-400 dark:border-zinc-700 font-medium hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-all hover:-translate-y-0.5 active:translate-y-0 shadow-lg animate-in zoom-in-95 duration-200"
                                     >
                                         {wordObj.text}
                                     </button>
                                 ))
                             ) : (
-                                <p className="text-zinc-600 font-medium italic text-sm">Tap the words below in order</p>
+                                <p className="text-primary-muted font-medium italic text-sm">Tap the words below in order</p>
                             )}
                         </div>
 
@@ -179,7 +179,7 @@ export default function QuizCard({ word, mode, options, onAnswer }) {
                                 <button
                                     key={wordObj.id}
                                     onClick={() => toggleAvailable(wordObj)}
-                                    className="bg-zinc-950 text-zinc-300 px-5 py-3 rounded-xl border border-zinc-800 font-medium hover:border-zinc-500 hover:text-white transition-all active:scale-90 shadow-md transform-gpu"
+                                    className="bg-background text-primary px-5 py-3 rounded-xl border border-border font-medium hover:border-zinc-500 hover:text-primary transition-all active:scale-90 shadow-md transform-gpu"
                                 >
                                     {wordObj.text}
                                 </button>
