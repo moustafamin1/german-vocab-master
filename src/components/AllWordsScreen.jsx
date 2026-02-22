@@ -140,25 +140,25 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
             <div className="flex items-center justify-between">
                 <button
                     onClick={onBack}
-                    className="p-2 -ml-2 rounded-full hover:bg-zinc-900 transition-colors"
+                    className="p-2 -ml-2 rounded-full hover:bg-card transition-colors"
                 >
-                    <ChevronLeft className="w-6 h-6 text-zinc-400" />
+                    <ChevronLeft className="w-6 h-6 text-primary-muted" />
                 </button>
                 <div className="text-center">
                     <h2 className="text-2xl font-bold tracking-tight">All Words</h2>
                     <div className="flex items-center justify-center gap-2">
-                        <p className="text-xs text-zinc-500">
+                        <p className="text-xs text-primary-muted">
                             {vocabPool.length} total
                             {filteredWords.length !== vocabPool.length && (
-                                <span className="text-zinc-400"> · {filteredWords.length} filtered</span>
+                                <span className="text-primary-muted"> · {filteredWords.length} filtered</span>
                             )}
                         </p>
                         <button
                             onClick={handleTogglePlayAll}
                             className={`p-1 rounded-full transition-all ${
                                 isPlayingAll
-                                ? 'bg-zinc-100 text-zinc-950 scale-110 shadow-lg shadow-zinc-100/10'
-                                : 'bg-zinc-800 text-zinc-400 hover:text-zinc-100'
+                                ? 'bg-primary text-background scale-110 shadow-lg shadow-zinc-100/10'
+                                : 'bg-zinc-200 dark:bg-zinc-800 text-primary-muted hover:text-primary'
                             }`}
                             title={isPlayingAll ? "Pause Audio" : "Play All Audio"}
                         >
@@ -170,11 +170,11 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
             </div>
 
             {/* Compact Search and Filters */}
-            <div className="bg-zinc-900/30 border border-zinc-800/50 rounded-2xl p-2 space-y-2">
+            <div className="bg-card/30 border border-border/50 rounded-2xl p-2 space-y-2">
                 {/* Line 1: Search (expanded) OR Search Icon + Type + Status Filters */}
                 {searchExpanded ? (
                     <div className="relative">
-                        <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3 h-3 text-zinc-500" />
+                        <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3 h-3 text-primary-muted" />
                         <input
                             type="text"
                             placeholder="Search words..."
@@ -184,7 +184,7 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                                 if (!searchTerm) setSearchExpanded(false);
                             }}
                             autoFocus
-                            className="w-full bg-zinc-950/50 border border-zinc-800/50 rounded-lg py-1 pl-8 pr-2.5 text-xs focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-all"
+                            className="w-full bg-background/50 border border-border/50 rounded-lg py-1 pl-8 pr-2.5 text-xs focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-all"
                         />
                     </div>
                 ) : (
@@ -192,20 +192,20 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                         {/* Search Icon */}
                         <button
                             onClick={() => setSearchExpanded(true)}
-                            className="p-1 rounded-lg bg-zinc-950/50 border border-zinc-800/50 hover:border-zinc-700 transition-all flex-shrink-0"
+                            className="p-1 rounded-lg bg-background/50 border border-border/50 hover:border-zinc-700 transition-all flex-shrink-0"
                         >
-                            <Search className="w-3.5 h-3.5 text-zinc-500" />
+                            <Search className="w-3.5 h-3.5 text-primary-muted" />
                         </button>
 
                         {/* Type Filter */}
-                        <div className="flex bg-zinc-950/50 border border-zinc-800/50 rounded-lg p-0.5 flex-shrink-0">
+                        <div className="flex bg-background/50 border border-border/50 rounded-lg p-0.5 flex-shrink-0">
                             {['all', 'nouns', 'phrases', 'grammar'].map((type) => (
                                 <button
                                     key={type}
                                     onClick={() => setTypeFilter(type)}
                                     className={`px-2 py-0.5 rounded-md text-[9px] font-bold capitalize transition-all ${typeFilter === type
-                                        ? 'bg-zinc-800 text-zinc-100'
-                                        : 'text-zinc-500 hover:text-zinc-400'
+                                        ? 'bg-zinc-300 dark:bg-zinc-800 text-primary'
+                                        : 'text-primary-muted hover:text-primary-muted'
                                         }`}
                                 >
                                     {type}
@@ -214,14 +214,14 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                         </div>
 
                         {/* Status Filter */}
-                        <div className="flex bg-zinc-950/50 border border-zinc-800/50 rounded-lg p-0.5 flex-shrink-0">
+                        <div className="flex bg-background/50 border border-border/50 rounded-lg p-0.5 flex-shrink-0">
                             {['all', 'study', 'skip'].map((status) => (
                                 <button
                                     key={status}
                                     onClick={() => setFilterStatus(status)}
                                     className={`px-2 py-0.5 rounded-md text-[9px] font-bold capitalize transition-all ${filterStatus === status
-                                        ? 'bg-zinc-800 text-zinc-100'
-                                        : 'text-zinc-500 hover:text-zinc-400'
+                                        ? 'bg-zinc-300 dark:bg-zinc-800 text-primary'
+                                        : 'text-primary-muted hover:text-primary-muted'
                                         }`}
                                 >
                                     {status}
@@ -233,7 +233,7 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                         <div className="relative">
                             <button
                                 onClick={() => setShowSortMenu(!showSortMenu)}
-                                className={`p-1 rounded-lg border transition-all flex-shrink-0 ${showSortMenu ? 'bg-zinc-100 border-zinc-100 text-zinc-950' : 'bg-zinc-950/50 border-zinc-800/50 text-zinc-500'}`}
+                                className={`p-1 rounded-lg border transition-all flex-shrink-0 ${showSortMenu ? 'bg-primary border-primary text-background' : 'bg-background/50 border-border/50 text-primary-muted'}`}
                             >
                                 <ArrowUpDown className="w-3.5 h-3.5" />
                             </button>
@@ -243,7 +243,7 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                                         className="fixed inset-0 z-40"
                                         onClick={() => setShowSortMenu(false)}
                                     />
-                                    <div className="absolute top-full right-0 mt-2 w-40 bg-zinc-900 border border-zinc-800 rounded-xl shadow-xl z-50 py-1">
+                                    <div className="absolute top-full right-0 mt-2 w-40 bg-card border border-border rounded-xl shadow-xl z-50 py-1">
                                         {sortOptions.map(option => (
                                             <button
                                                 key={option.id}
@@ -251,7 +251,7 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                                                     setSortBy(option.id);
                                                     setShowSortMenu(false);
                                                 }}
-                                                className={`w-full text-left px-3 py-2 text-[10px] font-bold uppercase tracking-wider hover:bg-zinc-800 transition-colors ${sortBy === option.id ? 'text-zinc-100' : 'text-zinc-500'}`}
+                                                className={`w-full text-left px-3 py-2 text-[10px] font-bold uppercase tracking-wider hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors ${sortBy === option.id ? 'text-primary' : 'text-primary-muted'}`}
                                             >
                                                 {option.label}
                                             </button>
@@ -270,8 +270,8 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                             key={level}
                             onClick={() => setSelectedLevel(level)}
                             className={`flex-shrink-0 px-2 py-0.5 rounded-md text-[9px] font-bold transition-all border ${selectedLevel === level
-                                ? 'bg-zinc-100 border-zinc-100 text-zinc-950'
-                                : 'bg-transparent border-zinc-800/50 text-zinc-500 hover:border-zinc-700'
+                                ? 'bg-primary border-primary text-background'
+                                : 'bg-transparent border-border/50 text-primary-muted hover:border-zinc-400 dark:hover:border-zinc-700'
                                 }`}
                         >
                             {level}
@@ -291,8 +291,8 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                             <div
                                 key={word.uniqueId}
                                 className={`flex items-center justify-between p-4 rounded-2xl border transition-all ${isSkipped
-                                    ? 'bg-zinc-950/50 border-zinc-900/50 opacity-60'
-                                    : 'bg-zinc-900/30 border-zinc-800/50 hover:border-zinc-700'
+                                    ? 'bg-background/50 border-zinc-300/50 dark:border-zinc-900/50 opacity-60'
+                                    : 'bg-card/30 border-border/50 hover:border-zinc-400 dark:hover:border-zinc-700'
                                     }`}
                             >
                                 <div className="space-y-1 pr-4 min-w-0">
@@ -300,27 +300,27 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                                         <p className="font-semibold text-sm truncate">
                                             {word.type === 'Noun' ? (
                                                 <>
-                                                    <span className="text-zinc-500 font-bold mr-1.5 opacity-70 uppercase first-letter:uppercase lowercase">
+                                                    <span className="text-primary-muted font-bold mr-1.5 opacity-70 uppercase first-letter:uppercase lowercase">
                                                         {word.article}
                                                     </span>
                                                     {word.word}
                                                 </>
                                             ) : word.word}
                                         </p>
-                                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-500 font-bold border border-zinc-700/50">
+                                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 text-primary-muted font-bold border border-zinc-300/50 dark:border-zinc-700/50">
                                             {word.level}
                                         </span>
                                     </div>
                                     <div className="flex items-center gap-3">
-                                        <p className="text-xs text-zinc-500 truncate italic">{word.english}</p>
-                                        <div className="flex items-center gap-2 border-l border-zinc-800 pl-3">
+                                        <p className="text-xs text-primary-muted truncate italic">{word.english}</p>
+                                        <div className="flex items-center gap-2 border-l border-border pl-3">
                                             <div className="flex items-center gap-1">
                                                 <CheckCircle2 className="w-2.5 h-2.5 text-green-500/50" />
-                                                <span className="text-[10px] font-mono font-bold text-zinc-500">{word.successCount}</span>
+                                                <span className="text-[10px] font-mono font-bold text-primary-muted">{word.successCount}</span>
                                             </div>
                                             <div className="flex items-center gap-1">
                                                 <XCircle className="w-2.5 h-2.5 text-red-500/50" />
-                                                <span className="text-[10px] font-mono font-bold text-zinc-500">{word.failCount}</span>
+                                                <span className="text-[10px] font-mono font-bold text-primary-muted">{word.failCount}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -329,14 +329,14 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                                 <div className="flex items-center gap-4 flex-shrink-0">
                                     {/* SRS Weight */}
                                     <div className="flex flex-col items-end opacity-60">
-                                        <span className="text-[9px] uppercase tracking-widest text-zinc-600 font-bold">Weight</span>
-                                        <span className="text-xs font-mono font-bold text-zinc-400">{weight}</span>
+                                        <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-bold">Weight</span>
+                                        <span className="text-xs font-mono font-bold text-primary-muted">{weight}</span>
                                     </div>
 
                                     {/* Audio Button */}
                                     <button
                                         onClick={() => ttsService.speak(word.article ? `${word.article} ${word.word}` : word.word)}
-                                        className="p-2 bg-zinc-800 rounded-xl text-zinc-400 hover:text-zinc-100 transition-colors"
+                                        className="p-2 bg-zinc-200 dark:bg-zinc-800 rounded-xl text-primary-muted hover:text-primary transition-colors"
                                         title="Play Audio"
                                     >
                                         <Volume2 className="w-4 h-4" />
@@ -358,8 +358,8 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                     })
                 ) : (
                     <div className="text-center py-10 space-y-2">
-                        <Filter className="w-8 h-8 text-zinc-800 mx-auto" />
-                        <p className="text-zinc-600 text-sm">No words found for this filter.</p>
+                        <Filter className="w-8 h-8 text-muted-foreground mx-auto" />
+                        <p className="text-muted-foreground text-sm">No words found for this filter.</p>
                     </div>
                 )}
             </div>
@@ -367,7 +367,7 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
             <div className="pt-4">
                 <button
                     onClick={onBack}
-                    className="w-full py-4 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 font-bold hover:bg-zinc-800 hover:text-zinc-100 transition-all"
+                    className="w-full py-4 rounded-2xl bg-card border border-border text-primary-muted font-bold hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-primary transition-all"
                 >
                     Back to Settings
                 </button>

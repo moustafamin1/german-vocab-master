@@ -195,7 +195,7 @@ export default function MediaLibrary({ onBack }) {
             <div className="flex items-center justify-between mb-8">
                 <button
                     onClick={onBack}
-                    className="p-2 -ml-2 rounded-xl text-zinc-400 hover:text-zinc-100 transition-colors"
+                    className="p-2 -ml-2 rounded-xl text-primary-muted hover:text-primary transition-colors"
                 >
                     <ChevronLeft className="w-6 h-6" />
                 </button>
@@ -205,7 +205,7 @@ export default function MediaLibrary({ onBack }) {
                     <button
                         onClick={handleAddLink}
                         disabled={isPasting}
-                        className="p-2.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all"
+                        className="p-2.5 rounded-full bg-card border border-border text-primary-muted hover:text-primary hover:border-zinc-600 transition-all"
                         title="Paste or Add Instagram Link"
                     >
                         <LinkIcon className="w-5 h-5" />
@@ -213,14 +213,14 @@ export default function MediaLibrary({ onBack }) {
                     <button
                         onClick={handleManualPaste}
                         disabled={isPasting}
-                        className="p-2.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all"
+                        className="p-2.5 rounded-full bg-card border border-border text-primary-muted hover:text-primary hover:border-zinc-600 transition-all"
                         title="Paste Image"
                     >
                         <Clipboard className="w-5 h-5" />
                     </button>
                     <button
                         onClick={() => fileInputRef.current?.click()}
-                        className="p-2.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all"
+                        className="p-2.5 rounded-full bg-card border border-border text-primary-muted hover:text-primary hover:border-zinc-600 transition-all"
                         title="Upload Image"
                     >
                         <Plus className="w-5 h-5" />
@@ -246,10 +246,10 @@ export default function MediaLibrary({ onBack }) {
             ) : (
                 <div className="columns-2 md:columns-3 gap-4 space-y-4">
                     {images.map((image) => (
-                        <div key={image.id} className="relative break-inside-avoid rounded-2xl overflow-hidden bg-zinc-900 group">
+                        <div key={image.id} className="relative break-inside-avoid rounded-2xl overflow-hidden bg-card group">
                             {image.mediaType === 'video' ? (
                                 <div
-                                    className="relative cursor-pointer active:scale-[0.98] transition-all duration-300 aspect-[9/16] bg-zinc-900"
+                                    className="relative cursor-pointer active:scale-[0.98] transition-all duration-300 aspect-[9/16] bg-card"
                                     onClick={() => setSelectedImage(image)}
                                 >
                                     <img
@@ -294,7 +294,7 @@ export default function MediaLibrary({ onBack }) {
                                 </button>
 
                                 {activeMenu === image.id && (
-                                    <div className="absolute right-0 mt-1 w-32 rounded-xl bg-zinc-900 border border-zinc-800 shadow-xl z-20 overflow-hidden animate-in fade-in zoom-in-95 duration-100">
+                                    <div className="absolute right-0 mt-1 w-32 rounded-xl bg-card border border-border shadow-xl z-20 overflow-hidden animate-in fade-in zoom-in-95 duration-100">
                                         <button
                                             onClick={(e) => {
                                                 e.stopPropagation();
@@ -330,7 +330,7 @@ export default function MediaLibrary({ onBack }) {
 
                     <div className="relative w-full h-full flex items-center justify-center p-4">
                         {selectedImage.mediaType === 'video' ? (
-                            <div className="w-full max-w-[400px] aspect-[9/16] bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl relative">
+                            <div className="w-full max-w-[400px] aspect-[9/16] bg-card rounded-2xl overflow-hidden shadow-2xl relative">
                                 <iframe
                                     src={`${selectedImage.url}embed/`}
                                     className="w-full h-full border-0"

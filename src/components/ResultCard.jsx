@@ -42,10 +42,10 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                 )}
             </div>
 
-            <div className="grid grid-cols-1 gap-4 py-4 border-y border-zinc-800/50">
+            <div className="grid grid-cols-1 gap-4 py-4 border-y border-border/50">
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1">
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Correct Answer</span>
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-primary-muted">Correct Answer</span>
                         <div className="flex items-center justify-between gap-2">
                             <div className="text-sm font-medium">
                                 {word.type === 'Grammar' && word.phrase ? (
@@ -71,7 +71,7 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                                     }
                                     ttsService.speak(textToSpeak);
                                 }}
-                                className="p-1.5 bg-zinc-800 rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors shrink-0"
+                                className="p-1.5 bg-zinc-200 dark:bg-zinc-800 rounded-lg text-primary-muted hover:text-primary transition-colors shrink-0"
                                 title="Play Audio"
                             >
                                 <Volume2 className="w-3.5 h-3.5" />
@@ -80,7 +80,7 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                     </div>
 
                     <div className="space-y-1">
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Your Answer</span>
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-primary-muted">Your Answer</span>
                         <p className={`text-sm font-medium ${isCorrect ? 'text-green-500/80' : 'text-red-500/80'}`}>
                             {feedback.chosen || '—'}
                         </p>
@@ -88,26 +88,26 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                 </div>
 
                 <div className="text-center">
-                    <p className={`text-zinc-500 italic ${word.type === 'Grammar' ? 'text-sm font-medium' : 'text-xs'}`}>
+                    <p className={`text-primary-muted italic ${word.type === 'Grammar' ? 'text-sm font-medium' : 'text-xs'}`}>
                         {word.english}
                     </p>
                 </div>
 
                 {/* Word Statistics & SRS Weight */}
                 <div className="flex gap-2">
-                    <div className="flex-1 bg-zinc-800/30 border border-zinc-800/50 rounded-xl p-2 flex flex-col items-center justify-center">
-                        <div className="flex items-center gap-1.5 text-zinc-500 mb-1">
+                    <div className="flex-1 bg-zinc-200/50 dark:bg-zinc-800/30 border border-border/50 rounded-xl p-2 flex flex-col items-center justify-center">
+                        <div className="flex items-center gap-1.5 text-primary-muted mb-1">
                             <CheckCircle2 className="w-2.5 h-2.5 text-green-500/50" />
                             <span className="text-[9px] font-bold uppercase tracking-widest">Success</span>
                         </div>
-                        <span className="text-sm font-mono font-bold text-zinc-300">{word.successCount}</span>
+                        <span className="text-sm font-mono font-bold text-primary">{word.successCount}</span>
                     </div>
-                    <div className="flex-1 bg-zinc-800/30 border border-zinc-800/50 rounded-xl p-2 flex flex-col items-center justify-center">
-                        <div className="flex items-center gap-1.5 text-zinc-500 mb-1">
+                    <div className="flex-1 bg-zinc-200/50 dark:bg-zinc-800/30 border border-border/50 rounded-xl p-2 flex flex-col items-center justify-center">
+                        <div className="flex items-center gap-1.5 text-primary-muted mb-1">
                             <XCircle className="w-2.5 h-2.5 text-red-500/50" />
                             <span className="text-[9px] font-bold uppercase tracking-widest">Fail</span>
                         </div>
-                        <span className="text-sm font-mono font-bold text-zinc-300">{word.failCount}</span>
+                        <span className="text-sm font-mono font-bold text-primary">{word.failCount}</span>
                     </div>
                     {devMode && (
                         <div className="flex-1 bg-amber-500/5 border border-amber-500/20 rounded-xl p-2 flex flex-col items-center justify-center">
@@ -121,15 +121,15 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                 </div>
 
                 {word.sentence && (
-                    <div className="bg-zinc-800/30 p-4 rounded-xl space-y-2">
+                    <div className="bg-zinc-200/50 dark:bg-zinc-800/30 p-4 rounded-xl space-y-2">
                         <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2 text-zinc-500">
+                            <div className="flex items-center gap-2 text-primary-muted">
                                 <Quote className="w-3 h-3" />
                                 <span className="text-[10px] font-bold uppercase tracking-widest">Example</span>
                             </div>
                             <button
                                 onClick={() => ttsService.speak(word.sentence)}
-                                className="p-1.5 bg-zinc-800/50 rounded-lg text-zinc-500 hover:text-zinc-200 transition-colors"
+                                className="p-1.5 bg-zinc-300 dark:bg-zinc-800/50 rounded-lg text-primary-muted hover:text-primary transition-colors"
                                 title="Play Example"
                             >
                                 <Volume2 className="w-3.5 h-3.5" />
@@ -150,7 +150,7 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                                 <span className="text-[10px] font-bold uppercase tracking-widest opacity-50">{word.level}</span>
                             )}
                         </div>
-                        <p className="text-sm text-amber-200/80 leading-relaxed font-normal">{word.trivia}</p>
+                        <p className="text-sm text-amber-700/80 dark:text-amber-200/80 leading-relaxed font-normal">{word.trivia}</p>
                     </div>
                 )}
             </div>
