@@ -1,7 +1,7 @@
 # Media Library Carousel Plan
 
 ## Objective
-The goal is to display a horizontal carousel of media items (images and video thumbnails) directly on the Settings page, allowing users to preview their collection and access the full library via a "Show More" button.
+The goal is to display a horizontal carousel of media items (specifically **images only**) directly on the Settings page, allowing users to preview their collection and access the full library via a "Show More" button.
 
 ## Steps
 
@@ -9,12 +9,13 @@ The goal is to display a horizontal carousel of media items (images and video th
 *   **Responsibility**: Fetch and display a horizontal list of media items.
 *   **Logic**:
     *   Use `mediaService.getImages()` to fetch data on component mount.
-    *   Limit the initial fetch or render to a reasonable number (e.g., 20) for performance, or render all if "all" is strictly required (lazy loading might be overkill for now but good to keep in mind).
+    *   **Filter**: Filter the results to include only items where `mediaType === 'image'`.
+    *   Limit the initial fetch or render to a reasonable number (e.g., 20) for performance.
 *   **UI Structure**:
     *   A container with `overflow-x-auto` for horizontal scrolling.
-    *   Individual cards for each media item:
-        *   Image: Display `item.url`.
-        *   Video: Display `item.thumbnail` with a "Play" icon overlay.
+    *   Individual cards for each filtered image item:
+        *   Display `item.url`.
+        *   Video items are explicitly **excluded**.
     *   **Interactions**:
         *   Clicking an item could open the full `MediaLibrary` view (simplest) or a local lightbox. *Decision: Clicking an item opens the full Media Library to the specific item if possible, or just opens the library.*
         *   **Show More Card**: A final card in the carousel that says "Show More" or "+X more", which triggers the `onOpenLibrary` callback.
@@ -31,7 +32,7 @@ The goal is to display a horizontal carousel of media items (images and video th
 *   Style the "Show More" button to look distinct but integrated.
 
 ### 4. Verification
-*   Verify that images load correctly from IndexedDB.
+*   Verify that **only** images load correctly from IndexedDB.
 *   Verify horizontal scrolling works.
 *   Verify the "Show More" button navigates to the full library.
 
