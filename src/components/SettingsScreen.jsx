@@ -25,6 +25,7 @@ export default function SettingsScreen({
     const [syncSuccess, setSyncSuccess] = useState(false);
     const [copySuccess, setCopySuccess] = useState(false);
     const [useDummyData, setUseDummyData] = useState(false);
+    const [isDevToolsExpanded, setIsDevToolsExpanded] = useState(false);
     const [mediaImages, setMediaImages] = useState([]);
     const [viewingImage, setViewingImage] = useState(null);
     const fileInputRef = useRef(null);
@@ -200,23 +201,6 @@ export default function SettingsScreen({
                     </div>
                 </section>
 
-                {/* Skipping Tool */}
-                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm font-medium">Skipping Tool</p>
-                            <p className="text-xs text-zinc-500">Rapidly process your list (Tinder-style).</p>
-                        </div>
-                        <button
-                            onClick={onOpenSkippingTool}
-                            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
-                        >
-                            <span>Launch</span>
-                            <ChevronRight className="w-4 h-4" />
-                        </button>
-                    </div>
-                </section>
-
                 {/* Media Library Carousel */}
                 <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
                     <div className="flex items-center justify-between mb-4">
@@ -304,13 +288,38 @@ export default function SettingsScreen({
                 </section>
 
                 {/* Developer Tools */}
-                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
-                    <div className="flex items-center gap-3 mb-2">
-                        <Bug className="w-5 h-5 text-zinc-400" />
-                        <h3 className="text-lg font-semibold">Developer Tools</h3>
-                    </div>
+                <section className="bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden">
+                    <button
+                        onClick={() => setIsDevToolsExpanded(!isDevToolsExpanded)}
+                        className="w-full flex items-center justify-between p-6 hover:bg-zinc-800/30 transition-colors"
+                    >
+                        <div className="flex items-center gap-3">
+                            <Bug className="w-5 h-5 text-zinc-400" />
+                            <h3 className="text-lg font-semibold text-zinc-100">Developer Tools</h3>
+                        </div>
+                        <ChevronRight className={`w-5 h-5 text-zinc-500 transition-transform duration-300 ${isDevToolsExpanded ? 'rotate-90' : ''}`} />
+                    </button>
 
-                    <div className="space-y-6">
+                    {isDevToolsExpanded && (
+                        <div className="px-6 pb-6 space-y-6 animate-in fade-in slide-in-from-top-2 duration-300">
+                            {/* Skipping Tool */}
+                            <div className="flex items-center justify-between py-2">
+                                <div>
+                                    <p className="text-sm font-medium">Skipping Tool</p>
+                                    <p className="text-xs text-zinc-500">Rapidly process your list (Tinder-style).</p>
+                                </div>
+                                <button
+                                    onClick={onOpenSkippingTool}
+                                    className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
+                                >
+                                    <span>Launch</span>
+                                    <ChevronRight className="w-4 h-4" />
+                                </button>
+                            </div>
+
+                            <div className="h-px bg-zinc-800" />
+
+                            <div className="space-y-6">
                         {/* Backup & Restore (New) */}
                         <div className="flex items-center justify-between">
                             <div>
@@ -499,7 +508,9 @@ export default function SettingsScreen({
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+                )}
+            </section>
             </div>
 
             <div className="pt-6">
