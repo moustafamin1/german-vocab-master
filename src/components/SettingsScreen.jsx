@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react';
-import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy, Volume2, Share2, FileUp } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy, Volume2, Share2, FileUp, Play } from 'lucide-react';
 import { fetchAndCacheVocab } from '../services/vocabService';
+import { mediaService } from '../services/mediaService';
 import * as storage from '../services/storageService';
 import StatsCard from './StatsCard';
 
@@ -24,7 +25,12 @@ export default function SettingsScreen({
     const [syncSuccess, setSyncSuccess] = useState(false);
     const [copySuccess, setCopySuccess] = useState(false);
     const [useDummyData, setUseDummyData] = useState(false);
+    const [images, setImages] = useState([]);
     const fileInputRef = useRef(null);
+
+    useEffect(() => {
+        mediaService.getImages().then(setImages).catch(console.error);
+    }, []);
 
     const handleSync = async () => {
         setIsSyncing(true);
@@ -210,10 +216,39 @@ export default function SettingsScreen({
                             onClick={onOpenMediaLibrary}
                             className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
                         >
-                            <span>Open</span>
+                            <span>Show More</span>
                             <ChevronRight className="w-4 h-4" />
                         </button>
                     </div>
+
+                    {images.length > 0 && (
+                        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide snap-x -mx-2 px-2">
+                            {images.map((img) => (
+                                <div key={img.id} className="relative flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden border border-zinc-800 snap-start bg-zinc-900">
+                                    {img.mediaType === 'video' ? (
+                                        <>
+                                            <img
+                                                src={img.thumbnail}
+                                                alt="Video Thumbnail"
+                                                className="w-full h-full object-cover opacity-80"
+                                            />
+                                            <div className="absolute inset-0 flex items-center justify-center">
+                                                <div className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center">
+                                                    <Play className="w-4 h-4 text-white fill-white" />
+                                                </div>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <img
+                                            src={img.url}
+                                            alt="Media"
+                                            className="w-full h-full object-cover"
+                                        />
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </section>
 
 
