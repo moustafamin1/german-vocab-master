@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
-import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy, Volume2, Share2, FileUp } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy, Volume2, Share2, FileUp, Image as ImageIcon, Plus, X } from 'lucide-react';
 import { fetchAndCacheVocab } from '../services/vocabService';
 import * as storage from '../services/storageService';
+import { mediaService } from '../services/mediaService';
 import StatsCard from './StatsCard';
 
 export default function SettingsScreen({
@@ -24,7 +25,24 @@ export default function SettingsScreen({
     const [syncSuccess, setSyncSuccess] = useState(false);
     const [copySuccess, setCopySuccess] = useState(false);
     const [useDummyData, setUseDummyData] = useState(false);
+    const [mediaImages, setMediaImages] = useState([]);
+    const [viewingImage, setViewingImage] = useState(null);
     const fileInputRef = useRef(null);
+
+    useEffect(() => {
+        loadMediaImages();
+    }, []);
+
+    const loadMediaImages = async () => {
+        try {
+            const allMedia = await mediaService.getImages();
+            // Filter for images only (exclude videos) as per requirements
+            const imagesOnly = allMedia.filter(item => item.mediaType === 'image');
+            setMediaImages(imagesOnly);
+        } catch (err) {
+            console.error('Failed to load media images for carousel', err);
+        }
+    };
 
     const handleSync = async () => {
         setIsSyncing(true);
@@ -199,20 +217,68 @@ export default function SettingsScreen({
                     </div>
                 </section>
 
-                {/* Media Library */}
+                {/* Media Library Carousel */}
                 <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between mb-4">
                         <div>
                             <p className="text-sm font-medium">Media Library</p>
-                            <p className="text-xs text-zinc-500">Add and view images for your learning.</p>
+                            <p className="text-xs text-zinc-500">
+                                {mediaImages.length > 0
+                                    ? `View ${mediaImages.length} images`
+                                    : 'Add and view images for your learning.'
+                                }
+                            </p>
                         </div>
                         <button
                             onClick={onOpenMediaLibrary}
                             className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
                         >
-                            <span>Open</span>
+                            <span>Manage</span>
                             <ChevronRight className="w-4 h-4" />
                         </button>
+                    </div>
+
+                    {/* Horizontal Scroll Area */}
+                    <div className="flex overflow-x-auto gap-3 pb-2 -mx-2 px-2 scrollbar-hide snap-x snap-mandatory">
+                        {/* Empty State / Add Button */}
+                        {mediaImages.length === 0 && (
+                            <button
+                                onClick={onOpenMediaLibrary}
+                                className="min-w-[120px] w-[120px] h-[120px] rounded-xl border-2 border-dashed border-zinc-800 hover:border-zinc-600 flex flex-col items-center justify-center gap-2 text-zinc-500 hover:text-zinc-300 transition-all snap-center bg-zinc-950/50"
+                            >
+                                <Plus className="w-6 h-6" />
+                                <span className="text-xs font-medium">Add Photos</span>
+                            </button>
+                        )}
+
+                        {/* Image Thumbnails */}
+                        {mediaImages.map((image) => (
+                            <div
+                                key={image.id}
+                                onClick={() => setViewingImage(image)}
+                                className="relative min-w-[120px] w-[120px] h-[120px] rounded-xl overflow-hidden bg-zinc-950 border border-zinc-800 snap-center cursor-pointer hover:opacity-90 transition-opacity"
+                            >
+                                <img
+                                    src={image.url}
+                                    alt="Library Thumbnail"
+                                    className="w-full h-full object-cover"
+                                    loading="lazy"
+                                />
+                            </div>
+                        ))}
+
+                        {/* Show More Card (only if we have images) */}
+                        {mediaImages.length > 0 && (
+                            <button
+                                onClick={onOpenMediaLibrary}
+                                className="min-w-[120px] w-[120px] h-[120px] rounded-xl bg-zinc-950 border border-zinc-800 flex flex-col items-center justify-center gap-2 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all snap-center shrink-0"
+                            >
+                                <div className="p-2 rounded-full bg-zinc-900">
+                                    <ImageIcon className="w-5 h-5" />
+                                </div>
+                                <span className="text-xs font-bold">Show More</span>
+                            </button>
+                        )}
                     </div>
                 </section>
 
@@ -445,6 +511,34 @@ export default function SettingsScreen({
                     <ChevronRight className="w-4 h-4" />
                 </button>
             </div>
+
+            {/* Full Screen Image Overlay */}
+            {viewingImage && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 animate-in fade-in duration-300"
+                    onClick={() => setViewingImage(null)}
+                >
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setViewingImage(null);
+                        }}
+                        className="absolute top-6 right-6 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-[60]"
+                    >
+                        <X className="w-6 h-6" />
+                    </button>
+
+                    <div className="relative w-full h-full flex items-center justify-center p-4">
+                        <img
+                            src={viewingImage.url}
+                            alt="Full Screen"
+                            className="max-w-full max-h-full object-contain animate-in zoom-in-95 duration-300 select-none"
+                            draggable="false"
+                            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image
+                        />
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
