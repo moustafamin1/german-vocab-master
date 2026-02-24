@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { RefreshCw, Bug, Check, ChevronRight, Settings2, Download, Upload, Copy, Volume2, Share2, FileUp, Image as ImageIcon, Plus, X } from 'lucide-react';
+import { RefreshCw, Check, ChevronRight, Settings, Settings2, Download, Upload, Copy, Share2, FileUp, Image as ImageIcon, Plus, X } from 'lucide-react';
 import { fetchAndCacheVocab } from '../services/vocabService';
 import * as storage from '../services/storageService';
 import { mediaService } from '../services/mediaService';
@@ -25,7 +25,7 @@ export default function SettingsScreen({
     const [syncSuccess, setSyncSuccess] = useState(false);
     const [copySuccess, setCopySuccess] = useState(false);
     const [useDummyData, setUseDummyData] = useState(false);
-    const [isDevToolsExpanded, setIsDevToolsExpanded] = useState(false);
+    const [isSettingsExpanded, setIsSettingsExpanded] = useState(false);
     const [mediaImages, setMediaImages] = useState([]);
     const [viewingImage, setViewingImage] = useState(null);
     const fileInputRef = useRef(null);
@@ -267,41 +267,37 @@ export default function SettingsScreen({
                 </section>
 
 
-                {/* Audio */}
-                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
-                    <div className="flex items-center gap-3 mb-2">
-                        <Volume2 className="w-5 h-5 text-zinc-400" />
-                        <h3 className="text-lg font-semibold">Audio</h3>
-                    </div>
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <p className="text-sm font-medium">Auto-play Answer</p>
-                            <p className="text-xs text-zinc-500">Automatically play the word's pronunciation on the result screen.</p>
-                        </div>
-                        <button
-                            onClick={() => setAutoPlayAudio(!autoPlayAudio)}
-                            className={`w-12 h-6 rounded-full transition-colors relative ${autoPlayAudio ? 'bg-blue-500' : 'bg-zinc-800'}`}
-                        >
-                            <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${autoPlayAudio ? 'translate-x-6' : 'translate-x-0'}`} />
-                        </button>
-                    </div>
-                </section>
-
-                {/* Developer Tools */}
+                {/* Settings (formerly Developer Tools) */}
                 <section className="bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden">
                     <button
-                        onClick={() => setIsDevToolsExpanded(!isDevToolsExpanded)}
+                        onClick={() => setIsSettingsExpanded(!isSettingsExpanded)}
                         className="w-full flex items-center justify-between p-6 hover:bg-zinc-800/30 transition-colors"
                     >
                         <div className="flex items-center gap-3">
-                            <Bug className="w-5 h-5 text-zinc-400" />
-                            <h3 className="text-lg font-semibold text-zinc-100">Developer Tools</h3>
+                            <Settings className="w-5 h-5 text-zinc-400" />
+                            <h3 className="text-lg font-semibold text-zinc-100">Settings</h3>
                         </div>
-                        <ChevronRight className={`w-5 h-5 text-zinc-500 transition-transform duration-300 ${isDevToolsExpanded ? 'rotate-90' : ''}`} />
+                        <ChevronRight className={`w-5 h-5 text-zinc-500 transition-transform duration-300 ${isSettingsExpanded ? 'rotate-90' : ''}`} />
                     </button>
 
-                    {isDevToolsExpanded && (
+                    {isSettingsExpanded && (
                         <div className="px-6 pb-6 space-y-6 animate-in fade-in slide-in-from-top-2 duration-300">
+                            {/* Audio Toggle (Moved here) */}
+                            <div className="flex items-center justify-between py-2">
+                                <div>
+                                    <p className="text-sm font-medium">Auto-play Answer</p>
+                                    <p className="text-xs text-zinc-500">Automatically play the word's pronunciation on the result screen.</p>
+                                </div>
+                                <button
+                                    onClick={() => setAutoPlayAudio(!autoPlayAudio)}
+                                    className={`w-12 h-6 rounded-full transition-colors relative ${autoPlayAudio ? 'bg-blue-500' : 'bg-zinc-800'}`}
+                                >
+                                    <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${autoPlayAudio ? 'translate-x-6' : 'translate-x-0'}`} />
+                                </button>
+                            </div>
+
+                            <div className="h-px bg-zinc-800" />
+
                             {/* Skipping Tool */}
                             <div className="flex items-center justify-between py-2">
                                 <div>
