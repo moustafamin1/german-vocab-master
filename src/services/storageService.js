@@ -57,33 +57,69 @@ export const initStorage = async () => {
  * Get data from storage (IndexedDB primary, localStorage fallback)
  */
 export const getItem = async (key, defaultValue = null) => {
-    try {
-        // Try IndexedDB first
-        if (db) {
-            const value = await new Promise((resolve, reject) => {
+    let idbValue = undefined;
+
+    // Try IndexedDB first
+    if (db) {
+        try {
+            idbValue = await new Promise((resolve, reject) => {
                 const transaction = db.transaction([STORE_NAME], 'readonly');
                 const store = transaction.objectStore(STORE_NAME);
                 const request = store.get(key);
                 request.onsuccess = () => resolve(request.result);
                 request.onerror = () => reject(request.error);
             });
+        } catch (idbErr) {
+            console.warn(`⚠️ IndexedDB read failed for ${key}, falling back to localStorage.`, idbErr);
+        }
+    }
 
-            if (value !== undefined && value !== null) {
-                return typeof value === 'string' ? JSON.parse(value) : value;
+    try {
+        const localValue = localStorage.getItem(key);
+        let parsedLocal = null;
+        let hasLocalData = false;
+
+        if (localValue !== null) {
+            try {
+                parsedLocal = JSON.parse(localValue);
+                hasLocalData = true;
+            } catch (e) {
+                console.warn(`Failed to parse localStorage for ${key}`, e);
             }
         }
 
-        // Fallback to localStorage
-        const localValue = localStorage.getItem(key);
-        if (localValue !== null) {
-            const parsed = JSON.parse(localValue);
-            // Auto-heal: Restore to IndexedDB if it was missing
-            if (db) setItem(key, parsed);
-            return parsed;
+        // Check if IDB successfully returned data
+        if (idbValue !== undefined && idbValue !== null) {
+            const parsedIdb = typeof idbValue === 'string' ? JSON.parse(idbValue) : idbValue;
+
+            // 🛡️ CRITICAL SAFTEY CHECK:
+            // If IDB returned an empty object/array, but localStorage has real data,
+            // IDB is likely out of sync or wiped. Prefer localStorage!
+            if (hasLocalData) {
+                const idbLength = typeof parsedIdb === 'object' && parsedIdb !== null ? Object.keys(parsedIdb).length : 1;
+                const localLength = typeof parsedLocal === 'object' && parsedLocal !== null ? Object.keys(parsedLocal).length : 1;
+
+                // Only override if IDB is completely empty but LS has substantial data
+                if (idbLength === 0 && localLength > 0) {
+                    console.warn(`🔄 Auto-healing: IDB empty but LS has data for ${key}. Restoring from LS.`);
+                    if (db) setItem(key, parsedLocal); // Auto-heal IDB
+                    return parsedLocal;
+                }
+            }
+            return parsedIdb;
+        }
+
+        // If IDB failed or returned undefined, fallback to LS
+        if (hasLocalData) {
+            console.log(`📥 Loaded ${key} from localStorage fallback.`);
+            if (db) setItem(key, parsedLocal);
+            return parsedLocal;
         }
     } catch (err) {
-        console.error(`Error getting item ${key}`, err);
+        console.error(`❌ Error parsing item ${key} from storage`, err);
     }
+
+    console.log(`⚠️ No data found for ${key}, using defaultValue.`);
     return defaultValue;
 };
 
