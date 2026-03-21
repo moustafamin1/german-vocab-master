@@ -56,15 +56,66 @@ export default function App() {
 
             // 🔍 TEMPORARY: Capture diagnostic info for on-screen display
             try {
-                const diagKeys = [];
-                for (let i = 0; i < localStorage.length; i++) {
-                    const k = localStorage.key(i);
-                    const v = localStorage.getItem(k);
-                    diagKeys.push(`${k} (${v?.length || 0} chars)`);
+                const lines = [];
+                
+                // Check localStorage
+                lines.push('── localStorage ──');
+                if (localStorage.length === 0) {
+                    lines.push('  (empty)');
+                } else {
+                    for (let i = 0; i < localStorage.length; i++) {
+                        const k = localStorage.key(i);
+                        const v = localStorage.getItem(k);
+                        lines.push(`  ${k} (${v?.length || 0} chars)`);
+                    }
                 }
-                setStorageDiag(diagKeys.length > 0 ? diagKeys.join('\n') : 'localStorage is EMPTY');
+
+                // Check IndexedDB
+                lines.push('');
+                lines.push('── IndexedDB ──');
+                try {
+                    const idbDbs = await indexedDB.databases();
+                    lines.push(`  DBs found: ${idbDbs.map(d => d.name).join(', ') || 'none'}`);
+                    
+                    // Try to read all keys from vocaccia-db
+                    const idbKeys = await new Promise((resolve) => {
+                        try {
+                            const req = indexedDB.open('vocaccia-db', 1);
+                            req.onsuccess = (e) => {
+                                try {
+                                    const idb = e.target.result;
+                                    const tx = idb.transaction(['app-data'], 'readonly');
+                                    const store = tx.objectStore('app-data');
+                                    const keysReq = store.getAllKeys();
+                                    const valsReq = store.getAll();
+                                    keysReq.onsuccess = () => {
+                                        valsReq.onsuccess = () => {
+                                            const results = keysReq.result.map((k, i) => {
+                                                const v = valsReq.result[i];
+                                                const size = typeof v === 'string' ? v.length : JSON.stringify(v)?.length || 0;
+                                                return `  ${k} (${size} chars)`;
+                                            });
+                                            resolve(results.length > 0 ? results : ['  (empty store)']);
+                                        };
+                                    };
+                                    keysReq.onerror = () => resolve(['  (read error)']);
+                                } catch (txErr) {
+                                    resolve([`  (tx error: ${txErr.message})`]);
+                                }
+                            };
+                            req.onerror = () => resolve(['  (open error)']);
+                        } catch (err) {
+                            resolve([`  (error: ${err.message})`]);
+                        }
+                    });
+                    lines.push(...idbKeys);
+                } catch (idbErr) {
+                    lines.push(`  (error: ${idbErr.message})`);
+                }
+
+                setStorageDiag(lines.join('\n'));
             } catch (e) {
-                setStorageDiag('Error reading localStorage: ' + e.message);
+                setStorageDiag('Error: ' + e.message);
             }
 
             let storedSRS = {};
