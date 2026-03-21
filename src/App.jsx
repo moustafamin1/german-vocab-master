@@ -47,7 +47,11 @@ export default function App() {
     useEffect(() => {
         const loadInitialData = async () => {
             // 0. Initialize Storage (IndexedDB + Persistence Request)
-            await storage.initStorage();
+            try {
+                await storage.initStorage();
+            } catch (initErr) {
+                console.warn('⚠️ Storage init failed, falling back to localStorage:', initErr);
+            }
 
             let storedSRS = {};
             let storedGlobalStats = { total: 3000, correct: 2300, incorrect: 700 };

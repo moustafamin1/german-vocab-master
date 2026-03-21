@@ -43,8 +43,8 @@ export const initStorage = async () => {
             };
 
             request.onerror = (event) => {
-                console.error('❌ IndexedDB error:', event.target.error);
-                reject(event.target.error);
+                console.warn('⚠️ IndexedDB failed to open, falling back to localStorage:', event.target.error);
+                resolve(false);
             };
         });
     } catch (err) {
@@ -54,36 +54,100 @@ export const initStorage = async () => {
 };
 
 /**
+ * Check if a value is "empty" data (empty object or empty array)
+ */
+const isEmptyData = (value) => {
+    if (value === null || value === undefined) return true;
+    if (Array.isArray(value) && value.length === 0) return true;
+    if (typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length === 0) return true;
+    return false;
+};
+
+/**
  * Get data from storage (IndexedDB primary, localStorage fallback)
+ *
+ * CRITICAL FIX: IndexedDB and localStorage reads are in SEPARATE try/catch
+ * blocks so that an IDB failure never skips the localStorage fallback.
+ * Additionally, if IDB returns empty data but localStorage has real data,
+ * the localStorage version is preferred and auto-healed back into IDB.
  */
 export const getItem = async (key, defaultValue = null) => {
-    try {
-        // Try IndexedDB first
-        if (db) {
-            const value = await new Promise((resolve, reject) => {
+    let idbValue = undefined;
+    let idbSuccess = false;
+
+    // ── Step 1: Try IndexedDB (isolated) ──
+    if (db) {
+        try {
+            idbValue = await new Promise((resolve, reject) => {
                 const transaction = db.transaction([STORE_NAME], 'readonly');
                 const store = transaction.objectStore(STORE_NAME);
                 const request = store.get(key);
                 request.onsuccess = () => resolve(request.result);
                 request.onerror = () => reject(request.error);
             });
-
-            if (value !== undefined && value !== null) {
-                return typeof value === 'string' ? JSON.parse(value) : value;
-            }
+            idbSuccess = true;
+        } catch (idbErr) {
+            console.warn(`⚠️ IndexedDB read failed for "${key}", falling back to localStorage:`, idbErr);
+            // idbSuccess stays false → we fall through to localStorage below
         }
-
-        // Fallback to localStorage
-        const localValue = localStorage.getItem(key);
-        if (localValue !== null) {
-            const parsed = JSON.parse(localValue);
-            // Auto-heal: Restore to IndexedDB if it was missing
-            if (db) setItem(key, parsed);
-            return parsed;
-        }
-    } catch (err) {
-        console.error(`Error getting item ${key}`, err);
     }
+
+    // ── Step 2: Parse the IDB value if we got one ──
+    let parsedIdbValue = undefined;
+    if (idbSuccess && idbValue !== undefined && idbValue !== null) {
+        try {
+            parsedIdbValue = typeof idbValue === 'string' ? JSON.parse(idbValue) : idbValue;
+        } catch (parseErr) {
+            console.warn(`⚠️ Failed to parse IDB value for "${key}":`, parseErr);
+            // Treat as if IDB had nothing
+            parsedIdbValue = undefined;
+        }
+    }
+
+    // ── Step 3: Read localStorage (always, for auto-heal comparison) ──
+    let parsedLocalValue = undefined;
+    try {
+        const localRaw = localStorage.getItem(key);
+        if (localRaw !== null) {
+            parsedLocalValue = JSON.parse(localRaw);
+        }
+    } catch (localErr) {
+        console.warn(`⚠️ localStorage read/parse failed for "${key}":`, localErr);
+    }
+
+    // ── Step 4: Auto-Healing — decide which source to trust ──
+
+    // Case A: IDB has real data and localStorage also has real data
+    //   → Check if IDB returned empty while localStorage has substance
+    if (parsedIdbValue !== undefined && !isEmptyData(parsedIdbValue)) {
+        // IDB has real, non-empty data — use it
+        return parsedIdbValue;
+    }
+
+    // Case B: IDB returned empty/missing but localStorage has real data
+    //   → AUTO-HEAL: prefer localStorage and restore it to IDB
+    if (parsedLocalValue !== undefined && !isEmptyData(parsedLocalValue)) {
+        if (isEmptyData(parsedIdbValue)) {
+            console.warn(
+                `🔄 Auto-heal: IDB had empty data for "${key}" but localStorage has real data. ` +
+                `Restoring localStorage → IDB.`
+            );
+        }
+        // Restore to IndexedDB in the background (fire-and-forget)
+        if (db) {
+            setItem(key, parsedLocalValue).catch(healErr =>
+                console.warn(`⚠️ Auto-heal write to IDB failed for "${key}":`, healErr)
+            );
+        }
+        return parsedLocalValue;
+    }
+
+    // Case C: IDB has data (even if empty) and localStorage has nothing
+    if (parsedIdbValue !== undefined) {
+        return parsedIdbValue;
+    }
+
+    // Case D: Neither source has data
     return defaultValue;
 };
 
