@@ -18,6 +18,19 @@ let db = null;
  * Initialize IndexedDB and request persistence
  */
 export const initStorage = async () => {
+    // 🔍 DIAGNOSTIC: Dump localStorage state on startup
+    try {
+        const lsKeys = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const val = localStorage.getItem(key);
+            lsKeys.push({ key, length: val?.length || 0, preview: val?.substring(0, 80) });
+        }
+        console.log('🔍 DIAGNOSTIC — localStorage on startup:', JSON.stringify(lsKeys, null, 2));
+    } catch (e) {
+        console.warn('🔍 DIAGNOSTIC — could not read localStorage:', e);
+    }
+
     try {
         // 1. Request persistence from browser
         if (navigator.storage && navigator.storage.persist) {
