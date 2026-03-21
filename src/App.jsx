@@ -26,6 +26,7 @@ export default function App() {
     const [autoPlayAudio, setAutoPlayAudio] = useState(true);
     const [globalStats, setGlobalStats] = useState({ total: 3000, correct: 2300, incorrect: 700 });
     const [dailyStats, setDailyStats] = useState([]);
+    const [storageDiag, setStorageDiag] = useState(null); // 🔍 TEMPORARY diagnostic
 
     // App Config State
     const [selectedLevels, setSelectedLevels] = useState([]);
@@ -51,6 +52,19 @@ export default function App() {
                 await storage.initStorage();
             } catch (initErr) {
                 console.warn('⚠️ Storage init failed, falling back to localStorage:', initErr);
+            }
+
+            // 🔍 TEMPORARY: Capture diagnostic info for on-screen display
+            try {
+                const diagKeys = [];
+                for (let i = 0; i < localStorage.length; i++) {
+                    const k = localStorage.key(i);
+                    const v = localStorage.getItem(k);
+                    diagKeys.push(`${k} (${v?.length || 0} chars)`);
+                }
+                setStorageDiag(diagKeys.length > 0 ? diagKeys.join('\n') : 'localStorage is EMPTY');
+            } catch (e) {
+                setStorageDiag('Error reading localStorage: ' + e.message);
             }
 
             let storedSRS = {};
@@ -415,6 +429,11 @@ export default function App() {
             <div className="flex flex-col items-center justify-center min-h-screen p-6">
                 <div className="w-12 h-12 border-4 border-zinc-800 border-t-zinc-100 rounded-full animate-spin mb-4" />
                 <p className="text-zinc-500 font-medium animate-pulse">Lade Vokabeln...</p>
+                {storageDiag && (
+                    <pre className="mt-6 p-3 bg-zinc-900 border border-yellow-600 rounded-lg text-yellow-400 text-[10px] max-w-full overflow-auto whitespace-pre-wrap">
+                        🔍 STORAGE DIAGNOSTIC:\n{storageDiag}
+                    </pre>
+                )}
             </div>
         );
     }
