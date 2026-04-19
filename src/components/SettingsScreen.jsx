@@ -24,7 +24,6 @@ export default function SettingsScreen({
     const [isSyncing, setIsSyncing] = useState(false);
     const [syncSuccess, setSyncSuccess] = useState(false);
     const [copySuccess, setCopySuccess] = useState(false);
-    const [useDummyData, setUseDummyData] = useState(false);
     const [isSettingsExpanded, setIsSettingsExpanded] = useState(false);
     const [mediaImages, setMediaImages] = useState([]);
     const [viewingImage, setViewingImage] = useState(null);
@@ -182,7 +181,7 @@ export default function SettingsScreen({
         <div className="max-w-xl mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10">
             <div className="space-y-6">
                 {/* Stats Card */}
-                <StatsCard dailyStats={dailyStats} globalStats={globalStats} useDummyData={useDummyData} />
+                <StatsCard dailyStats={dailyStats} globalStats={globalStats} />
 
                 {/* Vocabulary Manager */}
                 <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
@@ -358,20 +357,6 @@ export default function SettingsScreen({
                                 className={`w-12 h-6 rounded-full transition-colors relative ${devMode ? 'bg-amber-500' : 'bg-zinc-800'}`}
                             >
                                 <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${devMode ? 'translate-x-6' : 'translate-x-0'}`} />
-                            </button>
-                        </div>
-
-                        {/* Dummy Data Toggle */}
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-sm font-medium">Demonstration Mode</p>
-                                <p className="text-xs text-zinc-500">Inject fake historical data into the graph for testing.</p>
-                            </div>
-                            <button
-                                onClick={() => setUseDummyData(!useDummyData)}
-                                className={`w-12 h-6 rounded-full transition-colors relative ${useDummyData ? 'bg-purple-500' : 'bg-zinc-800'}`}
-                            >
-                                <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${useDummyData ? 'translate-x-6' : 'translate-x-0'}`} />
                             </button>
                         </div>
 
