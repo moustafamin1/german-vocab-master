@@ -30,7 +30,36 @@ export default function StatsCard({ dailyStats: realDailyStats, globalStats, use
         useDummyData ? getDummyData() : realDailyStats,
         [useDummyData, realDailyStats]);
 
-    const recentData = useMemo(() => dailyStats.slice(-14), [dailyStats]);
+    const recentData = useMemo(() => {
+        if (useDummyData) return dailyStats.slice(-14);
+
+        const data = [];
+        const now = new Date();
+        const statsMap = new Map((dailyStats || []).map(d => [d.date, d]));
+
+        for (let i = 13; i >= 0; i--) {
+            const d = new Date(now);
+            d.setDate(d.getDate() - i);
+
+            // Format to local date string YYYY-MM-DD
+            const yyyy = d.getFullYear();
+            const mm = String(d.getMonth() + 1).padStart(2, '0');
+            const dd = String(d.getDate()).padStart(2, '0');
+            const dateStr = `${yyyy}-${mm}-${dd}`;
+
+            if (statsMap.has(dateStr)) {
+                data.push(statsMap.get(dateStr));
+            } else {
+                data.push({
+                    date: dateStr,
+                    total: 0,
+                    correct: 0,
+                    incorrect: 0
+                });
+            }
+        }
+        return data;
+    }, [dailyStats, useDummyData]);
     const maxValue = useMemo(() => {
         const vals = recentData.map(d => Math.max(d.total || 0, d.correct || 0, d.incorrect || 0));
         // Ensure maxValue is at least 60 to show the 50 threshold line clearly
@@ -248,7 +277,12 @@ export default function StatsCard({ dailyStats: realDailyStats, globalStats, use
                         <path d={getCurvedPath(recentData, 'incorrect')} fill="none" stroke="#f43f5e" strokeWidth="1.0" strokeLinecap="round" strokeJoin="round" className="opacity-40 transition-all duration-1000" />
 
                         {recentData.map((d, i) => {
-                            if (i % (recentData.length > 7 ? 3 : 1) !== 0 && i !== recentData.length - 1) return null;
+                            // Only show every 3rd day to avoid overlapping labels,
+                            // but make sure to show the last item (today).
+                            // If today is index 13, and previous is index 12, don't show index 12.
+                            if (i !== recentData.length - 1 && i % 4 !== 0) return null;
+                            if (i === recentData.length - 2) return null; // Ensure spacing before the last label
+
                             const x = (i / (recentData.length - 1)) * baseChartWidth + yAxisWidth;
                             return (
                                 <text key={i} x={x} y={baseChartHeight + 20} fill="#71717a" fontSize="9" textAnchor="middle" className="font-bold uppercase tracking-tight">
