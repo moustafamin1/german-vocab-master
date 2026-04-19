@@ -1,43 +1,20 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { TrendingUp, TestTube, Info } from 'lucide-react';
 
-export default function StatsCard({ dailyStats: realDailyStats, globalStats, useDummyData = false }) {
+export default function StatsCard({ dailyStats: realDailyStats, globalStats }) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0, p: 50 });
     const containerRef = useRef(null);
 
-    // Generate dummy data for testing
-    const getDummyData = () => {
-        const data = [];
-        const now = new Date();
-        for (let i = 13; i >= 0; i--) {
-            const d = new Date(now);
-            d.setDate(d.getDate() - i);
-            const total = Math.floor(Math.random() * 50) + 20; // Some points will cross 50
-            const correct = Math.floor(Math.random() * (total - 5)) + 5;
-            const incorrect = total - correct;
-            data.push({
-                date: d.toISOString().split('T')[0],
-                total,
-                correct,
-                incorrect
-            });
-        }
-        return data;
-    };
-
-    const dailyStats = useMemo(() =>
-        useDummyData ? getDummyData() : realDailyStats,
-        [useDummyData, realDailyStats]);
+    const dailyStats = realDailyStats;
 
     const recentData = useMemo(() => {
-        if (useDummyData) return dailyStats.slice(-14);
 
         const data = [];
         const now = new Date();
         const statsMap = new Map((dailyStats || []).map(d => [d.date, d]));
 
-        for (let i = 13; i >= 0; i--) {
+        for (let i = 59; i >= 0; i--) {
             const d = new Date(now);
             d.setDate(d.getDate() - i);
 
@@ -59,7 +36,7 @@ export default function StatsCard({ dailyStats: realDailyStats, globalStats, use
             }
         }
         return data;
-    }, [dailyStats, useDummyData]);
+    }, [dailyStats]);
     const maxValue = useMemo(() => {
         const vals = recentData.map(d => Math.max(d.total || 0, d.correct || 0, d.incorrect || 0));
         // Ensure maxValue is at least 60 to show the 50 threshold line clearly
@@ -68,7 +45,7 @@ export default function StatsCard({ dailyStats: realDailyStats, globalStats, use
 
     if (!dailyStats || dailyStats.length === 0) {
         return (
-            <div className="bg-zinc-900/40 backdrop-blur-md border border-zinc-800/50 rounded-3xl p-8 shadow-2xl overflow-hidden relative group">
+            <div className="relative group">
                 <div className="flex items-center justify-between mb-6 relative">
                     <div className="flex items-center gap-4">
                         <div className="p-3 bg-zinc-950 rounded-2xl border border-zinc-800 shadow-inner">
@@ -188,7 +165,7 @@ export default function StatsCard({ dailyStats: realDailyStats, globalStats, use
     const accuracy = totalSum > 0 ? Math.round((correctSum / totalSum) * 100) : 0;
 
     return (
-        <div className="bg-zinc-900/40 backdrop-blur-md border border-zinc-800/50 rounded-3xl p-6 md:p-8 space-y-8 shadow-2xl relative overflow-hidden group">
+        <div className="space-y-8 relative group">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative">
                 <div className="flex items-center gap-4">
                     <div className="p-3 bg-zinc-950 rounded-2xl border border-zinc-800 shadow-inner transition-colors">
@@ -280,7 +257,7 @@ export default function StatsCard({ dailyStats: realDailyStats, globalStats, use
                             // Only show every 3rd day to avoid overlapping labels,
                             // but make sure to show the last item (today).
                             // If today is index 13, and previous is index 12, don't show index 12.
-                            if (i !== recentData.length - 1 && i % 4 !== 0) return null;
+                            if (i !== recentData.length - 1 && i % 15 !== 0) return null;
                             if (i === recentData.length - 2) return null; // Ensure spacing before the last label
 
                             const x = (i / (recentData.length - 1)) * baseChartWidth + yAxisWidth;
