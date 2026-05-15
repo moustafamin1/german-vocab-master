@@ -324,10 +324,20 @@ export default function App() {
                 // Use hardcoded wrong choices from Sheet 5
                 setOptions([randomWord, ...randomWord.wrongChoices].sort(() => 0.5 - Math.random()));
             } else {
-                const distractors = vocabPool
-                    .filter(v => v.word !== randomWord.word)
+                let distractors = vocabPool
+                    .filter(v => v.word !== randomWord.word && v.type === randomWord.type)
                     .sort(() => 0.5 - Math.random())
                     .slice(0, 3);
+
+                // Fallback if there are not enough distractors of the same type
+                if (distractors.length < 3) {
+                    const moreDistractors = vocabPool
+                        .filter(v => v.word !== randomWord.word && v.type !== randomWord.type)
+                        .sort(() => 0.5 - Math.random())
+                        .slice(0, 3 - distractors.length);
+
+                    distractors = [...distractors, ...moreDistractors];
+                }
 
                 setOptions([randomWord, ...distractors].sort(() => 0.5 - Math.random()));
             }
