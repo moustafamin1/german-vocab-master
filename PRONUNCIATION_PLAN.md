@@ -16,7 +16,7 @@
 
 ## Step 3: Add Navigation Button
 - Add a navigation button in `src/components/SettingsScreen.jsx`.
-- Add a new "Pronunciation Practice" menu item alongside "All Words" and "Media Library" that calls a function (e.g. `onOpenPronunciation()`) to change the view state in `App.jsx`.
+- Add a new "Pronounce" menu item alongside "All Words" and "Media Library" that calls a function (e.g. `onOpenPronunciation()`) to change the view state in `App.jsx`.
 
 ## Step 4: Update Props
 - Update `App.jsx` Settings View props.
