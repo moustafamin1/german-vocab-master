@@ -2,12 +2,13 @@
 
 ## Step 1: Create `PronunciationScreen.jsx`
 - Create the new component `PronunciationScreen` in `src/components/PronunciationScreen.jsx`.
-- This screen will accept the `vocabPool` to randomly select Nouns.
+- This screen will accept the `vocabPool` to randomly select Nouns using the existing SRS algorithm (`getWeightedRandomWord`).
 - It will contain logic to start/stop the Web Speech API (`webkitSpeechRecognition` or `SpeechRecognition`).
 - It will display the target German word (e.g., "der Hund") and an English hint.
-- It will feature a prominent "Hold to Speak" or "Tap to Speak" microphone button using `lucide-react` icons.
+- It will feature a prominent "Hold to speak" microphone button using `lucide-react` icons.
 - Upon recognition, it will compare the spoken text with the target word (ignoring case, punctuation, and articles if necessary).
 - It will show immediate feedback: "Correct!" or "Wrong, you said: [transcribed text]" and let the user move to the next word.
+- Crucially, it will update the SRS stats (successCount, failCount) upon answering, exactly like the standard quiz modes do.
 
 ## Step 2: Integrate into `App.jsx`
 - Add a new state string to the `view` state (e.g., `'pronunciation'`).
