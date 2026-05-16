@@ -32,10 +32,11 @@ export default function AllWordsScreen({ vocabPool, onToggleStatus, srsOffset, o
                 (filterStatus === 'study' && word.status !== 'skip') ||
                 (filterStatus === 'skip' && word.status === 'skip');
             const matchesLevel = selectedLevel === 'All' || word.level === selectedLevel || (word.type === 'Grammar' && typeFilter === 'grammar');
-            const matchesType = typeFilter === 'all' ||
-                (typeFilter === 'nouns' && word.type === 'Noun') ||
-                (typeFilter === 'phrases' && word.type === 'Phrase') ||
-                (typeFilter === 'grammar' && word.type === 'Grammar');
+            const wordType = word.type ? word.type.toLowerCase() : '';
+            const matchesType = (typeFilter === 'all' && wordType !== 'grammar') ||
+                (typeFilter === 'nouns' && wordType === 'noun') ||
+                (typeFilter === 'phrases' && wordType === 'phrase') ||
+                (typeFilter === 'grammar' && wordType === 'grammar');
 
             return matchesSearch && matchesStatus && matchesLevel && matchesType;
         }).sort((a, b) => {
