@@ -6,16 +6,20 @@ import { ttsService } from '../services/ttsService';
 export default function ResultCard({ word, feedback, onNext, onToggleStatus, devMode, srsOffset, autoPlayAudio }) {
     const isCorrect = feedback.correct;
 
+    const playWordAudio = () => {
+        let textToSpeak = '';
+        if (word.type === 'Grammar' && word.phrase) {
+            textToSpeak = word.phrase.replace(/______/g, word.word);
+        } else {
+            textToSpeak = word.article ? `${word.article} ${word.word}` : word.word;
+        }
+        ttsService.speak(textToSpeak);
+    };
+
     // Automatically play audio if enabled
     useEffect(() => {
         if (autoPlayAudio) {
-            let textToSpeak = '';
-            if (word.type === 'Grammar' && word.phrase) {
-                textToSpeak = word.phrase.replace(/______/g, word.word);
-            } else {
-                textToSpeak = word.article ? `${word.article} ${word.word}` : word.word;
-            }
-            ttsService.speak(textToSpeak);
+            playWordAudio();
         }
     }, [word, autoPlayAudio]);
 
@@ -47,7 +51,11 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                     <div className="space-y-1">
                         <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Correct Answer</span>
                         <div className="flex items-center justify-between gap-2">
-                            <div className="text-sm font-medium">
+                            <div
+                                className="text-sm font-medium cursor-pointer"
+                                onClick={playWordAudio}
+                                title="Play Audio"
+                            >
                                 {word.type === 'Grammar' && word.phrase ? (
                                     <p>{word.phrase.replace(/______/g, word.word)}</p>
                                 ) : (
@@ -62,15 +70,7 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                                 )}
                             </div>
                             <button
-                                onClick={() => {
-                                    let textToSpeak = '';
-                                    if (word.type === 'Grammar' && word.phrase) {
-                                        textToSpeak = word.phrase.replace(/______/g, word.word);
-                                    } else {
-                                        textToSpeak = word.article ? `${word.article} ${word.word}` : word.word;
-                                    }
-                                    ttsService.speak(textToSpeak);
-                                }}
+                                onClick={playWordAudio}
                                 className="p-1.5 bg-zinc-800 rounded-lg text-zinc-400 hover:text-zinc-100 transition-colors shrink-0"
                                 title="Play Audio"
                             >
@@ -135,7 +135,13 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
                                 <Volume2 className="w-3.5 h-3.5" />
                             </button>
                         </div>
-                        <p className="text-sm font-medium leading-relaxed">{word.sentence}</p>
+                        <p
+                            className="text-sm font-medium leading-relaxed cursor-pointer"
+                            onClick={() => ttsService.speak(word.sentence)}
+                            title="Play Example"
+                        >
+                            {word.sentence}
+                        </p>
                     </div>
                 )}
 
