@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { RefreshCw, Check, ChevronRight, Settings, Settings2, Download, Upload, Copy, Share2, FileUp, Image as ImageIcon, Plus, X } from 'lucide-react';
+import { RefreshCw, Check, ChevronRight, Settings, Settings2, Download, Upload, Copy, Share2, FileUp, Image as ImageIcon, Plus, X, Mic } from 'lucide-react';
 import { fetchAndCacheVocab } from '../services/vocabService';
 import * as storage from '../services/storageService';
 import { mediaService } from '../services/mediaService';
@@ -17,6 +17,7 @@ export default function SettingsScreen({
     onOpenAllWords,
     onOpenMediaLibrary,
     onOpenSkippingTool,
+    onOpenPronunciation,
     dailyStats,
     globalStats,
     version
@@ -196,6 +197,26 @@ export default function SettingsScreen({
                         >
                             <span>All Words</span>
                             <ChevronRight className="w-4 h-4" />
+                        </button>
+                    </div>
+                </section>
+
+                {/* Pronunciation Practice */}
+                <section className="space-y-4 bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <div className="flex items-center gap-2">
+                                <p className="text-sm font-medium">Pronunciation Practice</p>
+                                <span className="text-[9px] font-bold uppercase tracking-wider bg-blue-500/20 text-blue-400 px-1.5 py-0.5 rounded">Beta</span>
+                            </div>
+                            <p className="text-xs text-zinc-500">Practice speaking German nouns.</p>
+                        </div>
+                        <button
+                            onClick={onOpenPronunciation}
+                            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-blue-900/50 text-blue-400 hover:text-blue-300 hover:border-blue-700 hover:bg-blue-900/20 transition-all text-xs font-bold bg-[#0a0a0f]"
+                        >
+                            <Mic className="w-3.5 h-3.5" />
+                            <span>Practice</span>
                         </button>
                     </div>
                 </section>

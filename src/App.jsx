@@ -9,6 +9,7 @@ import AllWordsScreen from './components/AllWordsScreen';
 import MediaLibrary from './components/MediaLibrary';
 import SkippingTool from './components/SkippingTool';
 import StatsBar from './components/StatsBar';
+import PronunciationScreen from './components/PronunciationScreen';
 import { getWeightedRandomWord } from './utils/srs-logic';
 import { getCachedVocab } from './services/vocabService';
 import * as storage from './services/storageService';
@@ -484,6 +485,7 @@ export default function App() {
     const handleBackToSettings = () => setView('settings');
     const handleOpenMediaLibrary = () => setView('mediaLibrary');
     const handleOpenSkippingTool = () => setView('skippingTool');
+    const handleOpenPronunciation = () => setView('pronunciation');
 
     if (view === 'loading') {
         return (
@@ -545,6 +547,7 @@ export default function App() {
                             onOpenAllWords={handleOpenAllWords}
                             onOpenMediaLibrary={() => setView('mediaLibrary')}
                             onOpenSkippingTool={handleOpenSkippingTool}
+                            onOpenPronunciation={handleOpenPronunciation}
                             dailyStats={dailyStats}
                             globalStats={globalStats}
                             version={APP_VERSION}
@@ -564,6 +567,13 @@ export default function App() {
                         <SkippingTool
                             vocabPool={vocabPool}
                             onToggleStatus={toggleWordStatus}
+                            onBack={handleBackToSettings}
+                        />
+                    ) : view === 'pronunciation' ? (
+                        <PronunciationScreen
+                            vocabPool={vocabPool}
+                            srsOffset={srsOffset}
+                            onUpdateStats={updateSRSStats}
                             onBack={handleBackToSettings}
                         />
                     ) : (
