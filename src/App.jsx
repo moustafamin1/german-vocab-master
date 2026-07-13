@@ -6,6 +6,7 @@ import ResultCard from './components/ResultCard';
 import ConfigScreen from './components/ConfigScreen';
 import SettingsScreen from './components/SettingsScreen';
 import AllWordsScreen from './components/AllWordsScreen';
+import StarredWordsScreen from './components/StarredWordsScreen';
 import MediaLibrary from './components/MediaLibrary';
 import SkippingTool from './components/SkippingTool';
 import StatsBar from './components/StatsBar';
@@ -32,6 +33,7 @@ export default function App() {
     const [selectedLevels, setSelectedLevels] = useState([]);
     const [selectedModes, setSelectedModes] = useState(['multipleChoice', 'written', 'article', 'wordOrder']);
     const [selectedTypes, setSelectedTypes] = useState(['Noun', 'Phrase', 'Grammar']);
+    const [starredOnly, setStarredOnly] = useState(false);
 
     // Data State
     const [vocabPool, setVocabPool] = useState([]);
@@ -223,6 +225,7 @@ export default function App() {
                     successCount: stats.successCount || 0,
                     failCount: stats.failCount || 0,
                     status: stats.status || word.status || 'study',
+                    isStarred: stats.isStarred || false,
                     uniqueId: stringKey
                 };
             });
@@ -261,8 +264,9 @@ export default function App() {
             const matchesLevel = v.type === 'Grammar' || selectedLevels.includes(v.level);
             const matchesType = selectedTypes.includes(v.type);
             const isStudy = v.status !== 'skip';
+            const matchesStar = !starredOnly || v.isStarred;
 
-            if (!matchesLevel || !matchesType || !isStudy) return false;
+            if (!matchesLevel || !matchesType || !isStudy || !matchesStar) return false;
 
             // Ensure the word is compatible with at least ONE selected mode
             return selectedModes.some(mode => {
@@ -347,7 +351,7 @@ export default function App() {
         setQuizMode(finalMode);
         setFeedback(null);
         setView('playing');
-    }, [selectedLevels, selectedModes, selectedTypes, vocabPool, srsOffset]);
+    }, [selectedLevels, selectedModes, selectedTypes, vocabPool, srsOffset, starredOnly]);
 
     const saveSRSData = async (updatedPool) => {
         // 🛡️ SAFETY FIRST: Always merge with existing storage to prevent accidental data wipes
@@ -355,11 +359,12 @@ export default function App() {
         const newData = { ...existingData };
 
         updatedPool.forEach(w => {
-            if (w.successCount > 0 || w.failCount > 0 || w.status === 'skip') {
+            if (w.successCount > 0 || w.failCount > 0 || w.status === 'skip' || w.isStarred) {
                 newData[w.uniqueId] = {
                     successCount: w.successCount,
                     failCount: w.failCount,
-                    status: w.status
+                    status: w.status,
+                    isStarred: w.isStarred
                 };
             }
         });
@@ -386,6 +391,21 @@ export default function App() {
     const toggleWordStatus = (word) => {
         const newStatus = word.status === 'skip' ? 'study' : 'skip';
         const updatedWord = { ...word, status: newStatus };
+
+        const newPool = vocabPool.map(w =>
+            w.uniqueId === word.uniqueId ? updatedWord : w
+        );
+
+        setVocabPool(newPool);
+        if (currentWord?.uniqueId === word.uniqueId) {
+            setCurrentWord(updatedWord);
+        }
+        saveSRSData(newPool); // Use safe save
+    };
+
+    const toggleWordStar = (word) => {
+        const newIsStarred = !word.isStarred;
+        const updatedWord = { ...word, isStarred: newIsStarred };
 
         const newPool = vocabPool.map(w =>
             w.uniqueId === word.uniqueId ? updatedWord : w
@@ -481,6 +501,7 @@ export default function App() {
     const handleBackToConfig = () => setView('config');
     const handleOpenSettings = () => setView('settings');
     const handleOpenAllWords = () => setView('allWords');
+    const handleOpenStarredWords = () => setView('starredWords');
     const handleBackToSettings = () => setView('settings');
     const handleOpenMediaLibrary = () => setView('mediaLibrary');
     const handleOpenSkippingTool = () => setView('skippingTool');
@@ -507,7 +528,7 @@ export default function App() {
                     onLogoClick={handleBackToConfig}
                     onSettingsClick={handleOpenSettings}
                     wordCount={baseVocabCount}
-                    isSettingsOpen={view === 'settings' || view === 'allWords' || view === 'mediaLibrary'}
+                    isSettingsOpen={view === 'settings' || view === 'allWords' || view === 'starredWords' || view === 'mediaLibrary'}
                 />
 
                 <main className="mt-8">
@@ -520,6 +541,8 @@ export default function App() {
                             setSelectedModes={setSelectedModes}
                             selectedTypes={selectedTypes}
                             setSelectedTypes={setSelectedTypes}
+                            starredOnly={starredOnly}
+                            setStarredOnly={setStarredOnly}
                             onStart={handleStart}
                         />
                     ) : view === 'feedback' ? (
@@ -528,6 +551,7 @@ export default function App() {
                             feedback={feedback}
                             onNext={pickNewWord}
                             onToggleStatus={toggleWordStatus}
+                            onToggleStar={toggleWordStar}
                             devMode={devMode}
                             srsOffset={srsOffset}
                             autoPlayAudio={autoPlayAudio}
@@ -543,6 +567,7 @@ export default function App() {
                             wordCount={vocabPool.length}
                             onBack={handleBackToConfig}
                             onOpenAllWords={handleOpenAllWords}
+                            onOpenStarredWords={handleOpenStarredWords}
                             onOpenMediaLibrary={() => setView('mediaLibrary')}
                             onOpenSkippingTool={handleOpenSkippingTool}
                             dailyStats={dailyStats}
@@ -553,6 +578,13 @@ export default function App() {
                         <AllWordsScreen
                             vocabPool={vocabPool}
                             onToggleStatus={toggleWordStatus}
+                            srsOffset={srsOffset}
+                            onBack={handleBackToSettings}
+                        />
+                    ) : view === 'starredWords' ? (
+                        <StarredWordsScreen
+                            vocabPool={vocabPool}
+                            onToggleStar={toggleWordStar}
                             srsOffset={srsOffset}
                             onBack={handleBackToSettings}
                         />
