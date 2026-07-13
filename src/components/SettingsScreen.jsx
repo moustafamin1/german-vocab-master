@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { RefreshCw, Check, ChevronRight, Settings, Settings2, Download, Upload, Copy, Share2, FileUp, Image as ImageIcon, Plus, X } from 'lucide-react';
+import { RefreshCw, Check, ChevronRight, Settings, Settings2, Download, Upload, Copy, Share2, FileUp, Image as ImageIcon, Plus, X, Star } from 'lucide-react';
 import { fetchAndCacheVocab } from '../services/vocabService';
 import * as storage from '../services/storageService';
 import { mediaService } from '../services/mediaService';
@@ -15,6 +15,7 @@ export default function SettingsScreen({
     wordCount,
     onBack,
     onOpenAllWords,
+    onOpenStarredWords,
     onOpenMediaLibrary,
     onOpenSkippingTool,
     dailyStats,
@@ -195,6 +196,21 @@ export default function SettingsScreen({
                             className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-zinc-400 hover:text-zinc-100 hover:border-zinc-600 transition-all text-xs font-bold bg-zinc-950"
                         >
                             <span>All Words</span>
+                            <ChevronRight className="w-4 h-4" />
+                        </button>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-4 border-t border-zinc-800">
+                        <div>
+                            <p className="text-sm font-medium">Starred Items</p>
+                            <p className="text-xs text-zinc-500">View and manage your starred words.</p>
+                        </div>
+                        <button
+                            onClick={onOpenStarredWords}
+                            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-800 text-amber-500 hover:bg-amber-500/10 hover:border-amber-500/30 transition-all text-xs font-bold bg-zinc-950"
+                        >
+                            <Star className="w-3.5 h-3.5 fill-current" />
+                            <span>View Starred</span>
                             <ChevronRight className="w-4 h-4" />
                         </button>
                     </div>

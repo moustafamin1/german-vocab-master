@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { CheckCircle2, XCircle, ArrowRight, Lightbulb, Quote, BarChart2, Eye, EyeOff, Volume2 } from 'lucide-react';
+import { CheckCircle2, XCircle, ArrowRight, Lightbulb, Quote, BarChart2, Eye, EyeOff, Volume2, Star } from 'lucide-react';
 import { calculateWeight } from '../utils/srs-logic';
 import { ttsService } from '../services/ttsService';
 
-export default function ResultCard({ word, feedback, onNext, onToggleStatus, devMode, srsOffset, autoPlayAudio }) {
+export default function ResultCard({ word, feedback, onNext, onToggleStatus, onToggleStar, devMode, srsOffset, autoPlayAudio }) {
     const isCorrect = feedback.correct;
 
     const playWordAudio = () => {
@@ -162,6 +162,16 @@ export default function ResultCard({ word, feedback, onNext, onToggleStatus, dev
             </div>
 
             <div className="flex gap-3">
+                <button
+                    onClick={() => onToggleStar(word)}
+                    className={`flex-1 py-4 flex flex-col items-center justify-center gap-1 rounded-2xl border transition-all duration-300 ${word.isStarred
+                        ? 'bg-amber-500/10 border-amber-500/40 text-amber-500 hover:bg-amber-500/20'
+                        : 'bg-zinc-800/30 border-zinc-800/50 text-zinc-500 hover:bg-zinc-800/50'
+                        }`}
+                >
+                    <Star className={`w-4 h-4 ${word.isStarred ? 'fill-current' : ''}`} />
+                    <span className="text-[10px] font-bold uppercase tracking-widest">{word.isStarred ? 'Starred' : 'Star'}</span>
+                </button>
                 <button
                     onClick={() => onToggleStatus(word)}
                     className={`flex-1 py-4 flex flex-col items-center justify-center gap-1 rounded-2xl border transition-all duration-300 ${word.status === 'skip'

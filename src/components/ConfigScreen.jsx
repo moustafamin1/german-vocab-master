@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Check, X } from 'lucide-react';
+import { Play, Check, X, Star } from 'lucide-react';
 
 const MODES = [
     { id: 'multipleChoice', name: 'Multiple Choice' },
@@ -18,6 +18,8 @@ export default function ConfigScreen({
     setSelectedModes,
     selectedTypes,
     setSelectedTypes,
+    starredOnly,
+    setStarredOnly,
     onStart
 }) {
     const toggleLevel = (level) => {
@@ -145,6 +147,24 @@ export default function ConfigScreen({
                             );
                         })}
                     </div>
+                </section>
+
+                {/* Starred Filter */}
+                <section className="space-y-3 pt-4 border-t border-zinc-800/50">
+                    <button
+                        onClick={() => setStarredOnly(!starredOnly)}
+                        className={`w-full py-4 px-4 rounded-xl border flex items-center justify-between transition-all ${
+                            starredOnly
+                                ? 'bg-amber-500/10 border-amber-500/40 text-amber-500'
+                                : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:bg-zinc-800/50'
+                        }`}
+                    >
+                        <div className="flex items-center gap-3">
+                            <Star className={`w-5 h-5 ${starredOnly ? 'fill-current' : ''}`} />
+                            <span className="font-semibold text-sm">Practice Starred Items Only</span>
+                        </div>
+                        {starredOnly && <Check className="w-5 h-5" />}
+                    </button>
                 </section>
             </div>
 
