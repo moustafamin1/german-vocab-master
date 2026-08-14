@@ -6,7 +6,7 @@ export default function SettingsHeader({ onLogoClick, onSettingsClick, wordCount
             <div className="flex items-center gap-4">
                 <button
                     onClick={onLogoClick}
-                    className="text-xl font-bold tracking-tight hover:text-zinc-400 transition-colors"
+                    className="text-3xl font-bold tracking-tight hover:text-zinc-400 transition-colors"
                 >
                     Vocaccia
                 </button>
